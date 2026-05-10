@@ -1,156 +1,26 @@
 import { useParams, Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
-const LEGAL_CONTENT: Record<string, { title: string; emoji: string; content: string }> = {
+const LEGAL_CONTENT: Record<string, { title: string; content: string }> = {
   privacy: {
     title: 'Политика обработки персональных данных',
-    emoji: '🔒',
-    content: `
-## 1. Общие положения
-
-Настоящая Политика обработки персональных данных (далее — Политика) определяет порядок обработки персональных данных пользователей сайта dvmedia.ru.
-
-Оператор персональных данных: ДВ Медиа (далее — Оператор), ИНН 0000000000.
-
-## 2. Персональные данные
-
-Оператор обрабатывает следующие персональные данные:
-- Имя и фамилия
-- Номер телефона
-- Адрес электронной почты
-- Данные, добавляемые пользователем в поле «Задача»
-
-## 3. Цели обработки
-
-Персональные данные обрабатываются в целях:
-- Обработки заявок на размещение рекламы
-- Составления медиаплана
-- Обратной связи с клиентами
-
-## 4. Правовое основание
-
-Обработка персональных данных осуществляется на основании:
-- Согласия субъекта персональных данных
-- Федерального закона №152-ФЗ «О персональных данных»
-
-## 5. Хранение и защита
-
-Персональные данные хранятся на защищённых серверах. Оператор принимает технические и организационные меры для защиты данных от несанкционированного доступа.
-
-## 6. Права субъекта
-
-Пользователь имеет право:
-- Запросить перечень обрабатываемых данных
-- Потребовать уточнения или удаления данных
-- Отозвать согласие на обработку
-
-По вопросам персональных данных: pd@dvmedia.ru
-
-## 7. Актуальность
-
-Дата последнего обновления: 01.01.2024
-    `,
+    content: `## 1. Общие положения\n\nНастоящая Политика определяет порядок обработки персональных данных пользователей сайта.\n\nОператор: ДВ Медиа, ИНН 0000000000.\n\n## 2. Персональные данные\n\nОператор обрабатывает:\n- Имя и фамилию\n- Номер телефона\n- Адрес электронной почты\n- Данные о задаче рекламной кампании\n\n## 3. Цели обработки\n\n- Обработка заявок на размещение рекламы\n- Составление медиаплана\n- Обратная связь с клиентами\n\n## 4. Правовое основание\n\nФедеральный закон №152-ФЗ «О персональных данных», согласие субъекта ПД.\n\n## 5. Хранение и защита\n\nПерсональные данные хранятся на защищённых серверах. Оператор принимает технические и организационные меры защиты.\n\n## 6. Права субъекта\n\nПользователь имеет право запросить, уточнить или удалить свои данные. По вопросам: pd@dvmedia.ru\n\nДата обновления: 01.01.2024`,
   },
   consent: {
     title: 'Согласие на обработку персональных данных',
-    emoji: '✅',
-    content: `
-Настоящим я, пользователь сайта dvmedia.ru, даю согласие ДВ Медиа (ИНН 0000000000) на обработку следующих персональных данных: фамилия, имя, номер телефона, адрес электронной почты.
-
-**Цели обработки:** обработка заявки на размещение рекламы, обратная связь, составление медиаплана.
-
-**Способы обработки:** сбор, систематизация, накопление, хранение, уточнение, использование, передача, обезличивание, блокирование, удаление персональных данных.
-
-**Срок хранения:** в течение 3 лет с момента получения согласия или до отзыва согласия.
-
-Я имею право отозвать настоящее согласие путём направления письменного заявления по адресу: pd@dvmedia.ru.
-
-Согласие считается данным с момента отправки формы заявки на сайте.
-    `,
+    content: `Настоящим я даю согласие ДВ Медиа (ИНН 0000000000) на обработку следующих персональных данных: фамилия, имя, номер телефона, адрес электронной почты.\n\n**Цели:** обработка заявки, обратная связь, составление медиаплана.\n\n**Способы:** сбор, систематизация, хранение, использование, удаление.\n\n**Срок:** 3 года с момента получения согласия или до отзыва.\n\nОтзыв согласия: pd@dvmedia.ru\n\nСогласие считается данным с момента отправки формы заявки.`,
   },
   cookies: {
     title: 'Политика использования Cookie',
-    emoji: '🍪',
-    content: `
-## Что такое Cookie?
-
-Cookie — это небольшие текстовые файлы, которые сохраняются в браузере при посещении сайта.
-
-## Какие Cookie мы используем?
-
-**Технические Cookie** — необходимы для работы сайта. Не могут быть отключены.
-
-**Аналитические Cookie** — Яндекс.Метрика. Помогают анализировать посещаемость и улучшать сайт.
-
-## Управление Cookie
-
-Вы можете отключить Cookie в настройках браузера. Обратите внимание, что это может повлиять на работу некоторых функций сайта.
-
-## Согласие
-
-Продолжая использовать сайт, вы соглашаетесь с использованием Cookie в соответствии с данной политикой.
-    `,
+    content: `## Что такое Cookie?\n\nCookie — небольшие текстовые файлы, сохраняемые в браузере при посещении сайта.\n\n## Какие Cookie используем?\n\n**Технические Cookie** — необходимы для работы сайта. Не отключаются.\n\n**Аналитические Cookie** — Яндекс.Метрика. Помогают анализировать посещаемость.\n\n## Управление\n\nВы можете отключить Cookie в настройках браузера. Это может повлиять на работу сайта.\n\n## Согласие\n\nПродолжая использовать сайт, вы соглашаетесь с использованием Cookie.`,
   },
   'ad-marking': {
     title: 'Маркировка рекламы',
-    emoji: '🏷️',
-    content: `
-## Закон о маркировке рекламы
-
-С 1 сентября 2023 года в соответствии с Федеральным законом «О рекламе» №38-ФЗ (ст. 18.1) вся интернет-реклама на территории РФ должна маркироваться.
-
-## Что это означает?
-
-Каждое рекламное размещение должно:
-- Содержать токен erid (идентификатор рекламного материала)
-- Быть зарегистрировано в системе ОРД (оператора рекламных данных)
-- Содержать пометку «Реклама» с указанием рекламодателя
-
-## Как мы работаем?
-
-Мы берём на себя процесс маркировки:
-1. Регистрируем рекламный материал в ОРД
-2. Получаем токен erid
-3. Добавляем маркировку к публикации
-4. Передаём данные об охвате в ОРД после публикации
-
-## Ответственность
-
-За отсутствие маркировки предусмотрена административная ответственность для рекламодателя, рекламораспространителя и оператора рекламной системы.
-
-По вопросам маркировки: info@dvmedia.ru
-    `,
+    content: `## Закон о маркировке\n\nС 1 сентября 2023 года по ФЗ «О рекламе» №38-ФЗ (ст. 18.1) вся интернет-реклама в РФ маркируется.\n\n## Что включает маркировка?\n\n- Токен erid (идентификатор рекламного материала)\n- Регистрация в системе ОРД\n- Пометка «Реклама» с указанием рекламодателя\n\n## Как мы работаем?\n\n1. Регистрируем рекламный материал в ОРД\n2. Получаем токен erid\n3. Добавляем маркировку к публикации\n4. Передаём данные об охвате в ОРД после размещения\n\n## Ответственность\n\nЗа отсутствие маркировки предусмотрена административная ответственность.\n\nПо вопросам маркировки: info@dvmedia.ru`,
   },
   info: {
     title: 'Правовая информация',
-    emoji: '⚖️',
-    content: `
-## Об организации
-
-**ДВ Медиа**
-ИНН: 0000000000
-ОГРН: 0000000000000
-
-## Дисклеймер по Meta/Instagram*
-
-*Instagram и Facebook принадлежат компании Meta Platforms Inc.
-
-Решением суда на территории Российской Федерации деятельность Meta Platforms Inc. признана экстремистской и запрещена.
-
-Стандартное рекламное размещение в Instagram* и Facebook* для продвижения товаров и услуг на территории РФ ДВ Медиа не предлагает и не организует.
-
-Упоминание данных платформ носит исключительно информационный характер.
-
-## Рекомендуемые альтернативы
-
-Для рекламного продвижения рекомендуем: ВКонтакте, Telegram, MAX, TikTok, Одноклассники.
-
-## Контакты
-
-- Email: info@dvmedia.ru
-- По вопросам ПД: pd@dvmedia.ru
-- Телефон: +7 (4212) 00-00-00
-    `,
+    content: `## Об организации\n\nДВ Медиа\nИНН: 0000000000\nОГРН: 0000000000000\n\n## Дисклеймер по Meta / Instagram*\n\n*Instagram и Facebook принадлежат Meta Platforms Inc.\n\nРешением суда на территории РФ деятельность Meta Platforms Inc. признана экстремистской и запрещена.\n\nСтандартное рекламное размещение в Instagram* и Facebook* для продвижения товаров и услуг на территории РФ не предлагается.\n\nУпоминание платформ носит исключительно информационный характер.\n\n## Рекомендованные альтернативы\n\nВКонтакте, Telegram, MAX, TikTok, Одноклассники.\n\n## Контакты\n\ninfo@dvmedia.ru\npd@dvmedia.ru\n+7 (4212) 00-00-00`,
   },
 };
 
@@ -158,71 +28,51 @@ export default function Legal() {
   const { pageId } = useParams<{ pageId: string }>();
   const page = LEGAL_CONTENT[pageId || ''];
 
-  if (!page) {
-    return (
-      <div className="pt-28 text-center py-20">
-        <div className="text-5xl mb-4">📄</div>
-        <h2 className="font-display font-bold text-2xl text-brand-dark mb-2">Страница не найдена</h2>
-        <Link to="/" className="text-brand-blue hover:text-brand-orange">На главную</Link>
-      </div>
-    );
-  }
+  if (!page) return (
+    <div className="pt-28 text-center py-24">
+      <h2 className="font-display font-bold text-2xl text-[#0A0A0A] mb-2">Страница не найдена</h2>
+      <Link to="/" className="text-sm text-[#A21D27]">На главную</Link>
+    </div>
+  );
 
-  const formatContent = (text: string) => {
-    return text.split('\n').map((line, i) => {
-      if (line.startsWith('## ')) {
-        return <h2 key={i} className="font-display font-bold text-xl text-brand-dark mt-8 mb-3">{line.slice(3)}</h2>;
-      }
-      if (line.startsWith('**') && line.endsWith('**')) {
-        return <p key={i} className="font-semibold text-brand-dark mt-4 mb-1">{line.slice(2, -2)}</p>;
-      }
-      if (line.startsWith('- ')) {
-        return <li key={i} className="text-sm text-muted-foreground ml-4 leading-relaxed">{line.slice(2)}</li>;
-      }
-      if (line.match(/^\d+\./)) {
-        return <li key={i} className="text-sm text-muted-foreground ml-4 leading-relaxed list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;
-      }
-      if (line.trim() === '') {
-        return <br key={i} />;
-      }
-      return <p key={i} className="text-sm text-muted-foreground leading-relaxed">{line}</p>;
+  const formatContent = (text: string) =>
+    text.split('\n').map((line, i) => {
+      if (line.startsWith('## ')) return <h2 key={i} className="font-display font-bold text-xl text-[#0A0A0A] mt-8 mb-3" style={{ letterSpacing: '-0.01em' }}>{line.slice(3)}</h2>;
+      if (line.startsWith('**') && line.endsWith('**')) return <p key={i} className="font-semibold text-[#0A0A0A] mt-4 mb-1">{line.slice(2, -2)}</p>;
+      if (line.startsWith('- ')) return <li key={i} className="text-sm text-[#5a5347] ml-4 leading-relaxed mb-1">{line.slice(2)}</li>;
+      if (line.match(/^\d+\./)) return <li key={i} className="text-sm text-[#5a5347] ml-4 leading-relaxed mb-1 list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;
+      if (line.trim() === '') return <br key={i} />;
+      return <p key={i} className="text-sm text-[#5a5347] leading-relaxed mb-1">{line}</p>;
     });
-  };
 
   return (
     <div className="pt-16">
-      <section className="bg-brand-dark text-white py-14">
-        <div className="container mx-auto px-4">
-          <div className="text-4xl mb-4">{page.emoji}</div>
-          <div className="text-xs font-semibold text-brand-orange uppercase tracking-widest mb-3">Юридические документы</div>
-          <h1 className="font-display font-bold text-3xl md:text-4xl">{page.title}</h1>
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Документы</div></div>
+          <h1 className="section-title text-[#FBF8F3]">{page.title}</h1>
         </div>
       </section>
 
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 max-w-3xl">
-          {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
-            <Link to="/" className="hover:text-brand-orange transition-colors">Главная</Link>
-            <Icon name="ChevronRight" size={14} />
-            <span className="text-brand-dark">{page.title}</span>
+      <section className="bg-[#FBF8F3] py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-2 text-xs text-[#5a5347] mb-10" style={{ letterSpacing: '0.1em' }}>
+            <Link to="/" className="hover:text-[#A21D27] transition-colors">Главная</Link>
+            <Icon name="ChevronRight" size={12} />
+            <span className="text-[#0A0A0A]">{page.title}</span>
           </div>
 
-          <div className="prose-custom">
+          <div className="max-w-2xl">
             {formatContent(page.content)}
           </div>
 
-          <div className="mt-12 pt-8 border-t border-border">
-            <h3 className="font-display font-semibold text-brand-dark mb-4">Другие документы</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="mt-14 pt-10 border-t border-[#E8E2D8]">
+            <div className="text-[10px] text-[#5a5347] uppercase mb-5" style={{ letterSpacing: '0.18em' }}>Другие документы</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-[#E8E2D8]">
               {Object.entries(LEGAL_CONTENT).filter(([k]) => k !== pageId).map(([key, doc]) => (
-                <Link
-                  key={key}
-                  to={`/legal/${key}`}
-                  className="p-3 border border-border rounded-xl text-sm text-brand-dark hover:border-brand-orange hover:text-brand-orange transition-colors text-center"
-                >
-                  <div className="text-xl mb-1">{doc.emoji}</div>
-                  {doc.title}
+                <Link key={key} to={`/legal/${key}`}
+                  className="bg-[#FBF8F3] p-5 hover:bg-[#F2EDE4] transition-colors group">
+                  <div className="text-sm font-medium text-[#0A0A0A] group-hover:text-[#A21D27] transition-colors leading-snug">{doc.title}</div>
                 </Link>
               ))}
             </div>

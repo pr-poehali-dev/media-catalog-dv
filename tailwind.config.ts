@@ -19,9 +19,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				display: ['Oswald', 'sans-serif'],
-				body: ['Golos Text', 'sans-serif'],
-				sans: ['Golos Text', 'sans-serif'],
+				display: ['Unbounded', 'sans-serif'],
+				body: ['Onest', 'sans-serif'],
+				sans: ['Onest', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -67,15 +67,21 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				brand: {
-					blue: '#1a3a6b',
-					'blue-light': '#1e4b8f',
-					'blue-dark': '#0e1d33',
-					orange: '#f4831f',
-					'orange-dark': '#e67010',
-					light: '#f5f7fa',
-					dark: '#0e1d33',
-				}
+				carmine: {
+					DEFAULT: '#A21D27',
+					dark: '#831520',
+					light: '#C42530',
+				},
+				ink: {
+					DEFAULT: '#0A0A0A',
+					soft: '#1a1a1a',
+					mid: '#2a2a2a',
+				},
+				milk: {
+					DEFAULT: '#FBF8F3',
+					dark: '#F2EDE4',
+					mid: '#E8E2D8',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

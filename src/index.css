@@ -4,50 +4,50 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 220 20% 12%;
+    --carmine: #a21d27;
+    --ink: #0a0a0a;
+    --milk: #fbf8f3;
+    --ivory: #f2ede4;
+    --mid: #e8e2d8;
+
+    --background: 40 30% 97%;
+    --foreground: 0 0% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 12%;
+    --card-foreground: 0 0% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 12%;
+    --popover-foreground: 0 0% 4%;
 
-    --primary: 218 72% 30%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 357 70% 37%;
+    --primary-foreground: 40 30% 97%;
 
-    --secondary: 210 20% 95%;
-    --secondary-foreground: 220 20% 20%;
+    --secondary: 36 25% 90%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 210 20% 95%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 36 20% 93%;
+    --muted-foreground: 0 0% 38%;
 
-    --accent: 24 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 357 70% 37%;
+    --accent-foreground: 40 30% 97%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 88%;
-    --input: 214 20% 88%;
-    --ring: 218 72% 30%;
+    --border: 36 15% 84%;
+    --input: 36 15% 84%;
+    --ring: 357 70% 37%;
 
-    --radius: 0.75rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-
-    /* Кастомные переменные медиаплатформы */
-    --brand-blue: #1a3a6b;
-    --brand-orange: #f4831f;
-    --brand-light: #f5f7fa;
-    --brand-dark: #0e1d33;
+    --sidebar-background: 40 30% 97%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 357 70% 37%;
+    --sidebar-primary-foreground: 40 30% 97%;
+    --sidebar-accent: 36 25% 90%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 36 15% 84%;
+    --sidebar-ring: 357 70% 37%;
   }
 }
 
@@ -57,8 +57,12 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: "Golos Text", sans-serif;
+    font-family: "Onest", sans-serif;
+    background-color: #fbf8f3;
+    color: #0a0a0a;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
 
   h1,
@@ -67,103 +71,236 @@
   h4,
   h5,
   h6 {
-    font-family: "Oswald", sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
-@layer utilities {
-  .font-display {
-    font-family: "Oswald", sans-serif;
-  }
+/* =============================================
+   ГЕОМЕТРИЧЕСКИЙ ПАТТЕРН (Славянская геометрия)
+   Ромбы + кресты — из КП «Чёрный Русский»
+   ============================================= */
 
-  .font-body {
-    font-family: "Golos Text", sans-serif;
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease forwards;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.5s ease forwards;
-  }
-
-  .hover-scale {
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .hover-scale:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(26, 58, 107, 0.15);
-  }
-
-  .story-link {
-    position: relative;
-    text-decoration: none;
-  }
-
-  .story-link::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--brand-orange);
-    transition: width 0.3s ease;
-  }
-
-  .story-link:hover::after {
-    width: 100%;
-  }
-
-  .gradient-hero {
-    background: linear-gradient(135deg, #0e1d33 0%, #1a3a6b 50%, #1e4b8f 100%);
-  }
-
-  .gradient-accent {
-    background: linear-gradient(135deg, #f4831f 0%, #e67010 100%);
-  }
-
-  .card-hover {
-    transition: all 0.25s ease;
-  }
-
-  .card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(26, 58, 107, 0.12);
-  }
-
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--border)),
-      transparent
-    );
-  }
+.pattern-light {
+  position: relative;
 }
 
-@keyframes fadeIn {
+.pattern-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23A21D27' stroke-width='0.7'%3E%3Crect x='23' y='23' width='14' height='14' transform='rotate(45 30 30)'/%3E%3Cline x1='30' y1='9' x2='30' y2='16'/%3E%3Cline x1='30' y1='44' x2='30' y2='51'/%3E%3Cline x1='9' y1='30' x2='16' y2='30'/%3E%3Cline x1='44' y1='30' x2='51' y2='30'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.13;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pattern-dark {
+  position: relative;
+}
+
+.pattern-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23FBF8F3' stroke-width='0.7'%3E%3Crect x='23' y='23' width='14' height='14' transform='rotate(45 30 30)'/%3E%3Cline x1='30' y1='9' x2='30' y2='16'/%3E%3Cline x1='30' y1='44' x2='30' y2='51'/%3E%3Cline x1='9' y1='30' x2='16' y2='30'/%3E%3Cline x1='44' y1='30' x2='51' y2='30'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.09;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pattern-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================
+   ТИПОГРАФИКА
+   ============================================= */
+
+.hero-title {
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.section-title {
+  font-family: "Unbounded", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.sub-title {
+  font-family: "Unbounded", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* =============================================
+   UI КОМПОНЕНТЫ
+   ============================================= */
+
+.btn-carmine {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #a21d27;
+  color: #fbf8f3;
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  padding: 0.875rem 2rem;
+  border-radius: 0.25rem;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-carmine:hover {
+  background: #831520;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #fbf8f3;
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  padding: 0.875rem 2rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(251, 248, 243, 0.28);
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  border-color: rgba(251, 248, 243, 0.6);
+  background: rgba(251, 248, 243, 0.07);
+}
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #0a0a0a;
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  padding: 0.875rem 2rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(10, 10, 10, 0.22);
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+  text-decoration: none;
+}
+
+.btn-outline-dark:hover {
+  border-color: #a21d27;
+  color: #a21d27;
+}
+
+/* Разделитель секций */
+.section-rule {
+  width: 2.5rem;
+  height: 2px;
+  background: #a21d27;
+  flex-shrink: 0;
+}
+
+/* Карточка */
+.pcard {
+  border: 1px solid #e8e2d8;
+  border-radius: 0.25rem;
+  background: #fff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.pcard:hover {
+  border-color: #a21d27;
+  box-shadow: 0 2px 20px rgba(162, 29, 39, 0.07);
+}
+
+/* Горизонтальный делитель */
+.hr-silk {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e8e2d8 20%,
+    #e8e2d8 80%,
+    transparent
+  );
+}
+
+/* Tag / badge */
+.tag {
+  display: inline-block;
+  font-family: "Onest", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.125rem;
+  border: 1px solid #e8e2d8;
+  color: #5a5347;
+  background: transparent;
+}
+
+.tag-carmine {
+  border-color: rgba(162, 29, 39, 0.3);
+  color: #a21d27;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #f2ede4;
+}
+::-webkit-scrollbar-thumb {
+  background: #a21d27;
+  border-radius: 2px;
+}
+
+/* Animations */
+@keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(32px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -189,17 +326,27 @@
   }
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+.animate-fade-up {
+  animation: fade-up 0.5s ease forwards;
 }
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
+
+.anim-d1 {
+  animation-delay: 0.1s;
+  opacity: 0;
 }
-::-webkit-scrollbar-thumb {
-  background: #1a3a6b;
-  border-radius: 3px;
+.anim-d2 {
+  animation-delay: 0.2s;
+  opacity: 0;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #f4831f;
+.anim-d3 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+.anim-d4 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+.anim-d5 {
+  animation-delay: 0.5s;
+  opacity: 0;
 }

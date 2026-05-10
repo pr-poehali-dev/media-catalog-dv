@@ -6,60 +6,46 @@ import Icon from '@/components/ui/icon';
 export default function Formats() {
   return (
     <div className="pt-16">
-      <section className="gradient-hero text-white py-14">
-        <div className="container mx-auto px-4">
-          <div className="text-xs font-semibold text-brand-orange uppercase tracking-widest mb-3">Инструменты</div>
-          <h1 className="font-display font-bold text-4xl md:text-5xl mb-4">Форматы рекламы</h1>
-          <p className="text-white/70 text-lg max-w-2xl">
-            Выберите формат под задачу: от быстрого поста до полноценного спецпроекта
-          </p>
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Инструменты</div></div>
+          <h1 className="section-title text-[#FBF8F3] mb-3">Форматы рекламы</h1>
+          <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">От быстрого поста до полноценного спецпроекта. Выбираем формат под задачу.</p>
         </div>
       </section>
 
-      <section className="py-16 bg-brand-light">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col gap-10">
+      <section className="bg-[#FBF8F3] py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col gap-px bg-[#E8E2D8]">
             {FORMATS_INFO.map((format, i) => (
-              <div
-                key={format.id}
-                className={`flex flex-col md:flex-row gap-0 rounded-2xl overflow-hidden border border-border bg-white shadow-sm ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
-              >
+              <div key={format.id}
+                className={`flex flex-col md:flex-row bg-[#FBF8F3] ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Visual */}
-                <div className="md:w-1/3 bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white flex flex-col items-center justify-center p-8 min-h-[180px]">
-                  <div className="text-6xl mb-4">{format.emoji}</div>
-                  <div className="font-display font-bold text-xl text-center">{format.name}</div>
-                  <div className="text-white/60 text-sm mt-2 text-center">{format.purpose}</div>
+                <div className="md:w-1/3 bg-[#0A0A0A] flex flex-col items-center justify-center p-12 min-h-[200px] text-center">
+                  <div className="text-5xl mb-4">{format.emoji}</div>
+                  <div className="font-display font-bold text-[#FBF8F3] text-xl mb-2" style={{ letterSpacing: '-0.01em' }}>{format.name}</div>
+                  <div className="text-[10px] text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.18em' }}>{format.purpose}</div>
                 </div>
-
                 {/* Content */}
-                <div className="flex-1 p-6 md:p-8">
-                  <div className="mb-4">
-                    <p className="text-muted-foreground leading-relaxed">{format.description}</p>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-                    <div>
-                      <h4 className="font-semibold text-brand-dark text-sm mb-2">Преимущества</h4>
-                      <div className="flex flex-col gap-1.5">
+                <div className="flex-1 p-8 flex flex-col justify-between">
+                  <div>
+                    <p className="text-[#0A0A0A]/65 leading-relaxed mb-6">{format.description}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                      <div>
+                        <div className="text-[10px] text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.16em' }}>Преимущества</div>
                         {format.pros.map((p) => (
-                          <div key={p} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <Icon name="Check" size={12} className="text-brand-orange flex-shrink-0 mt-0.5" />
-                            {p}
+                          <div key={p} className="flex items-start gap-2 text-sm text-[#0A0A0A]/65 mb-2">
+                            <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-0.5" /> {p}
                           </div>
                         ))}
                       </div>
-                    </div>
-                    <div className="bg-brand-light rounded-xl p-4">
-                      <h4 className="font-semibold text-brand-dark text-sm mb-2">Пример</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{format.example}</p>
+                      <div className="bg-[#F2EDE4] border border-[#E8E2D8] p-5">
+                        <div className="text-[10px] text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.16em' }}>Пример</div>
+                        <p className="text-sm text-[#0A0A0A]/65 leading-relaxed">{format.example}</p>
+                      </div>
                     </div>
                   </div>
-
-                  <Link
-                    to="/contacts"
-                    className="inline-flex items-center gap-2 bg-brand-orange text-white text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-brand-orange-dark transition-colors"
-                  >
-                    <Icon name="MessageCircle" size={14} />
+                  <Link to="/contacts" className="btn-outline-dark self-start">
                     Заказать {format.name.toLowerCase()}
                   </Link>
                 </div>
@@ -69,8 +55,8 @@ export default function Formats() {
         </div>
       </section>
 
-      <section className="py-14 gradient-hero">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <section className="bg-[#0A0A0A] pattern-dark py-14">
+        <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Подобрать формат" subtitle="Расскажите о задаче — предложим оптимальный формат" />
         </div>
       </section>

@@ -3,19 +3,19 @@ import { Link, useLocation } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
 const SOCIALS_MENU = [
-  { label: 'ВКонтакте', path: '/socials/vk', emoji: '💙' },
-  { label: 'Telegram', path: '/socials/telegram', emoji: '✈️' },
-  { label: 'Одноклассники', path: '/socials/ok', emoji: '🟠' },
-  { label: 'MAX', path: '/socials/max', emoji: '🟣' },
-  { label: 'TikTok', path: '/socials/tiktok', emoji: '🎵' },
-  { label: 'Instagram*', path: '/socials/instagram', emoji: '📷' },
+  { label: 'ВКонтакте', path: '/socials/vk' },
+  { label: 'Telegram', path: '/socials/telegram' },
+  { label: 'Одноклассники', path: '/socials/ok' },
+  { label: 'MAX', path: '/socials/max' },
+  { label: 'TikTok', path: '/socials/tiktok' },
+  { label: 'Instagram*', path: '/socials/instagram' },
 ];
 
 const CITIES_MENU = [
-  { label: 'Хабаровск', path: '/cities/khabarovsk', emoji: '🏙️' },
-  { label: 'Владивосток', path: '/cities/vladivostok', emoji: '⚓' },
-  { label: 'Комсомольск-на-Амуре', path: '/cities/komsomolsk', emoji: '⚙️' },
-  { label: 'Дальний Восток (обзор)', path: '/cities/far-east', emoji: '🗺️' },
+  { label: 'Хабаровск', path: '/cities/khabarovsk' },
+  { label: 'Владивосток', path: '/cities/vladivostok' },
+  { label: 'Комсомольск-на-Амуре', path: '/cities/komsomolsk' },
+  { label: 'Дальний Восток', path: '/cities/far-east' },
 ];
 
 const NAV_LINKS = [
@@ -28,7 +28,7 @@ const NAV_LINKS = [
 
 interface DropdownProps {
   label: string;
-  items: { label: string; path: string; emoji: string }[];
+  items: { label: string; path: string }[];
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
@@ -36,34 +36,32 @@ interface DropdownProps {
 
 function Dropdown({ label, items, isOpen, onToggle, onClose }: DropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) onClose();
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    const h = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) onClose(); };
+    document.addEventListener('mousedown', h);
+    return () => document.removeEventListener('mousedown', h);
   }, [onClose]);
 
   return (
     <div ref={ref} className="relative">
       <button
         onClick={onToggle}
-        className="flex items-center gap-1 text-sm font-medium text-brand-dark hover:text-brand-orange transition-colors py-1"
+        className="flex items-center gap-1 text-[11px] font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors py-1"
+        style={{ letterSpacing: '0.12em', textTransform: 'uppercase' }}
       >
         {label}
-        <Icon name={isOpen ? 'ChevronUp' : 'ChevronDown'} size={14} />
+        <Icon name={isOpen ? 'ChevronUp' : 'ChevronDown'} size={11} />
       </button>
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-border z-50 py-2 animate-scale-in">
+        <div className="absolute top-full left-0 mt-3 w-60 bg-[#FBF8F3] border border-[#E8E2D8] z-50 py-1"
+          style={{ boxShadow: '0 8px 32px rgba(10,10,10,0.08)' }}>
           {items.map((item) => (
             <Link
               key={item.path}
               to={item.path}
               onClick={onClose}
-              className="flex items-center gap-2 px-4 py-2.5 text-sm text-brand-dark hover:bg-brand-light hover:text-brand-orange transition-colors"
+              className="block px-5 py-2.5 text-sm text-[#0A0A0A] hover:text-[#A21D27] hover:bg-[#F2EDE4] transition-colors"
             >
-              <span>{item.emoji}</span>
               {item.label}
             </Link>
           ))}
@@ -80,66 +78,52 @@ export default function Header() {
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-    setOpenMenu(null);
-  }, [location.pathname]);
+  useEffect(() => { setMobileOpen(false); setOpenMenu(null); }, [location.pathname]);
 
   const toggle = (key: string) => setOpenMenu(openMenu === key ? null : key);
   const close = () => setOpenMenu(null);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-border' : 'bg-white'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#FBF8F3] border-[#E8E2D8]'
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 gradient-hero rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-display font-bold text-base tracking-wider">ДВ</span>
+          <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+            <div className="w-8 h-8 bg-[#A21D27] flex items-center justify-center flex-shrink-0">
+              <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>ДВМ</span>
             </div>
             <div className="hidden sm:block">
-              <div className="font-display font-bold text-brand-dark text-base leading-tight tracking-wide">ДВ Медиа</div>
-              <div className="text-[10px] text-muted-foreground leading-tight">Реклама на Дальнем Востоке</div>
+              <div className="font-display font-bold text-[#0A0A0A] text-sm tracking-tight leading-none">ДВ Медиа</div>
+              <div className="text-[9px] text-[#5a5347] uppercase leading-tight mt-0.5" style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <Link to="/" className="text-sm font-medium text-brand-dark hover:text-brand-orange transition-colors">
+          <nav className="hidden lg:flex items-center gap-7">
+            <Link to="/"
+              className={`text-[11px] font-medium uppercase transition-colors ${location.pathname === '/' ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              style={{ letterSpacing: '0.12em' }}>
               Главная
             </Link>
-            <Dropdown
-              label="Соцсети"
-              items={SOCIALS_MENU}
-              isOpen={openMenu === 'socials'}
-              onToggle={() => toggle('socials')}
-              onClose={close}
-            />
-            <Dropdown
-              label="Города"
-              items={CITIES_MENU}
-              isOpen={openMenu === 'cities'}
-              onToggle={() => toggle('cities')}
-              onClose={close}
-            />
+            <Dropdown label="Соцсети" items={SOCIALS_MENU} isOpen={openMenu === 'socials'} onToggle={() => toggle('socials')} onClose={close} />
+            <Dropdown label="Города" items={CITIES_MENU} isOpen={openMenu === 'cities'} onToggle={() => toggle('cities')} onClose={close} />
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === link.path
-                    ? 'text-brand-orange'
-                    : 'text-brand-dark hover:text-brand-orange'
+                className={`text-[11px] font-medium uppercase transition-colors ${
+                  location.pathname === link.path ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'
                 }`}
+                style={{ letterSpacing: '0.12em' }}
               >
                 {link.label}
               </Link>
@@ -148,23 +132,23 @@ export default function Header() {
 
           {/* CTA + Burger */}
           <div className="flex items-center gap-3">
-            <a
-              href="https://t.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-1.5 bg-brand-orange text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-brand-orange-dark transition-colors"
+            <Link
+              to="/contacts"
+              className="hidden md:inline-flex items-center bg-[#A21D27] text-[#FBF8F3] text-[11px] font-medium px-5 py-2.5 hover:bg-[#831520] transition-colors"
+              style={{ letterSpacing: '0.08em' }}
             >
-              <Icon name="Send" size={14} />
-              Telegram
-            </a>
+              Медиаплан
+            </Link>
             <button
-              className="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-brand-light transition-colors"
+              className="lg:hidden p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Меню"
             >
-              <span className={`block w-5 h-0.5 bg-brand-dark transition-all ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-brand-dark transition-all ${mobileOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-brand-dark transition-all ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              <div className="flex flex-col gap-[5px] w-5">
+                <span className={`block h-px bg-[#0A0A0A] transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+                <span className={`block h-px bg-[#0A0A0A] transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-px bg-[#0A0A0A] transition-all duration-200 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+              </div>
             </button>
           </div>
         </div>
@@ -172,41 +156,32 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-white animate-fade-in">
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-1">
-            <Link to="/" className="px-3 py-2.5 text-sm font-medium text-brand-dark hover:bg-brand-light rounded-lg transition-colors">
+        <div className="lg:hidden border-t border-[#E8E2D8] bg-[#FBF8F3]">
+          <nav className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-0.5">
+            <Link to="/" className="py-2.5 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>
               Главная
             </Link>
-            <Link to="/platforms" className="px-3 py-2.5 text-sm font-medium text-brand-dark hover:bg-brand-light rounded-lg transition-colors">
+            <Link to="/platforms" className="py-2.5 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>
               Площадки
             </Link>
-            <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-2">Соцсети</div>
+            <div className="text-[9px] font-medium text-[#5a5347] uppercase mt-4 mb-1.5 border-t border-[#E8E2D8] pt-4" style={{ letterSpacing: '0.2em' }}>Соцсети</div>
             {SOCIALS_MENU.map((item) => (
-              <Link key={item.path} to={item.path} className="px-6 py-2 text-sm text-brand-dark hover:bg-brand-light rounded-lg transition-colors flex items-center gap-2">
-                <span>{item.emoji}</span>{item.label}
-              </Link>
+              <Link key={item.path} to={item.path} className="py-2 pl-3 text-sm text-[#0A0A0A] hover:text-[#A21D27] transition-colors">{item.label}</Link>
             ))}
-            <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-2">Города</div>
+            <div className="text-[9px] font-medium text-[#5a5347] uppercase mt-4 mb-1.5 border-t border-[#E8E2D8] pt-4" style={{ letterSpacing: '0.2em' }}>Города</div>
             {CITIES_MENU.map((item) => (
-              <Link key={item.path} to={item.path} className="px-6 py-2 text-sm text-brand-dark hover:bg-brand-light rounded-lg transition-colors flex items-center gap-2">
-                <span>{item.emoji}</span>{item.label}
-              </Link>
+              <Link key={item.path} to={item.path} className="py-2 pl-3 text-sm text-[#0A0A0A] hover:text-[#A21D27] transition-colors">{item.label}</Link>
             ))}
-            <div className="section-divider my-2" />
-            {NAV_LINKS.slice(1).map((link) => (
-              <Link key={link.path} to={link.path} className="px-3 py-2.5 text-sm font-medium text-brand-dark hover:bg-brand-light rounded-lg transition-colors">
-                {link.label}
-              </Link>
-            ))}
-            <a
-              href="https://t.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 flex items-center justify-center gap-2 bg-brand-orange text-white font-semibold px-4 py-3 rounded-lg"
-            >
-              <Icon name="Send" size={16} />
-              Написать в Telegram
-            </a>
+            <div className="border-t border-[#E8E2D8] mt-4 pt-4 flex flex-col gap-0.5">
+              {NAV_LINKS.slice(1).map((link) => (
+                <Link key={link.path} to={link.path} className="py-2.5 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <Link to="/contacts" className="mt-5 btn-carmine justify-center text-center">
+              Получить медиаплан
+            </Link>
           </nav>
         </div>
       )}
