@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 
-const FOOTER_NAV = [
-  { label: 'Площадки', path: '/platforms' },
-  { label: 'Форматы', path: '/formats' },
-  { label: 'Кейсы', path: '/cases' },
-  { label: 'FAQ', path: '/faq' },
-  { label: 'Контакты', path: '/contacts' },
+const FOOTER_DIRECTIONS = [
+  { label: '01 · Городские сообщества', path: '/communities' },
+  { label: '02 · Реклама у блогеров', path: '/bloggers' },
+  { label: '03 · Наружная реклама', path: '/outdoor' },
+  { label: '04 · Брендированная продукция', path: '/merch' },
 ];
 
 const FOOTER_SOCIALS = [
@@ -35,9 +34,9 @@ export default function Footer() {
   return (
     <footer className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark">
       <div className="pattern-content">
-        {/* Main footer */}
-        <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
+        <div className="max-w-7xl mx-auto px-6 pt-14 pb-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
             {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -49,47 +48,37 @@ export default function Footer() {
                   <div className="text-[9px] text-[#FBF8F3]/40 uppercase leading-tight mt-0.5" style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
                 </div>
               </div>
-              <p className="text-sm text-[#FBF8F3]/50 leading-relaxed mb-6">
-                Размещение рекламы в городских сообществах и у блогеров Хабаровска, Владивостока и Комсомольска-на-Амуре.
+              <p className="text-sm text-[#FBF8F3]/45 leading-relaxed mb-5">
+                4 направления продвижения: сообщества, блогеры, наружная реклама и мерч.
               </p>
-              <div className="flex flex-col gap-2.5">
-                <a href="tel:+74212000000" className="text-sm text-[#FBF8F3]/50 hover:text-[#A21D27] transition-colors">
-                  +7 (4212) 00-00-00
-                </a>
-                <a href="mailto:info@dvmedia.ru" className="text-sm text-[#FBF8F3]/50 hover:text-[#A21D27] transition-colors">
-                  info@dvmedia.ru
-                </a>
+              <div className="flex flex-col gap-2">
+                <a href="tel:+74212000000" className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">+7 (4212) 00-00-00</a>
+                <a href="mailto:info@dvmedia.ru" className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">info@dvmedia.ru</a>
               </div>
             </div>
 
-            {/* Площадки */}
+            {/* Направления */}
             <div>
-              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Площадки</div>
+              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Направления</div>
               <div className="flex flex-col gap-2.5">
+                {FOOTER_DIRECTIONS.map((item) => (
+                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">{item.label}</Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Площадки + города */}
+            <div>
+              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Соцсети</div>
+              <div className="flex flex-col gap-2 mb-7">
                 {FOOTER_SOCIALS.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/50 hover:text-[#A21D27] transition-colors">
-                    {item.label}
-                  </Link>
+                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">{item.label}</Link>
                 ))}
               </div>
-            </div>
-
-            {/* Города + Разделы */}
-            <div>
-              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Города</div>
-              <div className="flex flex-col gap-2.5 mb-8">
+              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-4" style={{ letterSpacing: '0.22em' }}>Города</div>
+              <div className="flex flex-col gap-2">
                 {FOOTER_CITIES.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/50 hover:text-[#A21D27] transition-colors">
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Разделы</div>
-              <div className="flex flex-col gap-2.5">
-                {FOOTER_NAV.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/50 hover:text-[#A21D27] transition-colors">
-                    {item.label}
-                  </Link>
+                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">{item.label}</Link>
                 ))}
               </div>
             </div>
@@ -97,51 +86,43 @@ export default function Footer() {
             {/* CTA */}
             <div>
               <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Связаться</div>
-              <p className="text-sm text-[#FBF8F3]/50 mb-5 leading-relaxed">
-                Оставьте заявку — составим медиаплан под ваш бюджет.
-              </p>
-              <a
-                href="https://t.me/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <p className="text-sm text-[#FBF8F3]/45 mb-4 leading-relaxed">Составим медиаплан под ваш бюджет.</p>
+              <a href="https://t.me/" target="_blank" rel="noopener noreferrer"
                 className="block text-center bg-[#A21D27] text-[#FBF8F3] text-sm font-medium py-3 px-5 hover:bg-[#831520] transition-colors mb-3"
-                style={{ letterSpacing: '0.06em' }}
-              >
-                Написать в Telegram
+                style={{ letterSpacing: '0.06em' }}>
+                Telegram
               </a>
-              <Link
-                to="/contacts"
-                className="block text-center border border-[#FBF8F3]/20 text-[#FBF8F3]/60 text-sm font-medium py-3 px-5 hover:border-[#A21D27] hover:text-[#A21D27] transition-colors"
-                style={{ letterSpacing: '0.06em' }}
-              >
-                Получить медиаплан
+              <Link to="/contacts"
+                className="block text-center border border-[#FBF8F3]/20 text-[#FBF8F3]/55 text-sm font-medium py-3 px-5 hover:border-[#A21D27] hover:text-[#A21D27] transition-colors"
+                style={{ letterSpacing: '0.06em' }}>
+                Оставить заявку
               </Link>
-              <div className="mt-5 pt-4 border-t border-[#FBF8F3]/10">
-                <p className="text-[11px] text-[#FBF8F3]/30">По вопросам ПД: pd@dvmedia.ru</p>
+              <div className="mt-4 pt-4 border-t border-[#FBF8F3]/10">
+                <div className="flex flex-col gap-1.5">
+                  <Link to="/cases" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">Кейсы</Link>
+                  <Link to="/faq" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">FAQ</Link>
+                  <Link to="/contacts" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">Контакты</Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom legal */}
+        {/* Bottom */}
         <div className="border-t border-[#FBF8F3]/10">
-          <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="max-w-7xl mx-auto px-6 py-5">
             <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
               <div className="flex flex-wrap gap-x-5 gap-y-2">
                 {FOOTER_LEGAL.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-[11px] text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">
-                    {item.label}
-                  </Link>
+                  <Link key={item.path} to={item.path} className="text-[11px] text-[#FBF8F3]/25 hover:text-[#FBF8F3]/45 transition-colors">{item.label}</Link>
                 ))}
               </div>
-              <div className="text-[11px] text-[#FBF8F3]/25">
-                © 2024 ДВ Медиа · ИНН 0000000000
-              </div>
+              <div className="text-[11px] text-[#FBF8F3]/20">© 2024 ДВ Медиа · ИНН 0000000000</div>
             </div>
-            <div className="mt-4 pt-4 border-t border-[#FBF8F3]/10">
-              <p className="text-[11px] text-[#FBF8F3]/25 leading-relaxed max-w-4xl">
-                *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.
-                Стандартное рекламное размещение в Instagram* не предлагается. Реклама маркируется согласно ФЗ «О рекламе» №38-ФЗ.
+            <div className="mt-3 pt-3 border-t border-[#FBF8F3]/10">
+              <p className="text-[11px] text-[#FBF8F3]/20 leading-relaxed max-w-4xl">
+                *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории РФ.
+                Реклама маркируется согласно ФЗ «О рекламе» №38-ФЗ.
               </p>
             </div>
           </div>
