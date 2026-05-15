@@ -64,14 +64,13 @@ export default function Home() {
             style={{
               fontFamily: 'Unbounded, sans-serif',
               fontWeight: 800,
-              fontSize: 'clamp(2rem, 5vw, 4.5rem)',
-              lineHeight: 0.97,
+              fontSize: 'clamp(1.75rem, 3.8vw, 4.5rem)',
+              lineHeight: 1.0,
               letterSpacing: '-0.03em',
-              maxWidth: '820px',
             }}>
             Заинтересуем.<br />
             Вызовем доверие.<br />
-            Приведём и <span className="text-[#A21D27]">удержим</span><br />
+            <span style={{ whiteSpace: 'nowrap' }}>Приведём и <span className="text-[#A21D27]">удержим</span></span><br />
             клиентов.
           </h1>
           <p className="text-[#FBF8F3]/55 leading-relaxed mb-8 max-w-lg anim-d3 animate-fade-up"
