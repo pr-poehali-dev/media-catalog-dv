@@ -8,32 +8,32 @@ const DIRECTIONS = [
     num: '01',
     title: 'Городские сообщества',
     path: '/communities',
-    desc: 'ВКонтакте, Telegram, Одноклассники, MAX, TikTok. Хабаровск, Владивосток, Комсомольск-на-Амуре.',
-    stats: '40+ площадок · 1,2 млн подписчиков',
-    emoji: '📱',
+    desc: 'Новости об открытии, акциях, нововведениях перед живой и лояльной аудиторией.',
+    stats: 'Запрещеннограм · ВКонтакте · Telegram · Одноклассники · MAX · TikTok',
+    emoji: '📢',
   },
   {
     num: '02',
     title: 'Блогеры',
     path: '/bloggers',
-    desc: 'Личные рекомендации — самый доверенный формат. Хабаровск и Владивосток.',
-    stats: 'ВКонтакте · Telegram · TikTok · Instagram*',
-    emoji: '🎙️',
+    desc: 'Видео-обзоры и сторитейлы с личной рекомендацией блогера — самый доверенный формат.',
+    stats: 'Запрещеннограм · ВКонтакте · Telegram · TikTok · MAX',
+    emoji: '📲',
   },
   {
     num: '03',
     title: 'Наружная реклама',
     path: '/outdoor',
-    desc: 'Щиты, суперсайты, ситиборды, медиафасады, брандмауэры. Три города.',
-    stats: '8 форматов · 24/7 присутствие',
+    desc: 'Внимание большого количества людей, повышение узнаваемости бренда и стимулирование интереса потребителей.',
+    stats: '8 форматов · видимость 24/7',
     emoji: '🏙️',
   },
   {
     num: '04',
     title: 'Брендированная продукция',
     path: '/merch',
-    desc: 'Мерч удерживает клиентов и превращает их в носителей бренда.',
-    stats: 'Кружки · Футболки · Стикеры · Повербанки',
+    desc: 'Мерч — единственная реклама, за которую говорят спасибо. Мерчом пользуются регулярно, значит о бренде всегда помнят и рекламируют его в своём окружении.',
+    stats: 'Худи и футболки · Экосумки и шоперы · Брелоки и значки · Стикеры и наклейки',
     emoji: '🎁',
   },
 ];
@@ -77,14 +77,16 @@ export default function Home() {
           <p className="text-[#FBF8F3]/55 leading-relaxed mb-8 max-w-lg anim-d3 animate-fade-up"
             style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)' }}>
             Наружная реклама, обзоры у блогеров, городские сообщества
-            и брендированная продукция — полный цикл продвижения
+            и брендированная продукция — полный цикл работы с клиентами
             на Дальнем Востоке.
           </p>
           <div className="flex flex-wrap gap-3 anim-d4 animate-fade-up">
-            <Link to="/contacts" className="btn-carmine">Получить медиаплан</Link>
-            <Link to="/communities" className="btn-outline">Наши услуги</Link>
-            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <a href="#cta" className="btn-carmine">Получить медиаплан</a>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">
               Написать в Telegram
+            </a>
+            <a href="https://max.ru/u/f9LHodD0cOLXB3nv5Syhf3yuHh7KUUzhvhTbBbfeUi4f-OZffgk_ZagdxQ4" target="_blank" rel="noopener noreferrer" className="btn-outline">
+              Написать в MAX
             </a>
           </div>
         </div>
@@ -105,13 +107,13 @@ export default function Home() {
       </section>
 
       {/* ======== 4 НАПРАВЛЕНИЯ ======== */}
-      <section className="bg-[#F2EDE4] py-20">
+      <section className="bg-[#F2EDE4] py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Услуги</div>
           </div>
-          <h2 className="section-title text-[#0A0A0A] mb-12">4 направления продвижения</h2>
+          <h2 className="section-title text-[#0A0A0A] mb-6">4 направления продвижения</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#E8E2D8]">
             {DIRECTIONS.map((dir) => (
               <Link key={dir.num} to={dir.path}
@@ -322,8 +324,8 @@ export default function Home() {
       </section>
 
       {/* ======== CTA ======== */}
-      <section className="bg-[#0A0A0A] pattern-dark py-16">
-        <div className="pattern-content max-w-7xl mx-auto px-6">
+      <section id="cta" className="bg-[#0A0A0A] pattern-dark min-h-screen flex items-center">
+        <div className="pattern-content max-w-7xl mx-auto px-6 py-16 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-[#FBF8F3]">
               <div className="flex items-center gap-4 mb-3">

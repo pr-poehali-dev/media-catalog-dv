@@ -22,7 +22,7 @@ export default function Contacts() {
               <div className="flex items-center gap-4 mb-8"><div className="section-rule" /><div className="eyebrow text-[#5a5347]">Как связаться</div></div>
               <div className="flex flex-col gap-px bg-[#E8E2D8] mb-8">
                 {[
-                  { label: 'Telegram', value: '@dvmedia_adv', href: 'https://t.me/', icon: 'Send' as const },
+                  { label: 'Telegram', value: '@prhbk', href: 'https://t.me/prhbk', icon: 'Send' as const },
                   { label: 'Телефон', value: '+7 (4212) 00-00-00', href: 'tel:+74212000000', icon: 'Phone' as const },
                   { label: 'Email', value: 'info@dvmedia.ru', href: 'mailto:info@dvmedia.ru', icon: 'Mail' as const },
                 ].map((item) => (

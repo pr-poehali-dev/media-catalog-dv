@@ -87,10 +87,15 @@ export default function Footer() {
             <div>
               <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Связаться</div>
               <p className="text-sm text-[#FBF8F3]/45 mb-4 leading-relaxed">Составим медиаплан под ваш бюджет.</p>
-              <a href="https://t.me/" target="_blank" rel="noopener noreferrer"
-                className="block text-center bg-[#A21D27] text-[#FBF8F3] text-sm font-medium py-3 px-5 hover:bg-[#831520] transition-colors mb-3"
+              <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer"
+                className="block text-center bg-[#A21D27] text-[#FBF8F3] text-sm font-medium py-3 px-5 hover:bg-[#831520] transition-colors mb-2"
                 style={{ letterSpacing: '0.06em' }}>
                 Telegram
+              </a>
+              <a href="https://max.ru/u/f9LHodD0cOLXB3nv5Syhf3yuHh7KUUzhvhTbBbfeUi4f-OZffgk_ZagdxQ4" target="_blank" rel="noopener noreferrer"
+                className="block text-center border border-[#FBF8F3]/20 text-[#FBF8F3]/55 text-sm font-medium py-3 px-5 hover:border-[#A21D27] hover:text-[#A21D27] transition-colors mb-2"
+                style={{ letterSpacing: '0.06em' }}>
+                MAX
               </a>
               <Link to="/contacts"
                 className="block text-center border border-[#FBF8F3]/20 text-[#FBF8F3]/55 text-sm font-medium py-3 px-5 hover:border-[#A21D27] hover:text-[#A21D27] transition-colors"
