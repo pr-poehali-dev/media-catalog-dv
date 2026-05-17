@@ -168,7 +168,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6 ml-auto">
+          <nav className="hidden lg:flex items-center gap-6 ml-auto pl-10">
             <MegaDropdown
               label="Сообщества"
               path={COMMUNITIES_MENU.path}
@@ -214,8 +214,8 @@ export default function Header() {
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 bg-[#A21D27] text-[#FBF8F3] text-[11px] font-medium px-5 py-2.5 rounded-full hover:bg-[#831520] transition-colors"
               style={{ letterSpacing: '0.08em' }}>
-              <img src="https://cdn.poehali.dev/files/56fe3dcd-989b-42e8-9399-ecab76c2f6c2.png" alt="" className="w-4 h-4 object-contain" />
-              Telegram
+              <img src="https://cdn.poehali.dev/files/56fe3dcd-989b-42e8-9399-ecab76c2f6c2.png" alt="" className="w-4 h-4 object-contain flex-shrink-0" />
+              <span className="whitespace-nowrap">Связаться с нами</span>
             </a>
           </nav>
 
