@@ -40,11 +40,11 @@ const DIRECTIONS = [
 ];
 
 const STATS = [
-  { value: '2+ тыс', label: 'Рекламных поверхностей' },
+  { value: '2к+', label: 'Рекламных поверхностей' },
   { value: '45+', label: 'Интернет-площадок' },
-  { value: '1,9+ млн', label: 'Подписчиков' },
-  { value: '4,5+ млн', label: 'Охват в месяц' },
-  { value: '2+ тыс', label: 'Вариантов подарков' },
+  { value: '1,9+ млн', label: 'Подписчиков', wide: true },
+  { value: '4,5+ млн', label: 'Охват в месяц', wide: true },
+  { value: '2к+', label: 'Вариантов подарков' },
 ];
 
 export default function Home() {
@@ -103,11 +103,21 @@ export default function Home() {
       {/* ======== STATS ======== */}
       <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+          {/* Мобильная сетка */}
+          <div className="grid grid-cols-2 gap-6 md:hidden">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="font-display font-extrabold text-[#A21D27] text-3xl md:text-4xl leading-none mb-1">{s.value}</div>
+                <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-1">{s.value}</div>
                 <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.16em' }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+          {/* Десктопная строка */}
+          <div className="hidden md:flex items-start justify-between gap-4">
+            {STATS.map((s) => (
+              <div key={s.label} className="text-center flex-1">
+                <div className="font-display font-extrabold text-[#A21D27] text-3xl md:text-4xl leading-none mb-1 whitespace-nowrap">{s.value}</div>
+                <div className="text-[10px] text-[#5a5347] uppercase whitespace-nowrap" style={{ letterSpacing: '0.16em' }}>{s.label}</div>
               </div>
             ))}
           </div>
