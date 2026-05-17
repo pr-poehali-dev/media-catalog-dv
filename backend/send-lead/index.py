@@ -1,11 +1,9 @@
 """
 Отправка заявки с сайта в Telegram-бот.
-Принимает данные формы и пересылает сообщение в указанный чат.
 """
 import json
 import os
 import urllib.request
-import urllib.parse
 
 
 def handler(event: dict, context) -> dict:
@@ -27,30 +25,42 @@ def handler(event: dict, context) -> dict:
     city = body.get('city', '—')
     task = body.get('task', '—')
 
-    token = os.environ['TELEGRAM_BOT_TOKEN']
-    chat_id = os.environ['TELEGRAM_CHAT_ID']
+    token = os.environ['TELEGRAM_BOT_TOKEN'].strip()
+    chat_id = os.environ['TELEGRAM_CHAT_ID'].strip()
+
+    if body.get('debug'):
+        return {
+            'statusCode': 200,
+            'headers': {'Access-Control-Allow-Origin': '*'},
+            'body': json.dumps({
+                'token_len': len(token),
+                'token_preview': token[:15] + '...' + token[-4:],
+                'chat_id': chat_id,
+            }),
+        }
 
     text = (
-        f"📥 *Новая заявка с сайта*\n\n"
-        f"👤 *Имя:* {name}\n"
-        f"📞 *Телефон / Telegram:* {phone}\n"
-        f"🏙 *Город:* {city}\n"
-        f"📝 *Задача:* {task}"
+        "\U0001f4e5 *Новая заявка с сайта*\n\n"
+        f"\U0001f464 *Имя:* {name}\n"
+        f"\U0001f4de *Телефон / Telegram:* {phone}\n"
+        f"\U0001f3d9 *Город:* {city}\n"
+        f"\U0001f4dd *Задача:* {task}"
     )
 
-    payload = urllib.parse.urlencode({
+    data = json.dumps({
         'chat_id': chat_id,
         'text': text,
         'parse_mode': 'Markdown',
-    }).encode()
+    }).encode('utf-8')
 
     req = urllib.request.Request(
         f'https://api.telegram.org/bot{token}/sendMessage',
-        data=payload,
+        data=data,
         method='POST',
     )
-    req.add_header('Content-Type', 'application/x-www-form-urlencoded')
-    urllib.request.urlopen(req, timeout=10)
+    req.add_header('Content-Type', 'application/json')
+    resp = urllib.request.urlopen(req, timeout=10)
+    print(f"DEBUG tg_status={resp.status}")
 
     return {
         'statusCode': 200,

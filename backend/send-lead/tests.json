@@ -5,6 +5,20 @@
       "method": "OPTIONS",
       "path": "/",
       "expectedStatus": 200
+    },
+    {
+      "name": "POST заявка",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест",
+        "phone": "+7 999 000-00-00",
+        "city": "Хабаровск",
+        "task": "Тестовая заявка с сайта"
+      },
+      "expectedStatus": 200,
+      "expectedBody": { "ok": true },
+      "bodyMatcher": "partial"
     }
   ]
 }
