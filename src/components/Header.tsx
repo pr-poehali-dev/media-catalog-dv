@@ -159,10 +159,10 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
             <div className="w-8 h-8 bg-[#A21D27] flex items-center justify-center flex-shrink-0">
-              <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>ДВМ</span>
+              <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>М2.7</span>
             </div>
             <div className="hidden sm:block">
-              <div className="font-display font-bold text-[#0A0A0A] text-sm tracking-tight leading-none">ДВ Медиа</div>
+              <div className="font-display font-bold text-[#0A0A0A] text-sm tracking-tight leading-none">Медиа 2.7</div>
               <div className="text-[9px] text-[#5a5347] uppercase leading-tight mt-0.5" style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
             </div>
           </Link>
@@ -201,10 +201,10 @@ export default function Header() {
               style={{ letterSpacing: '0.12em' }}>
               Мерч
             </Link>
-            <Link to="/cases"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/cases') ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+            <Link to="/contacts"
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/contacts') ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
-              Кейсы
+              Контакты
             </Link>
             <Link to="/faq"
               className={`text-[11px] font-medium uppercase transition-colors ${isActive('/faq') ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
@@ -258,9 +258,8 @@ export default function Header() {
             <Link to="/merch" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Брендированная продукция</Link>
 
             <div className="mt-4 pt-3 border-t border-[#E8E2D8] flex flex-col gap-0.5">
-              <Link to="/cases" className="py-2 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>Кейсы</Link>
-              <Link to="/faq" className="py-2 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>FAQ</Link>
               <Link to="/contacts" className="py-2 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>Контакты</Link>
+              <Link to="/faq" className="py-2 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>FAQ</Link>
             </div>
 
             <Link to="/contacts" className="mt-4 btn-carmine justify-center text-center">Получить медиаплан</Link>

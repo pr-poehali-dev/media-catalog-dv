@@ -22,7 +22,7 @@ export default function ContactForm({
   const inputBase = `w-full px-4 py-3 text-sm transition-colors focus:outline-none ${
     dark
       ? 'bg-[#FBF8F3]/8 border border-[#FBF8F3]/20 text-[#FBF8F3] placeholder:text-[#FBF8F3]/35 focus:border-[#FBF8F3]/50'
-      : 'bg-white border border-[#E8E2D8] text-[#0A0A0A] placeholder:text-[#0A0A0A]/35 focus:border-[#A21D27]'
+      : 'bg-white border border-[#E8E2D8] text-[#0A0A0A] placeholder:text-[#9a9490] focus:border-[#A21D27]'
   }`;
 
   const labelBase = `text-[10px] font-medium uppercase block mb-1.5 ${dark ? 'text-[#FBF8F3]/50' : 'text-[#5a5347]'}`;
@@ -63,23 +63,28 @@ export default function ContactForm({
           </div>
           <div>
             <label className={`${labelBase}`} style={{ letterSpacing: '0.14em' }}>Телефон / Telegram</label>
-            <input type="text" required placeholder="+7 924 000-00-00" value={form.phone}
+            <input type="text" required placeholder="8 (999) 123-45-67" value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputBase} />
           </div>
         </div>
         <div>
           <label className={`${labelBase}`} style={{ letterSpacing: '0.14em' }}>Город</label>
-          <select value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className={inputBase}>
-            <option value="">Выберите город</option>
-            <option>Хабаровск</option>
-            <option>Владивосток</option>
-            <option>Комсомольск-на-Амуре</option>
-            <option>Несколько городов</option>
+          <select
+            value={form.city}
+            onChange={(e) => setForm({ ...form, city: e.target.value })}
+            className={`${inputBase} appearance-none`}
+            style={{ color: form.city === '' ? (dark ? 'rgba(251,248,243,0.35)' : '#9a9490') : (dark ? '#FBF8F3' : '#0A0A0A') }}
+          >
+            <option value="" style={{ color: '#0A0A0A' }}>Выберите город</option>
+            <option style={{ color: '#0A0A0A' }}>Хабаровск</option>
+            <option style={{ color: '#0A0A0A' }}>Владивосток</option>
+            <option style={{ color: '#0A0A0A' }}>Комсомольск-на-Амуре</option>
+            <option style={{ color: '#0A0A0A' }}>Несколько городов</option>
           </select>
         </div>
         <div>
           <label className={`${labelBase}`} style={{ letterSpacing: '0.14em' }}>Задача</label>
-          <textarea rows={3} placeholder="Кафе в центре Хабаровска, хочу привлечь новых гостей и напомнить о себе постоянным" value={form.task}
+          <textarea rows={3} placeholder="Осветить новую точку" value={form.task}
             onChange={(e) => setForm({ ...form, task: e.target.value })}
             className={`${inputBase} resize-none`} />
         </div>

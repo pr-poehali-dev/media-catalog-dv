@@ -111,7 +111,7 @@ export default function Home() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Услуги</div>
           </div>
-          <h2 className="section-title text-[#FBF8F3] mb-6">4 направления продвижения</h2>
+          <h2 className="section-title text-[#FBF8F3] mb-12">4 направления продвижения</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#FBF8F3]/10">
             {DIRECTIONS.map((dir) => (
               <Link key={dir.num} to={dir.path}
@@ -144,11 +144,11 @@ export default function Home() {
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Механика</div>
           </div>
-          <h2 className="section-title text-[#0A0A0A] mb-4">Как это работает вместе</h2>
+          <h2 className="section-title text-[#0A0A0A] mb-12">Как это работает вместе</h2>
           <p className="text-[#5a5347] max-w-2xl mb-12 leading-relaxed">
             Перечисленные выше инструменты хорошо работают по отдельности. Но в связке они дают кратный рост получаемых результатов.
             Один и тот же человек видит вас на улице, у блогера, в сообществах и почти каждый день носит с собой ваш мерч.
-            Клиент помнит о вас. У него просто выбора не остается, кроме как вернуться к вам еще раз.
+            Клиент помнит о вас. И он возвращается к вам снова. И снова.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
             {[
@@ -175,7 +175,7 @@ export default function Home() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Процесс</div>
           </div>
-          <h2 className="section-title text-[#FBF8F3] mb-10">Как проходит работа</h2>
+          <h2 className="section-title text-[#FBF8F3] mb-12">Как проходит работа</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#FBF8F3]/10">
             {WORK_STEPS.map((step) => (
               <div key={step.step} className="bg-[#0A0A0A] p-7">
@@ -199,7 +199,7 @@ export default function Home() {
                 <div className="section-rule" />
                 <div className="eyebrow text-[#5a5347]">FAQ</div>
               </div>
-              <h2 className="section-title text-[#0A0A0A] mb-4">Частые вопросы</h2>
+              <h2 className="section-title text-[#0A0A0A] mb-12">Частые вопросы</h2>
               <p className="text-[#5a5347] leading-relaxed text-sm mb-6 max-w-sm">
                 Без воды и корпоративных формулировок.
               </p>
@@ -223,7 +223,7 @@ export default function Home() {
       </section>
 
       {/* ======== КТО МЫ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-10">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-6">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -278,7 +278,7 @@ export default function Home() {
                 <div className="eyebrow text-[#FBF8F3]/50">Начать</div>
               </div>
               <h2 className="section-title text-[#FBF8F3] mb-6">
-                Готовы запустить рекламу<br />и удержать пришедших клиентов?
+                Готовы запустить рекламу<br />и <span className="text-[#A21D27]">удержать</span> пришедших клиентов?
               </h2>
               <p className="text-[#FBF8F3]/50 leading-relaxed mb-6 max-w-md">
                 Оставьте заявку — уточним детали и пришлём предварительный медиаплан.
