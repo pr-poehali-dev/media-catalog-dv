@@ -371,25 +371,18 @@
 }
 
 /* =============================================
-   SCROLL SNAP
+   SCROLL REVEAL — плавное появление блоков
    ============================================= */
 
-/* Десктоп: мягкий proximity-snap по секциям */
-@media (min-width: 768px) {
-  html {
-    scroll-snap-type: y proximity;
-  }
-
-  .snap-section {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-    scroll-margin-top: 64px; /* высота шапки */
-  }
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
 }
 
-/* Мобильные: snap отключён, только плавный скролл */
-@media (max-width: 767px) {
-  .snap-section {
-    scroll-margin-top: 64px;
-  }
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

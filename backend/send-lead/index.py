@@ -28,17 +28,6 @@ def handler(event: dict, context) -> dict:
     token = os.environ['TELEGRAM_BOT_TOKEN'].strip()
     chat_id = os.environ['TELEGRAM_CHAT_ID'].strip()
 
-    if body.get('debug'):
-        return {
-            'statusCode': 200,
-            'headers': {'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({
-                'token_len': len(token),
-                'token_preview': token[:15] + '...' + token[-4:],
-                'chat_id': chat_id,
-            }),
-        }
-
     text = (
         "\U0001f4e5 *Новая заявка с сайта*\n\n"
         f"\U0001f464 *Имя:* {name}\n"

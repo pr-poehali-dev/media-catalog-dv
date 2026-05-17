@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import ContactForm from '@/components/ContactForm';
@@ -50,11 +51,21 @@ const STATS = [
 export default function Home() {
   const faqPreview = FAQ_DATA.slice(0, 5);
 
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>('.reveal');
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="pt-16">
 
       {/* ======== HERO ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-[calc(100vh-64px)] flex items-center snap-section">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-[calc(100vh-64px)] flex items-center">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-12 w-full">
           <div className="eyebrow text-[#FBF8F3]/50 mb-5 anim-d1 animate-fade-up">
             Хабаровск · Владивосток · Комсомольск-на-Амуре
@@ -91,7 +102,7 @@ export default function Home() {
       </section>
 
       {/* ======== STATS ======== */}
-      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk snap-section">
+      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-10">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
             {STATS.map((s) => (
@@ -105,7 +116,7 @@ export default function Home() {
       </section>
 
       {/* ======== 4 НАПРАВЛЕНИЯ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-12 snap-section">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-12 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -138,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* ======== КАК ЭТО РАБОТАЕТ ======== */}
-      <section className="bg-[#FBF8F3] pt-6 pb-20 pattern-milk snap-section">
+      <section className="bg-[#FBF8F3] pt-6 pb-20 pattern-milk reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -169,7 +180,7 @@ export default function Home() {
       </section>
 
       {/* ======== КАК РАБОТАЕМ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-16 snap-section">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -191,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* ======== FAQ ======== */}
-      <section className="bg-[#F2EDE4] pt-6 pb-16 pattern-milk snap-section">
+      <section className="bg-[#F2EDE4] pt-6 pb-16 pattern-milk reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
@@ -223,7 +234,7 @@ export default function Home() {
       </section>
 
       {/* ======== КТО МЫ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-6 snap-section">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-6 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -269,7 +280,7 @@ export default function Home() {
       </section>
 
       {/* ======== CTA ======== */}
-      <section id="cta" className="bg-[#0A0A0A] pattern-dark min-h-screen flex items-center snap-section">
+      <section id="cta" className="bg-[#0A0A0A] pattern-dark min-h-screen flex items-center reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-16 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-[#FBF8F3]">
