@@ -40,10 +40,11 @@ const DIRECTIONS = [
 ];
 
 const STATS = [
-  { value: '2к+', label: 'Рекламных поверхностей' },
+  { value: '1к+', label: 'Вариантов подарков' },
   { value: '1,9+ млн', label: 'Подписчиков' },
   { value: '45+', label: 'Интернет-площадок' },
   { value: '4,5+ млн', label: 'Охват в месяц' },
+  { value: '2к+', label: 'Рекламных поверхностей' },
 ];
 
 export default function Home() {
