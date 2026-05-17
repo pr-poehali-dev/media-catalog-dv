@@ -40,10 +40,11 @@ const DIRECTIONS = [
 ];
 
 const STATS = [
-  { value: '2к+', label: 'Рекламных поверхностей' },
+  { value: '2+ тыс', label: 'Рекламных поверхностей' },
   { value: '45+', label: 'Интернет-площадок' },
   { value: '1,9+ млн', label: 'Подписчиков' },
   { value: '4,5+ млн', label: 'Охват в месяц' },
+  { value: '2+ тыс', label: 'Вариантов подарков' },
 ];
 
 export default function Home() {
@@ -102,7 +103,7 @@ export default function Home() {
       {/* ======== STATS ======== */}
       <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl md:text-4xl leading-none mb-1">{s.value}</div>
