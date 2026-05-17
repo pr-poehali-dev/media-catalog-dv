@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import ContactForm from '@/components/ContactForm';
-import { CASES, FAQ_DATA, WORK_STEPS, SOCIALS } from '@/data/data';
+import { FAQ_DATA, WORK_STEPS } from '@/data/data';
 
 const DIRECTIONS = [
   {
@@ -16,7 +16,7 @@ const DIRECTIONS = [
     num: '02',
     title: 'Блогеры',
     path: '/bloggers',
-    desc: 'Формирование доверия аудитории через видео-обзоры, сторитейлы и фото-отзывы с личной рекомендацией от блогеров.',
+    desc: 'Формирование доверия через видео-обзоры, сторитейлы и фото-отзывы от блогеров.',
     stats: 'Запрещеннограм · ВКонтакте · Telegram · TikTok · MAX',
     emoji: '📲',
   },
@@ -24,7 +24,7 @@ const DIRECTIONS = [
     num: '03',
     title: 'Наружная реклама',
     path: '/outdoor',
-    desc: 'Привлечение внимания, повышение узнаваемости бренда и стимулирование интереса потребителей.',
+    desc: 'Привлечение внимания, повышение узнаваемости бренда и стимулирование интереса потребителей через рекламу на щитах, медиафасадах, остановках и других видах наружной рекламы.',
     stats: '8 форматов · видимость 24/7',
     emoji: '🏙️',
   },
@@ -48,7 +48,6 @@ const STATS = [
 ];
 
 export default function Home() {
-  const previewCases = CASES.slice(0, 3);
   const faqPreview = FAQ_DATA.slice(0, 5);
 
   return (
@@ -65,7 +64,7 @@ export default function Home() {
               fontFamily: 'Unbounded, sans-serif',
               fontWeight: 800,
               fontSize: 'clamp(1.75rem, 3.8vw, 4.5rem)',
-              lineHeight: 1.0,
+              lineHeight: 1.12,
               letterSpacing: '-0.03em',
             }}>
             Привлечём внимание.<br />
@@ -92,7 +91,7 @@ export default function Home() {
       </section>
 
       {/* ======== STATS ======== */}
-      <section className="bg-[#FBF8F3] border-b border-[#E8E2D8]">
+      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8]">
         <div className="max-w-7xl mx-auto px-6 py-10">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
             {STATS.map((s) => (
@@ -106,28 +105,28 @@ export default function Home() {
       </section>
 
       {/* ======== 4 НАПРАВЛЕНИЯ ======== */}
-      <section className="bg-[#F2EDE4] pt-6 pb-12">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-12">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
-            <div className="eyebrow text-[#5a5347]">Услуги</div>
+            <div className="eyebrow text-[#FBF8F3]/50">Услуги</div>
           </div>
-          <h2 className="section-title text-[#0A0A0A] mb-6">4 направления продвижения</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#E8E2D8]">
+          <h2 className="section-title text-[#FBF8F3] mb-6">4 направления продвижения</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#FBF8F3]/10">
             {DIRECTIONS.map((dir) => (
               <Link key={dir.num} to={dir.path}
-                className="group bg-[#F2EDE4] hover:bg-[#FBF8F3] transition-colors p-8 flex flex-col min-h-[240px]">
+                className="group bg-[#0A0A0A] hover:bg-[#111111] transition-colors p-8 flex flex-col min-h-[240px]">
                 <div className="flex items-start justify-between mb-5">
                   <div className="font-display font-extrabold text-[#A21D27] text-4xl leading-none">{dir.num}</div>
                   <span className="text-3xl">{dir.emoji}</span>
                 </div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-2xl mb-3 group-hover:text-[#A21D27] transition-colors leading-tight"
+                <h3 className="font-display font-bold text-[#FBF8F3] text-2xl mb-3 group-hover:text-[#A21D27] transition-colors leading-tight"
                   style={{ letterSpacing: '-0.02em' }}>
                   {dir.title}
                 </h3>
-                <p className="text-sm text-[#5a5347] leading-relaxed mb-4">{dir.desc}</p>
-                <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.14em' }}>{dir.stats}</div>
-                <div className="flex items-center gap-2 mt-auto pt-6 text-[11px] font-medium text-[#5a5347] group-hover:text-[#A21D27] transition-colors uppercase"
+                <p className="text-sm text-[#FBF8F3]/50 leading-relaxed mb-4">{dir.desc}</p>
+                <div className="text-[10px] text-[#FBF8F3]/30 uppercase" style={{ letterSpacing: '0.14em' }}>{dir.stats}</div>
+                <div className="flex items-center gap-2 mt-auto pt-6 text-[11px] font-medium text-[#FBF8F3]/40 group-hover:text-[#A21D27] transition-colors uppercase"
                   style={{ letterSpacing: '0.12em' }}>
                   Подробнее
                   <Icon name="ArrowRight" size={12} />
@@ -139,30 +138,30 @@ export default function Home() {
       </section>
 
       {/* ======== КАК ЭТО РАБОТАЕТ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-20">
-        <div className="pattern-content max-w-7xl mx-auto px-6">
+      <section className="bg-[#FBF8F3] pt-6 pb-20">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
-            <div className="eyebrow text-[#FBF8F3]/50">Механика</div>
+            <div className="eyebrow text-[#5a5347]">Механика</div>
           </div>
-          <h2 className="section-title text-[#FBF8F3] mb-4">Как это работает вместе</h2>
-          <p className="text-[#FBF8F3]/50 max-w-2xl mb-12 leading-relaxed">
+          <h2 className="section-title text-[#0A0A0A] mb-4">Как это работает вместе</h2>
+          <p className="text-[#5a5347] max-w-2xl mb-12 leading-relaxed">
             Каждый перечисленный инструмент хорошо работает отдельно. Но в связке они дают кратный рост получаемых результатов:
             один и тот же человек видит вас на улице, у блогера, в сообществах
             и каждый день берёт в руки ваш мерч. У клиента просто выбора не остается, кроме как вернуться к вам еще раз.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#FBF8F3]/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
             {[
               { icon: '🏙️', step: '→ Заметил', title: 'Наружная реклама', desc: 'Клиент увидел ваш щит или медиафасад по дороге домой.' },
               { icon: '🎙️', step: '→ Заинтересовался', title: 'Блогер', desc: 'Увидел честный обзор с рекомендацией к посещению от знакомого блогера.' },
               { icon: '📱', step: '→ Вспомнил', title: 'Сообщества', desc: 'Увидел пост с акцией или нововведением в городском сообществе и решил прийти / перейти на вашу страницу.' },
               { icon: '🎁', step: '→ Вернулся', title: 'Мерч', desc: 'Совершил покупку и получил подарок с логотипом. Использует его, часто возвращается, потому что регулярно вспоминает вас.' },
             ].map((item) => (
-              <div key={item.title} className="bg-[#0A0A0A] p-7 flex flex-col">
+              <div key={item.title} className="bg-[#FBF8F3] p-7 flex flex-col">
                 <div className="text-3xl mb-4">{item.icon}</div>
                 <div className="text-[10px] text-[#A21D27] uppercase mb-2 font-medium" style={{ letterSpacing: '0.16em' }}>{item.step}</div>
-                <h3 className="font-display font-bold text-[#FBF8F3] text-lg mb-3" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
-                <p className="text-sm text-[#FBF8F3]/45 leading-relaxed">{item.desc}</p>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-lg mb-3" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <p className="text-sm text-[#5a5347] leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -185,43 +184,6 @@ export default function Home() {
                 </div>
                 <h3 className="font-display font-bold text-[#FBF8F3] text-lg mb-2" style={{ letterSpacing: '-0.01em' }}>{step.title}</h3>
                 <p className="text-sm text-[#FBF8F3]/45 leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ======== КЕЙСЫ ======== */}
-      <section className="bg-[#FBF8F3] pt-6 pb-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-start justify-between mb-10">
-            <div>
-              <div className="flex items-center gap-4 mb-3">
-                <div className="section-rule" />
-                <div className="eyebrow text-[#5a5347]">Опыт</div>
-              </div>
-              <h2 className="section-title text-[#0A0A0A]">Реальные результаты</h2>
-            </div>
-            <Link to="/cases" className="hidden md:flex items-center gap-2 text-sm text-[#0A0A0A] hover:text-[#A21D27] transition-colors mt-4">
-              Все кейсы <Icon name="ArrowRight" size={14} />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#E8E2D8]">
-            {previewCases.map((c) => (
-              <div key={c.id} className="bg-[#FBF8F3] p-7 flex flex-col">
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  <span className="tag">{c.city}</span>
-                  <span className="tag">{c.niche}</span>
-                  <span className="tag tag-carmine">{SOCIALS[c.social].label}</span>
-                </div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-lg mb-3 leading-tight flex-1" style={{ letterSpacing: '-0.01em' }}>
-                  {c.title}
-                </h3>
-                <div className="border-t border-[#E8E2D8] pt-4">
-                  <p className="text-sm text-[#5a5347] mb-3 leading-relaxed">{c.result}</p>
-                  <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.14em' }}>Охват</div>
-                  <div className="font-display font-bold text-[#A21D27] text-2xl">{c.reach.toLocaleString('ru')}</div>
-                </div>
               </div>
             ))}
           </div>
@@ -255,6 +217,51 @@ export default function Home() {
                 </details>
               ))}
               <div className="border-t border-[#E8E2D8]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ======== КТО МЫ ======== */}
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-20">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-3">
+            <div className="section-rule" />
+            <div className="eyebrow text-[#FBF8F3]/50">Кстати, забыли сказать</div>
+          </div>
+          <h2 className="section-title text-[#FBF8F3] mb-12">А кто мы вообще такие?</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="text-[#FBF8F3]/70 leading-relaxed mb-6">
+                Сейчас «мы» — это один я, <span className="text-[#FBF8F3] font-semibold">Илья Москаленко</span>. Коротко о себе:
+              </p>
+              <div className="flex flex-col gap-3 mb-8">
+                {[
+                  '6 лет в продажах и маркетинге',
+                  'Опыт работы в рекламе, медиа и мерче',
+                  'Руковожу отделом продаж в компании с оборотом свыше 500 млн ₽ в год',
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-sm text-[#FBF8F3]/65">
+                    <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-0.5" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <p className="text-[#FBF8F3]/55 text-sm leading-relaxed">
+                И да, мне 23. Не привык тратить время на бесполезную суету. Приятно познакомиться 🤝
+              </p>
+            </div>
+            <div className="flex flex-col gap-6">
+              <div className="border-l-2 border-[#A21D27] pl-6">
+                <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
+                  За последние годы я понял простую вещь: бизнесам не нужны ещё одни подрядчики. Бизнесам нужен человек, который понимает, как привести клиентов, удержать их и не слить бюджет в пустоту. А, ну и чтобы подешевле это всё было.
+                </p>
+              </div>
+              <div className="border-l-2 border-[#FBF8F3]/15 pl-6">
+                <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
+                  Именно поэтому я собрал вокруг себя систему из проверенных подрядчиков, медиа, рекламных площадок и производств. И договорился с ними об агентском вознаграждении за приведённых клиентов — чтобы закрывать задачи бизнеса под ключ, ещё и без наценки.
+                </p>
+              </div>
             </div>
           </div>
         </div>
