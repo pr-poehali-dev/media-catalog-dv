@@ -154,7 +154,7 @@ export default function Header() {
       scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#FBF8F3] border-[#E8E2D8]'
     }`}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 gap-4">
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
@@ -168,7 +168,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6 ml-auto">
             <MegaDropdown
               label="Сообщества"
               path={COMMUNITIES_MENU.path}
@@ -212,9 +212,10 @@ export default function Header() {
               FAQ
             </Link>
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center bg-[#A21D27] text-[#FBF8F3] text-[11px] font-medium px-5 py-2.5 rounded-full hover:bg-[#831520] transition-colors"
+              className="inline-flex items-center gap-1.5 bg-[#A21D27] text-[#FBF8F3] text-[11px] font-medium px-5 py-2.5 rounded-full hover:bg-[#831520] transition-colors"
               style={{ letterSpacing: '0.08em' }}>
-              Написать в Telegram
+              <img src="https://cdn.poehali.dev/files/56fe3dcd-989b-42e8-9399-ecab76c2f6c2.png" alt="" className="w-4 h-4 object-contain" />
+              Telegram
             </a>
           </nav>
 
