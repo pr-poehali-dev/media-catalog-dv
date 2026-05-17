@@ -168,7 +168,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6 ml-auto pl-10">
+          <nav className="hidden lg:flex items-center gap-6 ml-auto">
             <MegaDropdown
               label="Сообщества"
               path={COMMUNITIES_MENU.path}
