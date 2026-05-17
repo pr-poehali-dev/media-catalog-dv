@@ -158,7 +158,7 @@ export default function Header() {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-8 h-8 bg-[#A21D27] flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-[#A21D27] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>М2.7</span>
             </div>
             <div className="hidden sm:block">
