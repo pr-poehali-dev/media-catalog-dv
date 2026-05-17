@@ -58,12 +58,12 @@ export default function ContactForm({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={`${labelBase}`} style={{ letterSpacing: '0.14em' }}>Ваше имя</label>
-            <input type="text" required placeholder="Иван Петров" value={form.name}
+            <input type="text" required placeholder="Иван" value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputBase} />
           </div>
           <div>
             <label className={`${labelBase}`} style={{ letterSpacing: '0.14em' }}>Телефон / Telegram</label>
-            <input type="text" required placeholder="+7 000 000-00-00" value={form.phone}
+            <input type="text" required placeholder="+7 924 000-00-00" value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputBase} />
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function ContactForm({
         </div>
         <div>
           <label className={`${labelBase}`} style={{ letterSpacing: '0.14em' }}>Задача</label>
-          <textarea rows={3} placeholder="Что продвигаете и какая цель рекламы..." value={form.task}
+          <textarea rows={3} placeholder="Кафе в центре Хабаровска, хочу привлечь новых гостей и напомнить о себе постоянным" value={form.task}
             onChange={(e) => setForm({ ...form, task: e.target.value })}
             className={`${inputBase} resize-none`} />
         </div>

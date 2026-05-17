@@ -91,8 +91,8 @@ export default function Home() {
       </section>
 
       {/* ======== STATS ======== */}
-      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8]">
-        <div className="max-w-7xl mx-auto px-6 py-10">
+      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk">
+        <div className="pattern-content max-w-7xl mx-auto px-6 py-10">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
@@ -124,9 +124,9 @@ export default function Home() {
                   style={{ letterSpacing: '-0.02em' }}>
                   {dir.title}
                 </h3>
-                <p className="text-sm text-[#FBF8F3]/50 leading-relaxed mb-4">{dir.desc}</p>
-                <div className="text-[10px] text-[#FBF8F3]/30 uppercase" style={{ letterSpacing: '0.14em' }}>{dir.stats}</div>
-                <div className="flex items-center gap-2 mt-auto pt-6 text-[11px] font-medium text-[#FBF8F3]/40 group-hover:text-[#A21D27] transition-colors uppercase"
+                <p className="text-sm text-[#FBF8F3]/50 leading-relaxed mb-4 flex-1">{dir.desc}</p>
+                <div className="text-[10px] text-[#FBF8F3]/30 uppercase mb-0" style={{ letterSpacing: '0.14em' }}>{dir.stats}</div>
+                <div className="flex items-center gap-2 mt-6 text-[11px] font-medium text-[#FBF8F3]/40 group-hover:text-[#A21D27] transition-colors uppercase"
                   style={{ letterSpacing: '0.12em' }}>
                   Подробнее
                   <Icon name="ArrowRight" size={12} />
@@ -138,23 +138,23 @@ export default function Home() {
       </section>
 
       {/* ======== КАК ЭТО РАБОТАЕТ ======== */}
-      <section className="bg-[#FBF8F3] pt-6 pb-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#FBF8F3] pt-6 pb-20 pattern-milk">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Механика</div>
           </div>
           <h2 className="section-title text-[#0A0A0A] mb-4">Как это работает вместе</h2>
           <p className="text-[#5a5347] max-w-2xl mb-12 leading-relaxed">
-            Каждый перечисленный инструмент хорошо работает отдельно. Но в связке они дают кратный рост получаемых результатов:
-            один и тот же человек видит вас на улице, у блогера, в сообществах
-            и каждый день берёт в руки ваш мерч. У клиента просто выбора не остается, кроме как вернуться к вам еще раз.
+            Перечисленные выше инструменты хорошо работают по отдельности. Но в связке они дают кратный рост получаемых результатов.
+            Один и тот же человек видит вас на улице, у блогера, в сообществах и почти каждый день носит с собой ваш мерч.
+            Клиент помнит о вас. У него просто выбора не остается, кроме как вернуться к вам еще раз.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
             {[
               { icon: '🏙️', step: '→ Заметил', title: 'Наружная реклама', desc: 'Клиент увидел ваш щит или медиафасад по дороге домой.' },
               { icon: '🎙️', step: '→ Заинтересовался', title: 'Блогер', desc: 'Увидел честный обзор с рекомендацией к посещению от знакомого блогера.' },
-              { icon: '📱', step: '→ Вспомнил', title: 'Сообщества', desc: 'Увидел пост с акцией или нововведением в городском сообществе и решил прийти / перейти на вашу страницу.' },
+              { icon: '📱', step: '→ Решился', title: 'Сообщества', desc: 'Увидел пост с акцией или нововведением в городском сообществе и решил прийти / перейти на вашу страницу.' },
               { icon: '🎁', step: '→ Вернулся', title: 'Мерч', desc: 'Совершил покупку и получил подарок с логотипом. Использует его, часто возвращается, потому что регулярно вспоминает вас.' },
             ].map((item) => (
               <div key={item.title} className="bg-[#FBF8F3] p-7 flex flex-col">
@@ -191,8 +191,8 @@ export default function Home() {
       </section>
 
       {/* ======== FAQ ======== */}
-      <section className="bg-[#F2EDE4] pt-6 pb-16">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#F2EDE4] pt-6 pb-16 pattern-milk">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
               <div className="flex items-center gap-4 mb-3">
@@ -223,11 +223,11 @@ export default function Home() {
       </section>
 
       {/* ======== КТО МЫ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-20">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-10">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
-            <div className="eyebrow text-[#FBF8F3]/50">Кстати, забыли сказать</div>
+            <div className="eyebrow text-[#FBF8F3]/50">Кстати</div>
           </div>
           <h2 className="section-title text-[#FBF8F3] mb-12">А кто мы вообще такие?</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -241,25 +241,26 @@ export default function Home() {
                   'Опыт работы в рекламе, медиа и мерче',
                   'Руковожу отделом продаж в компании с оборотом свыше 500 млн ₽ в год',
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm text-[#FBF8F3]/65">
-                    <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-0.5" />
+                  <div key={item} className="flex items-start gap-3 text-[#FBF8F3]/65">
+                    <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-1" />
                     {item}
                   </div>
                 ))}
               </div>
-              <p className="text-[#FBF8F3]/55 text-sm leading-relaxed">
-                И да, мне 23. Не привык тратить время на бесполезную суету. Приятно познакомиться 🤝
+              <p className="text-[#FBF8F3]/55 leading-relaxed">
+                И да, мне 23. Не привык тратить время на бесполезную суету.<br />
+                Приятно познакомиться)
               </p>
             </div>
             <div className="flex flex-col gap-6">
               <div className="border-l-2 border-[#A21D27] pl-6">
-                <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
+                <p className="text-[#FBF8F3]/70 leading-relaxed">
                   За последние годы я понял простую вещь: бизнесам не нужны ещё одни подрядчики. Бизнесам нужен человек, который понимает, как привести клиентов, удержать их и не слить бюджет в пустоту. А, ну и чтобы подешевле это всё было.
                 </p>
               </div>
               <div className="border-l-2 border-[#FBF8F3]/15 pl-6">
-                <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
-                  Именно поэтому я собрал вокруг себя систему из проверенных подрядчиков, медиа, рекламных площадок и производств. И договорился с ними об агентском вознаграждении за приведённых клиентов — чтобы закрывать задачи бизнеса под ключ, ещё и без наценки.
+                <p className="text-[#FBF8F3]/70 leading-relaxed">
+                  Именно поэтому я собрал вокруг себя систему из проверенных подрядчиков, медиа, рекламных площадок и производств. И договорился с ними об агентском вознаграждении или скидках — чтобы закрывать задачи бизнеса под ключ, ещё и без наценки.
                 </p>
               </div>
             </div>
@@ -277,11 +278,10 @@ export default function Home() {
                 <div className="eyebrow text-[#FBF8F3]/50">Начать</div>
               </div>
               <h2 className="section-title text-[#FBF8F3] mb-6">
-                Готовы запустить рекламу<br />на Дальнем Востоке?
+                Готовы запустить рекламу<br />и удержать пришедших клиентов?
               </h2>
               <p className="text-[#FBF8F3]/50 leading-relaxed mb-6 max-w-md">
-                Оставьте заявку — пришлём подборку площадок и предварительный
-                медиаплан. Бесплатно. Без обязательств.
+                Оставьте заявку — уточним детали и пришлём предварительный медиаплан.
               </p>
               <div className="flex flex-col gap-3">
                 {[
