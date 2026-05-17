@@ -40,12 +40,12 @@ const DIRECTIONS = [
 ];
 
 const STATS = [
-  { value: '1,2 млн', label: 'Подписчиков' },
-  { value: '3,5 млн', label: 'Охват в месяц' },
-  { value: '40+', label: 'Площадок' },
   { value: '3', label: 'Города' },
   { value: '4', label: 'Направления' },
-  { value: '100+', label: 'Кампаний' },
+  { value: '40+', label: 'Площадок' },
+  { value: '1,9+ млн', label: 'Подписчиков' },
+  { value: '4,5+ млн', label: 'Охват в месяц' },
+  { value: '2 000+', label: 'Рекламных поверхностей' },
 ];
 
 export default function Home() {
