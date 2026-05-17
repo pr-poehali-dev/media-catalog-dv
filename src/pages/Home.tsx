@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import ContactForm from '@/components/ContactForm';
@@ -50,53 +49,12 @@ const STATS = [
 
 export default function Home() {
   const faqPreview = FAQ_DATA.slice(0, 5);
-  const pageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const sections = pageRef.current?.querySelectorAll<HTMLElement>('.section-focusable');
-    if (!sections || sections.length === 0) return;
-
-    let activeIndex = -1;
-
-    const updateFocus = (newIndex: number) => {
-      if (newIndex === activeIndex) return;
-      activeIndex = newIndex;
-      sections.forEach((sec, i) => {
-        if (i === newIndex) {
-          sec.classList.add('section-active');
-          sec.classList.remove('section-dimmed');
-        } else {
-          sec.classList.add('section-dimmed');
-          sec.classList.remove('section-active');
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let bestEntry: IntersectionObserverEntry | null = null;
-        entries.forEach((entry) => {
-          if (!bestEntry || entry.intersectionRatio > (bestEntry?.intersectionRatio ?? 0)) {
-            bestEntry = entry;
-          }
-        });
-        if (bestEntry && (bestEntry as IntersectionObserverEntry).isIntersecting) {
-          const idx = Array.from(sections).indexOf((bestEntry as IntersectionObserverEntry).target as HTMLElement);
-          if (idx !== -1) updateFocus(idx);
-        }
-      },
-      { threshold: [0.3, 0.5, 0.7], rootMargin: '-10% 0px -10% 0px' }
-    );
-
-    sections.forEach((sec) => observer.observe(sec));
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <div className="pt-16" ref={pageRef}>
+    <div className="pt-16">
 
       {/* ======== HERO ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-[calc(100vh-64px)] flex items-center section-focusable">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-[calc(100vh-64px)] flex items-center">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-12 w-full">
           <div className="eyebrow text-[#FBF8F3]/50 mb-5 anim-d1 animate-fade-up">
             Хабаровск · Владивосток · Комсомольск-на-Амуре
@@ -133,7 +91,7 @@ export default function Home() {
       </section>
 
       {/* ======== STATS ======== */}
-      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk section-focusable">
+      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-10">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
             {STATS.map((s) => (
@@ -147,7 +105,7 @@ export default function Home() {
       </section>
 
       {/* ======== 4 НАПРАВЛЕНИЯ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-12 section-focusable">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-12">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -180,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* ======== КАК ЭТО РАБОТАЕТ ======== */}
-      <section className="bg-[#FBF8F3] pt-6 pb-20 pattern-milk section-focusable">
+      <section className="bg-[#FBF8F3] pt-6 pb-20 pattern-milk">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -211,7 +169,7 @@ export default function Home() {
       </section>
 
       {/* ======== КАК РАБОТАЕМ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-16 section-focusable">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -233,7 +191,7 @@ export default function Home() {
       </section>
 
       {/* ======== FAQ ======== */}
-      <section className="bg-[#F2EDE4] pt-6 pb-16 pattern-milk section-focusable">
+      <section className="bg-[#F2EDE4] pt-6 pb-16 pattern-milk">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
@@ -265,7 +223,7 @@ export default function Home() {
       </section>
 
       {/* ======== КТО МЫ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-6 section-focusable">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-6">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -302,7 +260,7 @@ export default function Home() {
               </div>
               <div className="border-l-2 border-[#FBF8F3]/15 pl-6">
                 <p className="text-[#FBF8F3]/70 leading-relaxed">
-                  Именно поэтому я собрал вокруг себя систему из проверенных подрядчиков, медиа, рекламных площадок и производств. И договорился с ними об агентском вознаграждении или скидках — чтобы закрывать задачи бизнеса под ключ и без наценки для бизнеса.
+                  Именно поэтому я собрал вокруг себя систему из проверенных подрядчиков, медиа, рекламных площадок и производств. И договорился с ними об агентском вознаграждении или скидках — чтобы закрывать задачи бизнеса под ключ, ещё и без наценки.
                 </p>
               </div>
             </div>
@@ -311,7 +269,7 @@ export default function Home() {
       </section>
 
       {/* ======== CTA ======== */}
-      <section id="cta" className="bg-[#0A0A0A] pattern-dark min-h-screen flex items-center section-focusable">
+      <section id="cta" className="bg-[#0A0A0A] pattern-dark min-h-screen flex items-center">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-16 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-[#FBF8F3]">

@@ -299,13 +299,6 @@
   color: #a21d27;
 }
 
-/* Form inputs — явный цвет текста чтобы браузер не переопределял */
-input,
-textarea,
-select {
-  color: inherit;
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
@@ -371,34 +364,4 @@ select {
 .anim-d5 {
   animation-delay: 0.5s;
   opacity: 0;
-}
-
-/* =============================================
-   SECTION FOCUS EFFECT (только десктоп)
-   ============================================= */
-
-@media (min-width: 1024px) {
-  .section-focusable {
-    position: relative;
-    transition: opacity 0.6s ease;
-  }
-
-  .section-focusable::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-    transition: opacity 0.6s ease;
-    opacity: 0;
-    background: rgba(10, 10, 10, 0.42);
-  }
-
-  .section-focusable.section-dimmed::after {
-    opacity: 1;
-  }
-
-  .section-focusable.section-active::after {
-    opacity: 0;
-  }
 }
