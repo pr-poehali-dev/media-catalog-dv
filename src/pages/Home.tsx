@@ -116,7 +116,7 @@ export default function Home() {
       </section>
 
       {/* ======== 4 НАПРАВЛЕНИЯ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-12 reveal">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-10 pb-12 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -149,13 +149,13 @@ export default function Home() {
       </section>
 
       {/* ======== КАК ЭТО РАБОТАЕТ ======== */}
-      <section className="bg-[#FBF8F3] pt-6 pb-20 pattern-milk reveal">
+      <section className="bg-[#FBF8F3] pt-10 pb-20 pattern-milk reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Механика</div>
           </div>
-          <h2 className="section-title text-[#0A0A0A] mb-12">Как это работает вместе</h2>
+          <h2 className="section-title text-[#0A0A0A] mb-8">Как это работает вместе</h2>
           <p className="text-[#5a5347] max-w-2xl mb-12 leading-relaxed">
             Перечисленные выше инструменты хорошо работают по отдельности. Но в связке они дают кратный рост получаемых результатов.
             Один и тот же человек видит вас на улице, у блогера, в сообществах и почти каждый день носит с собой ваш мерч.
@@ -180,7 +180,7 @@ export default function Home() {
       </section>
 
       {/* ======== КАК РАБОТАЕМ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-16 reveal">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-10 pb-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -210,7 +210,7 @@ export default function Home() {
                 <div className="section-rule" />
                 <div className="eyebrow text-[#5a5347]">FAQ</div>
               </div>
-              <h2 className="section-title text-[#0A0A0A] mb-12">Частые вопросы</h2>
+              <h2 className="section-title text-[#0A0A0A] mb-6">Частые вопросы</h2>
               <p className="text-[#5a5347] leading-relaxed text-sm mb-6 max-w-sm">
                 Без воды и корпоративных формулировок.
               </p>

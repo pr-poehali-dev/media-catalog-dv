@@ -9,7 +9,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({
-  title = 'Получить подборку площадок',
+  title = 'Отправить заявку',
   subtitle = 'Оставьте заявку — составим медиаплан под ваши задачи',
   dark = false,
 }: ContactFormProps) {
