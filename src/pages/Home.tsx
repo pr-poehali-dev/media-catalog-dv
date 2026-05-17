@@ -8,7 +8,7 @@ const DIRECTIONS = [
     num: '01',
     title: 'Городские сообщества',
     path: '/communities',
-    desc: 'Новости об открытии, акциях, нововведениях перед живой и лояльной аудиторией.',
+    desc: 'Побуждение к действию через новости об открытии бизнеса, акциях и нововведениях перед живой и лояльной аудиторией.',
     stats: 'Запрещеннограм · ВКонтакте · Telegram · Одноклассники · MAX · TikTok',
     emoji: '📢',
   },
@@ -16,7 +16,7 @@ const DIRECTIONS = [
     num: '02',
     title: 'Блогеры',
     path: '/bloggers',
-    desc: 'Видео-обзоры и сторитейлы с личной рекомендацией блогера — самый доверенный формат.',
+    desc: 'Формирование доверия аудитории через видео-обзоры, сторитейлы и фото-отзывы с личной рекомендацией от блогеров.',
     stats: 'Запрещеннограм · ВКонтакте · Telegram · TikTok · MAX',
     emoji: '📲',
   },
@@ -24,7 +24,7 @@ const DIRECTIONS = [
     num: '03',
     title: 'Наружная реклама',
     path: '/outdoor',
-    desc: 'Внимание большого количества людей, повышение узнаваемости бренда и стимулирование интереса потребителей.',
+    desc: 'Привлечение внимания, повышение узнаваемости бренда и стимулирование интереса потребителей.',
     stats: '8 форматов · видимость 24/7',
     emoji: '🏙️',
   },
@@ -32,7 +32,7 @@ const DIRECTIONS = [
     num: '04',
     title: 'Брендированная продукция',
     path: '/merch',
-    desc: 'Мерч — единственная реклама, за которую говорят спасибо. Мерчом пользуются регулярно, значит о бренде всегда помнят и рекламируют его в своём окружении.',
+    desc: 'Удержание клиентов через подарки и собственный мерч. Им пользуются регулярно, а значит о бренде помнят и рекламируют его в своём окружении.',
     stats: 'Худи и футболки · Экосумки и шоперы · Брелоки и значки · Стикеры и наклейки',
     emoji: '🎁',
   },
@@ -68,8 +68,8 @@ export default function Home() {
               lineHeight: 1.0,
               letterSpacing: '-0.03em',
             }}>
-            Заинтересуем.<br />
-            Вызовем доверие.<br />
+            Привлечём внимание.<br />
+            Сформируем доверие.<br />
             <span style={{ whiteSpace: 'nowrap' }}>Приведём и <span className="text-[#A21D27]">удержим</span></span><br />
             клиентов.
           </h1>
@@ -106,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* ======== 4 НАПРАВЛЕНИЯ ======== */}
-      <section className="bg-[#F2EDE4] py-12">
+      <section className="bg-[#F2EDE4] pt-6 pb-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -116,20 +116,18 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#E8E2D8]">
             {DIRECTIONS.map((dir) => (
               <Link key={dir.num} to={dir.path}
-                className="group bg-[#F2EDE4] hover:bg-[#FBF8F3] transition-colors p-8 flex flex-col justify-between min-h-[240px]">
-                <div>
-                  <div className="flex items-start justify-between mb-5">
-                    <div className="font-display font-extrabold text-[#A21D27] text-4xl leading-none">{dir.num}</div>
-                    <span className="text-3xl">{dir.emoji}</span>
-                  </div>
-                  <h3 className="font-display font-bold text-[#0A0A0A] text-2xl mb-3 group-hover:text-[#A21D27] transition-colors leading-tight"
-                    style={{ letterSpacing: '-0.02em' }}>
-                    {dir.title}
-                  </h3>
-                  <p className="text-sm text-[#5a5347] leading-relaxed mb-4">{dir.desc}</p>
-                  <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.14em' }}>{dir.stats}</div>
+                className="group bg-[#F2EDE4] hover:bg-[#FBF8F3] transition-colors p-8 flex flex-col min-h-[240px]">
+                <div className="flex items-start justify-between mb-5">
+                  <div className="font-display font-extrabold text-[#A21D27] text-4xl leading-none">{dir.num}</div>
+                  <span className="text-3xl">{dir.emoji}</span>
                 </div>
-                <div className="flex items-center gap-2 mt-6 text-[11px] font-medium text-[#5a5347] group-hover:text-[#A21D27] transition-colors uppercase"
+                <h3 className="font-display font-bold text-[#0A0A0A] text-2xl mb-3 group-hover:text-[#A21D27] transition-colors leading-tight"
+                  style={{ letterSpacing: '-0.02em' }}>
+                  {dir.title}
+                </h3>
+                <p className="text-sm text-[#5a5347] leading-relaxed mb-4">{dir.desc}</p>
+                <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.14em' }}>{dir.stats}</div>
+                <div className="flex items-center gap-2 mt-auto pt-6 text-[11px] font-medium text-[#5a5347] group-hover:text-[#A21D27] transition-colors uppercase"
                   style={{ letterSpacing: '0.12em' }}>
                   Подробнее
                   <Icon name="ArrowRight" size={12} />
@@ -141,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* ======== КАК ЭТО РАБОТАЕТ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-20">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-20">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -149,18 +147,18 @@ export default function Home() {
           </div>
           <h2 className="section-title text-[#FBF8F3] mb-4">Как это работает вместе</h2>
           <p className="text-[#FBF8F3]/50 max-w-2xl mb-12 leading-relaxed">
-            Каждый инструмент работает отдельно. Но в связке они дают синергию:
-            один и тот же человек видит вас на улице, у блогера, в сообществе
-            и каждый день берёт в руки ваш мерч.
+            Каждый перечисленный инструмент хорошо работает отдельно. Но в связке они дают кратный рост получаемых результатов:
+            один и тот же человек видит вас на улице, у блогера, в сообществах
+            и каждый день берёт в руки ваш мерч. У клиента просто выбора не остается, кроме как вернуться к вам еще раз.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#FBF8F3]/10">
             {[
               { icon: '🏙️', step: '→ Заметил', title: 'Наружная реклама', desc: 'Клиент увидел ваш щит или медиафасад по дороге домой.' },
-              { icon: '🎙️', step: '→ Заинтересовался', title: 'Блогер', desc: 'Знакомый блогер сделал честный обзор — это не реклама, это рекомендация.' },
-              { icon: '📱', step: '→ Вспомнил', title: 'Сообщества', desc: 'Пост в городском сообществе напомнил об акции. Перешёл.' },
-              { icon: '🎁', step: '→ Вернулся', title: 'Мерч', desc: 'Купил — получил подарок с логотипом. Возвращается и рекомендует.' },
+              { icon: '🎙️', step: '→ Заинтересовался', title: 'Блогер', desc: 'Увидел честный обзор с рекомендацией к посещению от знакомого блогера.' },
+              { icon: '📱', step: '→ Вспомнил', title: 'Сообщества', desc: 'Увидел пост с акцией или нововведением в городском сообществе и решил прийти / перейти на вашу страницу.' },
+              { icon: '🎁', step: '→ Вернулся', title: 'Мерч', desc: 'Совершил покупку и получил подарок с логотипом. Использует его, часто возвращается, потому что регулярно вспоминает вас.' },
             ].map((item) => (
-              <div key={item.title} className="bg-[#0A0A0A] p-7">
+              <div key={item.title} className="bg-[#0A0A0A] p-7 flex flex-col">
                 <div className="text-3xl mb-4">{item.icon}</div>
                 <div className="text-[10px] text-[#A21D27] uppercase mb-2 font-medium" style={{ letterSpacing: '0.16em' }}>{item.step}</div>
                 <h3 className="font-display font-bold text-[#FBF8F3] text-lg mb-3" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
@@ -171,68 +169,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ======== СОЦСЕТИ — быстрый доступ ======== */}
-      <section className="bg-[#FBF8F3] py-14">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              <div className="section-rule" />
-              <div className="eyebrow text-[#5a5347]">Соцсети</div>
-            </div>
-            <Link to="/communities" className="text-xs text-[#0A0A0A] hover:text-[#A21D27] transition-colors flex items-center gap-1" style={{ letterSpacing: '0.1em' }}>
-              Все площадки <Icon name="ArrowRight" size={12} />
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-[#E8E2D8]">
-            {(['vk', 'telegram', 'ok', 'max', 'tiktok', 'instagram'] as const).map((key) => {
-              const s = SOCIALS[key];
-              const paths: Record<string, string> = { vk: '/socials/vk', telegram: '/socials/telegram', ok: '/socials/ok', max: '/socials/max', tiktok: '/socials/tiktok', instagram: '/socials/instagram' };
-              return (
-                <Link key={key} to={paths[key]}
-                  className="group bg-[#FBF8F3] p-6 flex flex-col items-center text-center hover:bg-[#F2EDE4] transition-colors">
-                  <div className="text-2xl mb-2">{s.emoji}</div>
-                  <div className="font-display font-bold text-[#0A0A0A] text-xs group-hover:text-[#A21D27] transition-colors"
-                    style={{ letterSpacing: '-0.01em' }}>{s.label}</div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ======== ГОРОДА ======== */}
-      <section className="bg-[#F2EDE4] py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="section-rule" />
-            <div className="eyebrow text-[#5a5347]">Города</div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#E8E2D8]">
-            {[
-              { name: 'Хабаровск', path: '/cities/khabarovsk', pop: '620 000+', desc: 'Столица Дальнего Востока. Административный и деловой центр региона.' },
-              { name: 'Владивосток', path: '/cities/vladivostok', pop: '600 000+', desc: 'Морские ворота России. Молодёжь, туризм, HoReCa.' },
-              { name: 'Комсомольск-на-Амуре', path: '/cities/komsomolsk', pop: '240 000+', desc: 'Компактный охват. Лояльная промышленная аудитория.' },
-            ].map((city) => (
-              <Link key={city.name} to={city.path}
-                className="group bg-[#F2EDE4] p-8 hover:bg-[#FBF8F3] transition-colors flex flex-col justify-between min-h-[180px]">
-                <div>
-                  <div className="font-display font-bold text-[#0A0A0A] text-xl mb-1 group-hover:text-[#A21D27] transition-colors"
-                    style={{ letterSpacing: '-0.02em' }}>{city.name}</div>
-                  <div className="text-[#A21D27] font-display font-bold text-2xl mb-3">{city.pop}</div>
-                  <p className="text-sm text-[#5a5347] leading-relaxed">{city.desc}</p>
-                </div>
-                <div className="flex items-center gap-2 text-[11px] text-[#5a5347] group-hover:text-[#A21D27] transition-colors mt-5 uppercase"
-                  style={{ letterSpacing: '0.12em' }}>
-                  Площадки <Icon name="ArrowRight" size={11} />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ======== КАК РАБОТАЕМ ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-6 pb-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
@@ -254,7 +192,7 @@ export default function Home() {
       </section>
 
       {/* ======== КЕЙСЫ ======== */}
-      <section className="bg-[#FBF8F3] py-16">
+      <section className="bg-[#FBF8F3] pt-6 pb-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-start justify-between mb-10">
             <div>
@@ -291,7 +229,7 @@ export default function Home() {
       </section>
 
       {/* ======== FAQ ======== */}
-      <section className="bg-[#F2EDE4] py-16">
+      <section className="bg-[#F2EDE4] pt-6 pb-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
