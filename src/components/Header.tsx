@@ -211,15 +211,15 @@ export default function Header() {
               style={{ letterSpacing: '0.12em' }}>
               FAQ
             </Link>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center bg-[#A21D27] text-[#FBF8F3] text-[11px] font-medium px-5 py-2.5 rounded-full hover:bg-[#831520] transition-colors"
+              style={{ letterSpacing: '0.08em' }}>
+              Написать в Telegram
+            </a>
           </nav>
 
-          {/* CTA + Burger */}
+          {/* Burger */}
           <div className="flex items-center gap-3">
-            <Link to="/contacts"
-              className="hidden md:inline-flex items-center bg-[#A21D27] text-[#FBF8F3] text-[11px] font-medium px-5 py-2.5 hover:bg-[#831520] transition-colors"
-              style={{ letterSpacing: '0.08em' }}>
-              Медиаплан
-            </Link>
             <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Меню">
               <div className="flex flex-col gap-[5px] w-5">
                 <span className={`block h-px bg-[#0A0A0A] transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
