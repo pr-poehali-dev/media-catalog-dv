@@ -41,10 +41,9 @@ const DIRECTIONS = [
 
 const STATS = [
   { value: '2к+', label: 'Рекламных поверхностей' },
+  { value: '1,9+ млн', label: 'Подписчиков' },
   { value: '45+', label: 'Интернет-площадок' },
-  { value: '1,9+ млн', label: 'Подписчиков', wide: true },
-  { value: '4,5+ млн', label: 'Охват в месяц', wide: true },
-  { value: '2к+', label: 'Вариантов подарков' },
+  { value: '4,5+ млн', label: 'Охват в месяц' },
 ];
 
 export default function Home() {
