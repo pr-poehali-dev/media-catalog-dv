@@ -20,6 +20,7 @@ import FAQ from "@/pages/FAQ";
 import Contacts from "@/pages/Contacts";
 import Legal from "@/pages/Legal";
 import NotFound from "@/pages/NotFound";
+import CookieBanner from "@/components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ function Layout() {
         </Routes>
       </main>
       <Footer />
+      <CookieBanner />
     </>
   );
 }
