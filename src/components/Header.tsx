@@ -188,7 +188,7 @@ export default function Header() {
               active={isActive('/bloggers')}
             />
             <MegaDropdown
-              label="Наружная реклама"
+              label="Наружка"
               path={OUTDOOR_MENU.path}
               sections={OUTDOOR_MENU.sections}
               isOpen={openMenu === 'outdoor'}
