@@ -20,7 +20,7 @@ const LEGAL_CONTENT: Record<string, { title: string; content: string }> = {
   },
   info: {
     title: 'Правовая информация',
-    content: `## Об организации\n\nДВ Медиа\nИНН: 0000000000\nОГРН: 0000000000000\n\n## Дисклеймер по Meta / Instagram*\n\n*Instagram и Facebook принадлежат Meta Platforms Inc.\n\nРешением суда на территории РФ деятельность Meta Platforms Inc. признана экстремистской и запрещена.\n\nСтандартное рекламное размещение в Instagram* и Facebook* для продвижения товаров и услуг на территории РФ не предлагается.\n\nУпоминание платформ носит исключительно информационный характер.\n\n## Рекомендованные альтернативы\n\nВКонтакте, Telegram, MAX, TikTok, Одноклассники.\n\n## Контакты\n\ninfo@dvmedia.ru\npd@dvmedia.ru\n+7 (4212) 00-00-00`,
+    content: `## Об организации\n\nМедиа 2.7\nИП Москаленко Илья Денисович\nИНН: 271703923290\nОГРНИП: 32427000070446\n\n## Дисклеймер по Meta / Instagram*\n\nInstagram* и Facebook* принадлежат компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории РФ.\n\nМы не предоставляем услуги по запуску стандартной рекламы через рекламные кабинеты Meta* для продвижения товаров и услуг на территории РФ.\n\nВозможны только информационные интеграции в формате редакционных материалов, обзоров и пользовательского контента — при соблюдении действующего законодательства РФ.\n\nУпоминание платформ носит исключительно информационный характер.\n\n## Рекомендованные альтернативы\n\nВКонтакте, Telegram, MAX, Одноклассники, TikTok* (при наличии доступного формата размещения)\n\n## Контакты\n\nmedia2.7@mail.ru\n+7 (914) 205-55-35`,
   },
 };
 
@@ -42,6 +42,10 @@ export default function Legal() {
       if (line.startsWith('- ')) return <li key={i} className="text-base text-[#5a5347] ml-4 leading-relaxed mb-1">{line.slice(2)}</li>;
       if (line.match(/^\d+\./)) return <li key={i} className="text-base text-[#5a5347] ml-4 leading-relaxed mb-1 list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;
       if (line.trim() === '') return <br key={i} />;
+      const emailMatch = line.match(/^[\w.+-]+@[\w-]+\.[a-z]{2,}$/i);
+      if (emailMatch) return <p key={i} className="text-base text-[#5a5347] leading-relaxed mb-1"><a href={`mailto:${line.trim()}`} className="text-[#A21D27] hover:text-[#831520] transition-colors underline">{line.trim()}</a></p>;
+      const phoneMatch = line.match(/^\+?[\d ()-]{10,}$/);
+      if (phoneMatch) return <p key={i} className="text-base text-[#5a5347] leading-relaxed mb-1"><a href={`tel:${line.trim().replace(/\D/g, '').replace(/^8/, '+7')}`} className="text-[#A21D27] hover:text-[#831520] transition-colors underline">{line.trim()}</a></p>;
       return <p key={i} className="text-base text-[#5a5347] leading-relaxed mb-1">{line}</p>;
     });
 
