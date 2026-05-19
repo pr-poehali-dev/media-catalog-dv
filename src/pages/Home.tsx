@@ -253,7 +253,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-[#FBF8F3]/70 leading-relaxed mb-6">
-                Сейчас «мы» — это один я, <span className="text-[#FBF8F3] font-semibold">Илья Москаленко</span>. Коротко о себе:
+                Сейчас «мы» — это один я, <span className="text-[#FBF8F3] font-semibold">Илья Москаленко</span>.<br />Коротко обо мне:
               </p>
               <div className="flex flex-col gap-3 mb-8">
                 {[
