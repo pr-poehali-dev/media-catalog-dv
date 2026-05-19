@@ -14,13 +14,14 @@ export default function Merch() {
           </div>
           <h1 className="section-title text-[#FBF8F3] mb-4">Брендированная продукция</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
-            Мерч — реклама, которая остаётся с клиентом. Кружка на столе,
-            футболка на улице, стикер на ноутбуке — бренд постоянно перед глазами.
+            Мерч — реклама, которая остаётся с клиентом. Кружка на столе,<br />
+            футболка на улице, стикер на ноутбуке — бренд постоянно перед глазами.<br className="hidden lg:block" />
             У владельца и всего его окружения.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link to="/contacts" className="btn-carmine">Заказать мерч</Link>
-            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
+            <a href="#merch-form" className="btn-carmine">Заказать мерч</a>
+            <a href="https://t.me/media27khabarovsk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
+            <a href="https://max.ru/media27khabarovsk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
           </div>
         </div>
       </section>
@@ -38,9 +39,8 @@ export default function Merch() {
                 Клиент стал<br />рекламоносителем
               </h2>
               <p className="text-[#0A0A0A]/65 leading-relaxed mb-6">
-                Брендированная продукция — единственная реклама, которую клиент
-                не пропускает. Он её получил, он её использует, и она работает
-                на вас каждый день.
+                Брендированная продукция — единственная реклама, за которую говорят спасибо.
+                Клиент её получил, клиент её использует. Мерч работает на вас каждый день.
               </p>
               <p className="text-[#0A0A0A]/65 leading-relaxed">
                 Каждый раз, когда клиент достаёт ключи, пьёт кофе или идёт
@@ -50,10 +50,10 @@ export default function Merch() {
             </div>
             <div className="grid grid-cols-2 gap-px bg-[#E8E2D8]">
               {[
-                { num: '365', unit: 'дней', desc: 'Работает без перерыва — в отличие от рекламного поста' },
-                { num: '∞', unit: 'контактов', desc: 'Каждый контакт — нулевая стоимость, уже оплачен' },
-                { num: '3–10×', unit: 'охват', desc: 'Один мерч видят не только владелец, но и его окружение' },
-                { num: '100%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще' },
+                { num: '365', unit: 'дней', desc: 'Мерч работает без перерыва, в отличие от рекламного поста.' },
+                { num: '∞', unit: 'контактов', desc: 'Каждый новый контакт бесплатный для бизнеса, он уже оплачен.' },
+                { num: '3–10+', unit: 'охват', desc: 'Мерч видит не только владелец, но и его окружение.' },
+                { num: '100%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще на 20-25%.' },
               ].map((item) => (
                 <div key={item.num} className="bg-[#FBF8F3] p-7">
                   <div className="font-display font-extrabold text-[#A21D27] leading-none mb-1"
@@ -128,7 +128,7 @@ export default function Merch() {
         </div>
       </section>
 
-      <section className="bg-[#0A0A0A] pattern-dark py-16">
+      <section id="merch-form" className="bg-[#0A0A0A] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Заказать брендированную продукцию" subtitle="Укажите вид товара и тираж — пришлём расчёт" />
         </div>
