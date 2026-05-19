@@ -261,25 +261,25 @@ export default function Home() {
                   'Опыт работы в рекламе, медиа и мерче',
                   'Руковожу отделом продаж в компании с оборотом свыше 500 млн ₽ в год',
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-[#FBF8F3]/65">
+                  <div key={item} className="flex items-start gap-3 text-[#FBF8F3]/65 text-sm">
                     <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-1" />
                     {item}
                   </div>
                 ))}
               </div>
-              <p className="text-[#FBF8F3]/55 leading-relaxed">
+              <p className="text-[#FBF8F3]/55 leading-relaxed text-sm">
                 И да, мне 23. Не привык тратить время на бесполезную суету.<br />
                 Приятно познакомиться)
               </p>
             </div>
             <div className="flex flex-col gap-6">
               <div className="border-l-2 border-[#A21D27] pl-6">
-                <p className="text-[#FBF8F3]/70 leading-relaxed">
+                <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
                   За последние годы я понял простую вещь: бизнесам не нужны ещё одни подрядчики. Бизнесам нужен человек, который понимает, как привести клиентов, удержать их и не слить бюджет в пустоту. А, ну и чтобы подешевле это всё было.
                 </p>
               </div>
               <div className="border-l-2 border-[#FBF8F3]/15 pl-6">
-                <p className="text-[#FBF8F3]/70 leading-relaxed">
+                <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
                   Именно поэтому я собрал вокруг себя систему из проверенных подрядчиков, медиа, рекламных площадок и производств. И договорился с ними об агентском вознаграждении или скидках — чтобы закрывать задачи бизнеса под ключ и без наценки для бизнеса.
                 </p>
               </div>
