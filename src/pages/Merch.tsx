@@ -20,15 +20,15 @@ export default function Merch() {
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="#merch-form" className="btn-carmine">Заказать мерч</a>
-            <a href="https://t.me/media27khabarovsk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
-            <a href="https://max.ru/media27khabarovsk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
+            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
           </div>
         </div>
       </section>
 
       {/* Почему мерч работает */}
-      <section className="bg-[#FBF8F3] py-14">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#FBF8F3] pattern-milk py-14">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <div className="flex items-center gap-4 mb-6">
@@ -53,7 +53,7 @@ export default function Merch() {
                 { num: '365', unit: 'дней', desc: 'Мерч работает без перерыва, в отличие от рекламного поста.' },
                 { num: '∞', unit: 'контактов', desc: 'Каждый новый контакт бесплатный для бизнеса, он уже оплачен.' },
                 { num: '3–10+', unit: 'охват', desc: 'Мерч видит не только владелец, но и его окружение.' },
-                { num: '100%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще на 20-25%.' },
+                { num: '20-25%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще.' },
               ].map((item) => (
                 <div key={item.num} className="bg-[#FBF8F3] p-7">
                   <div className="font-display font-extrabold text-[#A21D27] leading-none mb-1"
@@ -70,8 +70,8 @@ export default function Merch() {
       </section>
 
       {/* Каталог товаров */}
-      <section className="bg-[#F2EDE4] py-14">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#F2EDE4] pattern-light py-14">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-10">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Каталог</div>
@@ -105,17 +105,17 @@ export default function Merch() {
       </section>
 
       {/* Как заказать */}
-      <section className="bg-[#FBF8F3] py-14">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#FBF8F3] pattern-milk py-14">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Процесс</div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
             {[
-              { n: '01', t: 'Заявка', d: 'Выбираете позиции, указываете количество и способ нанесения логотипа.' },
-              { n: '02', t: 'Макет', d: 'Помогаем с подготовкой макета под выбранный товар.' },
-              { n: '03', t: 'Производство', d: 'Изготавливаем от 10 штук. Сроки — от 5 рабочих дней.' },
+              { n: '01', t: 'Заявка', d: 'Называете цель закупа, желаемую продукцию, если такая есть, и тираж.' },
+              { n: '02', t: 'Макет', d: 'Подбираем позиции по заявке и создаем макеты продукции с нанесением.' },
+              { n: '03', t: 'Производство', d: 'Изготавливаем от 10 штук. Конечно, лучше заказывать от 50 (цена сильно ниже). Сроки — от 5 рабочих дней.' },
               { n: '04', t: 'Доставка', d: 'Курьером по городу или транспортной компанией в регион.' },
             ].map((item) => (
               <div key={item.n} className="bg-[#FBF8F3] p-7">
@@ -130,7 +130,7 @@ export default function Merch() {
 
       <section id="merch-form" className="bg-[#0A0A0A] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
-          <ContactForm dark title="Заказать брендированную продукцию" subtitle="Укажите вид товара и тираж — пришлём расчёт" />
+          <ContactForm dark title="Заказать брендированную продукцию" subtitle="Укажите цель закупа, тираж и желаемые позиции. Пришлем расчёт" />
         </div>
       </section>
     </div>
