@@ -24,12 +24,16 @@ def handler(event: dict, context) -> dict:
     phone = body.get('phone', '—')
     city = body.get('city', '—')
     task = body.get('task', '—')
+    source = body.get('source', '')
 
     token = os.environ['TELEGRAM_BOT_TOKEN'].strip()
     chat_id = os.environ['TELEGRAM_CHAT_ID'].strip()
 
+    source_line = f"\U0001f3f7 *Источник:* {source}\n" if source else ""
+
     text = (
         "\U0001f4e5 *Новая заявка с сайта*\n\n"
+        f"{source_line}"
         f"\U0001f464 *Имя:* {name}\n"
         f"\U0001f4de *Телефон / Telegram:* {phone}\n"
         f"\U0001f3d9 *Город:* {city}\n"

@@ -130,7 +130,7 @@ export default function Merch() {
 
       <section id="merch-form" className="bg-[#0A0A0A] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
-          <ContactForm dark title="Заказать брендированную продукцию" subtitle="Укажите цель закупа, тираж и желаемые позиции. Пришлем расчёт" />
+          <ContactForm dark title="Заказать брендированную продукцию" subtitle="Укажите цель закупа, тираж и желаемые позиции. Пришлем расчёт" source="Мерч" />
         </div>
       </section>
     </div>

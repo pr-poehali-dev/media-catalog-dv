@@ -6,12 +6,14 @@ interface ContactFormProps {
   title?: string;
   subtitle?: string;
   dark?: boolean;
+  source?: string;
 }
 
 export default function ContactForm({
   title = 'Отправить заявку',
   subtitle = 'Оставьте заявку — составим медиаплан под ваши задачи',
   dark = false,
+  source,
 }: ContactFormProps) {
   const [form, setForm] = useState({ name: '', phone: '', city: '', task: '', consent: false });
   const [sent, setSent] = useState(false);
@@ -31,6 +33,7 @@ export default function ContactForm({
           phone: form.phone,
           city: form.city,
           task: form.task,
+          ...(source ? { source } : {}),
         }),
       });
       setSent(true);
