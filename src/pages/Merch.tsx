@@ -56,7 +56,7 @@ export default function Merch() {
                 { num: '25%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще.' },
               ].map((item) => (
                 <div key={item.num} className="bg-[#FBF8F3] p-7">
-                  <div style={{ height: '3rem', display: 'flex', alignItems: 'flex-end', marginBottom: '4px' }}>
+                  <div style={{ height: '4rem', display: 'flex', alignItems: 'flex-end', marginBottom: '4px' }}>
                     <div className="font-display font-extrabold text-[#A21D27] leading-none"
                       style={{ fontSize: item.num === '∞' ? 'clamp(4rem, 5vw, 4rem)' : 'clamp(2.5rem, 4vw, 2.5rem)' }}>
                       {item.num}
