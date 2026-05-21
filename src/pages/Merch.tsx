@@ -92,11 +92,11 @@ export default function Merch() {
                 </div>
                 {/* Content */}
                 <div className="flex-1 p-7">
-                  <h3 className="font-display font-bold text-[#0A0A0A] text-xl mb-2 leading-tight" style={{ letterSpacing: '-0.01em' }}>
+                  <h3 className="font-display font-bold text-[#0A0A0A] text-2xl mb-2 leading-tight" style={{ letterSpacing: '-0.01em' }}>
                     {item.name}
                   </h3>
-                  <p className="text-sm text-[#0A0A0A]/65 leading-relaxed mb-3">{item.description}</p>
-                  <div className="flex items-start gap-2 text-sm text-[#0A0A0A]/60">
+                  <p className="text-base text-[#0A0A0A]/65 leading-relaxed mb-3">{item.description}</p>
+                  <div className="flex items-start gap-2 text-base text-[#0A0A0A]/60">
                     <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-0.5" />
                     {item.why}
                   </div>
