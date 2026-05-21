@@ -72,16 +72,16 @@ export default function Merch() {
       </section>
 
       {/* Каталог товаров */}
-      <section className="bg-[#F2EDE4] pattern-light py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-10">
             <div className="section-rule" />
-            <div className="eyebrow text-[#5a5347]">Каталог</div>
+            <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
           </div>
-          <div className="flex flex-col gap-px bg-[#E8E2D8]">
+          <div className="flex flex-col gap-px bg-[#2a2a2a]">
             {MERCH_ITEMS.map((item, i) => (
               <div key={item.id}
-                className={`flex flex-col md:flex-row bg-[#F2EDE4] ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                className={`flex flex-col md:flex-row bg-[#141414] ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Visual */}
                 <div className="md:w-[240px] bg-[#0A0A0A] flex-shrink-0 min-h-[200px] overflow-hidden">
                   {item.image ? (
@@ -94,11 +94,11 @@ export default function Merch() {
                 </div>
                 {/* Content */}
                 <div className="flex-1 p-7">
-                  <h3 className="font-display font-bold text-[#0A0A0A] text-2xl mb-2 leading-tight" style={{ letterSpacing: '-0.01em' }}>
+                  <h3 className="font-display font-bold text-[#FBF8F3] text-2xl mb-2 leading-tight" style={{ letterSpacing: '-0.01em' }}>
                     {item.name}
                   </h3>
-                  <p className="text-base text-[#0A0A0A]/65 leading-relaxed mb-3">{item.description}</p>
-                  <div className="flex items-start gap-2 text-base text-[#0A0A0A]/60">
+                  <p className="text-base text-[#FBF8F3]/55 leading-relaxed mb-3">{item.description}</p>
+                  <div className="flex items-start gap-2 text-base text-[#FBF8F3]/45">
                     <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-0.5" />
                     {item.why}
                   </div>
