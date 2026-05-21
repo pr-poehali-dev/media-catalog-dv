@@ -35,6 +35,7 @@ export interface MerchItem {
   why: string;
   priceFrom: number;
   emoji: string;
+  image?: string;
 }
 
 export interface Platform {
@@ -651,52 +652,13 @@ export const BLOGGERS: Blogger[] = [
 
 export const MERCH_ITEMS: MerchItem[] = [
   {
-    id: 'cup',
-    name: 'Кружки и термокружки',
-    description: 'Фирменная посуда, которая ежедневно напоминает о бренде — дома, в офисе и в дороге.',
-    why: 'Постоянный визуальный контакт с брендом без навязчивой рекламы.',
-    priceFrom: 350,
-    emoji: '☕',
-  },
-  {
-    id: 'tshirt',
-    name: 'Футболки и толстовки',
-    description: 'Носимый мерч превращает сотрудников и клиентов в амбассадоров бренда.',
-    why: 'Формирует узнаваемость и создаёт ощущение принадлежности к компании.',
-    priceFrom: 500,
-    emoji: '👕',
-  },
-  {
-    id: 'bag',
-    name: 'Экосумки и шоперы',
-    description: 'Практичный мерч с высокой частотой использования и большим рекламным охватом.',
-    why: 'Бренд сопровождает человека в городе, магазинах и повседневной жизни.',
-    priceFrom: 200,
-    emoji: '🛍️',
-  },
-  {
-    id: 'notebook',
-    name: 'Блокноты и ежедневники',
-    description: 'Корпоративный подарок, который остаётся на рабочем столе. Работает на имидж компании.',
-    why: 'Подходит для партнёров, сотрудников и деловых мероприятий.',
-    priceFrom: 300,
-    emoji: '📓',
-  },
-  {
-    id: 'pen',
-    name: 'Ручки и канцелярия',
-    description: 'Массовый мерч для ежедневного использования.',
-    why: 'Один из самых доступных способов регулярно напоминать о компании.',
-    priceFrom: 30,
-    emoji: '🖊️',
-  },
-  {
-    id: 'keychain',
-    name: 'Брелоки и значки',
-    description: 'Компактный сувенир, который остаётся с человеком каждый день.',
-    why: 'Создаёт эмоциональную связь через повседневное использование.',
-    priceFrom: 80,
-    emoji: '🔑',
+    id: 'gadgets',
+    name: 'Аксессуары для гаджетов',
+    description: 'Современный мерч, который люди действительно используют каждый день. Телефон всегда рядом — а вместе с ним и ваш бренд.',
+    why: 'Высокая частота использования — бренд постоянно перед глазами и руками.',
+    priceFrom: 150,
+    emoji: '📱',
+    image: 'https://downloader.disk.yandex.ru/disk/98e7f381650b6562bc8e8e9e9c21cc5c90e24b61279c6be78b110510d271c59e/6a0ee1ff/b9JV5vdQCf03SifGUCQL0-_q2hozJkxj7Yk5YA_dqlcLqXI9oOPpYQVcefhlOQcmy4UdTXYcyfCCv7jZWOhA_A%3D%3D?uid=0&filename=IMG_3976.PNG&disposition=attachment&hash=z9Q%2BxIyyKfxgzEi/1MD0uHYG0sn9MNtvMx/pGRK8%2BctSnYDefaCf7VY2exIGBmIwq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=4889162&hid=ec995c6639bdab3947b4c2935d68aacd&media_type=image&tknv=v3&is_direct_zip_experiment=1',
   },
   {
     id: 'powerbank',
@@ -705,6 +667,25 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Современный формат для технологичного и сильного бренда.',
     priceFrom: 1200,
     emoji: '🔋',
+    image: 'https://downloader.disk.yandex.ru/disk/13477677f97575ee03fce711342fdb069bffc660ec903711c0395e721ca53891/6a0ee213/b9JV5vdQCf03SifGUCQL04PTvWQuAUaejnljrZE5evZMyW0f1XL2Ga-BsUrFFRgFqZvaecFJs4jsYUyJizuU9Q%3D%3D?uid=0&filename=IMG_3968.PNG&disposition=attachment&hash=g6xfRljkfsMqLrjMBW1qmCdWlfPF4ogF1Xi3SuJKUjxQ3aoi0E5fNfmwSGSonyrzq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=4251623&hid=53bea546f3818b7953a53f679d1e6f1e&media_type=image&tknv=v3&is_direct_zip_experiment=1',
+  },
+  {
+    id: 'tshirt',
+    name: 'Футболки и толстовки',
+    description: 'Носимый мерч превращает сотрудников и клиентов в амбассадоров бренда.',
+    why: 'Формирует узнаваемость и создаёт ощущение принадлежности к компании.',
+    priceFrom: 500,
+    emoji: '👕',
+    image: 'https://downloader.disk.yandex.ru/disk/78e088f29e9ecfea9d3044f09255768c7f530a3546bd29f90ac97b9923a61afe/6a0ee204/b9JV5vdQCf03SifGUCQL08Qp6b3drOT0-IvKEJvJj8sLfRwPEKd6CtWoLl_Efy19hgrMp3XVeQNc6-Cd8_Q-NA%3D%3D?uid=0&filename=IMG_3972.PNG&disposition=attachment&hash=5opwkySGUnPahLq/ALzGTeN5U0CJAFDOl%2Bfy3obXX3DqmPB1p7al3LGDR1oEptNHq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=3924918&hid=a0b4965989edc40b6617949079822c30&media_type=image&tknv=v3&is_direct_zip_experiment=1',
+  },
+  {
+    id: 'bag',
+    name: 'Экосумки и шоперы',
+    description: 'Практичный мерч с высокой частотой использования и большим рекламным охватом.',
+    why: 'Бренд сопровождает человека в городе, магазинах и повседневной жизни.',
+    priceFrom: 200,
+    emoji: '🛍️',
+    image: 'https://downloader.disk.yandex.ru/disk/9501bb65da7e22e125385bf0b666b9d06d937bed3ed94c7aca81a0191c7f2558/6a0ee207/b9JV5vdQCf03SifGUCQL0yqUOZUX2zKsv7SDbLatzuDlnWPL7-YTYqsKwMyhGJUHabeU_6H1XRfRcIogwf7q4Q%3D%3D?uid=0&filename=IMG_3973.PNG&disposition=attachment&hash=brvQqzeoVJ5D3nRUzWtotdFklkk29B9NwxBRsGajIGO86K7j4FKJKO4PE/BGuzx/q/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=5227248&hid=c4e8f3452a3bb6063fd8b9491424f94b&media_type=image&tknv=v3&is_direct_zip_experiment=1',
   },
   {
     id: 'sticker',
@@ -713,5 +694,42 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Вирусное распространение. Стикеры видят все вокруг носителя.',
     priceFrom: 15,
     emoji: '🎨',
+    image: 'https://downloader.disk.yandex.ru/disk/97e09c304f79bb811b06ecc7aec6c09c8e25100218f6e00f7d19200013fd629d/6a0ee216/b9JV5vdQCf03SifGUCQL06Gxce00pgkuyEmj03l7AHwdNh8NkGez59VHJficDLX_S8qRgvjsi6cuoxjT0s6wgA%3D%3D?uid=0&filename=IMG_3971.PNG&disposition=attachment&hash=RZGe4zeCzGOOkfBKzHCvMf6kxk3wOumsE4EOEBIWpzXo2gj7Xeg%2BdlTse2Oz59J%2Bq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=5240340&hid=f5ff73aebb07eccb5cb8b30a4c7dfa56&media_type=image&tknv=v3&is_direct_zip_experiment=1',
+  },
+  {
+    id: 'keychain',
+    name: 'Брелоки и значки',
+    description: 'Компактный сувенир, который остаётся с человеком каждый день.',
+    why: 'Создаёт эмоциональную связь через повседневное использование.',
+    priceFrom: 80,
+    emoji: '🔑',
+    image: 'https://downloader.disk.yandex.ru/disk/06435abe02496b4229718833fe3213877289f40387f9f626065ed247da205117/6a0ee211/b9JV5vdQCf03SifGUCQL0-EIKQrDxT-sa6ZCpJhsLYaeVCLT0n_whGxPkq4CNLPL2gVqwKmtbXGPGhsSNAGagQ%3D%3D?uid=0&filename=IMG_3970.PNG&disposition=attachment&hash=TBDTlTeG9OwvuQAkHodxbZny1863hkxbmNXdqR%2BeaE8N6L1R9Jlk3kNdoIzGkVzEq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=5319521&hid=8c70c5facecd139c68f1ff6407cc59b0&media_type=image&tknv=v3&is_direct_zip_experiment=1',
+  },
+  {
+    id: 'notebook',
+    name: 'Блокноты и ежедневники',
+    description: 'Корпоративный подарок, который остаётся на рабочем столе. Работает на имидж компании.',
+    why: 'Подходит для партнёров, сотрудников и деловых мероприятий.',
+    priceFrom: 300,
+    emoji: '📓',
+    image: 'https://downloader.disk.yandex.ru/disk/b892a80128744bfb96812eadf0d45f14cfac756af21a8d41344806811c152457/6a0ee20a/b9JV5vdQCf03SifGUCQL0xDfP-Y6CIIiCo9Vs3fhEQ1A4DkgAQNem6ZVspHlgpBWdCrW6gCaEmiNv7zMu8GZVg%3D%3D?uid=0&filename=IMG_3975.PNG&disposition=attachment&hash=HoHBGp%2BlHFnWD212cFmjUFYcmqEdRIsYZsZwOmeC2ugNeA5YXqyaA4ON/xnmsfZgq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=4922947&hid=0cb866ac6549f4fdbf7a8091400ac251&media_type=image&tknv=v3&is_direct_zip_experiment=1',
+  },
+  {
+    id: 'cup',
+    name: 'Кружки и термокружки',
+    description: 'Фирменная посуда, которая ежедневно напоминает о бренде — дома, в офисе и в дороге.',
+    why: 'Постоянный визуальный контакт с брендом без навязчивой рекламы.',
+    priceFrom: 350,
+    emoji: '☕',
+    image: 'https://downloader.disk.yandex.ru/disk/ba04310e91126b879259f9ac2537fe77a9bdf1536ccaeb3b810ca2db78cf0e8a/6a0ee202/b9JV5vdQCf03SifGUCQL0wCRt8QNGfxBR7y-TkiqTq9y52481WXPLgqpt8r1-z_HEZof44f6AGeSb1cmFrDQHA%3D%3D?uid=0&filename=IMG_3969.PNG&disposition=attachment&hash=Akd/ZmI5lkNsHVrPJ%2Bzy8YtQanSzYSoxvjcr%2BzHo2fOfdlf4IF7jI7EvtlDJwbNUq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=3758313&hid=efc2b415e7172d30a49a4f7ff5336f48&media_type=image&tknv=v3&is_direct_zip_experiment=1',
+  },
+  {
+    id: 'pen',
+    name: 'Ручки и канцелярия',
+    description: 'Массовый мерч для ежедневного использования.',
+    why: 'Один из самых доступных способов регулярно напоминать о компании.',
+    priceFrom: 30,
+    emoji: '🖊️',
+    image: 'https://downloader.disk.yandex.ru/disk/f370722709298537824bb7a09ddf6c705567d8e21de5cdca70c55c93aa3936cc/6a0ee20e/b9JV5vdQCf03SifGUCQL04f2vlNLB8vZuDkGQqEWTOwinuFo7Tjdx8C-1gbpHPtzEdC-OigqqY2NwQBMiaoHaw%3D%3D?uid=0&filename=IMG_3974.PNG&disposition=attachment&hash=qHQ6tlHBTC%2BqlsPcRjSSUSdFQTkhdLAlLCiOtDdk4ygwZv3tKHsrhN/uTL24hs7oq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=image%2Fpng&owner_uid=1948679689&fsize=4792507&hid=cf63838f99944184ab31a2d2366e0e87&media_type=image&tknv=v3&is_direct_zip_experiment=1',
   },
 ];

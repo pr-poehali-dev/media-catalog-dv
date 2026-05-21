@@ -81,11 +81,14 @@ export default function Merch() {
               <div key={item.id}
                 className={`flex flex-col md:flex-row bg-[#F2EDE4] ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Visual */}
-                <div className="md:w-[200px] bg-[#0A0A0A] flex flex-col items-center justify-center p-10 min-h-[160px] flex-shrink-0">
-                  <div className="text-5xl mb-3">{item.emoji}</div>
-                  <div className="text-[10px] text-[#FBF8F3]/40 uppercase text-center" style={{ letterSpacing: '0.16em' }}>
-                    от {item.priceFrom.toLocaleString('ru')} ₽ / шт.
-                  </div>
+                <div className="md:w-[240px] bg-[#0A0A0A] flex-shrink-0 min-h-[200px] overflow-hidden">
+                  {item.image ? (
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" style={{ minHeight: '200px' }} />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center p-10 min-h-[200px]">
+                      <div className="text-5xl">{item.emoji}</div>
+                    </div>
+                  )}
                 </div>
                 {/* Content */}
                 <div className="flex-1 p-7">
