@@ -53,11 +53,11 @@ export default function Merch() {
                 { num: '365', unit: 'дней', desc: 'Мерч работает без перерыва, в отличие от рекламного поста.' },
                 { num: '∞', unit: 'контактов', desc: 'Каждый новый контакт бесплатный для бизнеса, он уже оплачен.' },
                 { num: '3–10+', unit: 'охват', desc: 'Мерч видит не только владелец, но и его окружение.' },
-                { num: '20-25%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще.' },
+                { num: '25%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще.' },
               ].map((item) => (
                 <div key={item.num} className="bg-[#FBF8F3] p-7">
                   <div className="font-display font-extrabold text-[#A21D27] leading-none mb-1"
-                    style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+                    style={{ fontSize: 'clamp(2rem, 4vw, 2rem)' }}>
                     {item.num}
                   </div>
                   <div className="text-[10px] text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.16em' }}>{item.unit}</div>
