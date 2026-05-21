@@ -57,7 +57,7 @@ export default function Merch() {
               ].map((item) => (
                 <div key={item.num} className="bg-[#FBF8F3] p-7">
                   <div className="font-display font-extrabold text-[#A21D27] leading-none mb-1"
-                    style={{ fontSize: 'clamp(2.5rem, 4vw, 2.5rem)' }}>
+                    style={{ fontSize: item.num === '∞' ? 'clamp(3.5rem, 5vw, 3.5rem)' : 'clamp(2.5rem, 4vw, 2.5rem)' }}>
                     {item.num}
                   </div>
                   <div className="text-[10px] text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.16em' }}>{item.unit}</div>
