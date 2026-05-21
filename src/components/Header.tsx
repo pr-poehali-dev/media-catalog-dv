@@ -79,9 +79,10 @@ interface MegaDropdownProps {
   onToggle: () => void;
   onClose: () => void;
   active?: boolean;
+  dark?: boolean;
 }
 
-function MegaDropdown({ label, path, sections, isOpen, onToggle, onClose, active }: MegaDropdownProps) {
+function MegaDropdown({ label, path, sections, isOpen, onToggle, onClose, active, dark }: MegaDropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const h = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) onClose(); };
@@ -93,7 +94,7 @@ function MegaDropdown({ label, path, sections, isOpen, onToggle, onClose, active
     <div ref={ref} className="relative">
       <button
         onClick={onToggle}
-        className={`flex items-center gap-1 text-[11px] font-medium transition-colors py-1 ${active ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+        className={`flex items-center gap-1 text-[11px] font-medium transition-colors py-1 ${active ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
         style={{ letterSpacing: '0.12em', textTransform: 'uppercase' }}
       >
         {label}
@@ -149,9 +150,11 @@ export default function Header() {
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
+  const dark = !scrolled;
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-      scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#FBF8F3] border-[#E8E2D8]'
+      scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#0A0A0A] border-[#FBF8F3]/10'
     }`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16 gap-4">
@@ -162,8 +165,8 @@ export default function Header() {
               <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>М2.7</span>
             </div>
             <div className="hidden sm:block">
-              <div className="font-display font-bold text-[#0A0A0A] text-sm tracking-tight leading-none">Медиа 2.7</div>
-              <div className="text-[9px] text-[#5a5347] uppercase leading-tight mt-0.5" style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
+              <div className={`font-display font-bold text-sm tracking-tight leading-none transition-colors duration-300 ${dark ? 'text-[#FBF8F3]' : 'text-[#0A0A0A]'}`}>Медиа 2.7</div>
+              <div className={`text-[9px] uppercase leading-tight mt-0.5 transition-colors duration-300 ${dark ? 'text-[#FBF8F3]/50' : 'text-[#5a5347]'}`} style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
             </div>
           </Link>
 
@@ -177,6 +180,7 @@ export default function Header() {
               onToggle={() => toggle('communities')}
               onClose={close}
               active={isActive('/communities') || isActive('/socials') || isActive('/cities')}
+              dark={dark}
             />
             <MegaDropdown
               label="Блогеры"
@@ -186,6 +190,7 @@ export default function Header() {
               onToggle={() => toggle('bloggers')}
               onClose={close}
               active={isActive('/bloggers')}
+              dark={dark}
             />
             <MegaDropdown
               label="Наружка"
@@ -195,19 +200,20 @@ export default function Header() {
               onToggle={() => toggle('outdoor')}
               onClose={close}
               active={isActive('/outdoor')}
+              dark={dark}
             />
             <Link to="/merch"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/merch') ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/merch') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Мерч
             </Link>
             <Link to="/contacts"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/contacts') ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/contacts') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Контакты
             </Link>
             <Link to="/faq"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/faq') ? 'text-[#A21D27]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/faq') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               FAQ
             </Link>
@@ -223,9 +229,9 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Меню">
               <div className="flex flex-col gap-[5px] w-5">
-                <span className={`block h-px bg-[#0A0A0A] transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-                <span className={`block h-px bg-[#0A0A0A] transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
-                <span className={`block h-px bg-[#0A0A0A] transition-all duration-200 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-[#FBF8F3]' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-[#FBF8F3]' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-[#FBF8F3]' : 'bg-[#0A0A0A]'} ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
               </div>
             </button>
           </div>
