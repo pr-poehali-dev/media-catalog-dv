@@ -51,25 +51,6 @@ const BLOGGERS_MENU = {
   ],
 };
 
-const OUTDOOR_MENU = {
-  label: 'Наружная реклама',
-  path: '/outdoor',
-  sections: [
-    {
-      title: 'Форматы',
-      items: [
-        { label: 'Щит (3×6 м)', path: '/outdoor#shield' },
-        { label: 'Суперсайт', path: '/outdoor#supersite' },
-        { label: 'Ситиборд', path: '/outdoor#cityboard' },
-        { label: 'Пиллар', path: '/outdoor#pillar' },
-        { label: 'Ситиформат', path: '/outdoor#cityformat' },
-        { label: 'Медиафасад', path: '/outdoor#mediafacade' },
-        { label: 'Арка', path: '/outdoor#arch' },
-        { label: 'Брандмауэр', path: '/outdoor#brandmauer' },
-      ],
-    },
-  ],
-};
 
 interface MegaDropdownProps {
   label: string;
@@ -192,16 +173,11 @@ export default function Header() {
               active={isActive('/bloggers')}
               dark={dark}
             />
-            <MegaDropdown
-              label="Наружка"
-              path={OUTDOOR_MENU.path}
-              sections={OUTDOOR_MENU.sections}
-              isOpen={openMenu === 'outdoor'}
-              onToggle={() => toggle('outdoor')}
-              onClose={close}
-              active={isActive('/outdoor')}
-              dark={dark}
-            />
+            <Link to="/outdoor"
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/outdoor') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              style={{ letterSpacing: '0.12em' }}>
+              Наружка
+            </Link>
             <Link to="/merch"
               className={`text-[11px] font-medium uppercase transition-colors ${isActive('/merch') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>

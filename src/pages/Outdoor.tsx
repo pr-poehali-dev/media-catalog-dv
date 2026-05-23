@@ -3,8 +3,6 @@ import ContactForm from '@/components/ContactForm';
 import { OUTDOOR_FORMATS, OutdoorFormat } from '@/data/data';
 import Icon from '@/components/ui/icon';
 
-const CITIES = ['Хабаровск', 'Владивосток', 'Комсомольск-на-Амуре'];
-
 function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: boolean }) {
   return (
     <div className={`pcard flex flex-col md:flex-row overflow-hidden ${reversed ? 'md:flex-row-reverse' : ''}`}>
@@ -15,24 +13,24 @@ function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: b
         <div className="text-[10px] text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.18em' }}>{format.size}</div>
       </div>
       {/* Content */}
-      <div className="flex-1 p-7 flex flex-col justify-between">
+      <div className="flex-1 p-7 flex flex-col justify-between bg-[#0A0A0A]">
         <div>
-          <p className="text-sm text-[#0A0A0A]/65 leading-relaxed mb-5">{format.description}</p>
+          <p className="text-sm text-[#FBF8F3]/60 leading-relaxed mb-5">{format.description}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-            <div className="bg-[#F2EDE4] border border-[#E8E2D8] p-4">
-              <div className="text-[10px] text-[#5a5347] uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Где размещается</div>
-              <p className="text-sm text-[#0A0A0A] leading-relaxed">{format.where}</p>
+            <div className="bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 p-4">
+              <div className="text-[10px] text-[#FBF8F3]/40 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Где размещается</div>
+              <p className="text-sm text-[#FBF8F3]/80 leading-relaxed">{format.where}</p>
             </div>
-            <div className="bg-[#F2EDE4] border border-[#E8E2D8] p-4">
-              <div className="text-[10px] text-[#5a5347] uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Главное преимущество</div>
-              <p className="text-sm text-[#0A0A0A] leading-relaxed">{format.advantage}</p>
+            <div className="bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 p-4">
+              <div className="text-[10px] text-[#FBF8F3]/40 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Главное преимущество</div>
+              <p className="text-sm text-[#FBF8F3]/80 leading-relaxed">{format.advantage}</p>
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#E8E2D8]">
+        <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#FBF8F3]/10">
           <div>
-            <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.14em' }}>от</div>
-            <div className="font-display font-bold text-[#0A0A0A] text-2xl">{format.priceFrom.toLocaleString('ru')} ₽ / мес.</div>
+            <div className="text-[10px] text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.14em' }}>от</div>
+            <div className="font-display font-bold text-[#FBF8F3] text-2xl">{format.priceFrom.toLocaleString('ru')} ₽ / мес.</div>
           </div>
           <Link to="/contacts" className="btn-carmine">Оставить заявку</Link>
         </div>
@@ -63,26 +61,9 @@ export default function Outdoor() {
         </div>
       </section>
 
-      {/* Быстрая навигация по форматам */}
-      <section className="bg-[#F2EDE4] py-10 border-b border-[#E8E2D8]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-[10px] text-[#5a5347] uppercase mb-5" style={{ letterSpacing: '0.18em' }}>Форматы</div>
-          <div className="flex flex-wrap gap-2">
-            {OUTDOOR_FORMATS.map((f) => (
-              <a key={f.id} href={`#${f.id}`}
-                className="flex items-center gap-2 bg-[#FBF8F3] border border-[#E8E2D8] px-4 py-2 text-sm font-medium text-[#0A0A0A] hover:border-[#A21D27] hover:text-[#A21D27] transition-colors">
-                <span>{f.emoji}</span>
-                {f.name}
-                <span className="text-xs text-[#5a5347] font-normal">/ {f.size}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Почему наружная реклама */}
-      <section className="bg-[#FBF8F3] py-14">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Преимущества — молочный с геофигурами */}
+      <section className="bg-[#FBF8F3] pattern-milk py-14">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Преимущества</div>
@@ -104,29 +85,14 @@ export default function Outdoor() {
         </div>
       </section>
 
-      {/* Города */}
-      <section className="bg-[#0A0A0A] pattern-dark py-12">
+      {/* Форматы — чёрный */}
+      <section className="bg-[#0A0A0A] pattern-dark py-14">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="text-[10px] text-[#FBF8F3]/40 uppercase mb-6" style={{ letterSpacing: '0.18em' }}>Города присутствия</div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#FBF8F3]/10">
-            {CITIES.map((c) => (
-              <div key={c} className="bg-[#0A0A0A] p-6">
-                <div className="font-display font-bold text-[#FBF8F3] text-xl mb-2" style={{ letterSpacing: '-0.02em' }}>{c}</div>
-                <div className="text-sm text-[#FBF8F3]/40">Все форматы наружной рекламы</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Форматы — детально */}
-      <section className="bg-[#FBF8F3] py-14">
-        <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-10">
             <div className="section-rule" />
-            <div className="eyebrow text-[#5a5347]">Все форматы</div>
+            <div className="eyebrow text-[#FBF8F3]/50">Форматы</div>
           </div>
-          <div className="flex flex-col gap-px bg-[#E8E2D8]">
+          <div className="flex flex-col gap-px bg-[#FBF8F3]/10">
             {OUTDOOR_FORMATS.map((f, i) => (
               <div key={f.id} id={f.id}>
                 <OutdoorCard format={f} reversed={i % 2 !== 0} />
@@ -137,8 +103,8 @@ export default function Outdoor() {
       </section>
 
       {/* Как работаем */}
-      <section className="bg-[#F2EDE4] py-14">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-[#F2EDE4] pattern-milk py-14">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Процесс</div>
