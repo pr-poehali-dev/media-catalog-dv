@@ -46,12 +46,12 @@ export default function ContactForm({
 
   const inputBase = `w-full px-4 py-3 text-sm transition-colors focus:outline-none ${
     dark
-      ? 'bg-[#FBF8F3]/8 border border-[#FBF8F3]/20 focus:border-[#FBF8F3]/50'
+      ? 'bg-white border border-[#FBF8F3]/20 focus:border-[#FBF8F3]/50'
       : 'bg-white border border-[#E8E2D8] focus:border-[#A21D27]'
   }`;
 
   const inputStyle: React.CSSProperties = {
-    color: dark ? '#FBF8F3' : '#0A0A0A',
+    color: '#0A0A0A',
   };
 
   const labelBase = `text-[10px] font-medium uppercase block mb-1.5 ${dark ? 'text-[#FBF8F3]/50' : 'text-[#5a5347]'}`;
@@ -121,8 +121,8 @@ export default function ContactForm({
             onChange={(e) => setForm({ ...form, city: e.target.value })}
             className={`${inputBase} appearance-none`}
             style={{
-              color: form.city === '' ? (dark ? 'rgba(251,248,243,0.35)' : '#9a9490') : (dark ? '#FBF8F3' : '#0A0A0A'),
-              backgroundColor: dark ? 'rgba(255,255,255,0.08)' : '#fff',
+              color: form.city === '' ? '#9a9490' : '#0A0A0A',
+              backgroundColor: '#fff',
             }}
           >
             <option value="" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>Выберите город</option>
