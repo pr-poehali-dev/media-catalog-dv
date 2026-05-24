@@ -6,10 +6,15 @@ function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: b
   return (
     <div className={`pcard flex flex-col md:flex-row overflow-hidden ${reversed ? 'md:flex-row-reverse' : ''}`}>
       {/* Visual */}
-      <div className="md:w-[220px] bg-[#0A0A0A] flex flex-col items-center justify-center p-10 min-h-[180px] flex-shrink-0 text-center border-b md:border-b-0 border-[#FBF8F3]/10">
-        <div className="text-4xl mb-3">{format.emoji}</div>
-        <div className="font-display font-bold text-[#FBF8F3] text-lg leading-tight mb-1" style={{ letterSpacing: '-0.01em' }}>{format.name}</div>
-        <div className="text-[10px] text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.18em' }}>{format.size}</div>
+      <div className="md:w-[260px] flex-shrink-0 min-h-[200px] overflow-hidden relative">
+        {format.image ? (
+          <img src={format.image} alt={format.name} className="w-full h-full object-cover absolute inset-0" style={{ minHeight: '200px' }} />
+        ) : (
+          <div className="w-full h-full bg-[#0A0A0A] flex flex-col items-center justify-center p-10 min-h-[200px] text-center">
+            <div className="text-4xl mb-3">{format.emoji}</div>
+            <div className="font-display font-bold text-[#FBF8F3] text-lg leading-tight" style={{ letterSpacing: '-0.01em' }}>{format.name}</div>
+          </div>
+        )}
       </div>
       {/* Content */}
       <div className="flex-1 p-7 flex flex-col justify-between bg-[#0A0A0A]">

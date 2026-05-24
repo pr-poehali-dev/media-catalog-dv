@@ -14,6 +14,7 @@ export interface OutdoorFormat {
   advantage: string;
   priceFrom: number;
   emoji: string;
+  image?: string;
 }
 
 export interface Blogger {
@@ -493,6 +494,8 @@ export const WORK_STEPS = [
   { step: 6, emoji: '📊', title: 'Отчёт', desc: 'Формируем и высылаем полный отчёт о запуске и полученных результатах.' },
 ];
 
+const OUTDOOR_CDN = 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/outdoor';
+
 export const OUTDOOR_FORMATS: OutdoorFormat[] = [
   {
     id: 'shield',
@@ -503,6 +506,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Широкий охват, низкая стоимость контакта',
     priceFrom: 12000,
     emoji: '🟦',
+    image: `${OUTDOOR_CDN}/shield.png`,
   },
   {
     id: 'supersite',
@@ -513,6 +517,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Максимальный охват трафика, имиджевый эффект',
     priceFrom: 45000,
     emoji: '🟥',
+    image: `${OUTDOOR_CDN}/supersite.png`,
   },
   {
     id: 'cityboard',
@@ -523,6 +528,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Точное попадание в городскую аудиторию',
     priceFrom: 18000,
     emoji: '🟨',
+    image: `${OUTDOOR_CDN}/cityboard.png`,
   },
   {
     id: 'pillar',
@@ -533,6 +539,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Близкий контакт с пешеходами, двустороннее размещение',
     priceFrom: 8000,
     emoji: '🟩',
+    image: `${OUTDOOR_CDN}/pillar.png`,
   },
   {
     id: 'cityformat',
@@ -543,6 +550,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Долгий контакт с аудиторией на остановке',
     priceFrom: 6000,
     emoji: '🚌',
+    image: `${OUTDOOR_CDN}/cityformat.png`,
   },
   {
     id: 'mediafacade',
@@ -553,6 +561,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Динамика, яркость, запоминаемость',
     priceFrom: 27000,
     emoji: '💡',
+    image: `${OUTDOOR_CDN}/mediafacade.png`,
   },
   {
     id: 'arch',
@@ -563,6 +572,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Максимальная видимость, имиджевый формат',
     priceFrom: 35000,
     emoji: '🌉',
+    image: `${OUTDOOR_CDN}/arch.png`,
   },
   {
     id: 'brandmauer',
@@ -573,6 +583,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Огромная площадь, долговременный эффект',
     priceFrom: 80000,
     emoji: '🏢',
+    image: `${OUTDOOR_CDN}/brandmauer.png`,
   },
 ];
 
