@@ -19,7 +19,10 @@ function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: b
       {/* Content */}
       <div className="flex-1 p-7 flex flex-col justify-between bg-[#0A0A0A]">
         <div>
-          <p className="text-sm text-[#FBF8F3]/60 leading-relaxed mb-5">{format.description}</p>
+          <p className="text-sm text-[#FBF8F3]/60 leading-relaxed mb-5">
+            <span className="font-display font-bold text-[#FBF8F3] text-xl" style={{ letterSpacing: '-0.01em' }}>{format.name}</span>
+            {' — '}{format.description.charAt(0).toLowerCase() + format.description.slice(1)}
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
             {format.fits && (
               <div className="bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 p-4">
