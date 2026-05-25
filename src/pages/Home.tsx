@@ -48,7 +48,13 @@ const STATS = [
 ];
 
 export default function Home() {
-  const faqPreview = FAQ_DATA.slice(0, 5);
+  const faqPreview = FAQ_DATA.filter(f => [
+    'Сколько стоят наши услуги?',
+    'С каким бюджетом имеет смысл заходить?',
+    'Кто готовит дизайн и рекламные материалы?',
+    'Можно ли разместиться сразу в нескольких городах?',
+    'Предоставляете ли вы отчётность?',
+  ].includes(f.question));
 
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>('.reveal');
@@ -233,7 +239,7 @@ export default function Home() {
                     <Icon name="Plus" size={15} className="flex-shrink-0 text-[#5a5347] group-open:hidden mt-0.5" />
                     <Icon name="Minus" size={15} className="flex-shrink-0 text-[#A21D27] hidden group-open:block mt-0.5" />
                   </summary>
-                  <div className="pb-4 text-sm text-[#5a5347] leading-relaxed">{item.answer}</div>
+                  <div className="pb-4 text-sm text-[#5a5347] leading-relaxed whitespace-pre-line">{item.answer}</div>
                 </details>
               ))}
               <div className="border-t border-[#E8E2D8]" />

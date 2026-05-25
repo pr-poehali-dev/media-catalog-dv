@@ -22,31 +22,36 @@ export default function FAQ() {
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Вопросы</div>
           </div>
-          <div className="max-w-3xl">
-            {FAQ_DATA.map((item, i) => (
-              <details key={i} className="group border-t border-[#E8E2D8]">
-                <summary className="flex items-start justify-between gap-4 py-5 cursor-pointer list-none font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors text-sm leading-snug">
-                  {item.question}
-                  <Icon name="Plus" size={16} className="flex-shrink-0 text-[#5a5347] group-open:hidden mt-0.5" />
-                  <Icon name="Minus" size={16} className="flex-shrink-0 text-[#A21D27] hidden group-open:block mt-0.5" />
-                </summary>
-                <div className="pb-5 text-sm text-[#5a5347] leading-relaxed whitespace-pre-line">{item.answer}</div>
-              </details>
-            ))}
-            <div className="border-t border-[#E8E2D8]" />
-          </div>
-
-          {/* О маркировке */}
-          <div className="mt-12 max-w-3xl bg-[#F2EDE4] border-l-4 border-[#A21D27] p-6">
-            <div className="flex gap-3">
-              <Icon name="Info" size={16} className="text-[#A21D27] flex-shrink-0 mt-0.5" />
-              <div>
-                <div className="font-display font-bold text-[#0A0A0A] mb-2 text-sm" style={{ letterSpacing: '-0.01em' }}>О маркировке рекламы</div>
-                <p className="text-sm text-[#5a5347] leading-relaxed">
-                  С 1 сентября 2023 года вся интернет-реклама в России должна маркироваться согласно ФЗ «О рекламе» №38-ФЗ.{' '}
-                  Закон обязывает на регистрацию в ОРД и получение токена erid для всех рекламных материалов. Это мы берем на себя.
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Левая колонка — маркировка */}
+            <div className="lg:col-span-1">
+              <div className="bg-[#F2EDE4] border-l-4 border-[#A21D27] p-6">
+                <div className="flex gap-3">
+                  <Icon name="Info" size={16} className="text-[#A21D27] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="font-display font-bold text-[#0A0A0A] mb-2 text-sm" style={{ letterSpacing: '-0.01em' }}>О маркировке рекламы</div>
+                    <p className="text-sm text-[#5a5347] leading-relaxed">
+                      С 1 сентября 2023 года вся интернет-реклама в России должна маркироваться согласно ФЗ «О рекламе» №38-ФЗ.{' '}
+                      Закон обязывает на регистрацию в ОРД и получение токена erid для всех рекламных материалов. Это мы берем на себя.
+                    </p>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            {/* Правая колонка — вопросы */}
+            <div className="lg:col-span-2">
+              {FAQ_DATA.map((item, i) => (
+                <details key={i} className="group border-t border-[#E8E2D8]">
+                  <summary className="flex items-start justify-between gap-4 py-5 cursor-pointer list-none font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors text-sm leading-snug">
+                    {item.question}
+                    <Icon name="Plus" size={16} className="flex-shrink-0 text-[#5a5347] group-open:hidden mt-0.5" />
+                    <Icon name="Minus" size={16} className="flex-shrink-0 text-[#A21D27] hidden group-open:block mt-0.5" />
+                  </summary>
+                  <div className="pb-5 text-sm text-[#5a5347] leading-relaxed whitespace-pre-line">{item.answer}</div>
+                </details>
+              ))}
+              <div className="border-t border-[#E8E2D8]" />
             </div>
           </div>
         </div>
