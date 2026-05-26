@@ -163,16 +163,11 @@ export default function Header() {
               active={isActive('/communities') || isActive('/socials') || isActive('/cities')}
               dark={dark}
             />
-            <MegaDropdown
-              label="Блогеры"
-              path={BLOGGERS_MENU.path}
-              sections={BLOGGERS_MENU.sections}
-              isOpen={openMenu === 'bloggers'}
-              onToggle={() => toggle('bloggers')}
-              onClose={close}
-              active={isActive('/bloggers')}
-              dark={dark}
-            />
+            <Link to="/bloggers"
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/bloggers') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              style={{ letterSpacing: '0.12em' }}>
+              Блогеры
+            </Link>
             <Link to="/outdoor"
               className={`text-[11px] font-medium uppercase transition-colors ${isActive('/outdoor') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
@@ -229,10 +224,6 @@ export default function Header() {
 
             <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 mt-4 pt-3 border-t border-[#E8E2D8]" style={{ letterSpacing: '0.2em' }}>Направление 02</div>
             <Link to="/bloggers" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Реклама у блогеров</Link>
-            <div className="pl-4 flex flex-col gap-0.5">
-              <Link to="/cities/khabarovsk" className="py-1.5 text-sm text-[#5a5347] hover:text-[#A21D27] transition-colors">Хабаровск</Link>
-              <Link to="/cities/vladivostok" className="py-1.5 text-sm text-[#5a5347] hover:text-[#A21D27] transition-colors">Владивосток</Link>
-            </div>
 
             <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 mt-4 pt-3 border-t border-[#E8E2D8]" style={{ letterSpacing: '0.2em' }}>Направление 03</div>
             <Link to="/outdoor" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Наружная реклама</Link>
