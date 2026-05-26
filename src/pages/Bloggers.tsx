@@ -1,6 +1,5 @@
 import { BLOGGERS, SOCIALS, Blogger } from '@/data/data';
 import ContactForm from '@/components/ContactForm';
-import Icon from '@/components/ui/icon';
 
 function fmt(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(1) + ' млн';
@@ -61,9 +60,7 @@ export default function Bloggers() {
           </div>
           <h1 className="section-title text-[#FBF8F3] mb-4">Реклама у блогеров</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
-            Личные рекомендации — самый доверенный формат рекламы.
-            Работаем с блогерами ВКонтакте, Telegram, TikTok и Instagram*
-            в Хабаровске и Владивостоке.
+            Реклама у блогеров работает лучше обычных объявлений, потому что люди доверяют людям, а не баннерам. Особенно в локальных городских проектах, где аудитория знает автора и следит за ним ежедневно.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="#form" className="btn-carmine">Подобрать блогера</a>
@@ -83,9 +80,9 @@ export default function Bloggers() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
             {[
               { num: '01', title: 'Доверие аудитории', desc: 'Рекомендация блогера воспринимается как совет друга, а не реклама.' },
-              { num: '02', title: 'Живой охват', desc: 'Подписчики блогера активны, вовлечены и доверяют его мнению.' },
+              { num: '02', title: 'Вовлечённая аудитория', desc: 'Подписчики блогера активны, вовлечены и доверяют его мнению.' },
               { num: '03', title: 'Видеоконтент', desc: 'Обзор на камеру — самый убедительный формат для сложных продуктов.' },
-              { num: '04', title: 'Органика', desc: 'Хороший обзор живёт в выдаче и рекомендациях долгое время.' },
+              { num: '04', title: 'Долгий эффект', desc: 'Хорошие обзоры продолжают набирать просмотры неделями и месяцами после публикации.' },
             ].map((item) => (
               <div key={item.num} className="bg-[#F2EDE4] p-7">
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-4">{item.num}</div>
@@ -98,14 +95,11 @@ export default function Bloggers() {
       </section>
 
       {/* Каталог */}
-      <section className="bg-[#0A0A0A] pattern-dark py-12 min-h-[40vh]">
+      <section className="bg-[#0A0A0A] pattern-dark py-12">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
-          </div>
-          <div className="mb-6 text-xs text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.16em' }}>
-            Блогеров в каталоге: {BLOGGERS.length}
           </div>
           <div className="flex flex-col gap-px bg-[#FBF8F3]/5">
             {BLOGGERS.map((b) => <BloggerCard key={b.id} blogger={b} />)}
@@ -119,10 +113,28 @@ export default function Bloggers() {
         </div>
       </section>
 
+      {/* Статистика */}
+      <section className="bg-[#F2EDE4] pattern-milk py-12">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#E8E2D8]">
+            {[
+              { value: '3', label: 'проекта' },
+              { value: '11', label: 'площадок' },
+              { value: '1,2 млн+', label: 'охвата в месяц' },
+            ].map((s) => (
+              <div key={s.label} className="bg-[#F2EDE4] p-8 text-center">
+                <div className="font-display font-black text-[#A21D27] text-4xl leading-none mb-2" style={{ letterSpacing: '-0.02em' }}>{s.value}</div>
+                <div className="text-xs text-[#5a5347] uppercase" style={{ letterSpacing: '0.16em' }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Форма */}
       <section id="form" className="bg-[#0A0A0A] pattern-dark py-16 border-t border-[#FBF8F3]/5">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <ContactForm dark title="Подобрать блогера" subtitle="Расскажите о продукте — подберём подходящего блогера" source="Блогеры" />
+          <ContactForm dark title="Подобрать блогера" subtitle="Расскажите о продукте — подберём подходящего блогера и соцсеть для рекламы" source="Блогеры" />
         </div>
       </section>
     </div>

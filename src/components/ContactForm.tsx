@@ -136,7 +136,7 @@ export default function ContactForm({
           <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Задача</label>
           <textarea
             rows={3}
-            placeholder="Осветить новую точку"
+            placeholder="Осветить новую кофейню"
             value={form.task}
             onChange={(e) => setForm({ ...form, task: e.target.value })}
             className={`${inputBase} resize-none`}
