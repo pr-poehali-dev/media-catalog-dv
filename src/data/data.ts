@@ -17,6 +17,12 @@ export interface OutdoorFormat {
   image?: string;
 }
 
+export interface BloggerSocialStat {
+  social: SocialNet;
+  subscribers: number;
+  reach: number;
+}
+
 export interface Blogger {
   id: string;
   name: string;
@@ -24,8 +30,13 @@ export interface Blogger {
   city: 'Хабаровск' | 'Владивосток';
   category: string;
   description: string;
+  fullDescription: string;
   subscribers: number;
   reach: number;
+  socials: BloggerSocialStat[];
+  formats: string[];
+  promoted: string[];
+  bestFor: string[];
   priceFrom: number;
   emoji: string;
 }
@@ -602,9 +613,18 @@ export const BLOGGERS: Blogger[] = [
     social: 'vk',
     city: 'Хабаровск',
     category: 'Городской лайфстайл',
-    description: 'Блогер о жизни в Хабаровске: места, события, обзоры. Аудитория 20–40 лет, высокое вовлечение.',
-    subscribers: 41000,
-    reach: 95000,
+    description: 'Городской lifestyle-проект об актуальных местах, событиях и жизни Хабаровска.',
+    fullDescription: 'Городской lifestyle-проект с упором на локальные места, заведения, события и визуальный контент. Освещает открытия, акции, городские истории и рекомендации. Основная аудитория — жители Хабаровска 20–40 лет, активные потребители с хорошим достатком.',
+    subscribers: 131000,
+    reach: 523000,
+    socials: [
+      { social: 'vk', subscribers: 41000, reach: 95000 },
+      { social: 'telegram', subscribers: 23000, reach: 48000 },
+      { social: 'tiktok', subscribers: 67000, reach: 380000 },
+    ],
+    formats: ['Пост', 'Сторис', 'Reels / Shorts', 'Нативная интеграция', 'Обзор', 'Конкурс', 'Серия публикаций', 'Закреп'],
+    promoted: ['Рестораны и кафе', 'ЖК и недвижимость', 'Фитнес и спорт', 'Мероприятия', 'Доставка', 'Авто', 'Beauty'],
+    bestFor: ['Ресторанам и кофейням', 'Локальному ритейлу', 'Мероприятиям', 'Недвижимости', 'Сфере услуг', 'Фитнесу'],
     priceFrom: 6000,
     emoji: '🏙️',
   },
@@ -614,9 +634,16 @@ export const BLOGGERS: Blogger[] = [
     social: 'telegram',
     city: 'Хабаровск',
     category: 'Еда и рестораны',
-    description: 'Гастрономический блог. Обзоры кафе, ресторанов и доставок. Честно и с ценами.',
+    description: 'Гастрономический блог с честными обзорами кафе, ресторанов и доставок.',
+    fullDescription: 'Главный гастрономический проект Хабаровска. Честные обзоры заведений — с ценами, фото и личным мнением автора. Аудитория следит за каждым новым открытием в городе и доверяет рекомендациям. Идеально для любого бизнеса в сфере еды и гостеприимства.',
     subscribers: 23000,
     reach: 48000,
+    socials: [
+      { social: 'telegram', subscribers: 23000, reach: 48000 },
+    ],
+    formats: ['Пост', 'Обзор', 'Нативная интеграция', 'Серия публикаций', 'Конкурс', 'Закреп'],
+    promoted: ['Рестораны', 'Кофейни', 'Доставка еды', 'Кондитерские', 'Фудкорты', 'Мероприятия'],
+    bestFor: ['Ресторанам и кафе', 'Кофейням', 'Доставке еды', 'Барам и заведениям', 'Кондитерским'],
     priceFrom: 4500,
     emoji: '🍽️',
   },
@@ -626,9 +653,16 @@ export const BLOGGERS: Blogger[] = [
     social: 'tiktok',
     city: 'Хабаровск',
     category: 'Видеоблог',
-    description: 'TikTok-блогер о городской жизни. Вирусные видео, обзоры мест, события.',
+    description: 'TikTok-проект о городской жизни Хабаровска с вирусными видео и обзорами мест.',
+    fullDescription: 'Видеопроект о Хабаровске с акцентом на короткий и вирусный формат. Обзоры мест, открытий, событий и городских историй. Аудитория — молодёжь и активные горожане 18–35 лет. Высокий органический охват за счёт алгоритмов TikTok.',
     subscribers: 67000,
     reach: 380000,
+    socials: [
+      { social: 'tiktok', subscribers: 67000, reach: 380000 },
+    ],
+    formats: ['Reels / Shorts', 'Обзор', 'Нативная интеграция', 'Выезд на мероприятие', 'Серия публикаций'],
+    promoted: ['Рестораны и кафе', 'Мероприятия', 'Beauty', 'Авто', 'Спорт и фитнес', 'Доставка'],
+    bestFor: ['Мероприятиям', 'Ресторанам', 'Молодёжным брендам', 'Beauty и уходу', 'Спорту и фитнесу'],
     priceFrom: 9000,
     emoji: '🎬',
   },
