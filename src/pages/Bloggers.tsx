@@ -14,18 +14,18 @@ function Avatar({ blogger, size = 'md' }: { blogger: Blogger; size?: 'sm' | 'md'
   const sizes = {
     sm: 'w-12 h-12 text-2xl',
     md: 'w-20 h-20 text-4xl',
-    lg: 'w-24 h-24 text-5xl',
+    lg: 'w-32 h-32 text-5xl',
   };
   const cls = sizes[size];
   if (blogger.avatar) {
     return (
-      <div className={`${cls} rounded-full overflow-hidden flex-shrink-0 bg-[#1E1E1E]`}>
+      <div className={`${cls} rounded-full overflow-hidden flex-shrink-0 bg-[#0A0A0A]`}>
         <img src={blogger.avatar} alt={blogger.name} className="w-full h-full object-cover" />
       </div>
     );
   }
   return (
-    <div className={`${cls} rounded-full bg-[#1E1E1E] flex items-center justify-center flex-shrink-0`}>
+    <div className={`${cls} rounded-full bg-[#0A0A0A] flex items-center justify-center flex-shrink-0`}>
       <span>{blogger.emoji}</span>
     </div>
   );
@@ -189,17 +189,9 @@ function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => vo
       className="overflow-hidden bg-[#161616] cursor-pointer group hover:bg-[#1a1a1a] transition-colors"
     >
       <div className="flex flex-col md:flex-row">
-        {/* Левая панель */}
-        <div className="md:w-[200px] flex flex-col items-center justify-center p-6 bg-[#1E1E1E] flex-shrink-0 gap-3">
-          <Avatar blogger={blogger} size="md" />
-          <div className="text-center">
-            <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>{blogger.city}</div>
-            <div className="flex flex-wrap justify-center gap-x-2 gap-y-0.5">
-              {blogger.socials.map((s) => (
-                <span key={s.social} className="text-[10px] font-medium" style={{ color: SOCIALS[s.social].color }}>{SOCIALS[s.social].label}</span>
-              ))}
-            </div>
-          </div>
+        {/* Левая панель: только аватар */}
+        <div className="md:w-[200px] flex items-center justify-center p-6 bg-[#1E1E1E] flex-shrink-0">
+          <Avatar blogger={blogger} size="lg" />
         </div>
 
         {/* Основная часть */}
@@ -214,7 +206,14 @@ function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => vo
                 Подробнее <Icon name="ArrowRight" size={11} />
               </span>
             </div>
-            <p className="text-sm text-[#FBF8F3]/50 leading-relaxed mb-5">{blogger.description}</p>
+            <p className="text-sm text-[#FBF8F3]/50 leading-relaxed mb-4">{blogger.description}</p>
+
+            {/* Соцсети */}
+            <div className="mb-5 flex flex-wrap gap-x-3 gap-y-1">
+              {blogger.socials.map((s) => (
+                <span key={s.social} className="text-[11px] font-medium uppercase" style={{ color: SOCIALS[s.social].color, letterSpacing: '0.08em' }}>{SOCIALS[s.social].label}</span>
+              ))}
+            </div>
 
             {/* Метрики */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
