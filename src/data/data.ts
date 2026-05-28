@@ -1,4 +1,4 @@
-export type SocialNet = 'vk' | 'telegram' | 'ok' | 'max' | 'tiktok' | 'instagram';
+export type SocialNet = 'vk' | 'telegram' | 'ok' | 'max' | 'tiktok' | 'instagram' | 'youtube';
 export type City = 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре' | 'Дальний Восток';
 export type Format = 'Пост' | 'Пост + Сторис' | 'Видео' | 'Нативная публикация' | 'Обзор у блогера' | 'Подборка' | 'Спецпроект' | 'Пакет';
 
@@ -20,7 +20,14 @@ export interface OutdoorFormat {
 export interface BloggerSocialStat {
   social: SocialNet;
   subscribers: number;
-  reach: number;
+  reachLabel: string;
+  engagementLabel?: string;
+  link?: string;
+}
+
+export interface BloggerPriceItem {
+  label: string;
+  price: string;
 }
 
 export interface Blogger {
@@ -31,14 +38,20 @@ export interface Blogger {
   category: string;
   description: string;
   fullDescription: string;
-  subscribers: number;
-  reach: number;
+  subscribersTotal: string;
+  reachSummary: string[];
+  engagementSummary?: string[];
+  audience?: string[];
   socials: BloggerSocialStat[];
   formats: string[];
-  promoted: string[];
+  formatsByPlatform?: { platform: string; formats: string }[];
+  bestPerforming?: string[];
   bestFor: string[];
-  priceFrom: number;
+  doesntFit?: string;
+  prices: BloggerPriceItem[];
+  priceFromLabel: string;
   emoji: string;
+  avatar?: string;
 }
 
 export interface MerchItem {
@@ -92,6 +105,7 @@ export const SOCIALS: Record<SocialNet, { label: string; emoji: string; color: s
   max: { label: 'MAX', emoji: '🟣', color: '#7C3AED', bg: '#f3e8ff' },
   tiktok: { label: 'TikTok', emoji: '🎵', color: '#010101', bg: '#f0f0f0' },
   instagram: { label: 'Instagram*', emoji: '📷', color: '#C13584', bg: '#fce8f3' },
+  youtube: { label: 'YouTube', emoji: '▶️', color: '#FF0000', bg: '#fee2e2' },
 };
 
 export const CITIES_INFO: Record<string, { emoji: string; tagline: string; population: string; features: string[] }> = {
@@ -608,63 +622,209 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
 
 export const BLOGGERS: Blogger[] = [
   {
-    id: 'khb-blogger-city',
-    name: 'Хабаровск Life',
-    social: 'vk',
+    id: 'khb-zhensovet',
+    name: 'Женсовет',
+    social: 'instagram',
     city: 'Хабаровск',
-    category: 'Городской лайфстайл',
-    description: 'Городской lifestyle-проект об актуальных местах, событиях и жизни Хабаровска.',
-    fullDescription: 'Городской lifestyle-проект с упором на локальные места, заведения, события и визуальный контент. Освещает открытия, акции, городские истории и рекомендации. Основная аудитория — жители Хабаровска 20–40 лет, активные потребители с хорошим достатком.',
-    subscribers: 131000,
-    reach: 523000,
-    socials: [
-      { social: 'vk', subscribers: 41000, reach: 95000 },
-      { social: 'telegram', subscribers: 23000, reach: 48000 },
-      { social: 'tiktok', subscribers: 67000, reach: 380000 },
+    category: 'Женское lifestyle-медиа',
+    description: 'Женское lifestyle-медиа о новостях, событиях, заведениях, бьюти, семье и жизни на Дальнем Востоке.',
+    fullDescription: 'Женсовет — проект в формате городского женского журнала. Собирает новости о звёздах, событиях Хабаровска, Владивостока и других городов Дальнего Востока, обзоры мест, бьюти-советы, темы для мам, лайфстайл и повседневную жизнь города.',
+    subscribersTotal: '52,5 тыс.',
+    reachSummary: [
+      '21,98 млн просмотров за 30 дней в Instagram*',
+      '7,97 млн охваченных аккаунтов в Instagram*',
     ],
-    formats: ['Пост', 'Сторис', 'Reels / Shorts', 'Нативная интеграция', 'Обзор', 'Конкурс', 'Серия публикаций', 'Закреп'],
-    promoted: ['Рестораны и кафе', 'ЖК и недвижимость', 'Фитнес и спорт', 'Мероприятия', 'Доставка', 'Авто', 'Beauty'],
-    bestFor: ['Ресторанам и кофейням', 'Локальному ритейлу', 'Мероприятиям', 'Недвижимости', 'Сфере услуг', 'Фитнесу'],
-    priceFrom: 6000,
+    audience: ['Хабаровск · Москва · Владивосток', '85% женщины, 15% мужчины', 'Возраст: 18–54'],
+    socials: [
+      { social: 'instagram', subscribers: 47000, reachLabel: '21 983 437 просмотров / 30 дн.\n7 966 116 охваченных аккаунтов', link: 'https://www.instagram.com/woman_hbk?igsh=cmk5YXBqZXZ4eGZq&utm_source=qr' },
+      { social: 'telegram', subscribers: 2546, reachLabel: '636 просмотров постов / нед.', engagementLabel: '13 реакций, 2 пересылки', link: 'https://t.me/womanhbk' },
+      { social: 'tiktok', subscribers: 2516, reachLabel: '33 000 просмотров / 7 дн.', engagementLabel: '2 297 лайков, 16 комм., 319 репостов', link: 'https://www.tiktok.com/@womankhv?_r=1&_t=ZS-96heN3ZVP8S' },
+      { social: 'max', subscribers: 470, reachLabel: 'не используется для рекламы', link: 'https://max.ru/join/OA58aztk99_o1j871jzoOj-cw6gV1U8XuUN1E76peUk' },
+    ],
+    formats: ['Обзор', 'Пост-отзыв', 'Сторис', 'Кружок + пост', 'Reels', 'Дубль в TikTok'],
+    bestPerforming: ['Сфера питания', 'Караоке', 'Клубы', 'Одежда'],
+    bestFor: ['Ресторанам и кафе', 'Караоке и клубам', 'Одежде', 'Beauty', 'Мамским/семейным проектам', 'Сфере услуг'],
+    prices: [
+      { label: 'Обзор в Instagram*', price: '15 000 ₽' },
+      { label: 'Пост-отзыв', price: '8 000 ₽' },
+      { label: 'Сторис', price: '6 000 ₽' },
+      { label: 'Выезд для сторис', price: '+2 000 ₽' },
+      { label: 'Telegram: кружок + пост', price: '2 500 ₽' },
+      { label: 'Дубль обзора в TikTok', price: '+1 500 ₽ к обзору' },
+      { label: 'MAX', price: 'рекламы нет' },
+    ],
+    priceFromLabel: 'от 2 500 ₽',
+    emoji: '👩‍💼',
+  },
+  {
+    id: 'khb-myday',
+    name: 'Мой День Хабаровский край',
+    social: 'instagram',
+    city: 'Хабаровск',
+    category: 'Информационно-развлекательный городской проект',
+    description: 'Развлекательные видео, обзоры мест, мероприятий и городской жизни Хабаровска.',
+    fullDescription: 'Городской информационно-развлекательный проект о местах, мероприятиях и жизни Хабаровска. Делает развлекательные ролики, обзоры локаций, стриттоки с жителями города и нативные видеоформаты.',
+    subscribersTotal: '131,3 тыс.',
+    reachSummary: [
+      'до 32,7 тыс. охвата на пост в Instagram*',
+      'до 16,5 тыс. охвата на пост в TikTok',
+    ],
+    engagementSummary: [
+      'Instagram*: 494 действия на пост',
+      'TikTok: 1 000 действий на пост',
+      'ВКонтакте: 23 действия на пост',
+    ],
+    socials: [
+      { social: 'instagram', subscribers: 64800, reachLabel: '32 742 на пост', engagementLabel: '494 на пост', link: 'https://www.instagram.com/myday.27?igsh=NHZnMTYxcmpzcXI3' },
+      { social: 'tiktok', subscribers: 13200, reachLabel: '16 500 на пост', engagementLabel: '1 000 на пост', link: 'https://www.tiktok.com/@myday.khv?_r=1&_t=ZN-96hLqHUhHWg' },
+      { social: 'vk', subscribers: 53300, reachLabel: '1 440 на пост', engagementLabel: '23 на пост', link: 'https://vk.ru/my_day27' },
+    ],
+    formats: ['Фотопост', 'Сторис', 'Видеообзор', 'Reels', 'Развлекательный ролик', 'Стритток', 'Репортаж', 'Закреп'],
+    bestPerforming: ['Кафе', 'Активный отдых'],
+    bestFor: ['Кафе и ресторанам', 'Активному отдыху', 'Мероприятиям', 'Городским проектам', 'Локальному бизнесу'],
+    prices: [
+      { label: 'Новость в ленте', price: '4 000 ₽' },
+      { label: 'Сторис', price: '1 250 ₽' },
+      { label: 'Лента + сторис', price: '5 000 ₽' },
+      { label: 'Обзор в Reels + история + TikTok', price: '15 000 ₽' },
+      { label: 'Закрепление на 3 дня', price: '2 000 ₽' },
+      { label: 'Репортаж: 2–3 выездных сторис', price: '4 000 ₽' },
+      { label: 'Срочный запуск за 24 часа', price: '+3 000 ₽' },
+      { label: 'Выбор конкретной даты', price: '+2 000 ₽' },
+      { label: 'Коммерческая лицензия на видео', price: '+10 000 ₽' },
+    ],
+    priceFromLabel: 'от 1 250 ₽',
+    emoji: '📅',
+  },
+  {
+    id: 'khb-life',
+    name: 'Хабаровск Life',
+    social: 'instagram',
+    city: 'Хабаровск',
+    category: 'Городское lifestyle-медиа',
+    description: 'Городское медиа о жизни Хабаровска: места, события, заведения, люди, обзоры и городская повестка.',
+    fullDescription: 'Хабаровск Life — блог о Хабаровске, его местах, жизни и людях. Рассказывает о городе интересно: через обзоры, анонсы, подборки, посты и видеоформаты.',
+    subscribersTotal: '233,5 тыс.',
+    reachSummary: ['2,7 млн+ просмотров в месяц по основным соцсетям'],
+    engagementSummary: [
+      'Instagram*: ER 31%',
+      'TikTok: ER 11,8%',
+      'ВКонтакте: ER 44,8%',
+      'Telegram: ER 3,32%',
+    ],
+    socials: [
+      { social: 'instagram', subscribers: 63900, reachLabel: '1,5 млн просмотров / мес.', engagementLabel: 'ER 31%', link: 'https://www.instagram.com/khab_life_?igsh=MWMwYjhlNG5qeDBjbA%3D%3D&utm_source=qr' },
+      { social: 'tiktok', subscribers: 151500, reachLabel: '1,1 млн просмотров / мес.', engagementLabel: 'ER 11,8%', link: 'https://www.tiktok.com/@khab_life_?_r=1&_t=ZS-96hPpz7VVhN' },
+      { social: 'vk', subscribers: 12500, reachLabel: '78,5 тыс. просмотров / мес.', engagementLabel: 'ER 44,8%', link: 'https://vk.ru/khab.life' },
+      { social: 'telegram', subscribers: 4891, reachLabel: '~1,5 тыс. просмотров на пост', engagementLabel: 'ER 3,32%', link: 'https://t.me/khablife' },
+      { social: 'max', subscribers: 753, reachLabel: '~500 просмотров на пост', link: 'https://max.ru/join/L8YE8ffiQ92vZbpBiuFEYuJBXNscyQOUdsg5JLDSc08' },
+    ],
+    formats: ['Обзор', 'Анонс', 'Карусель', 'Сторис', 'Пост', 'Подборка', 'Размещение во всех соцсетях'],
+    formatsByPlatform: [
+      { platform: 'Instagram*', formats: 'обзоры, анонсы, карусели, сторис' },
+      { platform: 'TikTok', formats: 'обзоры, анонсы, карусели' },
+      { platform: 'ВКонтакте', formats: 'обзоры, посты' },
+      { platform: 'Telegram', formats: 'посты' },
+      { platform: 'MAX', formats: 'посты' },
+    ],
+    bestPerforming: ['Общепит', 'Развлечения', 'Застройщики', 'Городские проекты', 'Локальный бизнес'],
+    bestFor: ['Ресторанам и кафе', 'Развлечениям', 'Застройщикам', 'Мероприятиям', 'Локальному ритейлу', 'Городским брендам'],
+    doesntFit: 'Не подходит / не берём: медицина, ногти, ресницы, инфобизнес, риелторы.',
+    prices: [
+      { label: 'Обзор в Instagram*', price: '23 000 ₽' },
+      { label: 'Обзор на все соцсети', price: '25 000 ₽' },
+      { label: 'Пост в Telegram + MAX', price: '3 000 ₽' },
+      { label: 'Сторис', price: '3 000 ₽' },
+      { label: 'Карусель / подборка', price: '3 000 ₽ за место' },
+    ],
+    priceFromLabel: 'от 3 000 ₽',
     emoji: '🏙️',
   },
   {
-    id: 'khb-blogger-food',
-    name: 'Ем в Хабаровске',
-    social: 'telegram',
-    city: 'Хабаровск',
-    category: 'Еда и рестораны',
-    description: 'Гастрономический блог с честными обзорами кафе, ресторанов и доставок.',
-    fullDescription: 'Главный гастрономический проект Хабаровска. Честные обзоры заведений — с ценами, фото и личным мнением автора. Аудитория следит за каждым новым открытием в городе и доверяет рекомендациям. Идеально для любого бизнеса в сфере еды и гостеприимства.',
-    subscribers: 23000,
-    reach: 48000,
-    socials: [
-      { social: 'telegram', subscribers: 23000, reach: 48000 },
+    id: 'vld-charlesrus',
+    name: 'Чёрный русский',
+    social: 'tiktok',
+    city: 'Владивосток',
+    category: 'Персональный инфлюенсер',
+    description: 'Крупный авторский видеоблогер с широкой аудиторией в TikTok, Instagram*, YouTube, ВКонтакте, Telegram и MAX.',
+    fullDescription: 'Авторский видеоблогер с крупной аудиторией в нескольких соцсетях. Подходит для брендов, которым нужна личная рекомендация, видеоконтент и широкий охват через узнаваемого автора.',
+    subscribersTotal: '1,09 млн.',
+    reachSummary: [
+      'до 241,7 тыс. средних просмотров на YouTube',
+      'до 62 тыс. средних просмотров в Instagram*',
+      'до 57,2 тыс. средних просмотров во ВКонтакте',
     ],
-    formats: ['Пост', 'Обзор', 'Нативная интеграция', 'Серия публикаций', 'Конкурс', 'Закреп'],
-    promoted: ['Рестораны', 'Кофейни', 'Доставка еды', 'Кондитерские', 'Фудкорты', 'Мероприятия'],
-    bestFor: ['Ресторанам и кафе', 'Кофейням', 'Доставке еды', 'Барам и заведениям', 'Кондитерским'],
-    priceFrom: 4500,
-    emoji: '🍽️',
+    engagementSummary: [
+      'до 7 565 действий на YouTube',
+      'до 4 958 действий во ВКонтакте',
+      'до 3 270 действий в Instagram*',
+    ],
+    socials: [
+      { social: 'tiktok', subscribers: 479200, reachLabel: '18 334 средних просмотров', engagementLabel: '1 222 действия · ER 6,7%', link: 'https://www.tiktok.com/@charlesrus' },
+      { social: 'instagram', subscribers: 116267, reachLabel: '61 968 средних просмотров', engagementLabel: '3 270 действий · ER 5,3%', link: 'https://www.instagram.com/charlesrus25' },
+      { social: 'youtube', subscribers: 308000, reachLabel: '241 709 средних просмотров', engagementLabel: '7 565 действий · ER 3,1%', link: 'https://youtube.com/@charlesrus25?si=5-Kf_BMRxKNNnfBQ' },
+      { social: 'vk', subscribers: 179017, reachLabel: '57 193 средних просмотров', engagementLabel: '4 958 действий · ER 8,7%', link: 'https://vk.com/charlesrus25' },
+      { social: 'telegram', subscribers: 4065, reachLabel: '570 средних просмотров', engagementLabel: '42 действия · ER 7,4%', link: 'https://t.me/Charlesrus25' },
+      { social: 'max', subscribers: 1509, reachLabel: '1 198 средних просмотров', engagementLabel: '147 действий · ER 12,3%', link: 'https://max.ru/charlesrus25' },
+    ],
+    formats: ['Ролик', 'Пост', 'Сторис', 'Фото', 'Текст'],
+    formatsByPlatform: [
+      { platform: 'TikTok', formats: 'ролики, сторис' },
+      { platform: 'Instagram*', formats: 'ролики, сторис' },
+      { platform: 'YouTube', formats: 'ролики, сторис' },
+      { platform: 'ВКонтакте', formats: 'ролики, текст, фото, сторис' },
+      { platform: 'Telegram', formats: 'ролики, текст, фото, сторис' },
+      { platform: 'MAX', formats: 'ролики, текст, фото, сторис' },
+    ],
+    bestPerforming: ['Развлекательные услуги', 'Питание', 'Автоуслуги', 'Одежда', 'Потребительские товары'],
+    bestFor: ['Ресторанам и кафе', 'Автобизнесу', 'Развлекательным проектам', 'Одежде', 'Потребительским брендам'],
+    prices: [
+      { label: 'Ролик', price: 'от 40 000 ₽' },
+      { label: 'Пост', price: 'от 10 000 ₽' },
+      { label: 'Сторис', price: 'от 5 000 ₽' },
+    ],
+    priceFromLabel: 'от 5 000 ₽',
+    emoji: '🎥',
   },
   {
-    id: 'khb-blogger-tiktok',
-    name: 'Хабаровск | Видео',
+    id: 'vld-zharovdv',
+    name: 'Жаров ДВ',
     social: 'tiktok',
-    city: 'Хабаровск',
-    category: 'Видеоблог',
-    description: 'TikTok-проект о городской жизни Хабаровска с вирусными видео и обзорами мест.',
-    fullDescription: 'Видеопроект о Хабаровске с акцентом на короткий и вирусный формат. Обзоры мест, открытий, событий и городских историй. Аудитория — молодёжь и активные горожане 18–35 лет. Высокий органический охват за счёт алгоритмов TikTok.',
-    subscribers: 67000,
-    reach: 380000,
-    socials: [
-      { social: 'tiktok', subscribers: 67000, reach: 380000 },
+    city: 'Владивосток',
+    category: 'Viral creator / видеоблогер',
+    description: 'Видеоблогер с крупными средними просмотрами в TikTok, Instagram*, YouTube и ВКонтакте. Формат для охватных и вирусных кампаний.',
+    fullDescription: 'Видеоблогер с сильными средними просмотрами и высокой вовлечённостью в TikTok, Instagram*, YouTube и ВКонтакте. Подходит для охватных кампаний, вирусных роликов и проектов, где важны видеоформат и массовое внимание.',
+    subscribersTotal: '624,7 тыс.',
+    reachSummary: [
+      'до 1,05 млн средних просмотров в TikTok',
+      'до 783,4 тыс. средних просмотров в Instagram*',
+      'до 586,9 тыс. средних просмотров на YouTube',
     ],
-    formats: ['Reels / Shorts', 'Обзор', 'Нативная интеграция', 'Выезд на мероприятие', 'Серия публикаций'],
-    promoted: ['Рестораны и кафе', 'Мероприятия', 'Beauty', 'Авто', 'Спорт и фитнес', 'Доставка'],
-    bestFor: ['Мероприятиям', 'Ресторанам', 'Молодёжным брендам', 'Beauty и уходу', 'Спорту и фитнесу'],
-    priceFrom: 9000,
-    emoji: '🎬',
+    engagementSummary: [
+      'до 122,2 тыс. действий в TikTok',
+      'до 87,2 тыс. действий в Instagram*',
+      'до 34,1 тыс. действий на YouTube',
+    ],
+    socials: [
+      { social: 'tiktok', subscribers: 270100, reachLabel: '1 049 725 средних просмотров', engagementLabel: '122 240 действий · ER 11,6%', link: 'https://www.tiktok.com/@zharovdv' },
+      { social: 'instagram', subscribers: 267103, reachLabel: '783 423 средних просмотров', engagementLabel: '87 212 действий · ER 11,1%', link: 'https://www.instagram.com/zharov.dv' },
+      { social: 'youtube', subscribers: 79400, reachLabel: '586 925 средних просмотров', engagementLabel: '34 130 действий · ER 5,8%', link: 'https://youtube.com/@zharovdv' },
+      { social: 'vk', subscribers: 8091, reachLabel: '12 543 средних просмотров', engagementLabel: '2 308 действий · ER 18,4%', link: 'https://vk.ru/zharovdv' },
+    ],
+    formats: ['Ролик', 'Сторис', 'Горизонтальное видео'],
+    formatsByPlatform: [
+      { platform: 'TikTok', formats: 'ролики, сторис' },
+      { platform: 'Instagram*', formats: 'ролики, сторис' },
+      { platform: 'YouTube', formats: 'ролики, сторис, горизонтальные видео' },
+      { platform: 'ВКонтакте', formats: 'ролики, сторис, горизонтальные видео' },
+    ],
+    bestPerforming: ['Рекламы пока практически не было, успешные сферы не зафиксированы'],
+    bestFor: ['Охватным кампаниям', 'Видео-запускам', 'Массовым брендам', 'Событиям', 'Проектам с вирусным видеоконтентом'],
+    prices: [
+      { label: 'Размещение', price: 'По запросу' },
+    ],
+    priceFromLabel: 'по запросу',
+    emoji: '🔥',
   },
 ];
 
