@@ -8,11 +8,11 @@ import boto3
 
 
 AVATARS = {
-    'zhensovet': 'https://disk.yandex.ru/i/TWlTe9nlUBBQSA',
-    'myday': 'https://disk.yandex.ru/i/4kZoBNiqKWJcdw',
-    'khablife': 'https://disk.yandex.ru/i/POuh6-wYhCtvsg',
-    'charlesrus': 'https://disk.yandex.ru/i/02xUONx9zy2r_Q',
-    'zharovdv': 'https://disk.yandex.ru/i/YC0PeGDUTTKPFg',
+    'zhensovet': 'https://disk.yandex.ru/i/KYeFAPcu8gGy3A',
+    'myday': 'https://disk.yandex.ru/i/dISnxaefpIby3A',
+    'khablife': 'https://disk.yandex.ru/i/jKrF6iywfdrWhQ',
+    'charlesrus': 'https://disk.yandex.ru/i/S5kLGbEqGe0zmw',
+    'zharovdv': 'https://disk.yandex.ru/i/9thqhHB7vcXt4g',
 }
 
 

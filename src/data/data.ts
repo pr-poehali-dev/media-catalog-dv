@@ -655,7 +655,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'от 2 500 ₽',
     emoji: '👩‍💼',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zhensovet.png',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zhensovet.jpg',
   },
   {
     id: 'khb-myday',
@@ -696,7 +696,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'от 1 250 ₽',
     emoji: '📅',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/myday.png',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/myday.jpg',
   },
   {
     id: 'khb-life',
