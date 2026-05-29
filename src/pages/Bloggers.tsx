@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
 
 const CDN = 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers';
-const MAX_ICON_URL = `${CDN}/max-icon.png`;
+const MAX_ICON_URL = `${CDN}/max-icon.jpg`;
 
 function fmtSubs(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(2).replace('.', ',') + ' млн';
