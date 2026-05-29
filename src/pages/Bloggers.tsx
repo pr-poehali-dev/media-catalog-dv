@@ -40,11 +40,24 @@ const ORBIT_POSITIONS = [
   { top: '-16%', left: '38%' },
 ];
 
-function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
+// Индивидуальные позиции для Чёрного русского (6 соцсетей, свободный порядок)
+// tiktok, instagram, youtube, vk, telegram, max
+const CHARLESRUS_POSITIONS: Record<string, { top: string; left: string }> = {
+  tiktok:    { top: '-14%', left: '18%' },
+  instagram: { top: '-14%', left: '58%' },
+  youtube:   { top: '36%',  left: '82%' },
+  vk:        { top: '76%',  left: '62%' },
+  telegram:  { top: '76%',  left: '10%' },
+  max:       { top: '36%',  left: '-18%' },
+};
+
+function SocialOrbit({ socials, bloggerId }: { socials: Blogger['socials']; bloggerId: string }) {
   return (
     <>
       {socials.map((s, i) => {
-        const pos = ORBIT_POSITIONS[i % ORBIT_POSITIONS.length];
+        const pos = bloggerId === 'vld-charlesrus'
+          ? (CHARLESRUS_POSITIONS[s.social] ?? ORBIT_POSITIONS[i % ORBIT_POSITIONS.length])
+          : ORBIT_POSITIONS[i % ORBIT_POSITIONS.length];
         const color = SOCIAL_ICON_COLORS[s.social] ?? '#555';
         const path = SOCIAL_ICONS[s.social];
         return (
@@ -54,7 +67,7 @@ function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
             style={{ top: pos.top, left: pos.left, backgroundColor: color, zIndex: 10 }}
           >
             {s.social === 'max'
-              ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/7a2573ac-3a6b-46f3-9cdc-c3a29fa952a9.png" alt="MAX" className="w-full h-full object-cover rounded-full" />
+              ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
               : path
                 ? <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d={path} /></svg>
                 : <span className="text-white text-xs font-bold">{SOCIALS[s.social].label[0]}</span>
@@ -75,7 +88,7 @@ function AvatarWithOrbit({ blogger }: { blogger: Blogger }) {
           : <div className="w-full h-full flex items-center justify-center text-5xl">{blogger.emoji}</div>
         }
       </div>
-      <SocialOrbit socials={blogger.socials} />
+      <SocialOrbit socials={blogger.socials} bloggerId={blogger.id} />
     </div>
   );
 }
@@ -265,9 +278,13 @@ function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => vo
       }}
     >
       <div className="flex flex-col md:flex-row">
-        {/* Левая колонка: только аватар */}
-        <div className="flex items-start justify-center pt-7 px-7 md:pt-7 md:w-[200px] flex-shrink-0">
+        {/* Левая колонка: аватар вверху, стоимость внизу */}
+        <div className="flex flex-col justify-between items-center pt-7 px-7 pb-7 md:w-[200px] flex-shrink-0">
           <AvatarWithOrbit blogger={blogger} />
+          <div className="mt-6 self-start">
+            <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
+            <div className="font-display font-bold text-white text-xl leading-none">{blogger.priceFromLabel}</div>
+          </div>
         </div>
 
         {/* Правая колонка */}
@@ -340,17 +357,13 @@ function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => vo
           </div>
 
           {/* Уровень 3: Кому подходит */}
-          <div>
+          <div className="flex-1">
             <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
             <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
           </div>
 
-          {/* Уровень 4: Стоимость + кнопка */}
-          <div className="flex items-end justify-between gap-4 pt-1">
-            <div>
-              <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
-              <div className="font-display font-bold text-white text-xl leading-none">{blogger.priceFromLabel}</div>
-            </div>
+          {/* Уровень 4: Кнопка — выровнена по низу, напротив стоимости */}
+          <div className="flex items-end justify-end">
             <button
               className="btn-carmine flex-shrink-0"
               onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
