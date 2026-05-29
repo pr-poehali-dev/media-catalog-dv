@@ -13,6 +13,8 @@ AVATARS = {
     'khablife': 'https://disk.yandex.ru/i/jKrF6iywfdrWhQ',
     'charlesrus': 'https://disk.yandex.ru/i/S5kLGbEqGe0zmw',
     'zharovdv': 'https://disk.yandex.ru/i/9thqhHB7vcXt4g',
+    'dalvostok': 'https://disk.yandex.ru/i/OT1UKo0urPQZzQ',
+    'max-icon': 'https://disk.yandex.ru/i/1XBL_mHiDdzA8w',
 }
 
 

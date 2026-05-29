@@ -3,6 +3,9 @@ import { BLOGGERS, SOCIALS, Blogger } from '@/data/data';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
 
+const CDN = 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers';
+const MAX_ICON_URL = `${CDN}/max-icon.png`;
+
 function fmtSubs(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(2).replace('.', ',') + ' млн';
   if (n >= 10000) return Math.round(n / 1000) + ' тыс.';
@@ -10,25 +13,32 @@ function fmtSubs(n: number): string {
   return String(n);
 }
 
-// Иконки соцсетей SVG-пути
 const SOCIAL_ICONS: Record<string, string> = {
   instagram: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z',
   tiktok: 'M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.95a8.21 8.21 0 004.84 1.56V7.07a4.85 4.85 0 01-1.07-.38z',
   vk: 'M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.049-1.713-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.049.17.474-.085.712-.576.712z',
   telegram: 'M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z',
   youtube: 'M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
-  max: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.5 16.5h-2l-3.5-5-3.5 5h-2l4.5-6.5L6.5 4h2l3.5 5 3.5-5h2l-4.5 6 4.5 6.5z',
   ok: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 6.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm3.75 8.75l-1.5-1.5a4.5 4.5 0 01-4.5 0l-1.5 1.5L7 14l1.75-1.75A6.5 6.5 0 0012 13a6.5 6.5 0 003.25-.75L17 14l-1.25 1.25z',
 };
 
-// Позиции иконок соцсетей вокруг аватарки — "летают хаотично"
+const SOCIAL_ICON_COLORS: Record<string, string> = {
+  instagram: '#C13584',
+  tiktok: '#666666',
+  vk: '#0077FF',
+  telegram: '#229ED9',
+  youtube: '#FF0000',
+  max: '#7C3AED',
+  ok: '#EE8208',
+};
+
 const ORBIT_POSITIONS = [
-  { top: '-10%', left: '68%' },
-  { top: '68%', left: '-10%' },
-  { top: '-8%', left: '10%' },
-  { top: '72%', left: '72%' },
-  { top: '35%', left: '-18%' },
-  { top: '-12%', left: '42%' },
+  { top: '-14%', left: '64%' },
+  { top: '72%',  left: '-14%' },
+  { top: '-10%', left: '12%' },
+  { top: '76%',  left: '72%' },
+  { top: '40%',  left: '-22%' },
+  { top: '-18%', left: '38%' },
 ];
 
 function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
@@ -36,26 +46,20 @@ function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
     <>
       {socials.map((s, i) => {
         const pos = ORBIT_POSITIONS[i % ORBIT_POSITIONS.length];
-        const info = SOCIALS[s.social];
+        const color = SOCIAL_ICON_COLORS[s.social] ?? '#555';
         const path = SOCIAL_ICONS[s.social];
         return (
           <div
             key={s.social}
             className="absolute w-8 h-8 rounded-full flex items-center justify-center shadow-lg"
-            style={{
-              top: pos.top,
-              left: pos.left,
-              backgroundColor: info.color,
-              zIndex: 10,
-            }}
+            style={{ top: pos.top, left: pos.left, backgroundColor: color, zIndex: 10 }}
           >
-            {path ? (
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
-                <path d={path} />
-              </svg>
-            ) : (
-              <span className="text-white text-xs font-bold">{info.label[0]}</span>
-            )}
+            {s.social === 'max'
+              ? <img src={MAX_ICON_URL} alt="MAX" className="w-5 h-5 object-contain" style={{ filter: 'brightness(10)' }} />
+              : path
+                ? <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d={path} /></svg>
+                : <span className="text-white text-xs font-bold">{SOCIALS[s.social].label[0]}</span>
+            }
           </div>
         );
       })}
@@ -65,7 +69,7 @@ function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
 
 function AvatarWithOrbit({ blogger }: { blogger: Blogger }) {
   return (
-    <div className="relative w-[120px] h-[120px] flex-shrink-0">
+    <div className="relative flex-shrink-0" style={{ width: 148, height: 148 }}>
       <div className="w-full h-full rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10">
         {blogger.avatar
           ? <img src={blogger.avatar} alt={blogger.name} className="w-full h-full object-cover" />
@@ -84,6 +88,25 @@ function AvatarSimple({ blogger }: { blogger: Blogger }) {
         ? <img src={blogger.avatar} alt={blogger.name} className="w-full h-full object-cover" />
         : <div className="w-full h-full flex items-center justify-center text-4xl">{blogger.emoji}</div>
       }
+    </div>
+  );
+}
+
+function SocialLabels({ socials }: { socials: Blogger['socials'] }) {
+  return (
+    <div className="flex flex-wrap gap-x-3 gap-y-1">
+      {socials.map((s) => {
+        const color = s.social === 'tiktok' ? '#888' : (SOCIAL_ICON_COLORS[s.social] ?? '#aaa');
+        return (
+          <span
+            key={s.social}
+            className="text-[11px] font-semibold uppercase"
+            style={{ color, letterSpacing: '0.08em' }}
+          >
+            {SOCIALS[s.social].label}
+          </span>
+        );
+      })}
     </div>
   );
 }
@@ -242,30 +265,31 @@ function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => vo
         (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05) inset';
       }}
     >
-      {/* Основная область */}
-      <div className="flex flex-col md:flex-row gap-0">
-
-        {/* Левая колонка */}
-        <div className="flex flex-row md:flex-col items-center md:items-center justify-start md:justify-start gap-4 md:gap-0 p-6 md:p-8 md:w-[200px] flex-shrink-0">
-          {/* Аватарка с иконками соцсетей */}
+      <div className="flex flex-col md:flex-row">
+        {/* Левая колонка: аватар + стоимость */}
+        <div className="flex flex-row md:flex-col items-start gap-5 md:gap-0 p-7 md:w-[200px] flex-shrink-0">
           <AvatarWithOrbit blogger={blogger} />
-
-          {/* Стоимость под аватаркой — только на desktop */}
-          <div className="hidden md:block mt-6 text-center">
+          {/* Стоимость под аватаркой — только desktop */}
+          <div className="hidden md:block mt-7">
             <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
-            <div className="font-display font-bold text-white text-lg leading-tight">{blogger.priceFromLabel}</div>
+            <div className="font-display font-bold text-white text-xl leading-tight">{blogger.priceFromLabel}</div>
+          </div>
+          {/* Стоимость рядом с аватаром — только mobile */}
+          <div className="md:hidden flex flex-col justify-center">
+            <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
+            <div className="font-display font-bold text-white text-xl leading-tight">{blogger.priceFromLabel}</div>
           </div>
         </div>
 
-        {/* Правая колонка: весь контент */}
-        <div className="flex-1 min-w-0 px-6 pb-6 pt-0 md:pt-8 md:pl-0 md:pr-8 flex flex-col gap-5">
+        {/* Правая колонка */}
+        <div className="flex-1 min-w-0 px-6 pb-7 pt-2 md:pt-7 md:pl-0 md:pr-8 flex flex-col gap-4">
 
-          {/* Уровень 1: Название + подпись + hint */}
+          {/* Уровень 1: Название + hint */}
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <h3
                 className="font-display font-bold text-white leading-tight mb-1"
-                style={{ fontSize: '1.4rem', letterSpacing: '-0.02em' }}
+                style={{ fontSize: '1.35rem', letterSpacing: '-0.02em' }}
               >
                 {blogger.name}
               </h3>
@@ -281,13 +305,16 @@ function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => vo
           {/* Описание */}
           <p className="text-[13px] text-white/50 leading-relaxed">{blogger.description}</p>
 
+          {/* Соцсети */}
+          <SocialLabels socials={blogger.socials} />
+
           {/* Уровень 2: Метрики */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Подписчиков</div>
               <div
                 className="font-display font-black text-[#A21D27] leading-none"
-                style={{ fontSize: '1.75rem', letterSpacing: '-0.03em' }}
+                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em' }}
               >
                 {blogger.subscribersTotal}
               </div>
@@ -323,32 +350,20 @@ function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => vo
             </div>
           </div>
 
-          {/* Уровень 3: Кому подходит */}
-          <div>
-            <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
-            <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
+          {/* Уровень 3: Кому подходит + кнопка */}
+          <div className="flex items-end justify-between gap-4">
+            <div className="min-w-0">
+              <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
+              <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
+            </div>
+            <button
+              className="btn-carmine flex-shrink-0"
+              onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
+            >
+              Оставить заявку
+            </button>
           </div>
         </div>
-      </div>
-
-      {/* Footer карточки */}
-      <div
-        className="flex items-center justify-between gap-4 px-6 py-4 md:pl-8 md:pr-8"
-        style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
-      >
-        {/* Стоимость — только mobile */}
-        <div className="md:hidden">
-          <div className="text-[10px] text-white/30 uppercase mb-0.5" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
-          <div className="font-display font-bold text-white text-lg">{blogger.priceFromLabel}</div>
-        </div>
-        {/* На desktop — пустой блок чтобы кнопка оставалась справа */}
-        <div className="hidden md:block" />
-        <button
-          className="btn-carmine flex-shrink-0"
-          onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
-        >
-          Оставить заявку
-        </button>
       </div>
     </div>
   );
@@ -374,7 +389,6 @@ export default function Bloggers() {
 
   return (
     <div className="pt-16">
-      {/* Hero */}
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
@@ -393,7 +407,6 @@ export default function Bloggers() {
         </div>
       </section>
 
-      {/* Преимущества */}
       <section className="bg-[#F2EDE4] pattern-milk py-14">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
@@ -412,7 +425,6 @@ export default function Bloggers() {
         </div>
       </section>
 
-      {/* Каталог */}
       <section className="bg-[#0A0A0A] pattern-dark py-12">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
@@ -455,13 +467,12 @@ export default function Bloggers() {
         </div>
       </section>
 
-      {/* Статистика */}
       <section className="bg-[#F2EDE4] pattern-milk py-6">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-3 gap-px bg-[#E8E2D8]">
             {[
-              { value: '5', label: 'проектов' },
-              { value: '23', label: 'площадки' },
+              { value: '6', label: 'проектов' },
+              { value: '26', label: 'площадок' },
               { value: '32 млн+', label: 'охвата в месяц' },
             ].map((s) => (
               <div key={s.label} className="bg-[#F2EDE4] py-5 px-6 flex items-center gap-3">
@@ -473,7 +484,6 @@ export default function Bloggers() {
         </div>
       </section>
 
-      {/* Форма */}
       <section id="form" className="bg-[#0A0A0A] pattern-dark py-16 border-t border-[#FBF8F3]/5">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <ContactForm dark title="Подобрать блогера" subtitle="Расскажите о продукте — подберём подходящего блогера и соцсеть" source="Блогеры" />
