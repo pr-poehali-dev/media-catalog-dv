@@ -30,12 +30,12 @@ const ORBIT_POSITIONS = [
 ];
 
 const CHARLESRUS_POSITIONS: Record<string, { top: string; left: string }> = {
-  tiktok:    { top: '-14%', left: '18%' },
-  instagram: { top: '-14%', left: '58%' },
-  youtube:   { top: '36%',  left: '82%' },
-  vk:        { top: '76%',  left: '62%' },
-  telegram:  { top: '76%',  left: '10%' },
-  max:       { top: '36%',  left: '-18%' },
+  tiktok:    { top: '-16%', left: '16%' },
+  instagram: { top: '-16%', left: '60%' },
+  youtube:   { top: '40%',  left: '90%' },
+  vk:        { top: '84%',  left: '64%' },
+  telegram:  { top: '84%',  left: '8%'  },
+  max:       { top: '40%',  left: '-26%' },
 };
 
 export function SocialOrbit({ socials, bloggerId }: { socials: Blogger['socials']; bloggerId: string }) {

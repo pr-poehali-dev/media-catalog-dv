@@ -50,9 +50,9 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
       }}
     >
       <div className="flex flex-col md:flex-row">
-        <div className="flex flex-col justify-between items-center pt-7 px-7 pb-7 md:w-[200px] flex-shrink-0">
+        <div className="flex flex-col items-center pt-7 px-7 pb-7 md:w-[200px] flex-shrink-0">
           <AvatarWithOrbit blogger={blogger} />
-          <div className="mt-6 self-start">
+          <div className="mt-auto pt-4 self-start">
             <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
             <div className="font-display font-bold text-white text-xl leading-none">{blogger.priceFromLabel}</div>
           </div>
@@ -114,11 +114,11 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
               )}
             </div>
           </div>
-          <div className="flex-1">
-            <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
-            <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
-          </div>
-          <div className="flex items-end justify-end">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
+              <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
+            </div>
             <button
               className="btn-carmine flex-shrink-0"
               onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
