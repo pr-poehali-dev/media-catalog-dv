@@ -53,9 +53,11 @@ function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
             className="absolute w-8 h-8 rounded-full flex items-center justify-center shadow-lg"
             style={{ top: pos.top, left: pos.left, backgroundColor: color, zIndex: 10 }}
           >
-            {path
-              ? <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d={path} /></svg>
-              : <span className="text-white text-xs font-bold">{SOCIALS[s.social].label[0]}</span>
+            {s.social === 'max'
+              ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/7a2573ac-3a6b-46f3-9cdc-c3a29fa952a9.png" alt="MAX" className="w-full h-full object-cover rounded-full" />
+              : path
+                ? <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d={path} /></svg>
+                : <span className="text-white text-xs font-bold">{SOCIALS[s.social].label[0]}</span>
             }
           </div>
         );
