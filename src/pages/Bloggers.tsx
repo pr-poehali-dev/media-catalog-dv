@@ -31,20 +31,27 @@ const SOCIAL_ICON_COLORS: Record<string, string> = {
   ok: '#EE8208',
 };
 
-const ORBIT_POSITIONS = [
-  { top: '-14%', left: '62%' },
-  { top: '74%',  left: '-4%' },
-  { top: '-10%', left: '14%' },
-  { top: '74%',  left: '66%' },
-  { top: '38%',  left: '-12%' },
-  { top: '-16%', left: '38%' },
-];
+// Равномерно расставляем иконки по кругу вокруг аватарки (148×148px)
+// r — радиус от центра аватарки до центра иконки (px)
+function getOrbitPositions(count: number): Array<{ top: string; left: string }> {
+  const r = 84;
+  const cx = 74;
+  const cy = 74;
+  const iconSize = 16;
+  return Array.from({ length: count }, (_, i) => {
+    const angle = (2 * Math.PI * i) / count - Math.PI / 2;
+    const x = cx + r * Math.cos(angle) - iconSize;
+    const y = cy + r * Math.sin(angle) - iconSize;
+    return { left: `${x}px`, top: `${y}px` };
+  });
+}
 
 function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
+  const positions = getOrbitPositions(socials.length);
   return (
     <>
       {socials.map((s, i) => {
-        const pos = ORBIT_POSITIONS[i % ORBIT_POSITIONS.length];
+        const pos = positions[i];
         const color = SOCIAL_ICON_COLORS[s.social] ?? '#555';
         const path = SOCIAL_ICONS[s.social];
         return (
@@ -54,7 +61,7 @@ function SocialOrbit({ socials }: { socials: Blogger['socials'] }) {
             style={{ top: pos.top, left: pos.left, backgroundColor: color, zIndex: 10 }}
           >
             {s.social === 'max'
-              ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/7a2573ac-3a6b-46f3-9cdc-c3a29fa952a9.png" alt="MAX" className="w-full h-full object-cover rounded-full" />
+              ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/0ce51f91-a61d-4dd0-b4ba-7dd421a2f89c.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
               : path
                 ? <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d={path} /></svg>
                 : <span className="text-white text-xs font-bold">{SOCIALS[s.social].label[0]}</span>
