@@ -35,7 +35,7 @@ const CHARLESRUS_POSITIONS: Record<string, { top: string; left: string }> = {
   youtube:   { top: '40%',  left: '90%' },
   vk:        { top: '84%',  left: '64%' },
   telegram:  { top: '84%',  left: '8%'  },
-  max:       { top: '40%',  left: '-26%' },
+  max:       { top: '40%',  left: '-14%' },
 };
 
 export function SocialOrbit({ socials, bloggerId }: { socials: Blogger['socials']; bloggerId: string }) {

@@ -50,7 +50,7 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
       }}
     >
       <div className="flex flex-col md:flex-row">
-        <div className="flex flex-col items-center pt-7 px-7 pb-7 md:w-[200px] flex-shrink-0">
+        <div className="flex flex-col items-center pt-7 px-7 pb-7 md:w-[230px] flex-shrink-0">
           <AvatarWithOrbit blogger={blogger} />
           <div className="mt-auto pt-4 self-start">
             <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
