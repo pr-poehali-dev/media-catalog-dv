@@ -778,14 +778,10 @@ export const BLOGGERS: Blogger[] = [
     social: 'tiktok',
     city: 'Владивосток',
     category: 'Персональный инфлюенсер',
-    description: 'Крупный авторский видеоблогер с широкой аудиторией в TikTok, Instagram*, YouTube, ВКонтакте, Telegram и MAX.',
+    description: 'Авторский видеоблогер с крупной аудиторией в нескольких соцсетях. Подходит для брендов, которым нужен широкий охват через узнаваемого автора.',
     fullDescription: 'Авторский видеоблогер с крупной аудиторией в нескольких соцсетях. Подходит для брендов, которым нужна личная рекомендация, видеоконтент и широкий охват через узнаваемого автора.',
     subscribersTotal: '1,09 млн.',
-    reachSummary: [
-      'до 241,7 тыс. средних просмотров на YouTube',
-      'до 62 тыс. средних просмотров в Instagram*',
-      'до 57,2 тыс. средних просмотров во ВКонтакте',
-    ],
+    reachSummary: ['380,9 тыс.'],
     engagementSummary: [
       'до 7 565 действий на YouTube',
       'до 4 958 действий во ВКонтакте',
@@ -799,7 +795,7 @@ export const BLOGGERS: Blogger[] = [
       { social: 'telegram', subscribers: 4065, reachLabel: '570 средних просмотров', engagementLabel: '42 действия · ER 7,4%', link: 'https://t.me/Charlesrus25' },
       { social: 'max', subscribers: 1509, reachLabel: '1 198 средних просмотров', engagementLabel: '147 действий · ER 12,3%', link: 'https://max.ru/charlesrus25' },
     ],
-    formats: ['Ролик', 'Пост', 'Сторис', 'Фото', 'Текст'],
+    formats: ['Ролики в Клипы, Reels, Short\'s и TikTok', 'Посты в TG, ВК и MAX', 'Интеграции на YT', 'Сторис'],
     formatsByPlatform: [
       { platform: 'TikTok', formats: 'ролики, сторис' },
       { platform: 'Instagram*', formats: 'ролики, сторис' },
@@ -809,7 +805,7 @@ export const BLOGGERS: Blogger[] = [
       { platform: 'MAX', formats: 'ролики, текст, фото, сторис' },
     ],
     bestPerforming: ['Развлекательные услуги', 'Питание', 'Автоуслуги', 'Одежда', 'Потребительские товары'],
-    bestFor: ['Ресторанам и кафе', 'Автобизнесу', 'Развлекательным проектам', 'Одежде', 'Потребительским брендам'],
+    bestFor: ['Брендам домашней техники', 'Автобизнесу', 'Развлекательным проектам'],
     prices: [
       { label: 'Ролик', price: 'от 40 000 ₽' },
       { label: 'Пост', price: 'от 10 000 ₽' },
@@ -825,14 +821,10 @@ export const BLOGGERS: Blogger[] = [
     social: 'tiktok',
     city: 'Владивосток',
     category: 'Viral creator / видеоблогер',
-    description: 'Видеоблогер с крупными средними просмотрами в TikTok, Instagram*, YouTube и ВКонтакте. Формат для охватных и вирусных кампаний.',
+    description: 'StandUp-комик и видеоблогер с высокими просмотрами и вовлечённой аудиторией. Подходит для охватных кампаний, вирусных роликов и проектов, где важно массовое внимание.',
     fullDescription: 'Видеоблогер с сильными средними просмотрами и высокой вовлечённостью в TikTok, Instagram*, YouTube и ВКонтакте. Подходит для охватных кампаний, вирусных роликов и проектов, где важны видеоформат и массовое внимание.',
     subscribersTotal: '624,7 тыс.',
-    reachSummary: [
-      'до 1,05 млн средних просмотров в TikTok',
-      'до 783,4 тыс. средних просмотров в Instagram*',
-      'до 586,9 тыс. средних просмотров на YouTube',
-    ],
+    reachSummary: ['2,43 млн'],
     engagementSummary: [
       'до 122,2 тыс. действий в TikTok',
       'до 87,2 тыс. действий в Instagram*',
@@ -844,7 +836,7 @@ export const BLOGGERS: Blogger[] = [
       { social: 'youtube', subscribers: 79400, reachLabel: '586 925 средних просмотров', engagementLabel: '34 130 действий · ER 5,8%', link: 'https://youtube.com/@zharovdv' },
       { social: 'vk', subscribers: 8091, reachLabel: '12 543 средних просмотров', engagementLabel: '2 308 действий · ER 18,4%', link: 'https://vk.ru/zharovdv' },
     ],
-    formats: ['Ролик', 'Сторис', 'Горизонтальное видео'],
+    formats: ['Ролики в Клипы, Reels, Short\'s и TikTok', 'Интеграции на YT', 'Сторис'],
     formatsByPlatform: [
       { platform: 'TikTok', formats: 'ролики, сторис' },
       { platform: 'Instagram*', formats: 'ролики, сторис' },
@@ -852,7 +844,7 @@ export const BLOGGERS: Blogger[] = [
       { platform: 'ВКонтакте', formats: 'ролики, сторис, горизонтальные видео' },
     ],
     bestPerforming: ['Рекламы пока практически не было, успешные сферы не зафиксированы'],
-    bestFor: ['Охватным кампаниям', 'Видео-запускам', 'Массовым брендам', 'Событиям', 'Проектам с вирусным видеоконтентом'],
+    bestFor: ['Массовым брендам', 'Крупным событиям и мероприятиям'],
     prices: [
       { label: 'Размещение', price: 'По запросу' },
     ],

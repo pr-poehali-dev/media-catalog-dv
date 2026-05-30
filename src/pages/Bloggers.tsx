@@ -31,30 +31,26 @@ export default function Bloggers() {
             <div className="eyebrow text-[#FBF8F3]/50">Направление 02</div>
           </div>
           <h1 className="section-title text-[#FBF8F3] mb-4">Реклама у блогеров</h1>
-          <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
+          <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-6">
             Люди доверяют людям, а не баннерам. Поэтому реклама у блогеров работает лучше обычных объявлений.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <a href="#form" className="btn-carmine">Подобрать блогера</a>
-            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
-            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#0A0A0A] pattern-dark py-6">
-        <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-3 gap-px bg-[#FBF8F3]/10">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-8">
             {[
               { value: '6', label: 'проектов' },
               { value: '26', label: 'площадок' },
               { value: '32 млн+', label: 'охвата в месяц' },
-            ].map((s) => (
-              <div key={s.label} className="bg-[#0A0A0A] py-5 px-6 flex items-center gap-3">
-                <div className="font-display font-black text-[#A21D27] text-3xl leading-none" style={{ letterSpacing: '-0.02em' }}>{s.value}</div>
-                <div className="text-xs text-[#FBF8F3]/40 uppercase leading-tight" style={{ letterSpacing: '0.12em' }}>{s.label}</div>
+            ].map((s, i) => (
+              <div key={s.label} className="flex items-center gap-2">
+                {i > 0 && <span className="text-[#FBF8F3]/15 text-sm">·</span>}
+                <span className="font-display font-black text-[#A21D27] text-xl leading-none" style={{ letterSpacing: '-0.02em' }}>{s.value}</span>
+                <span className="text-xs text-[#FBF8F3]/35 uppercase" style={{ letterSpacing: '0.12em' }}>{s.label}</span>
               </div>
             ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href="#form" className="btn-carmine">Подобрать блогера</a>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
+            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
           </div>
         </div>
       </section>
@@ -69,8 +65,8 @@ export default function Bloggers() {
             {ADVANTAGES.map((item) => (
               <div key={item.num} className="bg-[#F2EDE4] p-7 flex flex-col">
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-4">{item.num}</div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-lg leading-snug" style={{ letterSpacing: '-0.01em', minHeight: '3.5rem' }}>{item.title}</h3>
-                <p className="text-sm text-[#5a5347] leading-relaxed">{item.desc}</p>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-snug mb-2" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <p className="text-base text-[#5a5347] leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -112,14 +108,14 @@ export default function Bloggers() {
             </div>
           )}
 
-          <p className="mt-10 text-[11px] text-[#FBF8F3]/25 leading-relaxed max-w-3xl">
+          <p className="mt-5 mb-5 text-[11px] text-[#FBF8F3]/25 leading-relaxed max-w-3xl">
             *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.
             Размещение рекламы у блогеров в Instagram* рассматривается индивидуально с учётом правовых рисков.
           </p>
         </div>
       </section>
 
-      <section id="form" className="bg-[#0A0A0A] pattern-dark py-16 border-t border-[#FBF8F3]/5">
+      <section id="form" className="bg-[#0A0A0A] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <ContactForm dark title="Подобрать блогера" subtitle="Расскажите о продукте — подберём подходящего блогера и соцсеть" source="Блогеры" />
         </div>

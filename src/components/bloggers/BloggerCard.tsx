@@ -88,8 +88,11 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
             </div>
             <div>
               <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Сред. охват публикаций</div>
-              <div className="text-[13px] text-white/65 leading-snug">
-                {blogger.reachSummary.map((r, i) => <div key={i}>{r}</div>)}
+              <div
+                className="font-display font-black text-[#A21D27] leading-none"
+                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em' }}
+              >
+                {blogger.reachSummary.join('')}
               </div>
             </div>
           </div>
