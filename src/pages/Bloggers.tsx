@@ -37,16 +37,16 @@ export default function Bloggers() {
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-6">
             Люди доверяют людям, а не баннерам. Поэтому реклама у блогеров работает лучше обычных объявлений.
           </p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-8">
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-2 mb-8">
             {[
               { value: '6', label: 'проектов' },
               { value: '26', label: 'площадок' },
               { value: '32 млн+', label: 'охвата в месяц' },
             ].map((s, i) => (
-              <div key={s.label} className="flex items-center gap-2">
-                {i > 0 && <span className="text-[#FBF8F3]/15 text-sm">·</span>}
-                <span className="font-display font-black text-[#A21D27] text-xl leading-none" style={{ letterSpacing: '-0.02em' }}>{s.value}</span>
-                <span className="text-xs text-[#FBF8F3]/35 uppercase" style={{ letterSpacing: '0.12em' }}>{s.label}</span>
+              <div key={s.label} className="flex items-center gap-2.5">
+                {i > 0 && <span className="text-[#FBF8F3]/15 text-lg">·</span>}
+                <span className="font-display font-black text-[#A21D27] text-3xl leading-none" style={{ letterSpacing: '-0.02em' }}>{s.value}</span>
+                <span className="text-sm text-[#FBF8F3]/35 uppercase" style={{ letterSpacing: '0.12em' }}>{s.label}</span>
               </div>
             ))}
           </div>
