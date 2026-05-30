@@ -47,7 +47,7 @@ export default function Communities() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Направление 01</div>
           </div>
-          <h1 className="section-title text-[#FBF8F3] mb-4">
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4">
             Реклама в городских<br />сообществах
           </h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">

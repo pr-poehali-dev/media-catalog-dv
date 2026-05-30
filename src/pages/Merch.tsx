@@ -15,7 +15,7 @@ export default function Merch() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Направление 04</div>
           </div>
-          <h1 className="section-title text-[#FBF8F3] mb-4">Брендированная продукция</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4">Брендированная продукция</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
             Мерч — реклама, которая остаётся с клиентом. Кружка на столе,<br />
             футболка на улице, стикер на ноутбуке — бренд постоянно перед глазами.<br className="hidden lg:block" />

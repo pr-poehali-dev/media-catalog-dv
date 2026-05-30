@@ -12,7 +12,7 @@ export default function Formats() {
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Инструменты</div></div>
-          <h1 className="section-title text-[#FBF8F3] mb-3">Форматы рекламы</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-3">Форматы рекламы</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">От быстрого поста до полноценного спецпроекта. Выбираем формат под задачу.</p>
         </div>
       </section>

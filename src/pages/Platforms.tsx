@@ -45,7 +45,7 @@ export default function Platforms() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
           </div>
-          <h1 className="section-title text-[#FBF8F3] mb-4">Каталог площадок</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4">Каталог площадок</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">
             Городские сообщества и блогеры Хабаровска, Владивостока и Комсомольска-на-Амуре.
           </p>

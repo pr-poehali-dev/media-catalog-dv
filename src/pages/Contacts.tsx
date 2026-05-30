@@ -13,7 +13,7 @@ export default function Contacts() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Связь</div>
           </div>
-          <h1 className="section-title text-[#FBF8F3] mb-4">Контакты</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4">Контакты</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
             Связаться с нами можете по телефону{' '}
             <a href="tel:+79142055535" className="text-[#FBF8F3] hover:text-[#A21D27] transition-colors underline underline-offset-2">

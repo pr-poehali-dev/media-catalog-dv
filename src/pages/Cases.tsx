@@ -31,7 +31,7 @@ export default function Cases() {
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Опыт</div></div>
-          <h1 className="section-title text-[#FBF8F3] mb-3">Кейсы</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-3">Кейсы</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">Реальные результаты рекламных кампаний в городах Дальнего Востока</p>
         </div>
       </section>

@@ -42,7 +42,7 @@ const FAR_EAST_PAGE = () => (
     <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
       <div className="pattern-content max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Регион</div></div>
-        <h1 className="section-title text-[#FBF8F3] mb-3">Дальний Восток</h1>
+        <h1 className="page-hero-title text-[#FBF8F3] mb-3">Дальний Восток</h1>
         <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">Охват трёх крупнейших городов региона одним медиапланом</p>
       </div>
     </section>
@@ -100,7 +100,7 @@ export default function CityPage() {
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Город</div></div>
-          <h1 className="section-title text-[#FBF8F3] mb-2">{cityName}</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-2">{cityName}</h1>
           <p className="text-[#FBF8F3]/50 text-base mb-3">{cityInfo.tagline}</p>
           <div className="font-display font-bold text-[#A21D27] text-3xl">{cityInfo.population} жителей</div>
         </div>

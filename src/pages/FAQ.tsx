@@ -13,7 +13,7 @@ export default function FAQ() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Помощь</div>
           </div>
-          <h1 className="section-title text-[#FBF8F3] mb-3">Частые вопросы</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-3">Частые вопросы</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">Отвечаем конкретно. Без воды и корпоративных формулировок.</p>
         </div>
       </section>

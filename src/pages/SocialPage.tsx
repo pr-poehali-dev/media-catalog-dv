@@ -84,7 +84,7 @@ function PageHero({ title, eyebrow, sub }: { title: string; eyebrow: string; sub
           <div className="section-rule" />
           <div className="eyebrow text-[#FBF8F3]/50">{eyebrow}</div>
         </div>
-        <h1 className="section-title text-[#FBF8F3] mb-3">{title}</h1>
+        <h1 className="page-hero-title text-[#FBF8F3] mb-3">{title}</h1>
         {sub && <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">{sub}</p>}
       </div>
     </section>
