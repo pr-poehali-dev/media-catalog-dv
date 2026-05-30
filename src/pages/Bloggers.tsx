@@ -3,6 +3,7 @@ import { BLOGGERS, Blogger } from '@/data/data';
 import ContactForm from '@/components/ContactForm';
 import BloggerCard from '@/components/bloggers/BloggerCard';
 import BloggerModal from '@/components/bloggers/BloggerModal';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 const ADVANTAGES = [
   { num: '01', title: 'Доверие', desc: 'Рекомендация блогера воспринимается как совет друга, а не реклама.' },
@@ -21,6 +22,8 @@ export default function Bloggers() {
     if (city === 'Все города') return BLOGGERS;
     return BLOGGERS.filter((b) => b.city === city);
   }, [city]);
+
+  useScrollReveal();
 
   return (
     <div className="pt-16">
@@ -55,7 +58,7 @@ export default function Bloggers() {
         </div>
       </section>
 
-      <section className="bg-[#F2EDE4] pattern-milk py-14">
+      <section className="bg-[#F2EDE4] pattern-milk py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
@@ -116,7 +119,7 @@ export default function Bloggers() {
         </div>
       </section>
 
-      <section id="form" className="bg-[#0A0A0A] pattern-dark py-16">
+      <section id="form" className="bg-[#0A0A0A] pattern-dark py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <ContactForm dark title="Подобрать блогера" subtitle="Расскажите о продукте — подберём подходящего блогера и соцсеть" source="Блогеры" />
         </div>

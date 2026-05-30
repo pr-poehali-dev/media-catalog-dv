@@ -3,6 +3,7 @@ import PlatformCard from '@/components/PlatformCard';
 import ContactForm from '@/components/ContactForm';
 import { PLATFORMS, SOCIALS, Platform } from '@/data/data';
 import Icon from '@/components/ui/icon';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 const CITIES_F = ['Все города', 'Хабаровск', 'Владивосток', 'Комсомольск-на-Амуре', 'Дальний Восток'];
 const SOCIAL_KEYS = ['all', 'vk', 'telegram', 'ok', 'max', 'tiktok', 'instagram'] as const;
@@ -32,6 +33,8 @@ export default function Platforms() {
   }, [city, social, type, category, search]);
 
   const hasFilters = city !== 'Все города' || social !== 'all' || type !== 'Все' || category !== 'Все категории' || search;
+
+  useScrollReveal();
 
   return (
     <div className="pt-16">
@@ -111,7 +114,7 @@ export default function Platforms() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0A0A0A] pattern-dark py-16">
+      <section className="bg-[#0A0A0A] pattern-dark py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Не нашли подходящую площадку?" subtitle="Опишите задачу — подберём вручную под ваш бюджет" />
         </div>

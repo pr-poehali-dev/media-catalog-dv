@@ -1,7 +1,10 @@
 import { FAQ_DATA } from '@/data/data';
 import Icon from '@/components/ui/icon';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 export default function FAQ() {
+  useScrollReveal();
+
   return (
     <div className="pt-16">
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
@@ -16,7 +19,7 @@ export default function FAQ() {
       </section>
 
       {/* FAQ список */}
-      <section className="bg-[#FBF8F3] pattern-milk py-16">
+      <section className="bg-[#FBF8F3] pattern-milk py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
@@ -58,7 +61,7 @@ export default function FAQ() {
       </section>
 
       {/* Не нашли ответ */}
-      <section className="bg-[#0A0A0A] pattern-dark py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div>

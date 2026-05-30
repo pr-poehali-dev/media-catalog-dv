@@ -3,6 +3,7 @@ import { PLATFORMS, SOCIALS, SocialNet } from '@/data/data';
 import PlatformCard from '@/components/PlatformCard';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 const SOCIAL_CONTENT: Record<string, {
   key: SocialNet;
@@ -93,6 +94,7 @@ function PageHero({ title, eyebrow, sub }: { title: string; eyebrow: string; sub
 export default function SocialPage() {
   const { socialId } = useParams<{ socialId: string }>();
   const content = SOCIAL_CONTENT[socialId || ''];
+  useScrollReveal();
 
   if (!content) return (
     <div className="pt-28 text-center py-24">
@@ -108,7 +110,7 @@ export default function SocialPage() {
     return (
       <div className="pt-16">
         <PageHero title="Instagram*" eyebrow="Ограничения" sub="Аудитория, правовые ограничения и возможные PR-форматы" />
-        <section className="bg-[#FBF8F3] py-16">
+        <section className="bg-[#FBF8F3] py-16 reveal">
           <div className="max-w-7xl mx-auto px-6 max-w-3xl">
             <div className="bg-[#F2EDE4] border-l-4 border-[#A21D27] p-6 mb-8">
               <p className="text-sm text-[#0A0A0A]/70 leading-relaxed">
@@ -143,7 +145,7 @@ export default function SocialPage() {
             </div>
           </div>
         </section>
-        <section className="bg-[#0A0A0A] pattern-dark py-14">
+        <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
           <div className="pattern-content max-w-7xl mx-auto px-6 text-center text-[#FBF8F3]">
             <h2 className="font-display font-bold text-2xl mb-4" style={{ letterSpacing: '-0.02em' }}>Реклама без правовых рисков</h2>
             <p className="text-[#FBF8F3]/50 mb-6">Подберём площадки во ВКонтакте, Telegram или TikTok</p>
@@ -159,7 +161,7 @@ export default function SocialPage() {
       <PageHero title={content.title} eyebrow="Соцсеть" sub={content.subtitle} />
 
       {/* Description */}
-      <section className="bg-[#FBF8F3] py-16">
+      <section className="bg-[#FBF8F3] py-16 reveal">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
@@ -211,7 +213,7 @@ export default function SocialPage() {
       </section>
 
       {/* Formats */}
-      <section className="bg-[#F2EDE4] py-12">
+      <section className="bg-[#F2EDE4] py-12 reveal">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-[10px] text-[#5a5347] uppercase mb-4" style={{ letterSpacing: '0.18em' }}>Форматы в {content.title}</div>
           <div className="flex flex-wrap gap-2">
@@ -224,7 +226,7 @@ export default function SocialPage() {
 
       {/* Platforms */}
       {relevantPlatforms.length > 0 && (
-        <section className="bg-[#FBF8F3] py-16">
+        <section className="bg-[#FBF8F3] py-16 reveal">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-display font-bold text-[#0A0A0A] text-xl" style={{ letterSpacing: '-0.01em' }}>Площадки в {content.title}</h2>
@@ -241,7 +243,7 @@ export default function SocialPage() {
 
       {/* FAQ */}
       {content.faq.length > 0 && (
-        <section className="bg-[#F2EDE4] py-12">
+        <section className="bg-[#F2EDE4] py-12 reveal">
           <div className="max-w-7xl mx-auto px-6 max-w-2xl">
             <div className="text-[10px] text-[#5a5347] uppercase mb-6" style={{ letterSpacing: '0.18em' }}>FAQ по {content.title}</div>
             {content.faq.map((item, i) => (
@@ -260,7 +262,7 @@ export default function SocialPage() {
       )}
 
       {/* CTA */}
-      <section className="bg-[#0A0A0A] pattern-dark py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title={`Разместиться в ${content.title}`} subtitle="Составим медиаплан и подберём площадки" />
         </div>

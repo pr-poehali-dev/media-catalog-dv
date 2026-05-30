@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { CASES, SOCIALS } from '@/data/data';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 const CITIES_F = ['Все города', 'Хабаровск', 'Владивосток', 'Комсомольск-на-Амуре'];
 const NICHES_F = ['Все ниши', 'HoReCa', 'Ритейл', 'Образование', 'Красота', 'Мероприятия'];
@@ -22,6 +23,8 @@ export default function Cases() {
   }), [city, niche, socialLabel]);
 
   const hasFilters = city !== 'Все города' || niche !== 'Все ниши' || socialLabel !== 'Все соцсети';
+
+  useScrollReveal();
 
   return (
     <div className="pt-16">
@@ -102,7 +105,7 @@ export default function Cases() {
         </div>
       </section>
 
-      <section className="bg-[#0A0A0A] pattern-dark py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Хотите похожий результат?" subtitle="Расскажите о вашем бизнесе — составим медиаплан" />
         </div>

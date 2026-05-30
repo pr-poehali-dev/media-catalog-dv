@@ -3,6 +3,7 @@ import { PLATFORMS, SOCIALS, CASES, CITIES_INFO } from '@/data/data';
 import PlatformCard from '@/components/PlatformCard';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 const CITY_ROUTES: Record<string, string> = {
   khabarovsk: 'Хабаровск',
@@ -78,6 +79,7 @@ const FAR_EAST_PAGE = () => (
 
 export default function CityPage() {
   const { cityId } = useParams<{ cityId: string }>();
+  useScrollReveal();
   if (cityId === 'far-east') return <FAR_EAST_PAGE />;
 
   const cityName = CITY_ROUTES[cityId || ''];
@@ -104,7 +106,7 @@ export default function CityPage() {
         </div>
       </section>
 
-      <section className="bg-[#FBF8F3] py-16">
+      <section className="bg-[#FBF8F3] py-16 reveal">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
@@ -153,7 +155,7 @@ export default function CityPage() {
       </section>
 
       {cityPlatforms.length > 0 && (
-        <section className="bg-[#F2EDE4] py-16">
+        <section className="bg-[#F2EDE4] py-16 reveal">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-display font-bold text-[#0A0A0A] text-xl" style={{ letterSpacing: '-0.01em' }}>Площадки в {cityName}</h2>
@@ -169,7 +171,7 @@ export default function CityPage() {
       )}
 
       {cityCases.length > 0 && (
-        <section className="bg-[#FBF8F3] py-16">
+        <section className="bg-[#FBF8F3] py-16 reveal">
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="font-display font-bold text-[#0A0A0A] text-xl mb-8" style={{ letterSpacing: '-0.01em' }}>Кейсы из {cityName}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#E8E2D8]">
@@ -190,7 +192,7 @@ export default function CityPage() {
         </section>
       )}
 
-      <section className="bg-[#0A0A0A] pattern-dark py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title={`Реклама в ${cityName}`} subtitle="Подберём лучшие площадки вашего города" />
         </div>

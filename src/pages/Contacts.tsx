@@ -1,6 +1,9 @@
 import ContactForm from '@/components/ContactForm';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 export default function Contacts() {
+  useScrollReveal();
+
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -34,7 +37,7 @@ export default function Contacts() {
       </section>
 
       {/* Юридическая информация */}
-      <section className="bg-[#FBF8F3] pattern-milk py-12">
+      <section className="bg-[#FBF8F3] pattern-milk py-12 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
@@ -65,7 +68,7 @@ export default function Contacts() {
       </section>
 
       {/* Форма заявки */}
-      <section className="bg-[#0A0A0A] pattern-dark py-16">
+      <section className="bg-[#0A0A0A] pattern-dark py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <ContactForm
             dark

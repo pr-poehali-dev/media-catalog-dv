@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import ContactForm from '@/components/ContactForm';
 import { MERCH_ITEMS } from '@/data/data';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 export default function Merch() {
+  useScrollReveal();
+
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -27,7 +30,7 @@ export default function Merch() {
       </section>
 
       {/* Почему мерч работает */}
-      <section className="bg-[#FBF8F3] pattern-milk py-14">
+      <section className="bg-[#FBF8F3] pattern-milk py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
@@ -72,7 +75,7 @@ export default function Merch() {
       </section>
 
       {/* Каталог товаров */}
-      <section className="bg-[#0A0A0A] pattern-dark py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-10">
             <div className="section-rule" />
@@ -110,7 +113,7 @@ export default function Merch() {
       </section>
 
       {/* Как заказать */}
-      <section className="bg-[#FBF8F3] pattern-milk py-14">
+      <section className="bg-[#FBF8F3] pattern-milk py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
@@ -133,7 +136,7 @@ export default function Merch() {
         </div>
       </section>
 
-      <section id="merch-form" className="bg-[#0A0A0A] pattern-dark py-16">
+      <section id="merch-form" className="bg-[#0A0A0A] pattern-dark py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Заказать брендированную продукцию" subtitle="Укажите цель закупа, тираж и желаемые позиции. Пришлем расчёт" source="Мерч" />
         </div>

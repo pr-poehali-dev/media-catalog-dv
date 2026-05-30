@@ -4,6 +4,7 @@ import PlatformCard from '@/components/PlatformCard';
 import ContactForm from '@/components/ContactForm';
 import { PLATFORMS, SOCIALS, Platform } from '@/data/data';
 import Icon from '@/components/ui/icon';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 const CITIES_F = ['Все города', 'Хабаровск', 'Владивосток', 'Комсомольск-на-Амуре'];
 const SOCIALS_F = ['Все соцсети', 'vk', 'telegram', 'ok', 'max', 'tiktok'] as const;
@@ -35,6 +36,8 @@ export default function Communities() {
     });
   }, [communities, city, social, category, search]);
 
+  useScrollReveal();
+
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -60,7 +63,7 @@ export default function Communities() {
       </section>
 
       {/* Разделение по соцсетям и городам */}
-      <section className="bg-[#F2EDE4] py-14">
+      <section className="bg-[#F2EDE4] py-14 reveal">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* По соцсетям */}
@@ -185,7 +188,7 @@ export default function Communities() {
         </div>
       </section>
 
-      <section className="bg-[#0A0A0A] pattern-dark py-16">
+      <section className="bg-[#0A0A0A] pattern-dark py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Подобрать сообщества" subtitle="Составим медиаплан под ваш город, бюджет и задачу" />
         </div>

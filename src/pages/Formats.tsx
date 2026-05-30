@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom';
 import { FORMATS_INFO } from '@/data/data';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 export default function Formats() {
+  useScrollReveal();
+
   return (
     <div className="pt-16">
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
@@ -14,7 +17,7 @@ export default function Formats() {
         </div>
       </section>
 
-      <section className="bg-[#FBF8F3] py-16">
+      <section className="bg-[#FBF8F3] py-16 reveal">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col gap-px bg-[#E8E2D8]">
             {FORMATS_INFO.map((format, i) => (
@@ -55,7 +58,7 @@ export default function Formats() {
         </div>
       </section>
 
-      <section className="bg-[#0A0A0A] pattern-dark py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Подобрать формат" subtitle="Расскажите о задаче — предложим оптимальный формат" />
         </div>

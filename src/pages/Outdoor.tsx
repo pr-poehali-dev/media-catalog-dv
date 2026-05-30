@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import ContactForm from '@/components/ContactForm';
 import { OUTDOOR_FORMATS, OutdoorFormat } from '@/data/data';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: boolean }) {
   return (
@@ -55,6 +56,8 @@ function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: b
 }
 
 export default function Outdoor() {
+  useScrollReveal();
+
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -77,7 +80,7 @@ export default function Outdoor() {
       </section>
 
       {/* Преимущества */}
-      <section className="bg-[#FBF8F3] pattern-milk py-14">
+      <section className="bg-[#FBF8F3] pattern-milk py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
@@ -101,7 +104,7 @@ export default function Outdoor() {
       </section>
 
       {/* Форматы — чёрный */}
-      <section className="bg-[#0A0A0A] pattern-dark py-14">
+      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-10">
             <div className="section-rule" />
@@ -118,7 +121,7 @@ export default function Outdoor() {
       </section>
 
       {/* Как работаем */}
-      <section className="bg-[#F2EDE4] pattern-milk py-14">
+      <section className="bg-[#F2EDE4] pattern-milk py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
@@ -141,7 +144,7 @@ export default function Outdoor() {
         </div>
       </section>
 
-      <section id="outdoor-form" className="bg-[#0A0A0A] pattern-dark py-16">
+      <section id="outdoor-form" className="bg-[#0A0A0A] pattern-dark py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm
             dark
