@@ -61,11 +61,11 @@ export default function Bloggers() {
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Преимущества</div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
+          <div className="grid gap-px bg-[#E8E2D8]" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
             {ADVANTAGES.map((item, i) => (
-              <div key={item.num} className="bg-[#F2EDE4] flex flex-col" style={{ padding: i === 0 ? '28px' : '28px 28px 28px 20px' }}>
+              <div key={item.num} className="bg-[#F2EDE4] flex flex-col" style={{ padding: i === 0 ? '28px 16px 28px 28px' : '28px 16px 28px 16px' }}>
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-4">{item.num}</div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-snug mb-2" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-snug mb-2 whitespace-nowrap" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
                 <p className="text-base text-[#5a5347] leading-relaxed">{item.desc}</p>
               </div>
             ))}
