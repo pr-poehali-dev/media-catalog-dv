@@ -104,7 +104,7 @@ export default function Outdoor() {
       </section>
 
       {/* Форматы — чёрный */}
-      <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
+      <section className="bg-[#0A0A0A] pattern-dark py-14">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-10">
             <div className="section-rule" />
