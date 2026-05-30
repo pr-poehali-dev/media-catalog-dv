@@ -22,16 +22,18 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="relative bg-[#FBF8F3] w-full max-w-3xl my-8 flex flex-col">
-        <div className="bg-[#0A0A0A] p-8 flex items-start gap-5">
-          <AvatarSimple blogger={blogger} />
-          <div className="flex-1 min-w-0">
-            <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{blogger.city} · {blogger.category}</div>
-            <h2 className="font-display font-bold text-[#FBF8F3] text-2xl leading-tight mb-3" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
-            <p className="text-sm text-[#FBF8F3]/60 leading-relaxed">{blogger.fullDescription}</p>
+        <div className="bg-[#0A0A0A] pattern-dark p-8 flex items-start gap-5">
+          <div className="pattern-content flex items-start gap-5 w-full">
+            <AvatarSimple blogger={blogger} />
+            <div className="flex-1 min-w-0">
+              <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{blogger.city} · {blogger.category}</div>
+              <h2 className="font-display font-bold text-[#FBF8F3] text-2xl leading-tight mb-3" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
+              <p className="text-sm text-[#FBF8F3]/60 leading-relaxed">{blogger.fullDescription}</p>
+            </div>
+            <button onClick={onClose} className="flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors mt-1" aria-label="Закрыть">
+              <Icon name="X" size={20} />
+            </button>
           </div>
-          <button onClick={onClose} className="flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors mt-1" aria-label="Закрыть">
-            <Icon name="X" size={20} />
-          </button>
         </div>
 
         <div className="p-8 flex flex-col gap-8">

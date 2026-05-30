@@ -14,13 +14,26 @@ function SocialLabels({ socials }: { socials: Blogger['socials'] }) {
     <div className="flex flex-wrap gap-x-3 gap-y-1">
       {socials.map((s) => {
         const color = s.social === 'tiktok' ? '#888' : (SOCIAL_ICON_COLORS[s.social] ?? '#aaa');
-        return (
+        const label = SOCIALS[s.social].label;
+        return s.link ? (
+          <a
+            key={s.social}
+            href={s.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-[11px] font-semibold uppercase hover:underline transition-opacity hover:opacity-80"
+            style={{ color, letterSpacing: '0.08em' }}
+          >
+            {label}
+          </a>
+        ) : (
           <span
             key={s.social}
             className="text-[11px] font-semibold uppercase"
             style={{ color, letterSpacing: '0.08em' }}
           >
-            {SOCIALS[s.social].label}
+            {label}
           </span>
         );
       })}
@@ -31,8 +44,7 @@ function SocialLabels({ socials }: { socials: Blogger['socials'] }) {
 export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; onClick: () => void }) {
   return (
     <div
-      onClick={onClick}
-      className="group cursor-pointer"
+      className="group"
       style={{
         background: 'linear-gradient(135deg, #1c1c1e 0%, #161618 100%)',
         borderRadius: '24px',
@@ -51,7 +63,9 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
     >
       <div className="flex flex-col md:flex-row">
         <div className="flex flex-col items-center pt-7 px-7 pb-7 md:w-[230px] flex-shrink-0">
-          <AvatarWithOrbit blogger={blogger} />
+          <div onClick={onClick} className="cursor-pointer" role="button" aria-label={`Открыть ${blogger.name}`}>
+            <AvatarWithOrbit blogger={blogger} />
+          </div>
           <div className="mt-auto pt-4 self-start">
             <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
             <div className="font-display font-bold text-white text-xl leading-none">{blogger.priceFromLabel}</div>
@@ -61,7 +75,8 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <h3
-                className="font-display font-bold text-white leading-tight mb-1"
+                onClick={onClick}
+                className="font-display font-bold text-white leading-tight mb-1 cursor-pointer hover:text-white/80 transition-colors inline-block"
                 style={{ fontSize: '1.35rem', letterSpacing: '-0.02em' }}
               >
                 {blogger.name}
@@ -70,9 +85,12 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
                 {blogger.category}
               </div>
             </div>
-            <span className="flex-shrink-0 flex items-center gap-1 text-[11px] text-white/25 group-hover:text-white/60 transition-colors mt-1">
+            <button
+              onClick={onClick}
+              className="flex-shrink-0 flex items-center gap-1 text-[11px] text-white/25 hover:text-white/70 transition-colors mt-1 cursor-pointer"
+            >
               Подробнее <Icon name="ArrowRight" size={11} />
-            </span>
+            </button>
           </div>
           <p className="text-[13px] text-white/50 leading-relaxed">{blogger.description}</p>
           <SocialLabels socials={blogger.socials} />
