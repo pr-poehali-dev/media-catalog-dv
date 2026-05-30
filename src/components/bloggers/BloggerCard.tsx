@@ -76,7 +76,7 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           </div>
           <p className="text-[13px] text-white/50 leading-relaxed">{blogger.description}</p>
           <SocialLabels socials={blogger.socials} />
-          <div className="inline-flex" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', overflow: 'hidden' }}>
+          <div className="inline-flex self-start" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', overflow: 'hidden' }}>
             <div className="px-3 py-2.5">
               <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Подписчиков</div>
               <div
