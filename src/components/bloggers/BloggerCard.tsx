@@ -76,12 +76,12 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           </div>
           <p className="text-[13px] text-white/50 leading-relaxed">{blogger.description}</p>
           <SocialLabels socials={blogger.socials} />
-          <div className="grid grid-cols-2 gap-4">
+          <div className="flex gap-6">
             <div>
               <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Подписчиков</div>
               <div
-                className="font-display font-black text-[#A21D27] leading-none"
-                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em' }}
+                className="font-display font-black leading-none"
+                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em', color: '#C0202A' }}
               >
                 {blogger.subscribersTotal}
               </div>
@@ -89,8 +89,8 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
             <div>
               <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Сред. охват публикаций</div>
               <div
-                className="font-display font-black text-[#A21D27] leading-none"
-                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em' }}
+                className="font-display font-black leading-none"
+                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em', color: '#C0202A' }}
               >
                 {blogger.reachSummary.join('')}
               </div>
