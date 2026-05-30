@@ -76,21 +76,21 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           </div>
           <p className="text-[13px] text-white/50 leading-relaxed">{blogger.description}</p>
           <SocialLabels socials={blogger.socials} />
-          <div className="flex" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', overflow: 'hidden' }}>
-            <div className="flex-1 px-4 py-3">
-              <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Подписчиков</div>
+          <div className="inline-flex" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', overflow: 'hidden' }}>
+            <div className="px-3 py-2.5">
+              <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Подписчиков</div>
               <div
                 className="font-display font-black leading-none"
-                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em', color: '#C0202A' }}
+                style={{ fontSize: '1.45rem', letterSpacing: '-0.03em', color: '#C0202A' }}
               >
                 {blogger.subscribersTotal}
               </div>
             </div>
-            <div className="flex-1 px-4 py-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
-              <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Сред. охват публикаций</div>
+            <div className="px-3 py-2.5" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+              <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Сред. охват публикаций</div>
               <div
                 className="font-display font-black leading-none"
-                style={{ fontSize: '1.7rem', letterSpacing: '-0.03em', color: '#C0202A' }}
+                style={{ fontSize: '1.45rem', letterSpacing: '-0.03em', color: '#C0202A' }}
               >
                 {blogger.reachSummary.join('')}
               </div>

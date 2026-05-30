@@ -5,7 +5,7 @@ import BloggerCard from '@/components/bloggers/BloggerCard';
 import BloggerModal from '@/components/bloggers/BloggerModal';
 
 const ADVANTAGES = [
-  { num: '01', title: 'Доверие аудитории', desc: 'Рекомендация блогера воспринимается как совет друга, а не реклама.' },
+  { num: '01', title: 'Доверие', desc: 'Рекомендация блогера воспринимается как совет друга, а не реклама.' },
   { num: '02', title: 'Вовлечённость', desc: 'Подписчики блогера активны, вовлечены и доверяют его мнению.' },
   { num: '03', title: 'Видеоконтент', desc: 'Обзор на камеру — самый убедительный формат как для простых, так и для сложных продуктов.' },
   { num: '04', title: 'Долгий эффект', desc: 'Хорошие обзоры продолжают набирать просмотры неделями и месяцами после публикации.' },
@@ -62,10 +62,11 @@ export default function Bloggers() {
             <div className="eyebrow text-[#5a5347]">Преимущества</div>
           </div>
           <div className="grid gap-px bg-[#E8E2D8]" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
-            {ADVANTAGES.map((item, i) => (
-              <div key={item.num} className="bg-[#F2EDE4] flex flex-col" style={{ padding: i === 0 ? '28px 16px 28px 28px' : '28px 16px 28px 16px' }}>
-                <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-4">{item.num}</div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-snug mb-2 whitespace-nowrap" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
+            {ADVANTAGES.map((item) => (
+              <div key={item.num} className="bg-[#F2EDE4] flex flex-col p-7">
+                <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-5">{item.num}</div>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-tight whitespace-nowrap" style={{ letterSpacing: '-0.01em', height: '2rem', display: 'flex', alignItems: 'center' }}>{item.title}</h3>
+                <div className="mt-3 w-6 border-t border-[#A21D27]/30 mb-3" />
                 <p className="text-base text-[#5a5347] leading-relaxed">{item.desc}</p>
               </div>
             ))}
