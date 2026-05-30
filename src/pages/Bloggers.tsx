@@ -112,14 +112,14 @@ export default function Bloggers() {
             </div>
           )}
 
-          <p className="mt-5 mb-5 text-[11px] text-[#FBF8F3]/25 leading-relaxed max-w-3xl">
+          <p className="mt-5 text-[11px] text-[#FBF8F3]/25 leading-relaxed max-w-3xl">
             *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.
             Размещение рекламы у блогеров в Instagram* рассматривается индивидуально с учётом правовых рисков.
           </p>
         </div>
       </section>
 
-      <section id="form" className="bg-[#0A0A0A] pattern-dark py-16 reveal">
+      <section id="form" className="bg-[#0A0A0A] pattern-dark pt-4 pb-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <ContactForm dark title="Подобрать блогера" subtitle="Расскажите о продукте — подберём подходящего блогера и соцсеть" source="Блогеры" />
         </div>
