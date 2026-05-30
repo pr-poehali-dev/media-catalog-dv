@@ -63,7 +63,7 @@ export default function Bloggers() {
           </div>
           <div className="grid gap-px bg-[#E8E2D8]" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
             {ADVANTAGES.map((item, i) => (
-              <div key={item.num} className="bg-[#F2EDE4] flex flex-col p-7" style={i === 0 ? { paddingLeft: '64px' } : undefined}>
+              <div key={item.num} className="bg-[#F2EDE4] flex flex-col p-7" style={i === 0 ? { paddingLeft: '72px' } : undefined}>
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-5">{item.num}</div>
                 <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-tight whitespace-nowrap" style={{ letterSpacing: '-0.01em', height: '2rem', display: 'flex', alignItems: 'center' }}>{item.title}</h3>
                 <div className="mt-3 w-6 border-t border-[#A21D27]/30 mb-3" />
