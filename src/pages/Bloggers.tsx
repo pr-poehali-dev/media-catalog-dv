@@ -42,6 +42,23 @@ export default function Bloggers() {
         </div>
       </section>
 
+      <section className="bg-[#0A0A0A] pattern-dark py-6">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-3 gap-px bg-[#FBF8F3]/10">
+            {[
+              { value: '6', label: 'проектов' },
+              { value: '26', label: 'площадок' },
+              { value: '32 млн+', label: 'охвата в месяц' },
+            ].map((s) => (
+              <div key={s.label} className="bg-[#0A0A0A] py-5 px-6 flex items-center gap-3">
+                <div className="font-display font-black text-[#A21D27] text-3xl leading-none" style={{ letterSpacing: '-0.02em' }}>{s.value}</div>
+                <div className="text-xs text-[#FBF8F3]/40 uppercase leading-tight" style={{ letterSpacing: '0.12em' }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#F2EDE4] pattern-milk py-14">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
@@ -99,23 +116,6 @@ export default function Bloggers() {
             *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.
             Размещение рекламы у блогеров в Instagram* рассматривается индивидуально с учётом правовых рисков.
           </p>
-        </div>
-      </section>
-
-      <section className="bg-[#F2EDE4] pattern-milk py-6">
-        <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-3 gap-px bg-[#E8E2D8]">
-            {[
-              { value: '6', label: 'проектов' },
-              { value: '26', label: 'площадок' },
-              { value: '32 млн+', label: 'охвата в месяц' },
-            ].map((s) => (
-              <div key={s.label} className="bg-[#F2EDE4] py-5 px-6 flex items-center gap-3">
-                <div className="font-display font-black text-[#A21D27] text-3xl leading-none" style={{ letterSpacing: '-0.02em' }}>{s.value}</div>
-                <div className="text-xs text-[#5a5347] uppercase leading-tight" style={{ letterSpacing: '0.12em' }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
