@@ -1,119 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
-const COMMUNITIES_MENU = {
-  label: 'Городские сообщества',
-  path: '/communities',
-  sections: [
-    {
-      title: 'По соцсетям',
-      items: [
-        { label: 'ВКонтакте', path: '/socials/vk' },
-        { label: 'Telegram', path: '/socials/telegram' },
-        { label: 'Одноклассники', path: '/socials/ok' },
-        { label: 'MAX', path: '/socials/max' },
-        { label: 'TikTok', path: '/socials/tiktok' },
-        { label: 'Instagram*', path: '/socials/instagram' },
-      ],
-    },
-    {
-      title: 'По городам',
-      items: [
-        { label: 'Хабаровск', path: '/cities/khabarovsk' },
-        { label: 'Владивосток', path: '/cities/vladivostok' },
-        { label: 'Комсомольск-на-Амуре', path: '/cities/komsomolsk' },
-      ],
-    },
-  ],
-};
-
-const BLOGGERS_MENU = {
-  label: 'Блогеры',
-  path: '/bloggers',
-  sections: [
-    {
-      title: 'По соцсетям',
-      items: [
-        { label: 'ВКонтакте', path: '/socials/vk' },
-        { label: 'Telegram', path: '/socials/telegram' },
-        { label: 'TikTok', path: '/socials/tiktok' },
-        { label: 'Instagram*', path: '/socials/instagram' },
-      ],
-    },
-    {
-      title: 'По городам',
-      items: [
-        { label: 'Хабаровск', path: '/cities/khabarovsk' },
-        { label: 'Владивосток', path: '/cities/vladivostok' },
-      ],
-    },
-  ],
-};
-
-
-interface MegaDropdownProps {
-  label: string;
-  path: string;
-  sections: { title: string; items: { label: string; path: string }[] }[];
-  isOpen: boolean;
-  onToggle: () => void;
-  onClose: () => void;
-  active?: boolean;
-  dark?: boolean;
-}
-
-function MegaDropdown({ label, path, sections, isOpen, onToggle, onClose, active, dark }: MegaDropdownProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const h = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) onClose(); };
-    document.addEventListener('mousedown', h);
-    return () => document.removeEventListener('mousedown', h);
-  }, [onClose]);
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        onClick={onToggle}
-        className={`flex items-center gap-1 text-[11px] font-medium transition-colors py-1 ${active ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
-        style={{ letterSpacing: '0.12em', textTransform: 'uppercase' }}
-      >
-        {label}
-        <Icon name={isOpen ? 'ChevronUp' : 'ChevronDown'} size={11} />
-      </button>
-      {isOpen && (
-        <div className="absolute top-full left-0 mt-3 bg-[#FBF8F3] border border-[#E8E2D8] z-50 min-w-[420px]"
-          style={{ boxShadow: '0 8px 32px rgba(10,10,10,0.10)' }}>
-          {/* Шапка — ссылка на раздел */}
-          <Link to={path} onClick={onClose}
-            className="flex items-center justify-between px-5 py-3.5 border-b border-[#E8E2D8] bg-[#F2EDE4] hover:bg-[#E8E2D8] transition-colors group">
-            <span className="font-display font-bold text-[#0A0A0A] text-sm group-hover:text-[#A21D27] transition-colors">{label}</span>
-            <Icon name="ArrowRight" size={13} className="text-[#5a5347] group-hover:text-[#A21D27] transition-colors" />
-          </Link>
-          {/* Колонки */}
-          <div className={`grid gap-0 ${sections.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-            {sections.map((section) => (
-              <div key={section.title} className="p-4 border-r border-[#E8E2D8] last:border-r-0">
-                <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-3 px-1" style={{ letterSpacing: '0.2em' }}>
-                  {section.title}
-                </div>
-                {section.items.map((item) => (
-                  <Link key={item.path} to={item.path} onClick={onClose}
-                    className="block px-1 py-1.5 text-sm text-[#0A0A0A] hover:text-[#A21D27] transition-colors">
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function Header() {
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -124,10 +13,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { setMobileOpen(false); setOpenMenu(null); }, [location.pathname]);
-
-  const toggle = (key: string) => setOpenMenu(openMenu === key ? null : key);
-  const close = () => setOpenMenu(null);
+  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
@@ -153,16 +39,11 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6 ml-auto">
-            <MegaDropdown
-              label="Сообщества"
-              path={COMMUNITIES_MENU.path}
-              sections={COMMUNITIES_MENU.sections}
-              isOpen={openMenu === 'communities'}
-              onToggle={() => toggle('communities')}
-              onClose={close}
-              active={isActive('/communities') || isActive('/socials') || isActive('/cities')}
-              dark={dark}
-            />
+            <Link to="/communities"
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/communities') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              style={{ letterSpacing: '0.12em' }}>
+              Сообщества
+            </Link>
             <Link to="/bloggers"
               className={`text-[11px] font-medium uppercase transition-colors ${isActive('/bloggers') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
@@ -216,11 +97,6 @@ export default function Header() {
 
             <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 pt-2" style={{ letterSpacing: '0.2em' }}>Направление 01</div>
             <Link to="/communities" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Реклама в городских сообществах</Link>
-            <div className="pl-4 flex flex-col gap-0.5">
-              {COMMUNITIES_MENU.sections[0].items.map((item) => (
-                <Link key={item.path} to={item.path} className="py-1.5 text-sm text-[#5a5347] hover:text-[#A21D27] transition-colors">{item.label}</Link>
-              ))}
-            </div>
 
             <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 mt-4 pt-3 border-t border-[#E8E2D8]" style={{ letterSpacing: '0.2em' }}>Направление 02</div>
             <Link to="/bloggers" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Реклама у блогеров</Link>

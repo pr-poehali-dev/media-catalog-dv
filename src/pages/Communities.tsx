@@ -1,40 +1,42 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import PlatformCard from '@/components/PlatformCard';
+import { COMMUNITIES, SOCIALS, Community } from '@/data/data';
 import ContactForm from '@/components/ContactForm';
-import { PLATFORMS, SOCIALS, Platform } from '@/data/data';
-import Icon from '@/components/ui/icon';
+import CommunityCard from '@/components/communities/CommunityCard';
+import CommunityModal from '@/components/communities/CommunityModal';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
-const CITIES_F = ['Все города', 'Хабаровск', 'Владивосток', 'Комсомольск-на-Амуре'];
-const SOCIALS_F = ['Все соцсети', 'vk', 'telegram', 'ok', 'max', 'tiktok'] as const;
-const CATEGORIES = ['Все категории', 'Городские новости', 'Семья и дети', 'Еда и рестораны', 'Бизнес', 'Афиша и события', 'Лайфстайл'];
+const WHY = [
+  { num: '01', title: 'Локальная аудитория', desc: 'Реклама попадает не в абстрактные показы, а к жителям конкретного города: Хабаровска, Владивостока или Комсомольска-на-Амуре.' },
+  { num: '02', title: 'Быстрый запуск', desc: 'Размещение можно запустить быстрее, чем полноценную кампанию в таргете или наружной рекламе. Подходит для акций, мероприятий, открытий и срочных анонсов.' },
+  { num: '03', title: 'Доверие к площадке', desc: 'Городские сообщества читают как источник новостей, рекомендаций и локальной повестки. Поэтому рекламное сообщение воспринимается мягче, чем обычный баннер.' },
+  { num: '04', title: 'Гибкие форматы', desc: 'Можно разместить пост, нативную новость, подборку, закреп, серию публикаций или пакет сразу в нескольких соцсетях.' },
+  { num: '05', title: 'Усиление других каналов', desc: 'Городские сообщества хорошо работают вместе с наружной рекламой, блогерами и таргетом: человек видит бренд в нескольких местах и быстрее его запоминает.' },
+];
 
-const inputCls = 'text-sm border border-[#E8E2D8] bg-[#FBF8F3] text-[#0A0A0A] px-3 py-2 focus:outline-none focus:border-[#A21D27] transition-colors';
+const BY_SOCIAL = [
+  { key: 'vk', count: '5 площадок', desc: 'Крупные городские сообщества для охвата, новостей, акций, мероприятий и локального бизнеса.' },
+  { key: 'telegram', count: '2 площадки', desc: 'Каналы с вовлечённой аудиторией и быстрым контактом с подписчиками.' },
+  { key: 'ok', count: '1 площадка', desc: 'Подходит для более взрослой аудитории, локальных новостей, услуг и городских предложений.' },
+  { key: 'max', count: '1 площадка', desc: 'Новый канал для дополнительного охвата и тестирования альтернативных площадок.' },
+  { key: 'instagram', count: '8 площадок', desc: 'Нативные форматы по согласованию. Стандартное рекламное размещение в Instagram* для продвижения товаров и услуг на территории РФ не предлагаем — возможны только информационные и нативные форматы с учётом правовых ограничений.' },
+] as const;
 
-const CITY_SOCIALS: Record<string, string[]> = {
-  'Хабаровск': ['vk', 'telegram', 'ok', 'max', 'tiktok', 'instagram'],
-  'Владивосток': ['vk', 'telegram', 'ok', 'max', 'tiktok', 'instagram'],
-  'Комсомольск-на-Амуре': ['vk', 'telegram', 'ok', 'max', 'tiktok', 'instagram'],
-};
+const BY_CITY = [
+  { name: 'Хабаровск', count: 5, tags: ['ВКонтакте', 'Telegram', 'Другие площадки'] },
+  { name: 'Владивосток', count: 1, tags: [] },
+  { name: 'Комсомольск-на-Амуре', count: 2, tags: [] },
+];
+
+const CITY_FILTERS = ['Все города', 'Хабаровск', 'Владивосток', 'Комсомольск-на-Амуре'] as const;
 
 export default function Communities() {
-  const [city, setCity] = useState('Все города');
-  const [social, setSocial] = useState('Все соцсети');
-  const [category, setCategory] = useState('Все категории');
-  const [search, setSearch] = useState('');
+  const [selected, setSelected] = useState<Community | null>(null);
+  const [city, setCity] = useState<'Все города' | 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре'>('Все города');
 
-  const communities = PLATFORMS.filter((p) => p.type === 'community');
-
-  const filtered = useMemo<Platform[]>(() => {
-    return communities.filter((p) => {
-      if (city !== 'Все города' && p.city !== city) return false;
-      if (social !== 'Все соцсети' && p.social !== social) return false;
-      if (category !== 'Все категории' && p.category !== category) return false;
-      if (search && !p.name.toLowerCase().includes(search.toLowerCase())) return false;
-      return true;
-    });
-  }, [communities, city, social, category, search]);
+  const filtered = useMemo(() => {
+    if (city === 'Все города') return COMMUNITIES;
+    return COMMUNITIES.filter((c) => c.city === city);
+  }, [city]);
 
   useScrollReveal();
 
@@ -50,149 +52,140 @@ export default function Communities() {
           <h1 className="page-hero-title text-[#FBF8F3] mb-4">
             Реклама в городских<br />сообществах
           </h1>
+          <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-3">
+            Размещаем рекламу там, где жители каждый день читают новости, обсуждают события и ищут рекомендации.
+          </p>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
-            Размещение рекламы во ВКонтакте, Telegram, Одноклассниках, MAX и TikTok.
-            Городские сообщества с живой и лояльной аудиторией.
-            Хабаровск, Владивосток, Комсомольск-на-Амуре.
+            Подбираем городские сообщества под ваш бюджет и задачу: от быстрого анонса до комплексного размещения по нескольким площадкам.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link to="/contacts" className="btn-carmine">Получить медиаплан</Link>
-            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
+            <a href="#form" className="btn-carmine">Получить медиаплан</a>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
+            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
           </div>
         </div>
       </section>
 
-      {/* Разделение по соцсетям и городам */}
-      <section className="bg-[#F2EDE4] py-14 reveal">
+      {/* Почему городские сообщества работают */}
+      <section className="bg-[#F2EDE4] pattern-milk py-14 reveal">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="section-rule" />
+            <div className="eyebrow text-[#5a5347]">Почему городские сообщества работают</div>
+          </div>
+          <div className="grid gap-px bg-[#E8E2D8] grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+            {WHY.map((item) => (
+              <div key={item.num} className="bg-[#F2EDE4] flex flex-col p-7">
+                <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-5">{item.num}</div>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-lg leading-tight" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <div className="mt-3 w-6 border-t border-[#A21D27]/30 mb-3" />
+                <p className="text-sm text-[#5a5347] leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* По соцсетям */}
+      <section className="bg-[#FBF8F3] py-14 reveal">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* По соцсетям */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="section-rule" />
-                <div className="eyebrow text-[#5a5347]">По соцсетям</div>
-              </div>
-              <div className="flex flex-col gap-px bg-[#E8E2D8]">
-                {(['vk', 'telegram', 'ok', 'max', 'tiktok'] as const).map((key) => {
-                  const s = SOCIALS[key];
-                  const count = communities.filter((p) => p.social === key).length;
-                  const paths: Record<string, string> = { vk: '/socials/vk', telegram: '/socials/telegram', ok: '/socials/ok', max: '/socials/max', tiktok: '/socials/tiktok' };
-                  return (
-                    <Link key={key} to={paths[key]}
-                      className="flex items-center gap-4 p-4 bg-[#F2EDE4] hover:bg-[#FBF8F3] transition-colors group">
-                      <span className="text-2xl">{s.emoji}</span>
-                      <span className="font-medium text-sm text-[#0A0A0A] group-hover:text-[#A21D27] transition-colors flex-1">{s.label}</span>
-                      <span className="text-xs text-[#5a5347]">{count} площадок</span>
-                      <Icon name="ArrowRight" size={12} className="text-[#E8E2D8] group-hover:text-[#A21D27] transition-colors" />
-                    </Link>
-                  );
-                })}
-                <Link to="/socials/instagram"
-                  className="flex items-center gap-4 p-4 bg-[#F2EDE4] hover:bg-[#FBF8F3] transition-colors group">
-                  <span className="text-2xl">{SOCIALS.instagram.emoji}</span>
-                  <span className="font-medium text-sm text-[#0A0A0A] group-hover:text-[#A21D27] transition-colors flex-1">Instagram*</span>
-                  <span className="text-xs text-[#5a5347]">Ограничения</span>
-                  <Icon name="ArrowRight" size={12} className="text-[#E8E2D8] group-hover:text-[#A21D27] transition-colors" />
-                </Link>
-              </div>
-            </div>
-            {/* По городам */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="section-rule" />
-                <div className="eyebrow text-[#5a5347]">По городам</div>
-              </div>
-              <div className="flex flex-col gap-px bg-[#E8E2D8]">
-                {[
-                  { name: 'Хабаровск', path: '/cities/khabarovsk', pop: '620 000+' },
-                  { name: 'Владивосток', path: '/cities/vladivostok', pop: '600 000+' },
-                  { name: 'Комсомольск-на-Амуре', path: '/cities/komsomolsk', pop: '240 000+' },
-                ].map((c) => {
-                  const count = communities.filter((p) => p.city === c.name).length;
-                  const socials = [...new Set(communities.filter((p) => p.city === c.name).map((p) => p.social))];
-                  return (
-                    <Link key={c.name} to={c.path}
-                      className="flex items-center gap-4 p-4 bg-[#F2EDE4] hover:bg-[#FBF8F3] transition-colors group">
-                      <div className="flex-1">
-                        <div className="font-medium text-sm text-[#0A0A0A] group-hover:text-[#A21D27] transition-colors mb-1">{c.name}</div>
-                        <div className="flex gap-1">
-                          {socials.map((k) => (
-                            <span key={k} className="text-xs">{SOCIALS[k].emoji}</span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-xs text-[#A21D27] font-display font-bold">{c.pop}</div>
-                        <div className="text-xs text-[#5a5347]">{count} площадок</div>
-                      </div>
-                      <Icon name="ArrowRight" size={12} className="text-[#E8E2D8] group-hover:text-[#A21D27] transition-colors" />
-                    </Link>
-                  );
-                })}
-              </div>
-              <div className="mt-4 p-4 bg-[#FBF8F3] border border-[#E8E2D8]">
-                <div className="text-xs text-[#5a5347] mb-1" style={{ letterSpacing: '0.1em' }}>Политическая реклама</div>
-                <p className="text-sm text-[#0A0A0A]/50">Размещение политической рекламы — по отдельному запросу.</p>
-              </div>
-            </div>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="section-rule" />
+            <div className="eyebrow text-[#5a5347]">По соцсетям</div>
+          </div>
+          <div className="grid gap-px bg-[#E8E2D8] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {BY_SOCIAL.map((s) => {
+              const info = SOCIALS[s.key];
+              return (
+                <div key={s.key} className="bg-[#FBF8F3] p-6 flex flex-col">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-2xl">{info.emoji}</span>
+                    <span className="font-display font-bold text-[#0A0A0A] text-lg">{info.label}</span>
+                  </div>
+                  <div className="text-xs font-medium text-[#A21D27] uppercase mb-3" style={{ letterSpacing: '0.12em' }}>{s.count}</div>
+                  <p className="text-sm text-[#5a5347] leading-relaxed">{s.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Каталог с фильтрами */}
-      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex flex-wrap gap-3 items-center">
-            <div className="relative">
-              <Icon name="Search" size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5a5347]" />
-              <input type="text" placeholder="Поиск..." value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className={`${inputCls} pl-8 min-w-[140px]`} />
+      {/* По городам */}
+      <section className="bg-[#F2EDE4] pattern-milk py-14 reveal">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="section-rule" />
+            <div className="eyebrow text-[#5a5347]">По городам</div>
+          </div>
+          <div className="grid gap-px bg-[#E8E2D8] grid-cols-1 sm:grid-cols-3">
+            {BY_CITY.map((c) => (
+              <div key={c.name} className="bg-[#F2EDE4] p-7 flex flex-col">
+                <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-tight mb-2" style={{ letterSpacing: '-0.01em' }}>{c.name}</h3>
+                <div className="text-sm text-[#5a5347] mb-4">Площадок: <span className="font-display font-bold text-[#A21D27]">{c.count}</span></div>
+                {c.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-auto">
+                    {c.tags.map((t) => (
+                      <span key={t} className="text-[11px] px-2.5 py-1 bg-[#FBF8F3] text-[#5a5347] border border-[#E8E2D8] rounded-full">{t}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Каталог (чёрный, как у блогеров) */}
+      <section className="bg-[#0A0A0A] pattern-dark py-12">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
+            <div className="flex items-center gap-4">
+              <div className="section-rule" />
+              <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
             </div>
-            <select value={city} onChange={(e) => setCity(e.target.value)} className={inputCls}>
-              {CITIES_F.map((c) => <option key={c}>{c}</option>)}
-            </select>
-            <select value={social} onChange={(e) => setSocial(e.target.value)} className={inputCls}>
-              <option>Все соцсети</option>
-              {(['vk', 'telegram', 'ok', 'max', 'tiktok'] as const).map((k) => (
-                <option key={k} value={k}>{SOCIALS[k].label}</option>
+            <div className="flex items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
+              {CITY_FILTERS.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setCity(c)}
+                  className="text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full"
+                  style={{
+                    letterSpacing: '0.12em',
+                    background: city === c ? '#A21D27' : 'transparent',
+                    color: city === c ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
+                  }}
+                >
+                  {c}
+                </button>
               ))}
-            </select>
-            <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputCls}>
-              {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-            </select>
-            {(city !== 'Все города' || social !== 'Все соцсети' || category !== 'Все категории' || search) && (
-              <button onClick={() => { setCity('Все города'); setSocial('Все соцсети'); setCategory('Все категории'); setSearch(''); }}
-                className="flex items-center gap-1 text-xs text-[#5a5347] hover:text-[#A21D27] transition-colors">
-                <Icon name="X" size={12} /> Сбросить
-              </button>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#FBF8F3] py-12 min-h-[40vh]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-6 text-xs text-[#5a5347] uppercase" style={{ letterSpacing: '0.16em' }}>
-            Найдено: {filtered.length} площадок
-          </div>
-          {filtered.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-[#5a5347]">Ничего не найдено. Попробуйте изменить фильтры.</p>
             </div>
+          </div>
+
+          {filtered.length === 0 ? (
+            <div className="text-center py-16 text-[#FBF8F3]/40">Ничего не найдено</div>
           ) : (
-            <div className="flex flex-col gap-px bg-[#E8E2D8]">
-              {filtered.map((p, i) => <PlatformCard key={p.id} platform={p} reversed={i % 2 !== 0} />)}
+            <div className="flex flex-col gap-5">
+              {filtered.map((c) => (
+                <CommunityCard key={c.id} community={c} onClick={() => setSelected(c)} />
+              ))}
             </div>
           )}
+
+          <p className="mt-5 text-[11px] text-[#FBF8F3]/25 leading-relaxed max-w-3xl">
+            *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.
+          </p>
         </div>
       </section>
 
-      <section className="bg-[#0A0A0A] pattern-dark py-16 reveal">
+      {/* Форма */}
+      <section id="form" className="bg-[#0A0A0A] pattern-dark pt-4 pb-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
-          <ContactForm dark title="Подобрать сообщества" subtitle="Составим медиаплан под ваш город, бюджет и задачу" />
+          <ContactForm dark title="Получить медиаплан" subtitle="Составим медиаплан под ваш город, бюджет и задачу" source="Городские сообщества" />
         </div>
       </section>
+
+      {selected && <CommunityModal community={selected} onClose={() => setSelected(null)} />}
     </div>
   );
 }

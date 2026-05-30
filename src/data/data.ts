@@ -854,6 +854,90 @@ export const BLOGGERS: Blogger[] = [
   },
 ];
 
+export interface Community {
+  id: string;
+  name: string;
+  social: SocialNet;
+  city: 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре';
+  category: string;
+  description: string;
+  fullDescription: string;
+  subscribersTotal: string;
+  reachSummary: string[];
+  audience?: string[];
+  socials: BloggerSocialStat[];
+  formats: string[];
+  bestFor: string[];
+  prices: BloggerPriceItem[];
+  priceFromLabel: string;
+  emoji: string;
+  avatar?: string;
+  link?: string;
+}
+
+export const COMMUNITIES: Community[] = [
+  {
+    id: 'community-1',
+    name: 'Сообщество 1',
+    social: 'vk',
+    city: 'Хабаровск',
+    category: '',
+    description: '',
+    fullDescription: '',
+    subscribersTotal: '',
+    reachSummary: [''],
+    audience: [],
+    socials: [
+      { social: 'vk', subscribers: 0, reachLabel: '', link: '' },
+    ],
+    formats: [],
+    bestFor: [],
+    prices: [],
+    priceFromLabel: '',
+    emoji: '🏙️',
+  },
+  {
+    id: 'community-2',
+    name: 'Сообщество 2',
+    social: 'telegram',
+    city: 'Хабаровск',
+    category: '',
+    description: '',
+    fullDescription: '',
+    subscribersTotal: '',
+    reachSummary: [''],
+    audience: [],
+    socials: [
+      { social: 'telegram', subscribers: 0, reachLabel: '', link: '' },
+    ],
+    formats: [],
+    bestFor: [],
+    prices: [],
+    priceFromLabel: '',
+    emoji: '📰',
+  },
+  {
+    id: 'community-3',
+    name: 'Сообщество 3',
+    social: 'ok',
+    city: 'Владивосток',
+    category: '',
+    description: '',
+    fullDescription: '',
+    subscribersTotal: '',
+    reachSummary: [''],
+    audience: [],
+    socials: [
+      { social: 'ok', subscribers: 0, reachLabel: '', link: '' },
+    ],
+    formats: [],
+    bestFor: [],
+    prices: [],
+    priceFromLabel: '',
+    emoji: '🏘️',
+  },
+];
+
 const CDN = 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/merch';
 
 export const MERCH_ITEMS: MerchItem[] = [
