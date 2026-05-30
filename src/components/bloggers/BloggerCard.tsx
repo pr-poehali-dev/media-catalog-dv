@@ -76,8 +76,8 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           </div>
           <p className="text-[13px] text-white/50 leading-relaxed">{blogger.description}</p>
           <SocialLabels socials={blogger.socials} />
-          <div className="flex gap-6">
-            <div>
+          <div className="flex" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', overflow: 'hidden' }}>
+            <div className="flex-1 px-4 py-3">
               <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Подписчиков</div>
               <div
                 className="font-display font-black leading-none"
@@ -86,7 +86,7 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
                 {blogger.subscribersTotal}
               </div>
             </div>
-            <div>
+            <div className="flex-1 px-4 py-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
               <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Сред. охват публикаций</div>
               <div
                 className="font-display font-black leading-none"
