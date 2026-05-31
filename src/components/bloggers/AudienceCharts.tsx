@@ -94,6 +94,13 @@ export default function AudienceCharts({ data }: { data: BloggerAudience }) {
           </div>
         </div>
       )}
+
+      {data.core && (
+        <div className="mt-6 pt-6 border-t border-[#E8E2D8]">
+          <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-2" style={{ letterSpacing: '0.14em' }}>Ядро аудитории</div>
+          <div className="text-sm text-[#0A0A0A] leading-relaxed">{data.core}</div>
+        </div>
+      )}
     </div>
   );
 }

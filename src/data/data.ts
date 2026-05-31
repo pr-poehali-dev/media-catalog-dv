@@ -53,6 +53,7 @@ export interface BloggerAudience {
   gender?: AudienceStat[];
   age?: AudienceStat[];
   cities?: AudienceStat[];
+  core?: string;
 }
 
 export interface Blogger {
@@ -843,27 +844,46 @@ export const BLOGGERS: Blogger[] = [
     subscribersTotal: '137,2 тыс.',
     reachSummary: ['56,2 тыс.'],
     engagementSummary: ['до 1 427 действий на пост в Instagram*'],
-    audience: [],
+    audienceCharts: {
+      gender: [
+        { label: 'Женщины', value: 54.9 },
+        { label: 'Мужчины', value: 45.1 },
+      ],
+      age: [
+        { label: '13–17', value: 0.2 },
+        { label: '18–24', value: 6.0 },
+        { label: '25–34', value: 33.9 },
+        { label: '35–44', value: 35.7 },
+        { label: '45–54', value: 15.3 },
+        { label: '55–64', value: 5.9 },
+        { label: '65+', value: 3.0 },
+      ],
+      cities: [
+        { label: 'Хабаровск', value: 34.2 },
+        { label: 'Москва', value: 3.1 },
+        { label: 'Владивосток', value: 3.0 },
+        { label: 'Комсомольск-на-Амуре', value: 1.8 },
+        { label: 'Санкт-Петербург', value: 1.7 },
+      ],
+      core: 'Основная аудитория проекта — жители Хабаровска 25–44 лет. Пол распределён почти равномерно: 54,9% женщины и 45,1% мужчины.',
+    },
     socials: [
-      { social: 'instagram', subscribers: 121814, reachLabel: '46 509 на пост', engagementLabel: '1 427 на пост · ER 3,1%', link: 'https://www.instagram.com/dal__hab?igsh=M2l5bGs2Z3pyZnRw&utm_source=qr' },
-      { social: 'telegram', subscribers: 12675, reachLabel: '989 на пост', engagementLabel: '10 на пост · ER 1,0%', link: 'https://t.me/dalha_b' },
-      { social: 'max', subscribers: 2737, reachLabel: '9 709 на пост', engagementLabel: '20 на пост · ER 0,2%', link: 'https://max.ru/dalha_b' },
+      { social: 'instagram', subscribers: 122000, reachLabel: '18,5 тыс.', engagementLabel: '3,1%', link: 'https://www.instagram.com/dal__hab?igsh=M2l5bGs2Z3pyZnRw&utm_source=qr' },
+      { social: 'max', subscribers: 2700, reachLabel: '9,7 тыс.', engagementLabel: '0,2%', link: 'https://max.ru/dalha_b' },
+      { social: 'telegram', subscribers: 13000, reachLabel: '1 тыс.', engagementLabel: '1,0%', link: 'https://t.me/dalha_b' },
     ],
     formats: ['Обзор в Reels', 'Репортаж в сторис', 'Новости в ленту и сторис', 'Посты в TG и MAX'],
-    formatsByPlatform: [
-      { platform: 'Instagram*', formats: 'Reels, фотопосты, карусели, сторис, видео' },
-      { platform: 'Telegram', formats: 'новости, посты, текстовые публикации' },
-      { platform: 'MAX', formats: 'новости, посты, текстовые публикации' },
-    ],
     bestPerforming: ['Мероприятия', 'Недвижимость', 'Крупные акции города', 'Магазины одежды'],
     bestFor: ['Мероприятиям', 'Застройщикам', 'Городским акциям', 'Семейным магазинам'],
     prices: [
-      { label: 'Reels', price: '10 000 ₽' },
-      { label: 'Новость в ленту', price: '3 500 ₽' },
-      { label: 'Новость в сторис', price: '1 000 ₽' },
-      { label: 'Новость в ленту + сторис', price: '4 250 ₽' },
+      { label: 'Обзор в Reels*', price: '10 000 ₽' },
+      { label: 'Новость', price: '', sub: [
+        { label: 'в ленту', price: '3 500 ₽' },
+        { label: 'в сторис', price: '1 000 ₽' },
+        { label: 'в ленту + сторис', price: '4 250 ₽' },
+      ] },
     ],
-    priceFromLabel: 'от 1 250 ₽',
+    priceFromLabel: 'от 1 000 ₽',
     emoji: '📰',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/dalvostok.jpg',
   },
