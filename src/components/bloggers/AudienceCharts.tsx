@@ -14,13 +14,13 @@ function fmtPct(v: number) {
   return `${v.toString().replace('.', ',')}%`;
 }
 
-function HBars({ data }: { data: { label: string; value: number }[] }) {
+function HBars({ data, labelWidth = 50 }: { data: { label: string; value: number }[]; labelWidth?: number }) {
   const max = Math.max(...data.map((d) => d.value), 1);
   return (
     <div className="flex flex-col gap-2.5">
       {data.map((d) => (
         <div key={d.label} className="flex items-center gap-3">
-          <div className="w-[150px] flex-shrink-0 text-[12px] text-[#0A0A0A] truncate">{d.label}</div>
+          <div className="flex-shrink-0 text-[12px] text-[#0A0A0A] truncate" style={{ width: labelWidth }}>{d.label}</div>
           <div className="flex-1 h-3 rounded-full overflow-hidden" style={{ background: MUTED }}>
             <div
               className="h-full rounded-full"
@@ -40,27 +40,27 @@ export default function AudienceCharts({ data }: { data: BloggerAudience }) {
   const hasGender = data.gender && data.gender.length > 0;
 
   return (
-    <div className="flex flex-col gap-7">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+    <div className="border border-[#E8E2D8] bg-[#FBF8F3] p-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
         {hasAge && (
-          <div className="border border-[#E8E2D8] bg-[#FBF8F3] p-5">
+          <div>
             <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-4" style={{ letterSpacing: '0.14em' }}>Возраст</div>
-            <HBars data={data.age!} />
+            <HBars data={data.age!} labelWidth={50} />
           </div>
         )}
         {hasCities && (
-          <div className="border border-[#E8E2D8] bg-[#FBF8F3] p-5">
+          <div>
             <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-4" style={{ letterSpacing: '0.14em' }}>Города</div>
-            <HBars data={data.cities!} />
+            <HBars data={data.cities!} labelWidth={120} />
           </div>
         )}
       </div>
 
       {hasGender && (
-        <div className="flex justify-center">
-          <div className="border border-[#E8E2D8] bg-[#FBF8F3] p-5 w-full max-w-sm">
-            <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-2 text-center" style={{ letterSpacing: '0.14em' }}>Пол аудитории</div>
-            <div className="flex items-center gap-4">
+        <div className="mt-6 pt-6 border-t border-[#E8E2D8] flex justify-center">
+          <div className="w-full max-w-sm">
+            <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-1 text-center" style={{ letterSpacing: '0.14em' }}>Пол аудитории</div>
+            <div className="flex items-center justify-center gap-4">
               <div style={{ width: 130, height: 130 }} className="flex-shrink-0">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>

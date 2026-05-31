@@ -669,10 +669,10 @@ export const BLOGGERS: Blogger[] = [
       ],
     },
     socials: [
-      { social: 'instagram', subscribers: 47000, reachLabel: '21,98 млн', viewsLabel: '21,98 млн', reachOnlyLabel: '7,97 млн', engagementLabel: '871,2 тыс. (10,9%)', link: 'https://www.instagram.com/woman_hbk?igsh=cmk5YXBqZXZ4eGZq&utm_source=qr' },
-      { social: 'telegram', subscribers: 2546, reachLabel: '2,5 тыс.', viewsLabel: '2,5 тыс.', reachOnlyLabel: '—', engagementLabel: '60 (2,4%)', link: 'https://t.me/womanhbk' },
-      { social: 'tiktok', subscribers: 2516, reachLabel: '47 тыс.', viewsLabel: '47 тыс.', reachOnlyLabel: '—', engagementLabel: '3,9 тыс. (8,2%)', link: 'https://www.tiktok.com/@womankhv?_r=1&_t=ZS-96heN3ZVP8S' },
-      { social: 'max', subscribers: 470, reachLabel: '—', viewsLabel: '—', reachOnlyLabel: '—', engagementLabel: '—', link: 'https://max.ru/join/OA58aztk99_o1j871jzoOj-cw6gV1U8XuUN1E76peUk' },
+      { social: 'instagram', subscribers: 47000, reachLabel: '89,5 тыс.', engagementLabel: '10,9%', link: 'https://www.instagram.com/woman_hbk?igsh=cmk5YXBqZXZ4eGZq&utm_source=qr' },
+      { social: 'telegram', subscribers: 2546, reachLabel: '700', engagementLabel: '2,4%', link: 'https://t.me/womanhbk' },
+      { social: 'tiktok', subscribers: 2516, reachLabel: '17,5 тыс.', engagementLabel: '8,2%', link: 'https://www.tiktok.com/@womankhv?_r=1&_t=ZS-96heN3ZVP8S' },
+      { social: 'max', subscribers: 470, reachLabel: '650', engagementLabel: '9,8%', link: 'https://max.ru/join/OA58aztk99_o1j871jzoOj-cw6gV1U8XuUN1E76peUk' },
     ],
     formats: ['Обзор в Reels', 'Фото-отзыв', 'Серия сторис', 'Кружки и посты в TG', 'Новости в ленту и сторис'],
     bestPerforming: ['Сфера питания', 'Караоке', 'Клубы', 'Одежда'],
@@ -684,7 +684,7 @@ export const BLOGGERS: Blogger[] = [
         { label: 'Дубль обзора в MAX', price: '+500 ₽' },
       ] },
       { label: 'Фото-отзыв', price: '8 000 ₽' },
-      { label: 'Сторис', price: '6 000 ₽', sub: [
+      { label: 'Серия сторис', price: '6 000 ₽', sub: [
         { label: 'Выезд для сторис', price: '+2 000 ₽' },
       ] },
       { label: 'Telegram: кружок + пост', price: '3 000 ₽' },

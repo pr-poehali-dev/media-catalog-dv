@@ -58,7 +58,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
             const cols = detailed ? 'sm:grid-cols-[130px_90px_1fr_1fr_1fr]' : 'sm:grid-cols-[140px_110px_1fr_1fr]';
             const headers = detailed
               ? ['Площадка', 'Подписчики', 'Просмотры / 30 дн.', 'Охват', 'Вовлечённость']
-              : ['Площадка', 'Подписчики', 'Охват / просмотры', 'Вовлечённость'];
+              : ['Площадка', 'Подписчики', 'Сред. охват публикации', 'Вовлечённость'];
             return (
               <div>
                 <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
