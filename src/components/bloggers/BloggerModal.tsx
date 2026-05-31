@@ -64,8 +64,8 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                 <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
                 <div className="border border-[#E8E2D8] overflow-hidden bg-[#FBF8F3]">
                   <div className={`hidden sm:grid ${cols} bg-[#F2EDE4] border-b border-[#E8E2D8]`}>
-                    {headers.map((h) => (
-                      <div key={h} className="px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium" style={{ letterSpacing: '0.14em' }}>{h}</div>
+                    {headers.map((h, hi) => (
+                      <div key={h} className={`px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium ${hi === 0 ? '' : 'text-center'}`} style={{ letterSpacing: '0.14em' }}>{h}</div>
                     ))}
                   </div>
                   {blogger.socials.map((s) => {
@@ -78,17 +78,17 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                             : <span className="text-sm font-medium" style={{ color: info.color }}>{info.label}</span>
                           }
                         </div>
-                        <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm">{fmtSubs(s.subscribers)}</div>
+                        <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm flex items-center justify-center text-center">{fmtSubs(s.subscribers)}</div>
                         {detailed ? (
                           <>
-                            <div className="px-4 py-3 text-sm text-[#0A0A0A]">{s.viewsLabel || '—'}</div>
-                            <div className="px-4 py-3 text-sm text-[#0A0A0A]">{s.reachOnlyLabel || '—'}</div>
-                            <div className="px-4 py-3 text-sm text-[#5a5347]">{s.engagementLabel || '—'}</div>
+                            <div className="px-4 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center">{s.viewsLabel || '—'}</div>
+                            <div className="px-4 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center">{s.reachOnlyLabel || '—'}</div>
+                            <div className="px-4 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center">{s.engagementLabel || '—'}</div>
                           </>
                         ) : (
                           <>
-                            <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line">{s.reachLabel}</div>
-                            <div className="px-4 py-3 text-sm text-[#5a5347]">{s.engagementLabel || '—'}</div>
+                            <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line flex items-center justify-center text-center">{s.reachLabel}</div>
+                            <div className="px-4 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center">{s.engagementLabel || '—'}</div>
                           </>
                         )}
                       </div>

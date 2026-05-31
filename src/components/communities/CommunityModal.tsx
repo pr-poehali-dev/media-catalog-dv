@@ -80,8 +80,8 @@ export default function CommunityModal({ community, onClose }: { community: Comm
             <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
             <div className="border border-[#E8E2D8] overflow-hidden">
               <div className="hidden sm:grid grid-cols-[140px_110px_1fr_1fr] bg-[#F2EDE4] border-b border-[#E8E2D8]">
-                {['Площадка', 'Подписчики', 'Охват / просмотры', 'Вовлечённость'].map((h) => (
-                  <div key={h} className="px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium" style={{ letterSpacing: '0.14em' }}>{h}</div>
+                {['Площадка', 'Подписчики', 'Сред. охват публикации', 'Вовлечённость'].map((h, hi) => (
+                  <div key={h} className={`px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium ${hi === 0 ? '' : 'text-center'}`} style={{ letterSpacing: '0.14em' }}>{h}</div>
                 ))}
               </div>
               {community.socials.map((s) => {
@@ -94,9 +94,9 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                         : <span className="text-sm font-medium" style={{ color: info.color }}>{info.label}</span>
                       }
                     </div>
-                    <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm">{s.subscribers ? fmtSubs(s.subscribers) : '—'}</div>
-                    <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line">{s.reachLabel || '—'}</div>
-                    <div className="px-4 py-3 text-sm text-[#5a5347]">{s.engagementLabel || '—'}</div>
+                    <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm flex items-center justify-center text-center">{s.subscribers ? fmtSubs(s.subscribers) : '—'}</div>
+                    <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line flex items-center justify-center text-center">{s.reachLabel || '—'}</div>
+                    <div className="px-4 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center">{s.engagementLabel || '—'}</div>
                   </div>
                 );
               })}
