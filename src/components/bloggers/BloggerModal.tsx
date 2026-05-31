@@ -55,7 +55,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
 
           {(() => {
             const detailed = blogger.socials.some((s) => s.viewsLabel !== undefined);
-            const cols = detailed ? 'sm:grid-cols-[130px_90px_1fr_1fr_1fr]' : 'sm:grid-cols-[140px_110px_1fr_1fr]';
+            const cols = detailed ? 'sm:grid-cols-[120px_100px_1fr_1fr_1fr]' : 'sm:grid-cols-[120px_1fr_1.4fr_1fr]';
             const headers = detailed
               ? ['Площадка', 'Подписчики', 'Просмотры / 30 дн.', 'Охват', 'Вовлечённость']
               : ['Площадка', 'Подписчики', 'Сред. охват публикации', 'Вовлечённость'];
@@ -68,30 +68,30 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                 <div className="border border-[#E8E2D8] overflow-hidden bg-[#FBF8F3]">
                   <div className={`hidden sm:grid ${cols} bg-[#F2EDE4] border-b border-[#E8E2D8]`}>
                     {headers.map((h, hi) => (
-                      <div key={h} className={`px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium ${hi === 0 ? '' : 'text-center'}`} style={{ letterSpacing: '0.14em' }}>{h}</div>
+                      <div key={h} className={`px-3 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium ${hi === 0 ? '' : 'text-center'}`} style={{ letterSpacing: '0.14em' }}>{h}</div>
                     ))}
                   </div>
                   {sortedSocials.map((s) => {
                     const info = SOCIALS[s.social];
                     return (
                       <div key={s.social} className={`grid grid-cols-1 ${cols} border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors`}>
-                        <div className="px-4 py-3 flex items-center">
+                        <div className="px-3 py-3 flex items-center">
                           {s.link
                             ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline" style={{ color: info.color }}>{info.label}</a>
                             : <span className="text-sm font-medium" style={{ color: info.color }}>{info.label}</span>
                           }
                         </div>
-                        <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm flex items-center justify-center text-center">{fmtSubs(s.subscribers)}</div>
+                        <div className="px-3 py-3 font-display font-bold text-[#0A0A0A] text-sm flex items-center justify-center text-center whitespace-nowrap">{fmtSubs(s.subscribers)}</div>
                         {detailed ? (
                           <>
-                            <div className="px-4 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center">{s.viewsLabel || '—'}</div>
-                            <div className="px-4 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center">{s.reachOnlyLabel || '—'}</div>
-                            <div className="px-4 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center">{s.engagementLabel || '—'}</div>
+                            <div className="px-3 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center whitespace-nowrap">{s.viewsLabel || '—'}</div>
+                            <div className="px-3 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center whitespace-nowrap">{s.reachOnlyLabel || '—'}</div>
+                            <div className="px-3 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center whitespace-nowrap">{s.engagementLabel || '—'}</div>
                           </>
                         ) : (
                           <>
-                            <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line flex items-center justify-center text-center">{s.reachLabel}</div>
-                            <div className="px-4 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center">{s.engagementLabel || '—'}</div>
+                            <div className="px-3 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center whitespace-nowrap">{s.reachLabel}</div>
+                            <div className="px-3 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center whitespace-nowrap">{s.engagementLabel || '—'}</div>
                           </>
                         )}
                       </div>
