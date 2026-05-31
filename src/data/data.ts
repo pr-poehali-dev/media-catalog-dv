@@ -1,3 +1,14 @@
+export function parseReach(label?: string): number {
+  if (!label) return -1;
+  const m = label.replace(/\u00a0/g, ' ').match(/[\d\s.,]+/);
+  if (!m) return -1;
+  const num = parseFloat(m[0].replace(/\s/g, '').replace(',', '.'));
+  if (isNaN(num)) return -1;
+  if (/млн/i.test(label)) return num * 1_000_000;
+  if (/тыс/i.test(label)) return num * 1_000;
+  return num;
+}
+
 export type SocialNet = 'vk' | 'telegram' | 'ok' | 'max' | 'tiktok' | 'instagram' | 'youtube';
 export type City = 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре' | 'Дальний Восток';
 export type Format = 'Пост' | 'Пост + Сторис' | 'Видео' | 'Нативная публикация' | 'Обзор у блогера' | 'Подборка' | 'Спецпроект' | 'Пакет';
@@ -736,9 +747,9 @@ export const BLOGGERS: Blogger[] = [
       ],
     },
     socials: [
-      { social: 'instagram', subscribers: 64800, reachLabel: '32 742 на пост', engagementLabel: '14,5%', link: 'https://www.instagram.com/myday.27?igsh=NHZnMTYxcmpzcXI3' },
-      { social: 'tiktok', subscribers: 13200, reachLabel: '16 500 на пост', engagementLabel: '6,1%', link: 'https://www.tiktok.com/@myday.khv?_r=1&_t=ZN-96hLqHUhHWg' },
-      { social: 'vk', subscribers: 53300, reachLabel: '1 440 на пост', engagementLabel: '1,6%', link: 'https://vk.ru/my_day27' },
+      { social: 'instagram', subscribers: 64800, reachLabel: '32,7 тыс.', engagementLabel: '14,5%', link: 'https://www.instagram.com/myday.27?igsh=NHZnMTYxcmpzcXI3' },
+      { social: 'tiktok', subscribers: 13200, reachLabel: '16,5 тыс.', engagementLabel: '6,1%', link: 'https://www.tiktok.com/@myday.khv?_r=1&_t=ZN-96hLqHUhHWg' },
+      { social: 'vk', subscribers: 53300, reachLabel: '1,4 тыс.', engagementLabel: '1,6%', link: 'https://vk.ru/my_day27' },
     ],
     formats: ['Обзор в Reels', 'Стриттоки', 'Репортаж в сторис', 'Новости в ленту и сторис'],
     bestPerforming: ['Кафе', 'Активный отдых', 'Автоиндустрия', 'Развлечения'],

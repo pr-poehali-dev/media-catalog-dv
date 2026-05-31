@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Blogger, SOCIALS } from '@/data/data';
+import { Blogger, SOCIALS, parseReach } from '@/data/data';
 import { AvatarSimple } from './BloggerAvatar';
 import AudienceCharts from './AudienceCharts';
 import Icon from '@/components/ui/icon';
@@ -59,6 +59,9 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
             const headers = detailed
               ? ['Площадка', 'Подписчики', 'Просмотры / 30 дн.', 'Охват', 'Вовлечённость']
               : ['Площадка', 'Подписчики', 'Сред. охват публикации', 'Вовлечённость'];
+            const sortedSocials = [...blogger.socials].sort(
+              (a, b) => parseReach(detailed ? b.viewsLabel : b.reachLabel) - parseReach(detailed ? a.viewsLabel : a.reachLabel)
+            );
             return (
               <div>
                 <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
@@ -68,7 +71,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                       <div key={h} className={`px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium ${hi === 0 ? '' : 'text-center'}`} style={{ letterSpacing: '0.14em' }}>{h}</div>
                     ))}
                   </div>
-                  {blogger.socials.map((s) => {
+                  {sortedSocials.map((s) => {
                     const info = SOCIALS[s.social];
                     return (
                       <div key={s.social} className={`grid grid-cols-1 ${cols} border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors`}>

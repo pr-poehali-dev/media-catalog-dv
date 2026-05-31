@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Community, SOCIALS } from '@/data/data';
+import { Community, SOCIALS, parseReach } from '@/data/data';
 import { SOCIAL_ICONS, SOCIAL_ICON_COLORS } from '@/components/bloggers/BloggerAvatar';
 import Icon from '@/components/ui/icon';
 
@@ -84,7 +84,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                   <div key={h} className={`px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium ${hi === 0 ? '' : 'text-center'}`} style={{ letterSpacing: '0.14em' }}>{h}</div>
                 ))}
               </div>
-              {community.socials.map((s) => {
+              {[...community.socials].sort((a, b) => parseReach(b.reachLabel) - parseReach(a.reachLabel)).map((s) => {
                 const info = SOCIALS[s.social];
                 return (
                   <div key={s.social} className="grid grid-cols-1 sm:grid-cols-[140px_110px_1fr_1fr] border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors">
