@@ -679,6 +679,7 @@ export const BLOGGERS: Blogger[] = [
         { label: 'Комсомольск-на-Амуре', value: 2.3 },
         { label: 'Санкт-Петербург', value: 1.9 },
       ],
+      core: 'Основная аудитория проекта — женщины Хабаровска 25–44 лет. Аудитория преимущественно женская: 85,5% женщины и 14,5% мужчины.',
     },
     socials: [
       { social: 'instagram', subscribers: 47000, reachLabel: '89,5 тыс.', engagementLabel: '10,9%', link: 'https://www.instagram.com/woman_hbk?igsh=cmk5YXBqZXZ4eGZq&utm_source=qr' },
@@ -746,6 +747,7 @@ export const BLOGGERS: Blogger[] = [
         { label: 'Комсомольск-на-Амуре', value: 2.9 },
         { label: 'Санкт-Петербург', value: 1.8 },
       ],
+      core: 'Основная аудитория проекта — жители Хабаровска 25–44 лет. Преобладают женщины: 63,1% женщины и 36,9% мужчины.',
     },
     socials: [
       { social: 'instagram', subscribers: 64800, reachLabel: '32,7 тыс.', engagementLabel: '14,5%', link: 'https://www.instagram.com/myday.27?igsh=NHZnMTYxcmpzcXI3' },
@@ -810,6 +812,7 @@ export const BLOGGERS: Blogger[] = [
         { label: 'Владивосток', value: 9.8 },
         { label: 'Чита', value: 6.3 },
       ],
+      core: 'Основная аудитория проекта — жители Хабаровска 25–44 лет. Преобладают женщины: 70,2% женщины и 29,8% мужчины.',
     },
     socials: [
       { social: 'instagram', subscribers: 64000, reachLabel: '47,7 тыс.', engagementLabel: '31%', link: 'https://www.instagram.com/khab_life_?igsh=MWMwYjhlNG5qeDBjbA%3D%3D&utm_source=qr' },
