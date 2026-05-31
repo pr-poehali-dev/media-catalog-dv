@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Blogger, SOCIALS, parseReach } from '@/data/data';
 import { AvatarSimple } from './BloggerAvatar';
 import AudienceCharts from './AudienceCharts';
 import Icon from '@/components/ui/icon';
+import { downloadBloggerMediakit } from '@/lib/mediakit';
 
 function fmtSubs(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(2).replace('.', ',') + ' млн';
@@ -12,10 +13,21 @@ function fmtSubs(n: number): string {
 }
 
 export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; onClose: () => void }) {
+  const [loadingPdf, setLoadingPdf] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };
   }, []);
+
+  const handleMediakit = async () => {
+    setLoadingPdf(true);
+    try {
+      await downloadBloggerMediakit(blogger);
+    } finally {
+      setLoadingPdf(false);
+    }
+  };
 
   return (
     <div
@@ -180,7 +192,13 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
               <div className="text-[10px] text-[#5a5347] uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
               <div className="font-display font-bold text-[#0A0A0A] text-2xl">{blogger.priceFromLabel}</div>
             </div>
-            <a href="#form" onClick={onClose} className="btn-carmine">Оставить заявку</a>
+            <div className="flex items-center gap-3">
+              <button onClick={handleMediakit} disabled={loadingPdf} className="btn-pink">
+                <Icon name={loadingPdf ? 'Loader' : 'Download'} size={16} className={loadingPdf ? 'animate-spin' : ''} />
+                {loadingPdf ? 'Готовим…' : 'Скачать медиакит'}
+              </button>
+              <a href="#form" onClick={onClose} className="btn-carmine">Оставить заявку</a>
+            </div>
           </div>
         </div>
         </div>

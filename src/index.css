@@ -209,6 +209,37 @@
   transform: translateY(-1px);
 }
 
+.btn-pink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e03a8b;
+  color: #fbf8f3;
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  padding: 0.875rem 2rem;
+  border-radius: 0.25rem;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-pink:hover {
+  background: #c52e76;
+  transform: translateY(-1px);
+}
+
+.btn-pink:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
 .btn-outline {
   display: inline-flex;
   align-items: center;

@@ -4,6 +4,8 @@ import ContactForm from '@/components/ContactForm';
 import BloggerCard from '@/components/bloggers/BloggerCard';
 import BloggerModal from '@/components/bloggers/BloggerModal';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import Icon from '@/components/ui/icon';
+import { downloadCatalogMediakit } from '@/lib/mediakit';
 
 const ADVANTAGES = [
   { num: '01', title: 'Доверие', desc: 'Рекомендация блогера воспринимается как совет друга, а не реклама.' },
@@ -17,6 +19,16 @@ const CITY_FILTERS: Array<'Все города' | 'Хабаровск' | 'Вла
 export default function Bloggers() {
   const [selected, setSelected] = useState<Blogger | null>(null);
   const [city, setCity] = useState<'Все города' | 'Хабаровск' | 'Владивосток'>('Все города');
+  const [loadingPdf, setLoadingPdf] = useState(false);
+
+  const handleCatalogMediakit = async () => {
+    setLoadingPdf(true);
+    try {
+      await downloadCatalogMediakit();
+    } finally {
+      setLoadingPdf(false);
+    }
+  };
 
   const filtered = useMemo(() => {
     if (city === 'Все города') return BLOGGERS;
@@ -51,6 +63,10 @@ export default function Bloggers() {
           </div>
           <div className="flex flex-wrap gap-3">
             <a href="#form" className="btn-carmine">Подобрать блогера</a>
+            <button onClick={handleCatalogMediakit} disabled={loadingPdf} className="btn-pink">
+              <Icon name={loadingPdf ? 'Loader' : 'Download'} size={16} className={loadingPdf ? 'animate-spin' : ''} />
+              {loadingPdf ? 'Готовим…' : 'Скачать медиакит'}
+            </button>
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
           </div>
