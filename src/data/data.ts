@@ -23,11 +23,25 @@ export interface BloggerSocialStat {
   reachLabel: string;
   engagementLabel?: string;
   link?: string;
+  viewsLabel?: string;
+  reachOnlyLabel?: string;
 }
 
 export interface BloggerPriceItem {
   label: string;
   price: string;
+  sub?: { label: string; price: string }[];
+}
+
+export interface AudienceStat {
+  label: string;
+  value: number;
+}
+
+export interface BloggerAudience {
+  gender?: AudienceStat[];
+  age?: AudienceStat[];
+  cities?: AudienceStat[];
 }
 
 export interface Blogger {
@@ -42,6 +56,7 @@ export interface Blogger {
   reachSummary: string[];
   engagementSummary?: string[];
   audience?: string[];
+  audienceCharts?: BloggerAudience;
   socials: BloggerSocialStat[];
   formats: string[];
   formatsByPlatform?: { platform: string; formats: string }[];
@@ -631,24 +646,53 @@ export const BLOGGERS: Blogger[] = [
     fullDescription: 'Проект в формате городского женского журнала. Собирает новости о звёздах, событиях Хабаровска и Дальнего Востока, обзоры мест и бьюти-советы, темы для мам, лайфстайл и повседневную жизнь города.',
     subscribersTotal: '52,5 тыс.',
     reachSummary: ['94,4 тыс.'],
-    audience: ['Хабаровск · Москва · Владивосток', '85% женщины, 15% мужчины', 'Возраст: 18–54'],
+    audienceCharts: {
+      gender: [
+        { label: 'Женщины', value: 85.5 },
+        { label: 'Мужчины', value: 14.5 },
+      ],
+      age: [
+        { label: '13–17', value: 0.3 },
+        { label: '18–24', value: 11.7 },
+        { label: '25–34', value: 38.6 },
+        { label: '35–44', value: 32.6 },
+        { label: '45–54', value: 11.5 },
+        { label: '55–64', value: 3.7 },
+        { label: '65+', value: 1.7 },
+      ],
+      cities: [
+        { label: 'Хабаровск', value: 31.9 },
+        { label: 'Москва', value: 3.6 },
+        { label: 'Владивосток', value: 3.1 },
+        { label: 'Комсомольск-на-Амуре', value: 2.3 },
+        { label: 'Санкт-Петербург', value: 1.9 },
+      ],
+    },
     socials: [
-      { social: 'instagram', subscribers: 47000, reachLabel: '21,98 млн просмотров / 30 дн.\n7,97 млн охваченных аккаунтов', link: 'https://www.instagram.com/woman_hbk?igsh=cmk5YXBqZXZ4eGZq&utm_source=qr' },
-      { social: 'telegram', subscribers: 2546, reachLabel: '636 просмотров постов / нед.', engagementLabel: '13 реакций, 2 пересылки', link: 'https://t.me/womanhbk' },
-      { social: 'tiktok', subscribers: 2516, reachLabel: '33 000 просмотров / 7 дн.', engagementLabel: '2 297 лайков, 16 комм., 319 репостов', link: 'https://www.tiktok.com/@womankhv?_r=1&_t=ZS-96heN3ZVP8S' },
-      { social: 'max', subscribers: 470, reachLabel: 'не используется для рекламы', link: 'https://max.ru/join/OA58aztk99_o1j871jzoOj-cw6gV1U8XuUN1E76peUk' },
+      { social: 'instagram', subscribers: 47000, reachLabel: '21,98 млн', viewsLabel: '21,98 млн', reachOnlyLabel: '7,97 млн', engagementLabel: '871,2 тыс. (10,9%)', link: 'https://www.instagram.com/woman_hbk?igsh=cmk5YXBqZXZ4eGZq&utm_source=qr' },
+      { social: 'telegram', subscribers: 2546, reachLabel: '2,5 тыс.', viewsLabel: '2,5 тыс.', reachOnlyLabel: '—', engagementLabel: '60 (2,4%)', link: 'https://t.me/womanhbk' },
+      { social: 'tiktok', subscribers: 2516, reachLabel: '47 тыс.', viewsLabel: '47 тыс.', reachOnlyLabel: '—', engagementLabel: '3,9 тыс. (8,2%)', link: 'https://www.tiktok.com/@womankhv?_r=1&_t=ZS-96heN3ZVP8S' },
+      { social: 'max', subscribers: 470, reachLabel: '—', viewsLabel: '—', reachOnlyLabel: '—', engagementLabel: '—', link: 'https://max.ru/join/OA58aztk99_o1j871jzoOj-cw6gV1U8XuUN1E76peUk' },
     ],
     formats: ['Обзор в Reels', 'Фото-отзыв', 'Серия сторис', 'Кружки и посты в TG', 'Новости в ленту и сторис'],
     bestPerforming: ['Сфера питания', 'Караоке', 'Клубы', 'Одежда'],
     bestFor: ['Ресторанам и кафе', 'Караоке и клубам', 'Одежде', 'Beauty', 'Мамским/семейным проектам', 'Сфере услуг'],
     prices: [
-      { label: 'Обзор в Instagram*', price: '15 000 ₽' },
-      { label: 'Пост-отзыв', price: '8 000 ₽' },
-      { label: 'Сторис', price: '6 000 ₽' },
-      { label: 'Выезд для сторис', price: '+2 000 ₽' },
-      { label: 'Telegram: кружок + пост', price: '2 500 ₽' },
-      { label: 'Дубль обзора в TikTok', price: '+1 500 ₽ к обзору' },
-      { label: 'MAX', price: 'рекламы нет' },
+      { label: 'Обзор в Reels*', price: '15 000 ₽', sub: [
+        { label: 'Дубль обзора в TikTok', price: '+1 500 ₽' },
+        { label: 'Дубль обзора в Telegram', price: '+1 500 ₽' },
+        { label: 'Дубль обзора в MAX', price: '+500 ₽' },
+      ] },
+      { label: 'Фото-отзыв', price: '8 000 ₽' },
+      { label: 'Сторис', price: '6 000 ₽', sub: [
+        { label: 'Выезд для сторис', price: '+2 000 ₽' },
+      ] },
+      { label: 'Telegram: кружок + пост', price: '3 000 ₽' },
+      { label: 'Новость', price: '', sub: [
+        { label: 'в ленту', price: '5 000 ₽' },
+        { label: 'в сторис', price: '2 000 ₽' },
+        { label: 'в ленту + сторис', price: '6 500 ₽' },
+      ] },
     ],
     priceFromLabel: 'от 3 000 ₽',
     emoji: '👩‍💼',

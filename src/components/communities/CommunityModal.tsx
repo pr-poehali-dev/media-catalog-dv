@@ -65,7 +65,8 @@ export default function CommunityModal({ community, onClose }: { community: Comm
           </div>
         </div>
 
-        <div className="p-8 flex flex-col gap-8">
+        <div className="bg-[#FBF8F3] pattern-milk">
+        <div className="pattern-content p-8 flex flex-col gap-8">
           {community.audience && community.audience.length > 0 && (
             <div>
               <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Аудитория</div>
@@ -148,6 +149,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
             </div>
             <a href="#form" onClick={onClose} className="btn-carmine">Оставить заявку</a>
           </div>
+        </div>
         </div>
       </div>
     </div>

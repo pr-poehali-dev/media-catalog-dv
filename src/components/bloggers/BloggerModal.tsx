@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Blogger, SOCIALS } from '@/data/data';
 import { AvatarSimple } from './BloggerAvatar';
+import AudienceCharts from './AudienceCharts';
 import Icon from '@/components/ui/icon';
 
 function fmtSubs(n: number): string {
@@ -36,42 +37,67 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
           </div>
         </div>
 
-        <div className="p-8 flex flex-col gap-8">
-          {blogger.audience && blogger.audience.length > 0 && (
+        <div className="bg-[#FBF8F3] pattern-milk">
+        <div className="pattern-content p-8 flex flex-col gap-8">
+          {blogger.audienceCharts ? (
+            <div>
+              <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-4" style={{ letterSpacing: '0.18em' }}>Аудитория</div>
+              <AudienceCharts data={blogger.audienceCharts} />
+            </div>
+          ) : blogger.audience && blogger.audience.length > 0 ? (
             <div>
               <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Аудитория</div>
               <div className="flex flex-col gap-1.5 text-sm text-[#0A0A0A]">
                 {blogger.audience.map((a, i) => <div key={i}>{a}</div>)}
               </div>
             </div>
-          )}
+          ) : null}
 
-          <div>
-            <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
-            <div className="border border-[#E8E2D8] overflow-hidden">
-              <div className="hidden sm:grid grid-cols-[140px_110px_1fr_1fr] bg-[#F2EDE4] border-b border-[#E8E2D8]">
-                {['Площадка', 'Подписчики', 'Охват / просмотры', 'Вовлечённость'].map((h) => (
-                  <div key={h} className="px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium" style={{ letterSpacing: '0.14em' }}>{h}</div>
-                ))}
-              </div>
-              {blogger.socials.map((s) => {
-                const info = SOCIALS[s.social];
-                return (
-                  <div key={s.social} className="grid grid-cols-1 sm:grid-cols-[140px_110px_1fr_1fr] border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors">
-                    <div className="px-4 py-3 flex items-center">
-                      {s.link
-                        ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline" style={{ color: info.color }}>{info.label}</a>
-                        : <span className="text-sm font-medium" style={{ color: info.color }}>{info.label}</span>
-                      }
-                    </div>
-                    <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm">{fmtSubs(s.subscribers)}</div>
-                    <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line">{s.reachLabel}</div>
-                    <div className="px-4 py-3 text-sm text-[#5a5347]">{s.engagementLabel || '—'}</div>
+          {(() => {
+            const detailed = blogger.socials.some((s) => s.viewsLabel !== undefined);
+            const cols = detailed ? 'sm:grid-cols-[130px_90px_1fr_1fr_1fr]' : 'sm:grid-cols-[140px_110px_1fr_1fr]';
+            const headers = detailed
+              ? ['Площадка', 'Подписчики', 'Просмотры / 30 дн.', 'Охват', 'Вовлечённость']
+              : ['Площадка', 'Подписчики', 'Охват / просмотры', 'Вовлечённость'];
+            return (
+              <div>
+                <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
+                <div className="border border-[#E8E2D8] overflow-hidden bg-[#FBF8F3]">
+                  <div className={`hidden sm:grid ${cols} bg-[#F2EDE4] border-b border-[#E8E2D8]`}>
+                    {headers.map((h) => (
+                      <div key={h} className="px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium" style={{ letterSpacing: '0.14em' }}>{h}</div>
+                    ))}
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                  {blogger.socials.map((s) => {
+                    const info = SOCIALS[s.social];
+                    return (
+                      <div key={s.social} className={`grid grid-cols-1 ${cols} border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors`}>
+                        <div className="px-4 py-3 flex items-center">
+                          {s.link
+                            ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline" style={{ color: info.color }}>{info.label}</a>
+                            : <span className="text-sm font-medium" style={{ color: info.color }}>{info.label}</span>
+                          }
+                        </div>
+                        <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm">{fmtSubs(s.subscribers)}</div>
+                        {detailed ? (
+                          <>
+                            <div className="px-4 py-3 text-sm text-[#0A0A0A]">{s.viewsLabel || '—'}</div>
+                            <div className="px-4 py-3 text-sm text-[#0A0A0A]">{s.reachOnlyLabel || '—'}</div>
+                            <div className="px-4 py-3 text-sm text-[#5a5347]">{s.engagementLabel || '—'}</div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line">{s.reachLabel}</div>
+                            <div className="px-4 py-3 text-sm text-[#5a5347]">{s.engagementLabel || '—'}</div>
+                          </>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
 
           <div>
             <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Форматы размещения</div>
@@ -95,30 +121,33 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
           {blogger.prices && blogger.prices.length > 0 && (
             <div>
               <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Стоимость</div>
-              <div className="border border-[#E8E2D8]">
+              <div className="border border-[#E8E2D8] bg-[#FBF8F3]">
                 {blogger.prices.map((p, i) => (
-                  <div key={i} className="grid grid-cols-[1fr_auto] gap-4 px-4 py-2.5 border-b border-[#E8E2D8] last:border-b-0">
-                    <div className="text-sm text-[#0A0A0A]">{p.label}</div>
-                    <div className="font-display font-bold text-[#A21D27] text-sm">{p.price}</div>
+                  <div key={i} className="border-b border-[#E8E2D8] last:border-b-0">
+                    <div className="grid grid-cols-[1fr_auto] gap-4 px-4 py-2.5">
+                      <div className="text-sm font-medium text-[#0A0A0A]">{p.label}</div>
+                      {p.price && <div className="font-display font-bold text-[#A21D27] text-sm">{p.price}</div>}
+                    </div>
+                    {p.sub && p.sub.length > 0 && (
+                      <div className="pb-2">
+                        {p.sub.map((s, j) => (
+                          <div key={j} className="grid grid-cols-[1fr_auto] gap-4 pl-8 pr-4 py-1.5">
+                            <div className="flex items-center gap-2 text-[13px] text-[#5a5347]">
+                              <span className="text-[#A21D27]">—</span>{s.label}
+                            </div>
+                            <div className="font-display font-semibold text-[#A21D27]/80 text-[13px]">{s.price}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {blogger.bestPerforming && blogger.bestPerforming.length > 0 && (
-            <div>
-              <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Что лучше всего заходит</div>
-              <div className="flex flex-wrap gap-2">
-                {blogger.bestPerforming.map((p) => (
-                  <span key={p} className="text-xs px-3 py-1.5 bg-[#0A0A0A] text-[#FBF8F3]/80">{p}</span>
-                ))}
-              </div>
-            </div>
-          )}
-
           <div>
-            <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Особенно подходит</div>
+            <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Подходит</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {blogger.bestFor.map((b) => (
                 <div key={b} className="flex items-center gap-2 text-sm text-[#0A0A0A]">
@@ -132,6 +161,17 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
             )}
           </div>
 
+          {blogger.bestPerforming && blogger.bestPerforming.length > 0 && (
+            <div>
+              <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Лучше всего заходит</div>
+              <div className="flex flex-wrap gap-2">
+                {blogger.bestPerforming.map((p) => (
+                  <span key={p} className="text-xs px-3 py-1.5 bg-[#0A0A0A] text-[#FBF8F3]/80">{p}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="border-t border-[#E8E2D8] pt-6 flex items-center justify-between gap-4">
             <div>
               <div className="text-[10px] text-[#5a5347] uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
@@ -139,6 +179,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
             </div>
             <a href="#form" onClick={onClose} className="btn-carmine">Оставить заявку</a>
           </div>
+        </div>
         </div>
       </div>
     </div>
