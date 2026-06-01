@@ -60,7 +60,7 @@ const PLACEMENT: { key: SocialNet; desc: string; formats: string[] }[] = [
   {
     key: 'instagram',
     desc: 'Нативные форматы по согласованию. Стандартное рекламное размещение в Instagram* для продвижения товаров и услуг на территории РФ не предлагаем. Возможны только информационные и нативные форматы с учётом правовых ограничений.',
-    formats: ['Нативно: новость в ленту, в сторис или в ленту + сторис'],
+    formats: ['Новость в ленту', 'Новость в сторис', 'Новость в ленту + сторис'],
   },
 ];
 
@@ -183,7 +183,7 @@ export default function Communities() {
                   </div>
                   <p className="text-[15px] text-[#5a5347] leading-relaxed mb-7 max-w-xl">{p.desc}</p>
 
-                  <div className="text-[10px] font-medium text-[#A21D27] uppercase mb-4" style={{ letterSpacing: '0.16em' }}>Форматы размещения</div>
+                  <div className="text-[10px] font-medium text-[#A21D27] uppercase mb-4" style={{ letterSpacing: '0.16em' }}>{p.key === 'instagram' ? 'Варианты присутствия' : 'Форматы размещения'}</div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {p.formats.map((f, i) => (
                       <div key={i} className="flex items-start gap-3 bg-[#F7F3EC] border border-[#E8E2D8] rounded-xl px-4 py-3">
