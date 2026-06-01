@@ -14,17 +14,32 @@ const WHY = [
   { num: '05', title: 'Усиление других каналов', desc: 'Городские сообщества хорошо работают вместе с наружной рекламой, блогерами и таргетом: человек видит бренд в нескольких местах и быстрее его запоминает.' },
 ];
 
-const PLACEMENT: { key: SocialNet; formats: string[] }[] = [
-  { key: 'vk', formats: ['Фото или видео-посты в ленту', 'Видео в Клипы', 'Истории'] },
-  { key: 'telegram', formats: ['Фото или видео-посты в ленту'] },
-  { key: 'max', formats: ['Фото или видео-посты в ленту'] },
+const PLACEMENT: { key: SocialNet; desc: string; formats: string[] }[] = [
+  {
+    key: 'vk',
+    desc: 'Крупные городские сообщества для охвата, новостей, акций, мероприятий и локального бизнеса.',
+    formats: ['Фото или видео-посты в ленту', 'Видео в Клипы', 'Истории'],
+  },
+  {
+    key: 'telegram',
+    desc: 'Каналы с вовлечённой аудиторией и быстрым контактом с подписчиками.',
+    formats: ['Фото или видео-посты в ленту'],
+  },
+  {
+    key: 'max',
+    desc: 'Новый канал для дополнительного охвата и тестирования альтернативных площадок.',
+    formats: ['Фото или видео-посты в ленту'],
+  },
   {
     key: 'instagram',
-    formats: [
-      'С 01.09 реклама в Instagram* запрещена. Рассказать о вас там получится только нативно — в виде новости в ленту, в сторис или в ленту + сторис.',
-    ],
+    desc: 'Нативные форматы по согласованию. Стандартное рекламное размещение в Instagram* для продвижения товаров и услуг на территории РФ не предлагаем. Возможны только информационные и нативные форматы с учётом правовых ограничений.',
+    formats: ['Нативно: новость в ленту, в сторис или в ленту + сторис'],
   },
-  { key: 'ok', formats: ['Фото или видео-посты в ленту'] },
+  {
+    key: 'ok',
+    desc: 'Подходит для более взрослой аудитории, локальных новостей, услуг и городских предложений.',
+    formats: ['Фото или видео-посты в ленту'],
+  },
 ];
 
 const SOCIAL_FILTERS: Array<'Все соцсети' | SocialNet> = ['Все соцсети', 'vk', 'telegram', 'max', 'instagram', 'ok'];
@@ -35,7 +50,7 @@ export default function Communities() {
   const [selected, setSelected] = useState<Community | null>(null);
   const [city, setCity] = useState<'Все города' | 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре'>('Все города');
   const [social, setSocial] = useState<'Все соцсети' | SocialNet>('Все соцсети');
-  const [openFaq, setOpenFaq] = useState<SocialNet | null>('vk');
+  const [activeSocial, setActiveSocial] = useState<SocialNet>('vk');
 
   const filtered = useMemo(() => {
     return COMMUNITIES.filter(
@@ -94,48 +109,73 @@ export default function Communities() {
       </section>
 
       {/* Где и как можно разместиться */}
-      <section className="relative bg-[#FBF8F3] pattern-milk py-14 reveal overflow-hidden">
-        <div className="pattern-content max-w-3xl mx-auto px-6">
+      <section className="relative bg-[#FBF8F3] pattern-milk py-16 reveal overflow-hidden">
+        <div className="pattern-content max-w-6xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Где и как можно разместиться</div>
           </div>
-          <div className="border border-[#E8E2D8] bg-[#FBF8F3]">
-            {PLACEMENT.map((p) => {
-              const info = SOCIALS[p.key];
-              const isOpen = openFaq === p.key;
-              return (
-                <div key={p.key} className="border-b border-[#E8E2D8] last:border-b-0">
+
+          <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-5">
+            {/* Левая колонка — выбор соцсети */}
+            <div className="flex flex-col gap-2">
+              {PLACEMENT.map((p) => {
+                const info = SOCIALS[p.key];
+                const isActive = activeSocial === p.key;
+                return (
                   <button
-                    onClick={() => setOpenFaq(isOpen ? null : p.key)}
-                    className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-[#F2EDE4]/50 transition-colors"
+                    key={p.key}
+                    onClick={() => setActiveSocial(p.key)}
+                    className="flex items-center gap-3 px-5 py-4 text-left rounded-xl border transition-all"
+                    style={{
+                      background: isActive ? '#0A0A0A' : '#FFFFFF',
+                      borderColor: isActive ? '#0A0A0A' : '#E8E2D8',
+                      boxShadow: isActive ? '0 6px 24px rgba(10,10,10,0.16)' : 'none',
+                    }}
                   >
-                    <span className="text-xl">{info.emoji}</span>
-                    <span className="flex-1 font-display font-bold text-[#0A0A0A] text-base">{info.label}</span>
+                    <span className="text-2xl">{info.emoji}</span>
+                    <span
+                      className="flex-1 font-display font-bold text-base"
+                      style={{ color: isActive ? '#FBF8F3' : '#0A0A0A' }}
+                    >
+                      {info.label}
+                    </span>
                     <Icon
-                      name="ChevronDown"
-                      size={18}
-                      className="text-[#A21D27] transition-transform duration-200"
-                      style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
+                      name="ArrowRight"
+                      size={16}
+                      style={{ color: isActive ? '#E03A8B' : '#C7BFB2' }}
                     />
                   </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5 pl-[3.25rem]">
-                      <div className="flex flex-col gap-2">
-                        {p.formats.map((f, i) => (
-                          <div key={i} className="flex items-start gap-2.5 text-sm text-[#5a5347] leading-relaxed">
-                            <span className="text-[#A21D27] font-bold flex-shrink-0 mt-0.5">—</span>
-                            <span>{f}</span>
-                          </div>
-                        ))}
+                );
+              })}
+            </div>
+
+            {/* Правая колонка — детали выбранной соцсети */}
+            {PLACEMENT.filter((p) => p.key === activeSocial).map((p) => {
+              const info = SOCIALS[p.key];
+              return (
+                <div key={p.key} className="bg-white border border-[#E8E2D8] rounded-2xl p-8 flex flex-col">
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="text-3xl">{info.emoji}</span>
+                    <h3 className="font-display font-bold text-[#0A0A0A] text-2xl" style={{ letterSpacing: '-0.02em' }}>{info.label}</h3>
+                  </div>
+                  <p className="text-[15px] text-[#5a5347] leading-relaxed mb-7 max-w-xl">{p.desc}</p>
+
+                  <div className="text-[10px] font-medium text-[#A21D27] uppercase mb-4" style={{ letterSpacing: '0.16em' }}>Форматы размещения</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {p.formats.map((f, i) => (
+                      <div key={i} className="flex items-start gap-3 bg-[#F7F3EC] border border-[#E8E2D8] rounded-xl px-4 py-3">
+                        <span className="text-[#A21D27] font-bold flex-shrink-0">✔</span>
+                        <span className="text-sm text-[#0A0A0A] leading-relaxed">{f}</span>
                       </div>
-                    </div>
-                  )}
+                    ))}
+                  </div>
                 </div>
               );
             })}
           </div>
-          <p className="mt-4 text-[11px] text-[#8C8478] leading-relaxed">
+
+          <p className="mt-5 text-[11px] text-[#8C8478] leading-relaxed">
             *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.
           </p>
         </div>
