@@ -5,6 +5,28 @@ import CommunityCard from '@/components/communities/CommunityCard';
 import CommunityModal from '@/components/communities/CommunityModal';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import Icon from '@/components/ui/icon';
+import { SOCIAL_ICONS, SOCIAL_ICON_COLORS } from '@/components/bloggers/BloggerAvatar';
+
+function SocialBadge({ social, size = 'md' }: { social: SocialNet; size?: 'md' | 'lg' }) {
+  const color = SOCIAL_ICON_COLORS[social] ?? '#888';
+  const path = SOCIAL_ICONS[social];
+  const box = size === 'lg' ? 'w-11 h-11' : 'w-9 h-9';
+  const svg = size === 'lg' ? 'w-6 h-6' : 'w-5 h-5';
+  return (
+    <span
+      className={`inline-flex items-center justify-center ${box} rounded-full flex-shrink-0`}
+      style={{ backgroundColor: color }}
+      title={SOCIALS[social].label}
+    >
+      {social === 'max'
+        ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
+        : path
+          ? <svg viewBox="0 0 24 24" className={`${svg} fill-white`}><path d={path} /></svg>
+          : <span className="text-white text-sm font-bold">{SOCIALS[social].label[0]}</span>
+      }
+    </span>
+  );
+}
 
 const WHY = [
   { num: '01', title: 'Локальная аудитория', desc: 'Реклама попадает не в абстрактные показы, а к жителям конкретного города: Хабаровска, Владивостока или Комсомольска-на-Амуре.' },
@@ -133,7 +155,7 @@ export default function Communities() {
                       boxShadow: isActive ? '0 6px 24px rgba(10,10,10,0.16)' : 'none',
                     }}
                   >
-                    <span className="text-2xl">{info.emoji}</span>
+                    <SocialBadge social={p.key} />
                     <span
                       className="flex-1 font-display font-bold text-base"
                       style={{ color: isActive ? '#FBF8F3' : '#0A0A0A' }}
@@ -156,7 +178,7 @@ export default function Communities() {
               return (
                 <div key={p.key} className="bg-white border border-[#E8E2D8] rounded-2xl p-8 flex flex-col">
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="text-3xl">{info.emoji}</span>
+                    <SocialBadge social={p.key} size="lg" />
                     <h3 className="font-display font-bold text-[#0A0A0A] text-2xl" style={{ letterSpacing: '-0.02em' }}>{info.label}</h3>
                   </div>
                   <p className="text-[15px] text-[#5a5347] leading-relaxed mb-7 max-w-xl">{p.desc}</p>
