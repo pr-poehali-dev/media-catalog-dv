@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Community, SOCIALS, parseReach } from '@/data/data';
 import { SOCIAL_ICONS, SOCIAL_ICON_COLORS } from '@/components/bloggers/BloggerAvatar';
+import AudienceCharts from '@/components/bloggers/AudienceCharts';
 import Icon from '@/components/ui/icon';
 
 function fmtSubs(n: number): string {
@@ -56,7 +57,13 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                 <h2 className="font-display font-bold text-[#FBF8F3] text-2xl leading-tight" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
               </div>
               {community.fullDescription && (
-                <p className="text-sm text-[#FBF8F3]/60 leading-relaxed">{community.fullDescription}</p>
+                <p className="text-sm text-[#FBF8F3]/60 leading-relaxed whitespace-pre-line">{community.fullDescription}</p>
+              )}
+              {community.rkn && (
+                <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
+                  Включена Роскомнадзором в перечень персональных страниц:{' '}
+                  <a href={community.rkn} target="_blank" rel="noopener noreferrer" className="text-[#FBF8F3]/70 underline hover:text-[#FBF8F3] break-all">{community.rkn}</a>
+                </p>
               )}
             </div>
             <button onClick={onClose} className="flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors mt-1" aria-label="Закрыть">
@@ -67,14 +74,32 @@ export default function CommunityModal({ community, onClose }: { community: Comm
 
         <div className="bg-[#FBF8F3] pattern-milk">
         <div className="pattern-content p-8 flex flex-col gap-8">
-          {community.audience && community.audience.length > 0 && (
+          {community.audienceCharts ? (
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <div className="text-[10px] font-medium text-[#5a5347] uppercase" style={{ letterSpacing: '0.18em' }}>Аудитория</div>
+                {community.statsLink && (
+                  <a
+                    href={community.statsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[11px] text-[#5a5347] hover:text-[#A21D27] border border-[#E8E2D8] hover:border-[#A21D27] rounded-full px-3 py-1.5 transition-colors"
+                  >
+                    <Icon name="BarChart3" size={13} />
+                    Полная статистика
+                  </a>
+                )}
+              </div>
+              <AudienceCharts data={community.audienceCharts} />
+            </div>
+          ) : community.audience && community.audience.length > 0 ? (
             <div>
               <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Аудитория</div>
               <div className="flex flex-col gap-1.5 text-sm text-[#0A0A0A]">
                 {community.audience.map((a, i) => <div key={i}>{a}</div>)}
               </div>
             </div>
-          )}
+          ) : null}
 
           <div>
             <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
@@ -117,11 +142,25 @@ export default function CommunityModal({ community, onClose }: { community: Comm
           {community.prices && community.prices.length > 0 && (
             <div>
               <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Стоимость</div>
-              <div className="border border-[#E8E2D8]">
+              <div className="border border-[#E8E2D8] bg-[#FBF8F3]">
                 {community.prices.map((p, i) => (
-                  <div key={i} className="grid grid-cols-[1fr_auto] gap-4 px-4 py-2.5 border-b border-[#E8E2D8] last:border-b-0">
-                    <div className="text-sm text-[#0A0A0A]">{p.label}</div>
-                    <div className="font-display font-bold text-[#A21D27] text-sm">{p.price}</div>
+                  <div key={i} className="border-b border-[#E8E2D8] last:border-b-0">
+                    <div className="grid grid-cols-[1fr_auto] gap-4 px-4 py-2.5">
+                      <div className="text-sm font-medium text-[#0A0A0A]">{p.label}</div>
+                      {p.price && <div className="font-display font-bold text-[#A21D27] text-sm">{p.price}</div>}
+                    </div>
+                    {p.sub && p.sub.length > 0 && (
+                      <div className="pb-2">
+                        {p.sub.map((s, j) => (
+                          <div key={j} className="grid grid-cols-[1fr_auto] gap-4 pl-8 pr-4 py-1.5">
+                            <div className="flex items-center gap-2 text-[13px] text-[#5a5347]">
+                              <span className="text-[#A21D27]">—</span>{s.label}
+                            </div>
+                            <div className="font-display font-semibold text-[#A21D27]/80 text-[13px]">{s.price}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
