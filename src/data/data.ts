@@ -1021,14 +1021,23 @@ export interface Community {
   rkn?: string;
 }
 
-function vkPrices(post: number, story: number, both: number, polPost: number, polBoth: number): BloggerPriceItem[] {
+function vkPrices(
+  post: number,
+  story: number,
+  both: number,
+  polPost: number,
+  polBoth: number,
+  opts?: { pin?: number; hideStory?: boolean },
+): BloggerPriceItem[] {
   const f = (n: number) => n.toLocaleString('ru-RU') + ' ₽';
-  return [
+  const pin = opts?.pin ?? 1000;
+  const rows: BloggerPriceItem[] = [
     { label: 'Пост в ленту / видео в Клипы', price: f(post) },
-    { label: 'История', price: f(story) },
-    { label: 'Пост + история', price: f(both) },
-    { label: 'Закреп на 3 дня', price: '+ 1 000 ₽' },
   ];
+  if (!opts?.hideStory) rows.push({ label: 'История', price: f(story) });
+  rows.push({ label: 'Пост + история', price: f(both) });
+  rows.push({ label: 'Закреп на 3 дня', price: '+ ' + f(pin) });
+  return rows;
 }
 
 const VK_FORMATS = ['Пост в ленту', 'Видео в Клипы', 'История', 'Пост + история'];
@@ -1217,7 +1226,7 @@ export const COMMUNITIES: Community[] = [
     rkn: 'https://gosuslugi.ru/snet/68243ea8b6e07d125906fa36',
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(2000, 750, 2500, 3000, 4000),
+    prices: vkPrices(2000, 750, 2500, 3000, 4000, { pin: 650 }),
     priceFromLabel: 'от 750 ₽',
     emoji: '🐟',
     link: 'https://vk.ru/hardkorushka_25',
@@ -1263,7 +1272,7 @@ export const COMMUNITIES: Community[] = [
     rkn: 'https://www.gosuslugi.ru/snet/69d501d338020b64928504cb',
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(1000, 650, 1500, 1750, 2500),
+    prices: vkPrices(1000, 650, 1500, 1750, 2500, { pin: 350 }),
     priceFromLabel: 'от 650 ₽',
     emoji: '📰',
     link: 'https://vk.ru/khabtv',
@@ -1309,8 +1318,8 @@ export const COMMUNITIES: Community[] = [
     rkn: 'https://gosuslugi.ru/snet/69fcac34feb751d225d58bac',
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(1000, 350, 1250, 2000, 3000),
-    priceFromLabel: 'от 350 ₽',
+    prices: vkPrices(1000, 350, 1250, 2000, 3000, { pin: 350, hideStory: true }),
+    priceFromLabel: 'от 1 000 ₽',
     emoji: '🗓️',
     link: 'https://vk.ru/my_day27',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/8c8d852a-8404-4667-9787-d7890d03079b.jpg',
@@ -1355,8 +1364,8 @@ export const COMMUNITIES: Community[] = [
     rkn: 'https://gosuslugi.ru/snet/681b6347b6e07d1259dd8649',
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(1000, 350, 1250, 2000, 3000),
-    priceFromLabel: 'от 350 ₽',
+    prices: vkPrices(1000, 350, 1250, 2000, 3000, { pin: 350, hideStory: true }),
+    priceFromLabel: 'от 1 000 ₽',
     emoji: '🏚️',
     link: 'https://vk.ru/club112238560',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/6da5713b-8c03-4071-a06c-65c9660e9e29.jpg',
@@ -1367,18 +1376,45 @@ export const COMMUNITIES: Community[] = [
     social: 'vk',
     city: 'Комсомольск-на-Амуре',
     category: 'Городские новости',
-    description: '',
-    fullDescription: '',
-    subscribersTotal: '',
-    reachSummary: [''],
-    socials: [{ social: 'vk', subscribers: 0, reachLabel: '', link: 'https://vk.ru/citykms' }],
+    description: 'Городские новости, фотофакты с места событий, мысли и истории.',
+    fullDescription: 'Городские новости, фотофакты с места событий, мысли и истории.',
+    subscribersTotal: '20,1 тыс.',
+    reachSummary: ['1 тыс.'],
+    socials: [
+      { social: 'vk', subscribers: 20122, reachLabel: '1 тыс.', engagementLabel: '5,8%', link: 'https://vk.ru/citykms' },
+    ],
+    audienceCharts: {
+      gender: [
+        { label: 'Мужчины', value: 48.3 },
+        { label: 'Женщины', value: 51.7 },
+      ],
+      age: [
+        { label: 'До 18', value: 2 },
+        { label: '18–20', value: 3 },
+        { label: '21–23', value: 4 },
+        { label: '24–26', value: 5 },
+        { label: '27–29', value: 4 },
+        { label: '30–34', value: 11 },
+        { label: '35–44', value: 25 },
+        { label: '45+', value: 46 },
+      ],
+      cities: [
+        { label: 'Хабаровск', value: 25.8 },
+        { label: 'Москва', value: 21.7 },
+        { label: 'Комсомольск-на-Амуре', value: 21.7 },
+        { label: 'Санкт-Петербург', value: 7.6 },
+        { label: 'Владивосток', value: 7.1 },
+      ],
+    },
     statsLink: 'https://vk.com/groups/dashboard/@citykms?sectionId=top_community&subsectionId=stat_board_general',
+    rkn: 'https://gosuslugi.ru/snet/6821b1accc324f13f9ae095d',
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(1000, 250, 1200, 2000, 3000),
-    priceFromLabel: 'от 250 ₽',
+    prices: vkPrices(1000, 250, 1200, 2000, 3000, { pin: 350, hideStory: true }),
+    priceFromLabel: 'от 1 000 ₽',
     emoji: '📝',
     link: 'https://vk.ru/citykms',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/84902f92-b735-4135-b9a2-1ad0b2d9c8f2.jpg',
   },
   {
     id: 'chp-nhk',
@@ -1393,8 +1429,8 @@ export const COMMUNITIES: Community[] = [
     socials: [{ social: 'vk', subscribers: 0, reachLabel: '', link: 'https://vk.ru/chp_nhk' }],
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(750, 350, 1000, 1250, 1750),
-    priceFromLabel: 'от 350 ₽',
+    prices: vkPrices(750, 350, 1000, 1250, 1750, { pin: 250, hideStory: true }),
+    priceFromLabel: 'от 750 ₽',
     emoji: '🚨',
     link: 'https://vk.ru/chp_nhk',
   },
@@ -1412,8 +1448,8 @@ export const COMMUNITIES: Community[] = [
     statsLink: 'https://vk.com/groups/dashboard/@starhab?sectionId=top_community&subsectionId=stat_board_general',
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(750, 350, 1000, 1250, 1750),
-    priceFromLabel: 'от 350 ₽',
+    prices: vkPrices(750, 350, 1000, 1250, 1750, { pin: 250, hideStory: true }),
+    priceFromLabel: 'от 750 ₽',
     emoji: '📣',
     link: 'https://vk.ru/starhab',
   },
