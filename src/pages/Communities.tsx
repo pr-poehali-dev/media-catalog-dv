@@ -263,8 +263,8 @@ export default function Communities() {
       </section>
 
       {/* Форма */}
-      <section id="form" className="bg-[#0A0A0A] pattern-dark pt-4 pb-16 reveal">
-        <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
+      <section id="form" className="bg-[#0A0A0A] pattern-dark pt-4 pb-16">
+        <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl reveal">
           <ContactForm dark title="Получить медиаплан" subtitle="Составим медиаплан под ваш город, бюджет и задачу" source="Городские сообщества" />
         </div>
       </section>

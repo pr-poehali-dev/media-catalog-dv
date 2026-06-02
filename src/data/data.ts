@@ -1040,7 +1040,7 @@ function vkPrices(
   return rows;
 }
 
-const VK_FORMATS = ['Пост в ленту', 'Видео в Клипы', 'История', 'Пост + история'];
+const VK_FORMATS = ['Пост в ленту', 'Видео в Клипы', 'История'];
 
 export const COMMUNITIES: Community[] = [
   {
@@ -1049,7 +1049,7 @@ export const COMMUNITIES: Community[] = [
     social: 'vk',
     city: 'Хабаровск',
     category: 'Новости и происшествия',
-    description: 'Резонансные новости, происшествия и ДТП Хабаровска и края. Агрегатор новостей и площадка для сообщений от подписчиков.',
+    description: 'Резонансные новости, происшествия и ДТП Хабаровска и края.',
     fullDescription: 'Резонансные новости, происшествия и ДТП города Хабаровска и края.\n\nЧП Хабаровск является агрегатором новостей из других источников, а также площадкой для новостей от подписчиков.',
     subscribersTotal: '62,2 тыс.',
     reachSummary: ['6,3 тыс.'],
@@ -1100,7 +1100,7 @@ export const COMMUNITIES: Community[] = [
     social: 'vk',
     city: 'Владивосток',
     category: 'Новости и происшествия',
-    description: 'Резонансные новости, происшествия и ДТП Приморского края. Агрегатор новостей и площадка для сообщений от подписчиков.',
+    description: 'Резонансные новости, происшествия и ДТП Приморского края.',
     fullDescription: 'Резонансные новости, происшествия и ДТП Приморского края.\n\nЧП Приморье является агрегатором новостей из других источников, а также площадкой для новостей от подписчиков.',
     subscribersTotal: '80,3 тыс.',
     reachSummary: ['10,7 тыс.'],
@@ -1443,18 +1443,45 @@ export const COMMUNITIES: Community[] = [
     social: 'vk',
     city: 'Хабаровск',
     category: 'Городские новости',
-    description: '',
-    fullDescription: '',
-    subscribersTotal: '',
-    reachSummary: [''],
-    socials: [{ social: 'vk', subscribers: 0, reachLabel: '', link: 'https://vk.ru/starhab' }],
+    description: 'Актуальная лента новостей Хабаровска. Эксклюзивные статьи.',
+    fullDescription: 'Актуальная лента новостей Хабаровска. Эксклюзивные статьи.\n\nВсё в твоей ленте!',
+    subscribersTotal: '34,4 тыс.',
+    reachSummary: ['2 тыс.'],
+    socials: [
+      { social: 'vk', subscribers: 34364, reachLabel: '2 тыс.', engagementLabel: '1,8%', link: 'https://vk.ru/starhab' },
+    ],
+    audienceCharts: {
+      gender: [
+        { label: 'Мужчины', value: 61 },
+        { label: 'Женщины', value: 38.9 },
+      ],
+      age: [
+        { label: 'До 18', value: 1 },
+        { label: '18–20', value: 6 },
+        { label: '21–23', value: 11 },
+        { label: '24–26', value: 12 },
+        { label: '27–29', value: 11 },
+        { label: '30–34', value: 17 },
+        { label: '35–44', value: 24 },
+        { label: '45+', value: 18 },
+      ],
+      cities: [
+        { label: 'Хабаровск', value: 38.7 },
+        { label: 'Москва', value: 18.1 },
+        { label: 'Не указано', value: 15.1 },
+        { label: 'Владивосток', value: 9.6 },
+        { label: 'Иркутск', value: 7 },
+      ],
+    },
     statsLink: 'https://vk.com/groups/dashboard/@starhab?sectionId=top_community&subsectionId=stat_board_general',
+    rkn: 'https://gosuslugi.ru/snet/6823574db6e07d125901a524',
     formats: VK_FORMATS,
     bestFor: [],
     prices: vkPrices(750, 350, 1000, 1250, 1750, { pin: 250, hideStory: true }),
     priceFromLabel: 'от 750 ₽',
     emoji: '📣',
     link: 'https://vk.ru/starhab',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/091f1a53-083c-4c22-8d32-40bfb48402c6.jpg',
   },
 ];
 
