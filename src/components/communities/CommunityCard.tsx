@@ -55,7 +55,7 @@ export default function CommunityCard({ community, onClick }: { community: Commu
       }}
     >
       <div className="flex flex-col md:flex-row">
-        <div className="flex flex-col items-center pt-7 px-7 pb-7 md:w-[230px] flex-shrink-0">
+        <div className="flex flex-col items-center pt-6 px-7 pb-6 md:w-[230px] flex-shrink-0">
           <div onClick={onClick} className="cursor-pointer" role="button" aria-label={`Открыть ${community.name}`}>
             <Avatar community={community} />
           </div>
@@ -64,7 +64,7 @@ export default function CommunityCard({ community, onClick }: { community: Commu
             <div className="font-display font-bold text-white text-xl leading-none">{community.priceFromLabel || '—'}</div>
           </div>
         </div>
-        <div className="flex-1 min-w-0 px-6 pb-7 pt-2 md:pt-7 md:pl-0 md:pr-8 flex flex-col gap-4">
+        <div className="flex-1 min-w-0 px-6 pb-6 pt-2 md:pt-6 md:pl-0 md:pr-8 flex flex-col gap-3">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <div className="flex items-center gap-2 mb-1">
@@ -129,11 +129,7 @@ export default function CommunityCard({ community, onClick }: { community: Commu
               )) : <span className="text-[11px] text-white/25">—</span>}
             </div>
           </div>
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
-              <div className="text-[13px] text-white/40">{community.bestFor.length > 0 ? community.bestFor.slice(0, 4).join(' · ') : '—'}</div>
-            </div>
+          <div className="flex items-end justify-end gap-4">
             <button
               className="btn-carmine flex-shrink-0"
               onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}

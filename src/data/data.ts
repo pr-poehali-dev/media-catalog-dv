@@ -1024,16 +1024,16 @@ export interface Community {
 function vkPrices(post: number, story: number, both: number, polPost: number, polBoth: number): BloggerPriceItem[] {
   const f = (n: number) => n.toLocaleString('ru-RU') + ' ₽';
   return [
-    { label: 'Новость в ленту', price: f(post) },
-    { label: 'Новость в историю', price: f(story) },
-    { label: 'Новость в ленту + историю', price: f(both) },
+    { label: 'Пост в ленту / видео в Клипы', price: f(post) },
+    { label: 'История', price: f(story) },
+    { label: 'Пост + история', price: f(both) },
     { label: 'Информационная реклама в ленту', price: f(polPost) },
     { label: 'Информационная реклама в ленту + историю', price: f(polBoth) },
     { label: 'Закреп на 3 дня', price: '+ 1 000 ₽' },
   ];
 }
 
-const VK_FORMATS = ['Новость в ленту', 'Новость в историю', 'Новость в ленту + историю', 'Закреп'];
+const VK_FORMATS = ['Пост в ленту / видео в Клипы', 'История', 'Пост + история', 'Видео в Клипы'];
 
 export const COMMUNITIES: Community[] = [
   {
@@ -1044,10 +1044,10 @@ export const COMMUNITIES: Community[] = [
     category: 'Новости и происшествия',
     description: 'Резонансные новости, происшествия и ДТП Хабаровска и края. Агрегатор новостей и площадка для сообщений от подписчиков.',
     fullDescription: 'Резонансные новости, происшествия и ДТП города Хабаровска и края.\n\nЧП Хабаровск является агрегатором новостей из других источников, а также площадкой для новостей от подписчиков.',
-    subscribersTotal: '',
-    reachSummary: [''],
+    subscribersTotal: '62,2 тыс.',
+    reachSummary: ['6,3 тыс.'],
     socials: [
-      { social: 'vk', subscribers: 0, reachLabel: '', link: 'https://vk.ru/chp_khv' },
+      { social: 'vk', subscribers: 62200, reachLabel: '6,3 тыс.', engagementLabel: '9,43%', link: 'https://vk.ru/chp_khv' },
     ],
     audienceCharts: {
       gender: [
@@ -1078,12 +1078,12 @@ export const COMMUNITIES: Community[] = [
     bestFor: [],
     prices: [
       {
-        label: 'Новость',
+        label: 'Размещение',
         price: '',
         sub: [
-          { label: 'в ленту', price: '3 000 ₽' },
-          { label: 'в историю', price: '1 500 ₽' },
-          { label: 'в ленту + историю', price: '4 000 ₽' },
+          { label: 'Пост в ленту / видео в Клипы', price: '3 000 ₽' },
+          { label: 'История', price: '1 500 ₽' },
+          { label: 'Пост + история', price: '4 000 ₽' },
         ],
       },
       { label: 'Закреп на 3 дня', price: '+ 1 000 ₽' },
@@ -1092,44 +1092,6 @@ export const COMMUNITIES: Community[] = [
     emoji: '🚨',
     link: 'https://vk.ru/chp_khv',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/5056247f-38fc-4223-9699-c467c6c52803.jpg',
-  },
-  {
-    id: 'zarodynu',
-    name: 'За Родину',
-    social: 'vk',
-    city: 'Хабаровск',
-    category: 'Новости и происшествия',
-    description: '',
-    fullDescription: '',
-    subscribersTotal: '',
-    reachSummary: [''],
-    socials: [{ social: 'vk', subscribers: 0, reachLabel: '', link: 'https://vk.ru/zarodynu' }],
-    statsLink: 'https://vk.com/groups/dashboard/@zarodynu?sectionId=top_community&subsectionId=stat_board_general',
-    formats: VK_FORMATS,
-    bestFor: [],
-    prices: vkPrices(4000, 750, 4500, 6000, 7000),
-    priceFromLabel: 'от 750 ₽',
-    emoji: '🏙️',
-    link: 'https://vk.ru/zarodynu',
-  },
-  {
-    id: 'vedomstvo-dv',
-    name: 'Ведомство Дальний Восток',
-    social: 'vk',
-    city: 'Хабаровск',
-    category: 'Новости и происшествия',
-    description: '',
-    fullDescription: '',
-    subscribersTotal: '',
-    reachSummary: [''],
-    socials: [{ social: 'vk', subscribers: 0, reachLabel: '', link: 'https://vk.ru/vedomstvo_dv' }],
-    statsLink: 'https://vk.com/groups/dashboard/@vedomstvo_dv?sectionId=top_community&subsectionId=stat_board_general',
-    formats: VK_FORMATS,
-    bestFor: [],
-    prices: vkPrices(3000, 500, 3500, 5000, 6000),
-    priceFromLabel: 'от 500 ₽',
-    emoji: '🏛️',
-    link: 'https://vk.ru/vedomstvo_dv',
   },
   {
     id: 'chp-primkray',

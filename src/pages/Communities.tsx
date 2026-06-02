@@ -54,7 +54,7 @@ const PLACEMENT: { key: SocialNet; desc: string; formats: string[] }[] = [
   {
     key: 'vk',
     desc: 'Крупные городские сообщества для охвата новостей об открытиях, акциях и мероприятиях.',
-    formats: ['Фото или видео-посты в ленту', 'Видео в Клипы', 'Истории'],
+    formats: ['Пост в ленту / видео в Клипы', 'История', 'Пост + история', 'Видео в Клипы'],
   },
   {
     key: 'ok',
@@ -117,7 +117,7 @@ export default function Communities() {
             {WHY.map((item) => (
               <div key={item.num} className="bg-[#F2EDE4] flex flex-col p-7">
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-5">{item.num}</div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-lg leading-tight" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-lg leading-tight min-h-[2.75rem] flex items-start" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
                 <div className="mt-3 w-6 border-t border-[#A21D27]/30 mb-3" />
                 <p className="text-sm text-[#5a5347] leading-relaxed">{item.desc}</p>
               </div>
@@ -127,7 +127,7 @@ export default function Communities() {
       </section>
 
       {/* Где и как можно разместиться */}
-      <section className="relative bg-[#FBF8F3] pattern-milk pt-16 pb-7 reveal overflow-hidden">
+      <section className="relative bg-[#FBF8F3] pattern-milk pt-8 pb-7 reveal overflow-hidden">
         <div className="pattern-content max-w-6xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />
