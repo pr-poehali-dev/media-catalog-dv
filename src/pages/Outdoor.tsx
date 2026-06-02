@@ -95,7 +95,7 @@ export default function Outdoor() {
             ].map((item) => (
               <div key={item.num} className="bg-[#FBF8F3] p-7">
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-4">{item.num}</div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-lg mb-2" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-lg mb-2 min-h-[3.25rem] flex items-start" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
                 <p className="text-sm text-[#5a5347] leading-relaxed">{item.desc}</p>
               </div>
             ))}
