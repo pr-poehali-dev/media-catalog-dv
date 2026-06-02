@@ -1,7 +1,8 @@
-import { Blogger, BLOGGERS } from '@/data/data';
+import { Blogger, BLOGGERS, Community } from '@/data/data';
 import { newDoc, PdfBuilder, PAGE, CONTENT_W, COLORS } from './pdfBuilder';
 import { ensureCyrillicFonts } from './pdfFont';
 import { renderBlogger } from './renderBlogger';
+import { renderCommunity } from './renderCommunity';
 
 function fileName(name: string) {
   return (
@@ -20,6 +21,14 @@ export async function downloadBloggerMediakit(blogger: Blogger) {
   const b = new PdfBuilder(doc);
   renderBlogger(b, blogger, true);
   doc.save(`${fileName(blogger.name)}.pdf`);
+}
+
+export async function downloadCommunityMediakit(community: Community) {
+  const doc = newDoc();
+  await ensureCyrillicFonts(doc);
+  const b = new PdfBuilder(doc);
+  renderCommunity(b, community, true);
+  doc.save(`${fileName(community.name)}.pdf`);
 }
 
 function coverAndIntro(b: PdfBuilder) {

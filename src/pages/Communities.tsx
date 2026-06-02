@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { COMMUNITIES, SOCIALS, Community, SocialNet } from '@/data/data';
+import { COMMUNITIES, SOCIALS, Community, SocialNet, parseReach } from '@/data/data';
 import ContactForm from '@/components/ContactForm';
 import CommunityCard from '@/components/communities/CommunityCard';
 import CommunityModal from '@/components/communities/CommunityModal';
@@ -67,19 +67,54 @@ const SOCIAL_FILTERS: Array<'Все соцсети' | SocialNet> = ['Все со
 
 const CITY_FILTERS = ['Все города', 'Хабаровск', 'Владивосток', 'Комсомольск-на-Амуре'] as const;
 
+type SortKey = 'subscribers' | 'reach' | 'price';
+const SORT_OPTIONS: { key: SortKey; label: string }[] = [
+  { key: 'subscribers', label: 'По подписчикам' },
+  { key: 'reach', label: 'По сред. охвату' },
+  { key: 'price', label: 'По стоимости' },
+];
+
+function priceValue(label?: string): number {
+  if (!label) return -1;
+  const digits = label.replace(/[^\d]/g, '');
+  return digits ? parseInt(digits, 10) : -1;
+}
+
+function sortValue(c: Community, key: SortKey): number {
+  if (key === 'subscribers') return parseReach(c.subscribersTotal);
+  if (key === 'reach') return parseReach(c.reachSummary.join(''));
+  return priceValue(c.priceFromLabel);
+}
+
 export default function Communities() {
   const [selected, setSelected] = useState<Community | null>(null);
   const [city, setCity] = useState<'Все города' | 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре'>('Все города');
   const [social, setSocial] = useState<'Все соцсети' | SocialNet>('Все соцсети');
   const [activeSocial, setActiveSocial] = useState<SocialNet>('vk');
+  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortAsc, setSortAsc] = useState(false);
+
+  const handleSort = (key: SortKey) => {
+    if (sortKey === key) {
+      setSortAsc((v) => !v);
+    } else {
+      setSortKey(key);
+      setSortAsc(false);
+    }
+  };
 
   const filtered = useMemo(() => {
-    return COMMUNITIES.filter(
+    const list = COMMUNITIES.filter(
       (c) =>
         (city === 'Все города' || c.city === city) &&
         (social === 'Все соцсети' || c.social === social)
     );
-  }, [city, social]);
+    if (!sortKey) return list;
+    return [...list].sort((a, b) => {
+      const diff = sortValue(a, sortKey) - sortValue(b, sortKey);
+      return sortAsc ? diff : -diff;
+    });
+  }, [city, social, sortKey, sortAsc]);
 
   useScrollReveal();
 
@@ -242,6 +277,26 @@ export default function Communities() {
                     {c}
                   </button>
                 ))}
+              </div>
+              <div className="flex flex-wrap items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
+                {SORT_OPTIONS.map((opt) => {
+                  const active = sortKey === opt.key;
+                  return (
+                    <button
+                      key={opt.key}
+                      onClick={() => handleSort(opt.key)}
+                      className="flex items-center gap-1 text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full"
+                      style={{
+                        letterSpacing: '0.12em',
+                        background: active ? '#A21D27' : 'transparent',
+                        color: active ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
+                      }}
+                    >
+                      {opt.label}
+                      {active && <Icon name={sortAsc ? 'ArrowUp' : 'ArrowDown'} size={13} />}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
