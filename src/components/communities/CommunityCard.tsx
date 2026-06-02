@@ -55,9 +55,13 @@ export default function CommunityCard({ community, onClick }: { community: Commu
       }}
     >
       <div className="flex flex-col md:flex-row">
-        <div className="flex flex-col items-center pt-6 px-7 pb-6 md:w-[230px] flex-shrink-0">
-          <div onClick={onClick} className="cursor-pointer" role="button" aria-label={`Открыть ${community.name}`}>
+        <div className="flex flex-col items-center md:items-start pt-6 px-7 pb-6 md:w-[230px] flex-shrink-0">
+          <div onClick={onClick} className="cursor-pointer self-center" role="button" aria-label={`Открыть ${community.name}`}>
             <Avatar community={community} />
+          </div>
+          <div className="mt-5 md:mt-auto md:pt-5">
+            <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
+            <div className="font-display font-bold text-white text-xl leading-none">{community.priceFromLabel || '—'}</div>
           </div>
         </div>
         <div className="flex-1 min-w-0 px-6 pb-6 pt-2 md:pt-6 md:pl-0 md:pr-8 flex flex-col gap-3">
@@ -107,28 +111,24 @@ export default function CommunityCard({ community, onClick }: { community: Commu
               </div>
             </div>
           </div>
-          <div>
-            <div className="text-[10px] text-white/30 uppercase mb-2" style={{ letterSpacing: '0.14em' }}>Форматы</div>
-            <div className="flex flex-wrap gap-1.5">
-              {community.formats.length > 0 ? community.formats.slice(0, 6).map((f) => (
-                <span
-                  key={f}
-                  className="text-[11px] px-2.5 py-1 text-white/60"
-                  style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: '999px',
-                  }}
-                >
-                  {f}
-                </span>
-              )) : <span className="text-[11px] text-white/25">—</span>}
-            </div>
-          </div>
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
-              <div className="font-display font-bold text-white text-xl leading-none">{community.priceFromLabel || '—'}</div>
+          <div className="mt-auto flex items-end justify-between gap-4">
+            <div className="min-w-0">
+              <div className="text-[10px] text-white/30 uppercase mb-2" style={{ letterSpacing: '0.14em' }}>Форматы</div>
+              <div className="flex flex-wrap gap-1.5">
+                {community.formats.length > 0 ? community.formats.slice(0, 6).map((f) => (
+                  <span
+                    key={f}
+                    className="text-[11px] px-2.5 py-1 text-white/60"
+                    style={{
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: '999px',
+                    }}
+                  >
+                    {f}
+                  </span>
+                )) : <span className="text-[11px] text-white/25">—</span>}
+              </div>
             </div>
             <button
               className="btn-carmine flex-shrink-0"
