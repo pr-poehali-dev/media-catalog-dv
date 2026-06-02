@@ -238,8 +238,8 @@ export default function Communities() {
       {/* Каталог (чёрный, как у блогеров) */}
       <section className="bg-[#0A0A0A] pattern-dark py-12">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
-            <div className="flex flex-col gap-4 pt-2">
+          <div className="flex items-stretch justify-between flex-wrap gap-4 mb-8">
+            <div className="flex flex-col justify-between gap-4 py-1">
               <div className="flex items-center gap-4">
                 <div className="section-rule" />
                 <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
