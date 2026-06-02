@@ -59,10 +59,6 @@ export default function CommunityCard({ community, onClick }: { community: Commu
           <div onClick={onClick} className="cursor-pointer" role="button" aria-label={`Открыть ${community.name}`}>
             <Avatar community={community} />
           </div>
-          <div className="mt-auto pt-4 self-start">
-            <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
-            <div className="font-display font-bold text-white text-xl leading-none">{community.priceFromLabel || '—'}</div>
-          </div>
         </div>
         <div className="flex-1 min-w-0 px-6 pb-6 pt-2 md:pt-6 md:pl-0 md:pr-8 flex flex-col gap-3">
           <div className="flex items-start justify-between gap-3">
@@ -129,7 +125,11 @@ export default function CommunityCard({ community, onClick }: { community: Commu
               )) : <span className="text-[11px] text-white/25">—</span>}
             </div>
           </div>
-          <div className="flex items-end justify-end gap-4">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
+              <div className="font-display font-bold text-white text-xl leading-none">{community.priceFromLabel || '—'}</div>
+            </div>
             <button
               className="btn-carmine flex-shrink-0"
               onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}

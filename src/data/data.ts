@@ -1027,13 +1027,11 @@ function vkPrices(post: number, story: number, both: number, polPost: number, po
     { label: 'Пост в ленту / видео в Клипы', price: f(post) },
     { label: 'История', price: f(story) },
     { label: 'Пост + история', price: f(both) },
-    { label: 'Информационная реклама в ленту', price: f(polPost) },
-    { label: 'Информационная реклама в ленту + историю', price: f(polBoth) },
     { label: 'Закреп на 3 дня', price: '+ 1 000 ₽' },
   ];
 }
 
-const VK_FORMATS = ['Пост в ленту / видео в Клипы', 'История', 'Пост + история', 'Видео в Клипы'];
+const VK_FORMATS = ['Пост в ленту', 'Видео в Клипы', 'История', 'Пост + история'];
 
 export const COMMUNITIES: Community[] = [
   {
@@ -1099,18 +1097,35 @@ export const COMMUNITIES: Community[] = [
     social: 'vk',
     city: 'Владивосток',
     category: 'Новости и происшествия',
-    description: '',
-    fullDescription: '',
-    subscribersTotal: '',
-    reachSummary: [''],
-    socials: [{ social: 'vk', subscribers: 0, reachLabel: '', link: 'https://vk.ru/chp_primkray' }],
+    description: 'Резонансные новости, происшествия и ДТП Приморского края. Агрегатор новостей и площадка для сообщений от подписчиков.',
+    fullDescription: 'Резонансные новости, происшествия и ДТП Приморского края.\n\nЧП Приморье является агрегатором новостей из других источников, а также площадкой для новостей от подписчиков.',
+    subscribersTotal: '80,3 тыс.',
+    reachSummary: ['10,7 тыс.'],
+    socials: [
+      { social: 'vk', subscribers: 80300, reachLabel: '10,7 тыс.', engagementLabel: '4,5%', link: 'https://vk.ru/chp_primkray' },
+    ],
+    audienceCharts: {
+      gender: [
+        { label: 'Мужчины', value: 64.6 },
+        { label: 'Женщины', value: 35.4 },
+      ],
+      cities: [
+        { label: 'Владивосток', value: 38.2 },
+        { label: 'Москва', value: 23.6 },
+        { label: 'Иркутск', value: 13 },
+        { label: 'Хабаровск', value: 7 },
+        { label: 'Кемерово', value: 4.1 },
+      ],
+    },
     statsLink: 'https://vk.com/groups/dashboard/@chp_primkray?sectionId=top_community&subsectionId=stat_board_general',
+    rkn: 'https://gosuslugi.ru/snet/6824232d3c28a406291badb6',
     formats: VK_FORMATS,
     bestFor: [],
     prices: vkPrices(3500, 2000, 5000, 6000, 8500),
     priceFromLabel: 'от 2 000 ₽',
     emoji: '🚨',
     link: 'https://vk.ru/chp_primkray',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/d6de1efd-f037-4b26-bfbb-b1468d395d3f.jpg',
   },
   {
     id: 'knamur',
