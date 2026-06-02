@@ -61,7 +61,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
               )}
               {community.rkn && (
                 <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
-                  Включена Роскомнадзором в перечень персональных страниц:{' '}
+                  Включена Роскомнадзором в перечень персональных страниц:<br />
                   <a href={community.rkn} target="_blank" rel="noopener noreferrer" className="text-[#FBF8F3]/70 underline hover:text-[#FBF8F3] break-all">{community.rkn}</a>
                 </p>
               )}
