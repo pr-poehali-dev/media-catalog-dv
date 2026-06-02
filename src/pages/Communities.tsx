@@ -93,6 +93,7 @@ export default function Communities() {
   const [activeSocial, setActiveSocial] = useState<SocialNet>('vk');
   const [sortKey, setSortKey] = useState<SortKey | null>(null);
   const [sortAsc, setSortAsc] = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -238,9 +239,45 @@ export default function Communities() {
       <section className="bg-[#0A0A0A] pattern-dark py-12">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-start justify-between flex-wrap gap-4 mb-8">
-            <div className="flex items-center gap-4 pt-2">
-              <div className="section-rule" />
-              <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
+            <div className="flex flex-col gap-3 pt-2">
+              <div className="flex items-center gap-4">
+                <div className="section-rule" />
+                <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
+              </div>
+              <div className="relative">
+                <button
+                  onClick={() => setSortOpen((v) => !v)}
+                  className="flex items-center gap-2 text-[11px] font-medium uppercase px-4 py-2 rounded-full bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 text-[#FBF8F3]/60 hover:text-[#FBF8F3] transition-colors"
+                  style={{ letterSpacing: '0.12em' }}
+                >
+                  <Icon name="ArrowUpDown" size={13} />
+                  {sortKey ? SORT_OPTIONS.find((o) => o.key === sortKey)!.label : 'Сортировка'}
+                  {sortKey && <Icon name={sortAsc ? 'ArrowUp' : 'ArrowDown'} size={13} />}
+                  <Icon name={sortOpen ? 'ChevronUp' : 'ChevronDown'} size={13} />
+                </button>
+                {sortOpen && (
+                  <div className="absolute left-0 top-full mt-2 z-20 min-w-[220px] bg-[#161618] border border-[#FBF8F3]/10 rounded-2xl p-1 shadow-2xl">
+                    {SORT_OPTIONS.map((opt) => {
+                      const active = sortKey === opt.key;
+                      return (
+                        <button
+                          key={opt.key}
+                          onClick={() => handleSort(opt.key)}
+                          className="w-full flex items-center justify-between gap-2 text-[11px] font-medium uppercase px-4 py-2.5 rounded-xl transition-colors"
+                          style={{
+                            letterSpacing: '0.12em',
+                            background: active ? '#A21D27' : 'transparent',
+                            color: active ? '#FBF8F3' : 'rgba(251,248,243,0.55)',
+                          }}
+                        >
+                          {opt.label}
+                          {active && <Icon name={sortAsc ? 'ArrowUp' : 'ArrowDown'} size={13} />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="flex flex-col items-stretch sm:items-end gap-2">
               <div className="flex flex-wrap items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
@@ -277,26 +314,6 @@ export default function Communities() {
                     {c}
                   </button>
                 ))}
-              </div>
-              <div className="flex flex-wrap items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
-                {SORT_OPTIONS.map((opt) => {
-                  const active = sortKey === opt.key;
-                  return (
-                    <button
-                      key={opt.key}
-                      onClick={() => handleSort(opt.key)}
-                      className="flex items-center gap-1 text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full"
-                      style={{
-                        letterSpacing: '0.12em',
-                        background: active ? '#A21D27' : 'transparent',
-                        color: active ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
-                      }}
-                    >
-                      {opt.label}
-                      {active && <Icon name={sortAsc ? 'ArrowUp' : 'ArrowDown'} size={13} />}
-                    </button>
-                  );
-                })}
               </div>
             </div>
           </div>
