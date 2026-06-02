@@ -199,7 +199,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
               <div className="font-display font-bold text-[#0A0A0A] text-2xl">{community.priceFromLabel || '—'}</div>
             </div>
             <div className="flex items-center gap-3">
-              <button onClick={handleMediakit} disabled={loadingPdf} className="btn-pink">
+              <button onClick={handleMediakit} disabled={loadingPdf} className="btn-outline-dark">
                 <Icon name={loadingPdf ? 'Loader' : 'Download'} size={16} className={loadingPdf ? 'animate-spin' : ''} />
                 {loadingPdf ? 'Готовим…' : 'Скачать медиакит'}
               </button>

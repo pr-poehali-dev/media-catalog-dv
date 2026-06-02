@@ -288,6 +288,11 @@
   color: #a21d27;
 }
 
+.btn-outline-dark:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
 /* Разделитель секций */
 .section-rule {
   width: 2.5rem;
