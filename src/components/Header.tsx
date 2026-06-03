@@ -32,40 +32,40 @@ export default function Header() {
               <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>М2.7</span>
             </div>
             <div className="hidden sm:block">
-              <div className={`font-display font-bold text-sm tracking-tight leading-none transition-colors duration-300 ${dark ? 'text-[#FBF8F3]' : 'text-[#0A0A0A]'}`}>Медиа 2.7</div>
-              <div className={`text-[9px] uppercase leading-tight mt-0.5 transition-colors duration-300 ${dark ? 'text-[#FBF8F3]/50' : 'text-[#5a5347]'}`} style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
+              <div className={`font-display font-bold text-sm tracking-tight leading-none transition-colors duration-300 ${dark ? 'text-white' : 'text-[#0A0A0A]'}`}>Медиа 2.7</div>
+              <div className={`text-[9px] uppercase leading-tight mt-0.5 transition-colors duration-300 ${dark ? 'text-white/50' : 'text-[#5a5347]'}`} style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
             </div>
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6 ml-auto">
             <Link to="/communities"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/communities') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/communities') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Сообщества
             </Link>
             <Link to="/bloggers"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/bloggers') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/bloggers') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Блогеры
             </Link>
             <Link to="/outdoor"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/outdoor') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/outdoor') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Наружка
             </Link>
             <Link to="/merch"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/merch') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/merch') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Мерч
             </Link>
             <Link to="/contacts"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/contacts') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/contacts') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Контакты
             </Link>
             <Link to="/faq"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/faq') ? 'text-[#A21D27]' : dark ? 'text-[#FBF8F3]/80 hover:text-[#FBF8F3]' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/faq') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               FAQ
             </Link>
@@ -81,9 +81,9 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Меню">
               <div className="flex flex-col gap-[5px] w-5">
-                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-[#FBF8F3]' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-[#FBF8F3]' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'opacity-0' : ''}`} />
-                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-[#FBF8F3]' : 'bg-[#0A0A0A]'} ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
               </div>
             </button>
           </div>
