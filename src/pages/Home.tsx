@@ -67,11 +67,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="pt-16">
 
       {/* ======== HERO ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-screen flex items-center">
-        <div className="pattern-content max-w-7xl mx-auto px-6 pt-24 pb-12 w-full">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-[calc(100vh-64px)] flex items-center">
+        <div className="pattern-content max-w-7xl mx-auto px-6 py-12 w-full">
           <div className="eyebrow text-[#FBF8F3]/50 mb-5 anim-d1 animate-fade-up">
             Хабаровск · Владивосток · Комсомольск-на-Амуре
           </div>

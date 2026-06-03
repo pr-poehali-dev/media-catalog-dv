@@ -90,7 +90,7 @@ export default function Communities() {
   const [selected, setSelected] = useState<Community | null>(null);
   const [city, setCity] = useState<'Все города' | 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре'>('Все города');
   const [social, setSocial] = useState<'Все соцсети' | SocialNet>('Все соцсети');
-  const [activeSocial, setActiveSocial] = useState<SocialNet>('max');
+  const [activeSocial, setActiveSocial] = useState<SocialNet>('vk');
   const [sortKey, setSortKey] = useState<SortKey | null>('reach');
   const [sortAsc, setSortAsc] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
@@ -120,9 +120,9 @@ export default function Communities() {
   useScrollReveal();
 
   return (
-    <div>
+    <div className="pt-16">
       {/* Hero */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-32 pb-16">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
