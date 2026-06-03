@@ -1431,9 +1431,9 @@ export const COMMUNITIES: Community[] = [
     description: 'Самые актуальные события города Находка, Приморский край.',
     fullDescription: 'Самые актуальные события города Находка, Приморский край.\n\nКанал — агрегатор новостей из других источников.',
     subscribersTotal: '3,7 тыс.',
-    reachSummary: ['423'],
+    reachSummary: ['0,5 тыс.'],
     socials: [
-      { social: 'vk', subscribers: 3742, reachLabel: '423', engagementLabel: '1,95%', link: 'https://vk.ru/chp_nhk' },
+      { social: 'vk', subscribers: 3742, reachLabel: '0,5 тыс.', engagementLabel: '1,95%', link: 'https://vk.ru/chp_nhk' },
     ],
     audienceCharts: {
       gender: [
@@ -1461,8 +1461,12 @@ export const COMMUNITIES: Community[] = [
     statsLink: 'https://vk.com/groups/dashboard/@chp_nhk?sectionId=top_community&subsectionId=stat_board_general',
     formats: VK_FORMATS,
     bestFor: [],
-    prices: vkPrices(750, 350, 1000, 1250, 1750, { pin: 250, hideStory: true }),
-    priceFromLabel: 'от 750 ₽',
+    prices: [
+      { label: 'Пост в ленту / видео в Клипы', price: '400 ₽' },
+      { label: 'Пост + история', price: '600 ₽' },
+      { label: 'Закреп на 3 дня', price: '+ 150 ₽' },
+    ],
+    priceFromLabel: 'от 400 ₽',
     emoji: '🚨',
     link: 'https://vk.ru/chp_nhk',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/31e79813-4ec1-4161-995a-7ba8bcf889bb.jpg',
