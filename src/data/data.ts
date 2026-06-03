@@ -2094,9 +2094,9 @@ export const COMMUNITIES: Community[] = [
     description: 'Новости о жизни края и резонансные события',
     fullDescription: 'Новости о жизни края и резонансные события',
     subscribersTotal: '68,1 тыс.',
-    reachSummary: ['35 тыс.'],
+    reachSummary: ['12 тыс.'],
     socials: [
-      { social: 'instagram', subscribers: 68100, reachLabel: '35 тыс.', engagementLabel: '≈ 2,2%', link: 'https://www.instagram.com/insta_hbk' },
+      { social: 'instagram', subscribers: 68100, reachLabel: '12 тыс.', engagementLabel: '≈ 2,2%', link: 'https://www.instagram.com/insta_hbk' },
     ],
     audienceCharts: {
       gender: [
@@ -2137,13 +2137,35 @@ export const COMMUNITIES: Community[] = [
     social: 'instagram',
     city: 'Владивосток',
     category: 'Новости и происшествия',
-    description: '',
-    fullDescription: '',
-    subscribersTotal: '',
-    reachSummary: [''],
+    description: 'ЧП и новости города Находка. Все актуально здесь.',
+    fullDescription: 'ЧП и новости города Находка. Все актуально здесь.',
+    subscribersTotal: '5,2 тыс.',
+    reachSummary: ['6 тыс.'],
     socials: [
-      { social: 'instagram', subscribers: 0, reachLabel: '', link: 'https://www.instagram.com/chp_nhk' },
+      { social: 'instagram', subscribers: 5200, reachLabel: '6 тыс.', engagementLabel: '≈ 2,8%', link: 'https://www.instagram.com/chp_nhk' },
     ],
+    audienceCharts: {
+      gender: [
+        { label: 'Мужчины', value: 52.9 },
+        { label: 'Женщины', value: 47.1 },
+      ],
+      age: [
+        { label: '13–17', value: 0.3 },
+        { label: '18–24', value: 7.1 },
+        { label: '25–34', value: 30.7 },
+        { label: '35–44', value: 33.1 },
+        { label: '45–54', value: 17.4 },
+        { label: '55–64', value: 8.0 },
+        { label: '65+', value: 3.3 },
+      ],
+      cities: [
+        { label: 'Находка', value: 17.4 },
+        { label: 'Владивосток', value: 6.8 },
+        { label: 'Москва', value: 4.4 },
+        { label: 'Чита', value: 2.1 },
+        { label: 'Иркутск', value: 1.8 },
+      ],
+    },
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
