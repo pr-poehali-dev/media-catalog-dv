@@ -1952,7 +1952,7 @@ export const COMMUNITIES: Community[] = [
     category: 'Новости и происшествия',
     description: '🚔 Профиль Дальнего Востока',
     fullDescription: '🚔 Профиль Дальнего Востока',
-    subscribersTotal: '',
+    subscribersTotal: '88,5 тыс.',
     reachSummary: ['9,5 тыс.'],
     socials: [
       { social: 'instagram', subscribers: 88500, reachLabel: '9,5 тыс.', engagementLabel: '4,7%', link: 'https://www.instagram.com/chp_khv' },
@@ -1999,7 +1999,7 @@ export const COMMUNITIES: Community[] = [
     category: 'Городские новости',
     description: 'Новости о самом главном в Приморье и самом значимом в России и мире',
     fullDescription: 'Новости о самом главном в Приморье и самом значимом в России и мире',
-    subscribersTotal: '',
+    subscribersTotal: '129,2 тыс.',
     reachSummary: ['19 тыс.'],
     socials: [
       { social: 'instagram', subscribers: 129200, reachLabel: '19 тыс.', engagementLabel: '≈ 3,1%', link: 'https://www.instagram.com/hardkorushka_25' },
@@ -2044,13 +2044,35 @@ export const COMMUNITIES: Community[] = [
     social: 'instagram',
     city: 'Владивосток',
     category: 'Новости и происшествия',
-    description: '',
-    fullDescription: '',
-    subscribersTotal: '',
-    reachSummary: [''],
+    description: 'Следим за событиями в Приморском крае',
+    fullDescription: 'Следим за событиями в Приморском крае',
+    subscribersTotal: '40,7 тыс.',
+    reachSummary: ['23 тыс.'],
     socials: [
-      { social: 'instagram', subscribers: 0, reachLabel: '', link: 'https://www.instagram.com/chp_primkray' },
+      { social: 'instagram', subscribers: 40700, reachLabel: '23 тыс.', engagementLabel: '≈ 3,1%', link: 'https://www.instagram.com/chp_primkray' },
     ],
+    audienceCharts: {
+      gender: [
+        { label: 'Мужчины', value: 67.3 },
+        { label: 'Женщины', value: 32.7 },
+      ],
+      age: [
+        { label: '13–17', value: 0.3 },
+        { label: '18–24', value: 7.9 },
+        { label: '25–34', value: 25.1 },
+        { label: '35–44', value: 29.4 },
+        { label: '45–54', value: 18.6 },
+        { label: '55–64', value: 11.5 },
+        { label: '65+', value: 7.2 },
+      ],
+      cities: [
+        { label: 'Москва', value: 5.3 },
+        { label: 'Владивосток', value: 1.8 },
+        { label: 'Санкт-Петербург', value: 1.8 },
+        { label: 'Иркутск', value: 1.3 },
+        { label: 'Краснодар', value: 1.3 },
+      ],
+    },
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
