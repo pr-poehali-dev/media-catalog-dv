@@ -78,7 +78,7 @@ const SOCIAL_CONTENT: Record<string, {
 
 function PageHero({ title, eyebrow, sub }: { title: string; eyebrow: string; sub?: string }) {
   return (
-    <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark py-16">
+    <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-32 pb-16">
       <div className="pattern-content max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-3">
           <div className="section-rule" />
@@ -108,7 +108,7 @@ export default function SocialPage() {
 
   if (socialId === 'instagram') {
     return (
-      <div className="pt-16">
+      <div>
         <PageHero title="Instagram*" eyebrow="Ограничения" sub="Аудитория, правовые ограничения и возможные PR-форматы" />
         <section className="bg-[#FBF8F3] py-16 reveal">
           <div className="max-w-7xl mx-auto px-6 max-w-3xl">
@@ -157,7 +157,7 @@ export default function SocialPage() {
   }
 
   return (
-    <div className="pt-16">
+    <div>
       <PageHero title={content.title} eyebrow="Соцсеть" sub={content.subtitle} />
 
       {/* Description */}
