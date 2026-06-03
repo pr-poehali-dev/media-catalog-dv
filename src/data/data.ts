@@ -2094,9 +2094,9 @@ export const COMMUNITIES: Community[] = [
     description: 'Новости о жизни края и резонансные события',
     fullDescription: 'Новости о жизни края и резонансные события',
     subscribersTotal: '68,1 тыс.',
-    reachSummary: ['35 тыс.'],
+    reachSummary: ['12 тыс.'],
     socials: [
-      { social: 'instagram', subscribers: 68100, reachLabel: '35 тыс.', engagementLabel: '≈ 2,2%', link: 'https://www.instagram.com/insta_hbk' },
+      { social: 'instagram', subscribers: 68100, reachLabel: '12 тыс.', engagementLabel: '≈ 2,2%', link: 'https://www.instagram.com/insta_hbk' },
     ],
     audienceCharts: {
       gender: [
