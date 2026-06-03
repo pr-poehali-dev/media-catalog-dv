@@ -71,6 +71,11 @@ export default function CommunityModal({ community, onClose }: { community: Comm
               {community.fullDescription && (
                 <p className="text-sm text-[#FBF8F3]/60 leading-relaxed whitespace-pre-line">{community.fullDescription}</p>
               )}
+              {community.social === 'instagram' && (
+                <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
+                  Стандартное рекламное размещение в Instagram* на территории РФ не предлагаем. Присутствие в соцсети возможно только в информационном формате с учётом правовых ограничений.
+                </p>
+              )}
               {community.rkn && (
                 <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
                   Включена Роскомнадзором в перечень персональных страниц:<br />
