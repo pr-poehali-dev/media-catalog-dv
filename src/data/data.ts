@@ -2130,6 +2130,7 @@ export const COMMUNITIES: Community[] = [
     priceFromLabel: 'от 750 ₽',
     emoji: '📷',
     link: 'https://www.instagram.com/insta_hbk',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/7cd93b84-fd1d-424d-82d1-8f6f2c1cf2f5.PNG',
   },
   {
     id: 'ig-chp-nhk',
