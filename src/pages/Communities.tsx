@@ -91,7 +91,7 @@ export default function Communities() {
   const [city, setCity] = useState<'Все города' | 'Хабаровск' | 'Владивосток' | 'Комсомольск-на-Амуре'>('Все города');
   const [social, setSocial] = useState<'Все соцсети' | SocialNet>('Все соцсети');
   const [activeSocial, setActiveSocial] = useState<SocialNet>('vk');
-  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortKey, setSortKey] = useState<SortKey | null>('reach');
   const [sortAsc, setSortAsc] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
 
