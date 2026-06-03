@@ -1955,7 +1955,7 @@ export const COMMUNITIES: Community[] = [
     subscribersTotal: '',
     reachSummary: ['9,5 тыс.'],
     socials: [
-      { social: 'instagram', subscribers: 0, reachLabel: '9,5 тыс.', engagementLabel: '4,7%', link: 'https://www.instagram.com/chp_khv' },
+      { social: 'instagram', subscribers: 88500, reachLabel: '9,5 тыс.', engagementLabel: '4,7%', link: 'https://www.instagram.com/chp_khv' },
     ],
     audienceCharts: {
       gender: [
@@ -1997,13 +1997,35 @@ export const COMMUNITIES: Community[] = [
     social: 'instagram',
     city: 'Владивосток',
     category: 'Городские новости',
-    description: '',
-    fullDescription: '',
+    description: 'Новости о самом главном в Приморье и самом значимом в России и мире',
+    fullDescription: 'Новости о самом главном в Приморье и самом значимом в России и мире',
     subscribersTotal: '',
-    reachSummary: [''],
+    reachSummary: ['19 тыс.'],
     socials: [
-      { social: 'instagram', subscribers: 0, reachLabel: '', link: 'https://www.instagram.com/hardkorushka_25' },
+      { social: 'instagram', subscribers: 129200, reachLabel: '19 тыс.', engagementLabel: '≈ 3,1%', link: 'https://www.instagram.com/hardkorushka_25' },
     ],
+    audienceCharts: {
+      gender: [
+        { label: 'Женщины', value: 57.5 },
+        { label: 'Мужчины', value: 42.5 },
+      ],
+      age: [
+        { label: '13–17', value: 0.2 },
+        { label: '18–24', value: 5.5 },
+        { label: '25–34', value: 24.2 },
+        { label: '35–44', value: 34.7 },
+        { label: '45–54', value: 20.9 },
+        { label: '55–64', value: 9.8 },
+        { label: '65+', value: 4.8 },
+      ],
+      cities: [
+        { label: 'Владивосток', value: 15.9 },
+        { label: 'Хабаровск', value: 5.3 },
+        { label: 'Москва', value: 4.9 },
+        { label: 'Санкт-Петербург', value: 2.3 },
+        { label: 'Находка', value: 1.8 },
+      ],
+    },
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
