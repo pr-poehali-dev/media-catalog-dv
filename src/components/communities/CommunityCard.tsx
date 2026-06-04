@@ -23,11 +23,11 @@ function SocialIcon({ social }: { social: Community['social'] }) {
 
 function Avatar({ community }: { community: Community }) {
   return (
-    <div className="relative flex-shrink-0" style={{ width: 148, height: 148 }}>
+    <div className="relative flex-shrink-0 w-[88px] h-[88px] md:w-[148px] md:h-[148px]">
       <div className="w-full h-full rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex items-center justify-center">
         {community.avatar
           ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
-          : <span className="text-5xl">{community.emoji}</span>
+          : <span className="text-4xl md:text-5xl">{community.emoji}</span>
         }
       </div>
     </div>
@@ -55,17 +55,38 @@ export default function CommunityCard({ community, onClick }: { community: Commu
       }}
     >
       <div className="flex flex-col md:flex-row">
-        <div className="flex flex-col items-center md:items-start pt-6 px-7 pb-6 md:w-[230px] flex-shrink-0">
-          <div onClick={onClick} className="cursor-pointer self-center" role="button" aria-label={`Открыть ${community.name}`}>
+        {/* Левая колонка / шапка на мобильном */}
+        <div className="flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0 pt-6 px-5 sm:px-7 pb-0 md:pb-6 md:w-[230px] flex-shrink-0">
+          <div onClick={onClick} className="cursor-pointer flex-shrink-0" role="button" aria-label={`Открыть ${community.name}`}>
             <Avatar community={community} />
           </div>
-          <div className="mt-5 md:mt-auto md:pt-5">
+          {/* На мобильном рядом с аватаром — соцсеть, название, цена */}
+          <div className="min-w-0 flex-1 md:hidden">
+            <div className="flex items-center gap-2 mb-1.5">
+              <SocialIcon social={community.social} />
+              <div className="text-[10px] font-medium text-white/40 uppercase truncate" style={{ letterSpacing: '0.14em' }}>
+                {community.category || community.city}
+              </div>
+            </div>
+            <h3
+              onClick={onClick}
+              className="font-display font-bold text-white leading-tight cursor-pointer mb-2.5"
+              style={{ fontSize: '1.2rem', letterSpacing: '-0.02em' }}
+            >
+              {community.name}
+            </h3>
+            <div className="text-[10px] text-white/30 uppercase mb-0.5" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
+            <div className="font-display font-bold text-[#E0353F] text-lg leading-none">{community.priceFromLabel || '—'}</div>
+          </div>
+          {/* Цена на десктопе */}
+          <div className="hidden md:block md:mt-auto md:pt-5">
             <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
             <div className="font-display font-bold text-white text-xl leading-none">{community.priceFromLabel || '—'}</div>
           </div>
         </div>
-        <div className="flex-1 min-w-0 px-6 pb-6 pt-2 md:pt-6 md:pl-0 md:pr-8 flex flex-col gap-3">
-          <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0 px-5 sm:px-6 pb-6 pt-4 md:pt-6 md:pl-0 md:pr-8 flex flex-col gap-3">
+          {/* Название только на десктопе */}
+          <div className="hidden md:flex items-start justify-between gap-3">
             <div className="min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <SocialIcon social={community.social} />
@@ -91,47 +112,56 @@ export default function CommunityCard({ community, onClick }: { community: Commu
           {community.description && (
             <p className="text-[13px] text-white/50 leading-relaxed">{community.description}</p>
           )}
-          <div className="flex flex-wrap self-start" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', overflow: 'hidden' }}>
-            <div className="px-3 py-2.5">
-              <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Подписчиков</div>
+          {/* Статистика */}
+          <div className="grid grid-cols-2 self-stretch md:self-start md:flex" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', overflow: 'hidden' }}>
+            <div className="px-4 py-3">
+              <div className="text-[9px] text-white/35 uppercase mb-1.5" style={{ letterSpacing: '0.12em' }}>Подписчиков</div>
               <div
                 className="font-display font-black leading-none"
-                style={{ fontSize: '1.45rem', letterSpacing: '-0.03em', color: '#C0202A' }}
+                style={{ fontSize: '1.4rem', letterSpacing: '-0.03em', color: '#E0353F' }}
               >
                 {community.subscribersTotal || '—'}
               </div>
             </div>
-            <div className="px-3 py-2.5" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
-              <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Сред. охват публикаций</div>
+            <div className="px-4 py-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+              <div className="text-[9px] text-white/35 uppercase mb-1.5" style={{ letterSpacing: '0.12em' }}>Сред. охват</div>
               <div
                 className="font-display font-black leading-none"
-                style={{ fontSize: '1.45rem', letterSpacing: '-0.03em', color: '#C0202A' }}
+                style={{ fontSize: '1.4rem', letterSpacing: '-0.03em', color: '#E0353F' }}
               >
                 {community.reachSummary.join('') || '—'}
               </div>
             </div>
           </div>
-          <div className="mt-auto flex items-end justify-between gap-4">
-            <div className="min-w-0">
-              <div className="text-[10px] text-white/30 uppercase mb-2" style={{ letterSpacing: '0.14em' }}>Форматы</div>
-              <div className="flex flex-wrap gap-1.5">
-                {community.formats.length > 0 ? community.formats.slice(0, 6).map((f) => (
-                  <span
-                    key={f}
-                    className="text-[11px] px-2.5 py-1 text-white/60"
-                    style={{
-                      background: 'rgba(255,255,255,0.06)',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      borderRadius: '999px',
-                    }}
-                  >
-                    {f}
-                  </span>
-                )) : <span className="text-[11px] text-white/25">—</span>}
-              </div>
+          {/* Форматы */}
+          <div className="min-w-0">
+            <div className="text-[10px] text-white/30 uppercase mb-2" style={{ letterSpacing: '0.14em' }}>Форматы</div>
+            <div className="flex flex-wrap gap-1.5">
+              {community.formats.length > 0 ? community.formats.slice(0, 6).map((f) => (
+                <span
+                  key={f}
+                  className="text-[11px] px-2.5 py-1 text-white/60"
+                  style={{
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '999px',
+                  }}
+                >
+                  {f}
+                </span>
+              )) : <span className="text-[11px] text-white/25">—</span>}
             </div>
+          </div>
+          {/* Кнопки действий */}
+          <div className="mt-2 md:mt-auto flex flex-col sm:flex-row md:justify-end gap-2.5">
             <button
-              className="btn-carmine flex-shrink-0"
+              onClick={onClick}
+              className="btn-outline-dark justify-center w-full sm:w-auto md:hidden"
+            >
+              Подробнее
+            </button>
+            <button
+              className="btn-carmine justify-center w-full sm:w-auto"
               onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
             >
               Оставить заявку

@@ -53,38 +53,43 @@ export default function Platforms() {
       </section>
 
       {/* Filters */}
-      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex flex-wrap gap-3 items-center">
-            <div className="relative">
+      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] sticky z-40" style={{ top: 'calc(4rem + env(safe-area-inset-top))' }}>
+        <div className="max-w-7xl mx-auto px-6 py-3 sm:py-4">
+          <div className="flex flex-col lg:flex-row lg:flex-wrap gap-2.5 lg:gap-3 lg:items-center">
+            {/* Поиск — на всю ширину на мобильном */}
+            <div className="relative w-full lg:w-auto">
               <Icon name="Search" size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5a5347]" />
               <input type="text" placeholder="Поиск..." value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className={`${inputCls} pl-8 min-w-[140px] w-full sm:w-auto sm:min-w-[160px]`} />
+                className={`${inputCls} pl-8 w-full lg:w-auto lg:min-w-[160px]`} />
             </div>
-            <select value={city} onChange={(e) => setCity(e.target.value)} className={inputCls}>
-              {CITIES_F.map((c) => <option key={c}>{c}</option>)}
-            </select>
-            <select value={social} onChange={(e) => setSocial(e.target.value as typeof SOCIAL_KEYS[number])} className={inputCls}>
-              <option value="all">Все соцсети</option>
-              {(['vk', 'telegram', 'ok', 'max', 'tiktok', 'instagram'] as const).map((k) => (
-                <option key={k} value={k}>{SOCIALS[k].label}</option>
-              ))}
-            </select>
-            <div className="flex gap-0 border border-[#E8E2D8]">
+            {/* Селекты — по 2 в ряд на мобильном */}
+            <div className="grid grid-cols-2 lg:flex gap-2.5 lg:gap-3">
+              <select value={city} onChange={(e) => setCity(e.target.value)} className={`${inputCls} w-full lg:w-auto`}>
+                {CITIES_F.map((c) => <option key={c}>{c}</option>)}
+              </select>
+              <select value={social} onChange={(e) => setSocial(e.target.value as typeof SOCIAL_KEYS[number])} className={`${inputCls} w-full lg:w-auto`}>
+                <option value="all">Все соцсети</option>
+                {(['vk', 'telegram', 'ok', 'max', 'tiktok', 'instagram'] as const).map((k) => (
+                  <option key={k} value={k}>{SOCIALS[k].label}</option>
+                ))}
+              </select>
+              <select value={category} onChange={(e) => setCategory(e.target.value)} className={`${inputCls} col-span-2 lg:col-span-1 w-full lg:w-auto`}>
+                {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+              </select>
+            </div>
+            {/* Тип — кнопки во всю ширину на мобильном */}
+            <div className="grid grid-cols-3 lg:flex gap-0 border border-[#E8E2D8] w-full lg:w-auto">
               {TYPES.map((t) => (
                 <button key={t} onClick={() => setType(t)}
-                  className={`text-sm px-3 py-2 transition-colors ${type === t ? 'bg-[#A21D27] text-[#FBF8F3]' : 'bg-[#FBF8F3] text-[#0A0A0A] hover:bg-[#F2EDE4]'}`}>
+                  className={`text-sm px-3 py-2.5 lg:py-2 transition-colors text-center ${type === t ? 'bg-[#A21D27] text-[#FBF8F3]' : 'bg-[#FBF8F3] text-[#0A0A0A] hover:bg-[#F2EDE4]'}`}>
                   {t}
                 </button>
               ))}
             </div>
-            <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputCls}>
-              {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-            </select>
             {hasFilters && (
               <button onClick={() => { setCity('Все города'); setSocial('all'); setType('Все'); setCategory('Все категории'); setSearch(''); }}
-                className="flex items-center gap-1 text-xs text-[#5a5347] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.08em' }}>
+                className="flex items-center justify-center gap-1 text-xs text-[#5a5347] hover:text-[#A21D27] transition-colors py-1.5" style={{ letterSpacing: '0.08em' }}>
                 <Icon name="X" size={12} /> Сбросить
               </button>
             )}

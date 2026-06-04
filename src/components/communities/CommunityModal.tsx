@@ -53,23 +53,37 @@ export default function CommunityModal({ community, onClose }: { community: Comm
       className="fixed inset-0 z-50 flex items-start justify-center bg-[#0A0A0A]/85 backdrop-blur-sm p-4 overflow-y-auto"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="relative bg-[#FBF8F3] w-full max-w-3xl my-8 flex flex-col">
-        <div className="bg-[#0A0A0A] pattern-dark p-5 sm:p-8 flex items-start gap-5">
-          <div className="pattern-content flex items-start gap-5 w-full">
-            <div className="w-20 h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
-              {community.avatar
-                ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
-                : <span className="text-4xl">{community.emoji}</span>
-              }
+      <div className="relative bg-[#FBF8F3] w-full max-w-3xl my-4 sm:my-8 flex flex-col">
+        <div className="bg-[#0A0A0A] pattern-dark p-5 sm:p-8 relative">
+          <button onClick={onClose} className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors" aria-label="Закрыть">
+            <Icon name="X" size={22} />
+          </button>
+          <div className="pattern-content flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 w-full">
+            {/* Аватар + бейдж соцсети поверх — на мобильном по центру */}
+            <div className="flex items-center gap-4 sm:block">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
+                {community.avatar
+                  ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
+                  : <span className="text-3xl sm:text-4xl">{community.emoji}</span>
+                }
+              </div>
+              {/* На мобильном соцсеть+категория рядом с аватаром */}
+              <div className="min-w-0 sm:hidden">
+                <div className="flex items-center gap-2 mb-1">
+                  <SocialIcon social={community.social} />
+                  <span className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase truncate" style={{ letterSpacing: '0.14em' }}>{community.city}</span>
+                </div>
+                {community.category && <div className="text-[11px] text-[#FBF8F3]/35">{community.category}</div>}
+              </div>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{community.city}{community.category ? ` · ${community.category}` : ''}</div>
+              <div className="hidden sm:block text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{community.city}{community.category ? ` · ${community.category}` : ''}</div>
               <div className="flex items-center gap-2.5 mb-3">
-                <SocialIcon social={community.social} />
-                <h2 className="font-display font-bold text-[#FBF8F3] text-2xl leading-tight" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
+                <span className="hidden sm:inline-flex"><SocialIcon social={community.social} /></span>
+                <h2 className="font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight pr-8 sm:pr-0" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
               </div>
               {community.fullDescription && (
-                <p className="text-sm text-[#FBF8F3]/60 leading-relaxed whitespace-pre-line">{community.fullDescription}</p>
+                <p className="text-sm text-[#FBF8F3]/60 leading-relaxed whitespace-pre-line max-w-prose">{community.fullDescription}</p>
               )}
               {community.social === 'instagram' && (
                 <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
@@ -83,9 +97,6 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                 </p>
               )}
             </div>
-            <button onClick={onClose} className="flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors mt-1" aria-label="Закрыть">
-              <Icon name="X" size={20} />
-            </button>
           </div>
         </div>
 
@@ -130,15 +141,24 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                 const info = SOCIALS[s.social];
                 return (
                   <div key={s.social} className="grid grid-cols-1 sm:grid-cols-[110px_90px_1fr_1fr] border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors">
-                    <div className="px-4 py-3 flex items-center">
+                    <div className="px-4 pt-3 pb-2 sm:py-3 flex items-center border-b border-[#E8E2D8]/60 sm:border-b-0">
                       {s.link
-                        ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline" style={{ color: info.color }}>{info.label}</a>
-                        : <span className="text-sm font-medium" style={{ color: info.color }}>{info.label}</span>
+                        ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:underline" style={{ color: info.color }}>{info.label}</a>
+                        : <span className="text-sm font-semibold" style={{ color: info.color }}>{info.label}</span>
                       }
                     </div>
-                    <div className="px-4 py-3 font-display font-bold text-[#0A0A0A] text-sm flex items-center justify-center text-center">{s.subscribers ? fmtSubs(s.subscribers) : '—'}</div>
-                    <div className="px-4 py-3 text-sm text-[#0A0A0A] whitespace-pre-line flex items-center justify-center text-center">{s.reachLabel || '—'}</div>
-                    <div className="px-4 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center">{s.engagementLabel || '—'}</div>
+                    <div className="px-4 py-2 sm:py-3 flex items-center justify-between sm:justify-center text-center">
+                      <span className="text-[10px] text-[#5a5347] uppercase sm:hidden" style={{ letterSpacing: '0.1em' }}>Подписчики</span>
+                      <span className="font-display font-bold text-[#0A0A0A] text-sm">{s.subscribers ? fmtSubs(s.subscribers) : '—'}</span>
+                    </div>
+                    <div className="px-4 py-2 sm:py-3 flex items-center justify-between sm:justify-center text-center">
+                      <span className="text-[10px] text-[#5a5347] uppercase sm:hidden" style={{ letterSpacing: '0.1em' }}>Сред. охват</span>
+                      <span className="text-sm text-[#0A0A0A] whitespace-pre-line">{s.reachLabel || '—'}</span>
+                    </div>
+                    <div className="px-4 pt-2 pb-3 sm:py-3 flex items-center justify-between sm:justify-center text-center">
+                      <span className="text-[10px] text-[#5a5347] uppercase sm:hidden" style={{ letterSpacing: '0.1em' }}>Вовлечённость</span>
+                      <span className="text-sm text-[#5a5347]">{s.engagementLabel || '—'}</span>
+                    </div>
                   </div>
                 );
               })}
@@ -198,17 +218,17 @@ export default function CommunityModal({ community, onClose }: { community: Comm
             </div>
           )}
 
-          <div className="border-t border-[#E8E2D8] pt-6 flex items-center justify-between gap-4 flex-wrap">
+          <div className="border-t border-[#E8E2D8] pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <div className="text-[10px] text-[#5a5347] uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
               <div className="font-display font-bold text-[#0A0A0A] text-2xl">{community.priceFromLabel || '—'}</div>
             </div>
-            <div className="flex items-center gap-3">
-              <button onClick={handleMediakit} disabled={loadingPdf} className="btn-outline-dark">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3">
+              <button onClick={handleMediakit} disabled={loadingPdf} className="btn-outline-dark justify-center w-full sm:w-auto">
                 <Icon name={loadingPdf ? 'Loader' : 'Download'} size={16} className={loadingPdf ? 'animate-spin' : ''} />
                 {loadingPdf ? 'Готовим…' : 'Скачать медиакит'}
               </button>
-              <a href="#form" onClick={onClose} className="btn-carmine">Оставить заявку</a>
+              <a href="#form" onClick={onClose} className="btn-carmine justify-center w-full sm:w-auto">Оставить заявку</a>
             </div>
           </div>
         </div>

@@ -238,7 +238,7 @@ export default function Communities() {
       {/* Каталог (чёрный, как у блогеров) */}
       <section className="bg-[#0A0A0A] pattern-dark py-12">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="flex items-stretch justify-between flex-wrap gap-4 mb-8">
+          <div className="flex flex-col lg:flex-row lg:items-stretch lg:justify-between gap-4 lg:gap-4 mb-8">
             <div className="flex flex-col justify-between gap-4 py-1">
               <div className="flex items-center gap-4">
                 <div className="section-rule" />
@@ -247,16 +247,16 @@ export default function Communities() {
               <div className="relative">
                 <button
                   onClick={() => setSortOpen((v) => !v)}
-                  className="flex items-center gap-2 text-[11px] font-medium uppercase px-4 py-2 rounded-full bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 text-[#FBF8F3]/60 hover:text-[#FBF8F3] transition-colors"
+                  className="flex items-center gap-2 w-full lg:w-auto justify-center lg:justify-start text-[11px] font-medium uppercase px-4 py-2.5 rounded-full bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 text-[#FBF8F3]/60 hover:text-[#FBF8F3] transition-colors"
                   style={{ letterSpacing: '0.12em' }}
                 >
                   <Icon name="ArrowUpDown" size={13} />
                   {sortKey ? SORT_OPTIONS.find((o) => o.key === sortKey)!.label : 'Сортировка'}
                   {sortKey && <Icon name={sortAsc ? 'ArrowUp' : 'ArrowDown'} size={13} />}
-                  <Icon name={sortOpen ? 'ChevronUp' : 'ChevronDown'} size={13} />
+                  <Icon name={sortOpen ? 'ChevronUp' : 'ChevronDown'} size={13} className="ml-auto lg:ml-0" />
                 </button>
                 {sortOpen && (
-                  <div className="absolute left-0 top-full mt-2 z-20 min-w-[180px] w-full sm:w-auto bg-[#161618] border border-[#FBF8F3]/10 rounded-2xl p-1 shadow-2xl">
+                  <div className="absolute left-0 right-0 lg:right-auto top-full mt-2 z-20 lg:min-w-[180px] bg-[#161618] border border-[#FBF8F3]/10 rounded-2xl p-1 shadow-2xl">
                     {SORT_OPTIONS.map((opt) => {
                       const active = sortKey === opt.key;
                       return (
@@ -279,18 +279,18 @@ export default function Communities() {
                 )}
               </div>
             </div>
-            <div className="flex flex-col items-stretch sm:items-end gap-2">
-              <div className="flex flex-wrap items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
+            <div className="flex flex-col items-stretch lg:items-end gap-2.5">
+              <div className="grid grid-cols-3 sm:flex sm:flex-wrap sm:justify-end items-center gap-1.5 sm:gap-1 sm:p-1 sm:bg-[#FBF8F3]/5 sm:border sm:border-[#FBF8F3]/10 sm:rounded-full">
                 {SOCIAL_FILTERS.map((s) => {
-                  const label = s === 'Все соцсети' ? 'Все соцсети' : SOCIALS[s].label;
+                  const label = s === 'Все соцсети' ? 'Все' : SOCIALS[s].label;
                   return (
                     <button
                       key={s}
                       onClick={() => setSocial(s)}
-                      className="text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full"
+                      className="text-[11px] font-medium uppercase px-3 sm:px-4 py-2.5 sm:py-2 transition-colors rounded-full border border-[#FBF8F3]/10 sm:border-0 text-center"
                       style={{
-                        letterSpacing: '0.12em',
-                        background: social === s ? '#A21D27' : 'transparent',
+                        letterSpacing: '0.08em',
+                        background: social === s ? '#A21D27' : 'rgba(251,248,243,0.04)',
                         color: social === s ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
                       }}
                     >
@@ -299,15 +299,15 @@ export default function Communities() {
                   );
                 })}
               </div>
-              <div className="flex flex-wrap items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-end items-center gap-1.5 sm:gap-1 sm:p-1 sm:bg-[#FBF8F3]/5 sm:border sm:border-[#FBF8F3]/10 sm:rounded-full">
                 {CITY_FILTERS.map((c) => (
                   <button
                     key={c}
                     onClick={() => setCity(c)}
-                    className="text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full"
+                    className="text-[11px] font-medium uppercase px-3 sm:px-4 py-2.5 sm:py-2 transition-colors rounded-full border border-[#FBF8F3]/10 sm:border-0 text-center"
                     style={{
-                      letterSpacing: '0.12em',
-                      background: city === c ? '#A21D27' : 'transparent',
+                      letterSpacing: '0.08em',
+                      background: city === c ? '#A21D27' : 'rgba(251,248,243,0.04)',
                       color: city === c ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
                     }}
                   >

@@ -111,19 +111,19 @@ export default function Home() {
         <div className="pattern-content max-w-7xl mx-auto px-6 py-10">
           {/* Мобильная сетка */}
           <div className="md:hidden">
-            <div className="grid grid-cols-3 gap-3 mb-5">
+            <div className="grid grid-cols-3 gap-x-3 gap-y-6 mb-6">
               {STATS.slice(0, 3).map((s) => (
                 <div key={s.label} className="text-center">
-                  <div className="font-display font-extrabold text-[#A21D27] text-xl leading-none mb-1 whitespace-nowrap">{s.value}</div>
-                  <div className="text-[9px] text-[#5a5347] uppercase leading-tight" style={{ letterSpacing: '0.1em' }}>{s.label}</div>
+                  <div className="font-display font-extrabold text-[#A21D27] text-2xl leading-none mb-1.5 whitespace-nowrap">{s.value}</div>
+                  <div className="text-[10px] text-[#5a5347] uppercase leading-tight" style={{ letterSpacing: '0.08em' }}>{s.label}</div>
                 </div>
               ))}
             </div>
-            <div className="flex justify-center gap-10">
+            <div className="grid grid-cols-2 gap-3 max-w-[300px] mx-auto">
               {STATS.slice(3).map((s) => (
                 <div key={s.label} className="text-center">
-                  <div className="font-display font-extrabold text-[#A21D27] text-xl leading-none mb-1 whitespace-nowrap">{s.value}</div>
-                  <div className="text-[9px] text-[#5a5347] uppercase leading-tight" style={{ letterSpacing: '0.1em' }}>{s.label}</div>
+                  <div className="font-display font-extrabold text-[#A21D27] text-2xl leading-none mb-1.5 whitespace-nowrap">{s.value}</div>
+                  <div className="text-[10px] text-[#5a5347] uppercase leading-tight" style={{ letterSpacing: '0.08em' }}>{s.label}</div>
                 </div>
               ))}
             </div>

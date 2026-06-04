@@ -82,10 +82,10 @@ export function AvatarWithOrbit({ blogger }: { blogger: Blogger }) {
 
 export function AvatarSimple({ blogger }: { blogger: Blogger }) {
   return (
-    <div className="w-20 h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0">
+    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0">
       {blogger.avatar
         ? <img src={blogger.avatar} alt={blogger.name} className="w-full h-full object-cover" />
-        : <div className="w-full h-full flex items-center justify-center text-4xl">{blogger.emoji}</div>
+        : <div className="w-full h-full flex items-center justify-center text-3xl sm:text-4xl">{blogger.emoji}</div>
       }
     </div>
   );

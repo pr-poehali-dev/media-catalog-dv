@@ -34,18 +34,24 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
       className="fixed inset-0 z-50 flex items-start justify-center bg-[#0A0A0A]/85 backdrop-blur-sm p-4 overflow-y-auto"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="relative bg-[#FBF8F3] w-full max-w-3xl my-8 flex flex-col">
-        <div className="bg-[#0A0A0A] pattern-dark p-5 sm:p-8 flex items-start gap-5">
-          <div className="pattern-content flex items-start gap-5 w-full">
-            <AvatarSimple blogger={blogger} />
-            <div className="flex-1 min-w-0">
-              <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{blogger.city} · {blogger.category}</div>
-              <h2 className="font-display font-bold text-[#FBF8F3] text-2xl leading-tight mb-3" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
-              <p className="text-sm text-[#FBF8F3]/60 leading-relaxed">{blogger.fullDescription}</p>
+      <div className="relative bg-[#FBF8F3] w-full max-w-3xl my-4 sm:my-8 flex flex-col">
+        <div className="bg-[#0A0A0A] pattern-dark p-5 sm:p-8 relative">
+          <button onClick={onClose} className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors" aria-label="Закрыть">
+            <Icon name="X" size={22} />
+          </button>
+          <div className="pattern-content flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 w-full">
+            <div className="flex items-center gap-4 sm:block">
+              <AvatarSimple blogger={blogger} />
+              <div className="min-w-0 sm:hidden">
+                <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase truncate" style={{ letterSpacing: '0.14em' }}>{blogger.city}</div>
+                <div className="text-[11px] text-[#FBF8F3]/35">{blogger.category}</div>
+              </div>
             </div>
-            <button onClick={onClose} className="flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors mt-1" aria-label="Закрыть">
-              <Icon name="X" size={20} />
-            </button>
+            <div className="flex-1 min-w-0">
+              <div className="hidden sm:block text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{blogger.city} · {blogger.category}</div>
+              <h2 className="font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight mb-3 pr-8 sm:pr-0" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
+              <p className="text-sm text-[#FBF8F3]/60 leading-relaxed max-w-prose">{blogger.fullDescription}</p>
+            </div>
           </div>
         </div>
 
@@ -85,25 +91,30 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                   </div>
                   {sortedSocials.map((s) => {
                     const info = SOCIALS[s.social];
+                    const cell = 'px-3 py-2 sm:py-3 text-sm text-[#0A0A0A] flex items-center justify-between sm:justify-center sm:text-center whitespace-nowrap';
+                    const lbl = 'text-[10px] text-[#5a5347] uppercase sm:hidden';
                     return (
                       <div key={s.social} className={`grid grid-cols-1 ${cols} border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors`}>
-                        <div className="px-3 py-3 flex items-center">
+                        <div className="px-3 pt-3 pb-2 sm:py-3 flex items-center border-b border-[#E8E2D8]/60 sm:border-b-0">
                           {s.link
-                            ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline" style={{ color: info.color }}>{info.label}</a>
-                            : <span className="text-sm font-medium" style={{ color: info.color }}>{info.label}</span>
+                            ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:underline" style={{ color: info.color }}>{info.label}</a>
+                            : <span className="text-sm font-semibold" style={{ color: info.color }}>{info.label}</span>
                           }
                         </div>
-                        <div className="px-3 py-3 font-display font-bold text-[#0A0A0A] text-sm flex items-center justify-center text-center whitespace-nowrap">{fmtSubs(s.subscribers)}</div>
+                        <div className={cell}>
+                          <span className={lbl} style={{ letterSpacing: '0.1em' }}>{headers[1]}</span>
+                          <span className="font-display font-bold">{fmtSubs(s.subscribers)}</span>
+                        </div>
                         {detailed ? (
                           <>
-                            <div className="px-3 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center whitespace-nowrap">{s.viewsLabel || '—'}</div>
-                            <div className="px-3 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center whitespace-nowrap">{s.reachOnlyLabel || '—'}</div>
-                            <div className="px-3 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center whitespace-nowrap">{s.engagementLabel || '—'}</div>
+                            <div className={cell}><span className={lbl} style={{ letterSpacing: '0.1em' }}>{headers[2]}</span><span>{s.viewsLabel || '—'}</span></div>
+                            <div className={cell}><span className={lbl} style={{ letterSpacing: '0.1em' }}>{headers[3]}</span><span>{s.reachOnlyLabel || '—'}</span></div>
+                            <div className={`${cell} pb-3`}><span className={lbl} style={{ letterSpacing: '0.1em' }}>{headers[4]}</span><span className="text-[#5a5347]">{s.engagementLabel || '—'}</span></div>
                           </>
                         ) : (
                           <>
-                            <div className="px-3 py-3 text-sm text-[#0A0A0A] flex items-center justify-center text-center whitespace-nowrap">{s.reachLabel}</div>
-                            <div className="px-3 py-3 text-sm text-[#5a5347] flex items-center justify-center text-center whitespace-nowrap">{s.engagementLabel || '—'}</div>
+                            <div className={cell}><span className={lbl} style={{ letterSpacing: '0.1em' }}>{headers[2]}</span><span>{s.reachLabel}</span></div>
+                            <div className={`${cell} pb-3`}><span className={lbl} style={{ letterSpacing: '0.1em' }}>{headers[3]}</span><span className="text-[#5a5347]">{s.engagementLabel || '—'}</span></div>
                           </>
                         )}
                       </div>
@@ -187,17 +198,17 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
             </div>
           )}
 
-          <div className="border-t border-[#E8E2D8] pt-6 flex items-center justify-between gap-4">
+          <div className="border-t border-[#E8E2D8] pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <div className="text-[10px] text-[#5a5347] uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
               <div className="font-display font-bold text-[#0A0A0A] text-2xl">{blogger.priceFromLabel}</div>
             </div>
-            <div className="flex items-center gap-3">
-              <button onClick={handleMediakit} disabled={loadingPdf} className="btn-outline-dark">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3">
+              <button onClick={handleMediakit} disabled={loadingPdf} className="btn-outline-dark justify-center w-full sm:w-auto">
                 <Icon name={loadingPdf ? 'Loader' : 'Download'} size={16} className={loadingPdf ? 'animate-spin' : ''} />
                 {loadingPdf ? 'Готовим…' : 'Скачать медиакит'}
               </button>
-              <a href="#form" onClick={onClose} className="btn-carmine">Оставить заявку</a>
+              <a href="#form" onClick={onClose} className="btn-carmine justify-center w-full sm:w-auto">Оставить заявку</a>
             </div>
           </div>
         </div>

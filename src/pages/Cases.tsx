@@ -36,21 +36,21 @@ export default function Cases() {
         </div>
       </section>
 
-      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex flex-wrap gap-3 items-center">
-            <select value={city} onChange={(e) => setCity(e.target.value)} className={inputCls}>
+      <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] sticky z-40" style={{ top: 'calc(4rem + env(safe-area-inset-top))' }}>
+        <div className="max-w-7xl mx-auto px-6 py-3 sm:py-4">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 sm:items-center">
+            <select value={city} onChange={(e) => setCity(e.target.value)} className={`${inputCls} w-full sm:w-auto`}>
               {CITIES_F.map((c) => <option key={c}>{c}</option>)}
             </select>
-            <select value={niche} onChange={(e) => setNiche(e.target.value)} className={inputCls}>
+            <select value={niche} onChange={(e) => setNiche(e.target.value)} className={`${inputCls} w-full sm:w-auto`}>
               {NICHES_F.map((n) => <option key={n}>{n}</option>)}
             </select>
-            <select value={socialLabel} onChange={(e) => setSocialLabel(e.target.value)} className={inputCls}>
+            <select value={socialLabel} onChange={(e) => setSocialLabel(e.target.value)} className={`${inputCls} col-span-2 sm:col-span-1 w-full sm:w-auto`}>
               {SOCIALS_F.map((s) => <option key={s}>{s}</option>)}
             </select>
             {hasFilters && (
               <button onClick={() => { setCity('Все города'); setNiche('Все ниши'); setSocialLabel('Все соцсети'); }}
-                className="flex items-center gap-1 text-xs text-[#5a5347] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.08em' }}>
+                className="col-span-2 sm:col-span-1 flex items-center justify-center sm:justify-start gap-1 text-xs text-[#5a5347] hover:text-[#A21D27] transition-colors py-1.5" style={{ letterSpacing: '0.08em' }}>
                 <Icon name="X" size={12} /> Сбросить
               </button>
             )}

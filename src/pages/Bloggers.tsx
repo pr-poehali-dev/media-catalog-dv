@@ -63,11 +63,11 @@ export default function Bloggers() {
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Преимущества</div>
           </div>
-          <div className="grid gap-px bg-[#E8E2D8]" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
-            {ADVANTAGES.map((item, i) => (
-              <div key={item.num} className="bg-[#F2EDE4] flex flex-col p-7" style={i === 0 ? { paddingLeft: '72px' } : undefined}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
+            {ADVANTAGES.map((item) => (
+              <div key={item.num} className="bg-[#F2EDE4] flex flex-col p-6 sm:p-7">
                 <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-5">{item.num}</div>
-                <h3 className="font-display font-bold text-[#0A0A0A] text-xl leading-tight whitespace-nowrap" style={{ letterSpacing: '-0.01em', height: '2rem', display: 'flex', alignItems: 'center' }}>{item.title}</h3>
+                <h3 className="font-display font-bold text-[#0A0A0A] text-lg sm:text-xl leading-tight" style={{ letterSpacing: '-0.01em' }}>{item.title}</h3>
                 <div className="mt-3 w-6 border-t border-[#A21D27]/30 mb-3" />
                 <p className="text-base text-[#5a5347] leading-relaxed">{item.desc}</p>
               </div>
@@ -78,20 +78,20 @@ export default function Bloggers() {
 
       <section className="bg-[#0A0A0A] pattern-dark py-12">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div className="flex items-center gap-4">
               <div className="section-rule" />
               <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
             </div>
-            <div className="flex items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
+            <div className="grid grid-cols-2 sm:flex sm:items-center gap-1.5 sm:gap-1 sm:p-1 sm:bg-[#FBF8F3]/5 sm:border sm:border-[#FBF8F3]/10 sm:rounded-full">
               {CITY_FILTERS.map((c) => (
                 <button
                   key={c}
                   onClick={() => setCity(c)}
-                  className="text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full"
+                  className="text-[11px] font-medium uppercase px-3 sm:px-4 py-2.5 sm:py-2 transition-colors rounded-full border border-[#FBF8F3]/10 sm:border-0 text-center"
                   style={{
-                    letterSpacing: '0.12em',
-                    background: city === c ? '#A21D27' : 'transparent',
+                    letterSpacing: '0.08em',
+                    background: city === c ? '#A21D27' : 'rgba(251,248,243,0.04)',
                     color: city === c ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
                   }}
                 >

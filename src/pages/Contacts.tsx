@@ -57,7 +57,7 @@ export default function Contacts() {
             </div>
             <div className="bg-[#FBF8F3] p-6">
               <div className="text-[10px] text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.16em' }}>Реквизиты</div>
-              <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-sm text-[#0A0A0A]/70">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-x-3 sm:gap-x-6 gap-y-1.5 text-sm text-[#0A0A0A]/70">
                 <span>ИП Москаленко Илья Денисович</span>
                 <span><span className="text-[#5a5347]">ИНН:</span> 271703923290</span>
                 <span><span className="text-[#5a5347]">ОГРНИП:</span> 32427000070446</span>
