@@ -40,7 +40,7 @@ export default function Merch() {
                 <div className="section-rule" />
                 <div className="eyebrow text-[#5a5347]">Логика мерча</div>
               </div>
-              <h2 className="section-title text-[#0A0A0A] mb-6" style={{ fontSize: 'clamp(1.55rem, 7vw, 2.35rem)' }}>
+              <h2 className="section-title text-[#0A0A0A] mb-6" style={{ fontSize: 'clamp(1.55rem, 7vw, 3rem)' }}>
                 Клиент стал<br />рекламоносителем
               </h2>
               <p className="text-[#0A0A0A]/65 leading-relaxed mb-6">

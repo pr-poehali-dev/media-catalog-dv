@@ -82,7 +82,7 @@ export default function CommunityCard({ community, onClick }: { community: Commu
             <div className="font-display font-bold text-[#E0353F] text-lg leading-none whitespace-nowrap">{community.priceFromLabel || '—'}</div>
           </div>
           {/* Цена на десктопе */}
-          <div className="hidden md:block md:mt-6">
+          <div className="hidden md:block md:mt-auto md:pt-5">
             <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
             <div className="font-display font-bold text-white text-xl leading-none">{community.priceFromLabel || '—'}</div>
           </div>
@@ -156,7 +156,7 @@ export default function CommunityCard({ community, onClick }: { community: Commu
             </div>
           </div>
           {/* Кнопки действий */}
-          <div className="mt-2 md:mt-0 flex flex-col sm:flex-row md:justify-end gap-2.5">
+          <div className="mt-2 md:mt-auto flex flex-col sm:flex-row md:justify-end gap-2.5">
             <button
               onClick={onClick}
               className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
