@@ -7,15 +7,15 @@ function SocialIcon({ social }: { social: Community['social'] }) {
   const path = SOCIAL_ICONS[social];
   return (
     <span
-      className="inline-flex items-center justify-center w-6 h-6 rounded-full flex-shrink-0"
+      className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full flex-shrink-0"
       style={{ backgroundColor: color }}
       title={SOCIALS[social].label}
     >
       {social === 'max'
         ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
         : path
-          ? <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-white"><path d={path} /></svg>
-          : <span className="text-white text-[10px] font-bold">{SOCIALS[social].label[0]}</span>
+          ? <svg viewBox="0 0 24 24" className="w-3 h-3 md:w-3.5 md:h-3.5 fill-white"><path d={path} /></svg>
+          : <span className="text-white text-[9px] md:text-[10px] font-bold">{SOCIALS[social].label[0]}</span>
       }
     </span>
   );
@@ -62,12 +62,12 @@ export default function CommunityCard({ community, onClick }: { community: Commu
           </div>
           {/* На мобильном рядом с аватаром — название с иконкой, тематика, цена */}
           <div className="min-w-0 flex-1 md:hidden">
-            <div className="flex items-center gap-2 mb-1">
-              <SocialIcon social={community.social} />
+            <div className="flex items-start gap-2 mb-1">
+              <span className="mt-0.5"><SocialIcon social={community.social} /></span>
               <h3
                 onClick={onClick}
-                className="min-w-0 font-display font-bold text-white leading-tight cursor-pointer truncate"
-                style={{ fontSize: '1.15rem', letterSpacing: '-0.02em' }}
+                className="min-w-0 font-display font-bold text-white leading-tight cursor-pointer"
+                style={{ fontSize: '1.05rem', letterSpacing: '-0.02em', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
               >
                 {community.name}
               </h3>

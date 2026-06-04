@@ -70,8 +70,8 @@ export default function CommunityModal({ community, onClose }: { community: Comm
             </div>
             <div className="flex-1 min-w-0">
               {/* Иконка соцсети + название */}
-              <div className="flex items-center gap-2 mb-2 pr-8 sm:pr-0">
-                <SocialIcon social={community.social} size="sm" />
+              <div className="flex items-start gap-2 mb-2 pr-8 sm:pr-0">
+                <span className="mt-0.5"><SocialIcon social={community.social} size="sm" /></span>
                 <h2 className="min-w-0 font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
               </div>
               {/* Город */}

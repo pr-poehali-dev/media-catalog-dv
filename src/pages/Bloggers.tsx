@@ -33,8 +33,10 @@ export default function Bloggers() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Направление 02</div>
           </div>
-          <h1 className="page-hero-title text-[#FBF8F3] mb-4">Реклама у блогеров</h1>
-          <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-6">
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4">
+            Реклама<br />у блогеров
+          </h1>
+          <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
             Люди доверяют людям, а не баннерам. Поэтому реклама у блогеров работает лучше обычных объявлений.
           </p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-2 mb-8">
@@ -49,10 +51,10 @@ export default function Bloggers() {
               </div>
             ))}
           </div>
-          <div className="flex flex-wrap gap-3">
-            <a href="#form" className="btn-carmine">Подобрать блогера</a>
-            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
-            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+            <a href="#form" className="btn-carmine justify-center w-full sm:w-[230px]">Подобрать блогера</a>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-[230px]">Написать в Telegram</a>
+            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">Написать в MAX</a>
           </div>
         </div>
       </section>

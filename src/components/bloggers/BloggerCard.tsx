@@ -71,8 +71,8 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           <div className="min-w-0 flex-1 md:hidden">
             <h3
               onClick={onClick}
-              className="font-display font-bold text-white leading-tight cursor-pointer mb-1 truncate"
-              style={{ fontSize: '1.15rem', letterSpacing: '-0.02em' }}
+              className="font-display font-bold text-white leading-tight cursor-pointer mb-1"
+              style={{ fontSize: '1.05rem', letterSpacing: '-0.02em', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
             >
               {blogger.name}
             </h3>

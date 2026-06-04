@@ -40,16 +40,15 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
             <Icon name="X" size={22} />
           </button>
           <div className="pattern-content flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 w-full">
-            <div className="flex items-center gap-4 sm:block">
-              <AvatarSimple blogger={blogger} />
-              <div className="min-w-0 sm:hidden">
-                <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase truncate" style={{ letterSpacing: '0.14em' }}>{blogger.city}</div>
-                <div className="text-[11px] text-[#FBF8F3]/35">{blogger.category}</div>
-              </div>
-            </div>
+            {/* Аватар блогера */}
+            <AvatarSimple blogger={blogger} />
             <div className="flex-1 min-w-0">
-              <div className="hidden sm:block text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{blogger.city} · {blogger.category}</div>
-              <h2 className="font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight mb-3 pr-8 sm:pr-0" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
+              {/* Название */}
+              <h2 className="font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight mb-2 pr-8 sm:pr-0" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
+              {/* Город */}
+              <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-1" style={{ letterSpacing: '0.16em' }}>{blogger.city}</div>
+              {/* Тематика */}
+              <div className="text-[13px] text-[#FBF8F3]/55 mb-3 leading-snug">{blogger.category}</div>
               <p className="text-sm text-[#FBF8F3]/60 leading-relaxed max-w-prose">{blogger.fullDescription}</p>
             </div>
           </div>
