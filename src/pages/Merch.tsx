@@ -15,16 +15,18 @@ export default function Merch() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Направление 04</div>
           </div>
-          <h1 className="page-hero-title text-[#FBF8F3] mb-4">Брендированная продукция</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4">
+            Брендированная<br />продукция
+          </h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
-            Мерч — реклама, которая остаётся с клиентом. Кружка на столе,<br />
-            футболка на улице, стикер на ноутбуке — бренд постоянно перед глазами.<br className="hidden lg:block" />
-            У владельца и всего его окружения.
+            Мерч — реклама, которая остаётся с клиентом. Кружка на столе,<br className="hidden sm:block" />
+            {' '}футболка на улице, стикер на ноутбуке — бренд постоянно перед глазами.<br className="hidden lg:block" />
+            {' '}У владельца и всего его окружения.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <a href="#merch-form" className="btn-carmine">Заказать мерч</a>
-            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
-            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+            <a href="#merch-form" className="btn-carmine justify-center w-full sm:w-[230px]">Заказать мерч</a>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-[230px]">Написать в Telegram</a>
+            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">Написать в MAX</a>
           </div>
         </div>
       </section>
@@ -32,13 +34,13 @@ export default function Merch() {
       {/* Почему мерч работает */}
       <section className="bg-[#FBF8F3] pattern-milk py-14 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="section-rule" />
                 <div className="eyebrow text-[#5a5347]">Логика мерча</div>
               </div>
-              <h2 className="section-title text-[#0A0A0A] mb-6">
+              <h2 className="section-title text-[#0A0A0A] mb-6" style={{ fontSize: 'clamp(1.55rem, 7vw, 3rem)' }}>
                 Клиент стал<br />рекламоносителем
               </h2>
               <p className="text-[#0A0A0A]/65 leading-relaxed mb-6">
@@ -58,10 +60,10 @@ export default function Merch() {
                 { num: '3–10+', unit: 'охват', desc: 'Мерч видит не только владелец, но и его окружение.' },
                 { num: '25%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще.' },
               ].map((item) => (
-                <div key={item.num} className="bg-[#FBF8F3] p-7">
+                <div key={item.num} className="bg-[#FBF8F3] p-5 md:p-7">
                   <div style={{ height: '4rem', display: 'flex', alignItems: 'flex-end', marginBottom: '4px' }}>
-                    <div className="font-display font-extrabold text-[#A21D27] leading-none"
-                      style={{ fontSize: item.num === '∞' ? 'clamp(4rem, 5vw, 4rem)' : 'clamp(2.5rem, 4vw, 2.5rem)' }}>
+                    <div className="font-display font-extrabold text-[#A21D27] leading-none whitespace-nowrap"
+                      style={{ fontSize: item.num === '∞' ? 'clamp(4rem, 5vw, 4rem)' : 'clamp(2.25rem, 4vw, 2.5rem)' }}>
                       {item.num}
                     </div>
                   </div>
@@ -81,27 +83,27 @@ export default function Merch() {
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
           </div>
-          <div className="flex flex-col gap-px bg-[#2a2a2a]">
+          <div className="flex flex-col gap-4 md:gap-px md:bg-[#2a2a2a]">
             {MERCH_ITEMS.map((item, i) => (
               <div key={item.id}
-                className={`flex flex-col md:flex-row bg-[#141414] ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                {/* Visual */}
-                <div className="md:w-[240px] bg-[#0A0A0A] flex-shrink-0 min-h-[200px] overflow-hidden">
+                className={`flex flex-col md:flex-row bg-[#141414] border border-[#2a2a2a] md:border-0 ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                {/* Visual — 1:1 на мобильном */}
+                <div className="md:w-[240px] bg-[#0A0A0A] flex-shrink-0 aspect-square sm:aspect-[4/5] md:aspect-auto md:min-h-[200px] overflow-hidden relative">
                   {item.image ? (
-                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" style={{ minHeight: '200px' }} />
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover absolute inset-0" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center p-10 min-h-[200px]">
+                    <div className="w-full h-full flex items-center justify-center absolute inset-0">
                       <div className="text-5xl">{item.emoji}</div>
                     </div>
                   )}
                 </div>
                 {/* Content */}
-                <div className="flex-1 p-7">
-                  <h3 className="font-display font-bold text-[#FBF8F3] text-2xl mb-2 leading-tight" style={{ letterSpacing: '-0.01em' }}>
+                <div className="flex-1 p-5 md:p-7">
+                  <h3 className="font-display font-bold text-[#FBF8F3] text-xl md:text-2xl mb-2 leading-tight" style={{ letterSpacing: '-0.01em' }}>
                     {item.name}
                   </h3>
-                  <p className="text-base text-[#FBF8F3]/55 leading-relaxed mb-3">{item.description}</p>
-                  <div className="flex items-start gap-2 text-base text-[#FBF8F3]/45">
+                  <p className="text-[13px] md:text-base text-[#FBF8F3]/55 leading-relaxed mb-3">{item.description}</p>
+                  <div className="flex items-start gap-2 text-[13px] md:text-base text-[#FBF8F3]/45">
                     <div className="w-px h-4 bg-[#A21D27] flex-shrink-0 mt-0.5" />
                     {item.why}
                   </div>
