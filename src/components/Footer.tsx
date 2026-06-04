@@ -7,21 +7,6 @@ const FOOTER_DIRECTIONS = [
   { label: 'Брендированная продукция', path: '/merch' },
 ];
 
-const FOOTER_SOCIALS = [
-  { label: 'ВКонтакте', path: '/socials/vk' },
-  { label: 'Telegram', path: '/socials/telegram' },
-  { label: 'Одноклассники', path: '/socials/ok' },
-  { label: 'MAX', path: '/socials/max' },
-  { label: 'TikTok', path: '/socials/tiktok' },
-  { label: 'Instagram*', path: '/socials/instagram' },
-];
-
-const FOOTER_CITIES = [
-  { label: 'Хабаровск', path: '/cities/khabarovsk' },
-  { label: 'Владивосток', path: '/cities/vladivostok' },
-  { label: 'Комсомольск-на-Амуре', path: '/cities/komsomolsk' },
-];
-
 const FOOTER_LEGAL = [
   { label: 'Политика персональных данных', path: '/legal/privacy' },
   { label: 'Согласие на обработку ПД', path: '/legal/consent' },
@@ -35,7 +20,7 @@ export default function Footer() {
     <footer className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark">
       <div className="pattern-content">
         <div className="max-w-7xl mx-auto px-6 pt-14 pb-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
             {/* Brand */}
             <div>
@@ -62,22 +47,6 @@ export default function Footer() {
               <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Направления</div>
               <div className="flex flex-col gap-2.5">
                 {FOOTER_DIRECTIONS.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">{item.label}</Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Площадки + города */}
-            <div>
-              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Соцсети</div>
-              <div className="flex flex-col gap-2 mb-7">
-                {FOOTER_SOCIALS.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">{item.label}</Link>
-                ))}
-              </div>
-              <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-4" style={{ letterSpacing: '0.22em' }}>Города</div>
-              <div className="flex flex-col gap-2">
-                {FOOTER_CITIES.map((item) => (
                   <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">{item.label}</Link>
                 ))}
               </div>

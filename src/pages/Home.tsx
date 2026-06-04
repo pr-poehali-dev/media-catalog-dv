@@ -70,8 +70,8 @@ export default function Home() {
     <div>
 
       {/* ======== HERO ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-screen flex items-center">
-        <div className="pattern-content max-w-7xl mx-auto px-6 pt-24 pb-12 w-full">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-screen flex items-start sm:items-center">
+        <div className="pattern-content max-w-7xl mx-auto px-6 pt-9 sm:pt-24 pb-12 w-full">
           <div className="eyebrow text-[#FBF8F3]/50 mb-5 anim-d1 animate-fade-up">
             Хабаровск · Владивосток · Комсомольск-на-Амуре
           </div>
@@ -79,12 +79,12 @@ export default function Home() {
             style={{
               fontFamily: 'Unbounded, sans-serif',
               fontWeight: 800,
-              fontSize: 'clamp(1.75rem, 3.8vw, 4.5rem)',
-              lineHeight: 1.12,
+              fontSize: 'clamp(1.4rem, 6.5vw, 4.5rem)',
+              lineHeight: 1.14,
               letterSpacing: '-0.03em',
             }}>
-            Привлечём внимание.<br />
-            Сформируем доверие.<br />
+            <span style={{ whiteSpace: 'nowrap' }}>Привлечём внимание.</span><br />
+            <span style={{ whiteSpace: 'nowrap' }}>Сформируем доверие.</span><br />
             <span style={{ whiteSpace: 'nowrap' }}>Приведём и <span className="text-[#A21D27]">удержим</span></span><br />
             клиентов.
           </h1>
@@ -110,13 +110,23 @@ export default function Home() {
       <section className="bg-[#F2EDE4] border-b border-[#E8E2D8] pattern-milk reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 py-10">
           {/* Мобильная сетка */}
-          <div className="grid grid-cols-2 gap-6 md:hidden">
-            {STATS.map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="font-display font-extrabold text-[#A21D27] text-3xl leading-none mb-1">{s.value}</div>
-                <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.16em' }}>{s.label}</div>
-              </div>
-            ))}
+          <div className="md:hidden">
+            <div className="grid grid-cols-3 gap-3 mb-5">
+              {STATS.slice(0, 3).map((s) => (
+                <div key={s.label} className="text-center">
+                  <div className="font-display font-extrabold text-[#A21D27] text-xl leading-none mb-1 whitespace-nowrap">{s.value}</div>
+                  <div className="text-[9px] text-[#5a5347] uppercase leading-tight" style={{ letterSpacing: '0.1em' }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center gap-10">
+              {STATS.slice(3).map((s) => (
+                <div key={s.label} className="text-center">
+                  <div className="font-display font-extrabold text-[#A21D27] text-xl leading-none mb-1 whitespace-nowrap">{s.value}</div>
+                  <div className="text-[9px] text-[#5a5347] uppercase leading-tight" style={{ letterSpacing: '0.1em' }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
           {/* Десктопная строка */}
           <div className="hidden md:flex items-start justify-between gap-4">

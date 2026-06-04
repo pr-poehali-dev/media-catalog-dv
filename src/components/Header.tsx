@@ -31,7 +31,7 @@ export default function Header() {
             <div className="w-10 h-10 bg-[#A21D27] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>М2.7</span>
             </div>
-            <div className="hidden sm:block">
+            <div className="block">
               <div className={`font-display font-bold text-sm tracking-tight leading-none transition-colors duration-300 ${dark ? 'text-white' : 'text-[#0A0A0A]'}`}>Медиа 2.7</div>
               <div className={`text-[9px] uppercase leading-tight mt-0.5 transition-colors duration-300 ${dark ? 'text-white/50' : 'text-[#5a5347]'}`} style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
             </div>
@@ -91,31 +91,51 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="lg:hidden border-t border-[#E8E2D8] bg-[#FBF8F3] max-h-[80vh] overflow-y-auto">
-          <nav className="max-w-7xl mx-auto px-6 py-5 flex flex-col gap-0.5">
-
-            <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 pt-2" style={{ letterSpacing: '0.2em' }}>Направление 01</div>
-            <Link to="/communities" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Реклама в городских сообществах</Link>
-
-            <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 mt-4 pt-3 border-t border-[#E8E2D8]" style={{ letterSpacing: '0.2em' }}>Направление 02</div>
-            <Link to="/bloggers" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Реклама у блогеров</Link>
-
-            <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 mt-4 pt-3 border-t border-[#E8E2D8]" style={{ letterSpacing: '0.2em' }}>Направление 03</div>
-            <Link to="/outdoor" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Наружная реклама</Link>
-
-            <div className="text-[9px] font-medium text-[#5a5347] uppercase mb-2 mt-4 pt-3 border-t border-[#E8E2D8]" style={{ letterSpacing: '0.2em' }}>Направление 04</div>
-            <Link to="/merch" className="py-2.5 text-sm font-medium text-[#0A0A0A] hover:text-[#A21D27] transition-colors">Брендированная продукция</Link>
-
-            <div className="mt-4 pt-3 border-t border-[#E8E2D8] flex flex-col gap-0.5">
-              <Link to="/contacts" className="py-2 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>Контакты</Link>
-              <Link to="/faq" className="py-2 text-[11px] font-medium uppercase text-[#0A0A0A] hover:text-[#A21D27] transition-colors" style={{ letterSpacing: '0.12em' }}>FAQ</Link>
-            </div>
-
-            <Link to="/contacts" className="mt-4 btn-carmine justify-center text-center">Получить медиаплан</Link>
-          </nav>
-        </div>
-      )}
+      <div
+        className={`lg:hidden fixed inset-0 top-16 z-40 transition-all duration-300 ${
+          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div
+          className="absolute inset-0 bg-[#0A0A0A]/40 backdrop-blur-md"
+          onClick={() => setMobileOpen(false)}
+        />
+        <nav
+          className={`absolute top-0 right-0 left-0 mx-3 mt-3 rounded-2xl bg-[#0A0A0A]/90 backdrop-blur-xl border border-white/10 shadow-2xl p-4 flex flex-col transition-all duration-300 ${
+            mobileOpen ? 'translate-y-0' : '-translate-y-4'
+          }`}
+        >
+          {[
+            { to: '/communities', label: 'Сообщества' },
+            { to: '/bloggers', label: 'Блогеры' },
+            { to: '/outdoor', label: 'Наружка' },
+            { to: '/merch', label: 'Мерч' },
+            { to: '/contacts', label: 'Контакты' },
+            { to: '/faq', label: 'FAQ' },
+          ].map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={`py-3 px-2 text-[13px] font-medium uppercase transition-colors border-b border-white/5 last:border-0 ${
+                isActive(item.to) ? 'text-[#A21D27]' : 'text-white/80 hover:text-white'
+              }`}
+              style={{ letterSpacing: '0.12em' }}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <a
+            href="https://t.me/prhbk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center justify-center gap-1.5 bg-[#A21D27] text-[#FBF8F3] text-[13px] font-medium px-5 py-3 rounded-full hover:bg-[#831520] transition-colors"
+            style={{ letterSpacing: '0.08em' }}
+          >
+            <img src="https://cdn.poehali.dev/files/56fe3dcd-989b-42e8-9399-ecab76c2f6c2.png" alt="" className="w-4 h-4 object-contain flex-shrink-0" />
+            <span>Связаться с нами</span>
+          </a>
+        </nav>
+      </div>
     </header>
   );
 }
