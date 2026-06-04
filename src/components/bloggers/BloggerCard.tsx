@@ -86,7 +86,7 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
             <div className="font-display font-bold text-[#E0353F] text-lg leading-none whitespace-nowrap">{blogger.priceFromLabel}</div>
           </div>
           {/* Цена на десктопе */}
-          <div className="hidden md:block md:mt-auto md:pt-4 md:self-start">
+          <div className="hidden md:block md:mt-6 md:self-start">
             <div className="text-[10px] text-white/30 uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
             <div className="font-display font-bold text-white text-xl leading-none">{blogger.priceFromLabel}</div>
           </div>
@@ -160,7 +160,7 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
             <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
             <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
           </div>
-          <div className="mt-2 md:mt-auto flex flex-col sm:flex-row md:justify-end gap-2.5">
+          <div className="mt-2 md:mt-0 flex flex-col sm:flex-row md:justify-end gap-2.5">
             <button
               onClick={onClick}
               className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
