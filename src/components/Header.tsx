@@ -17,12 +17,12 @@ export default function Header() {
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
-  const dark = !scrolled;
+  const dark = true;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#0A0A0A] border-[#FBF8F3]/10'
+        scrolled ? 'bg-[#0A0A0A]/90 backdrop-blur-md border-[#FBF8F3]/10' : 'bg-[#0A0A0A] border-[#FBF8F3]/10'
       }`}
       style={{ paddingTop: 'env(safe-area-inset-top)' }}
     >
