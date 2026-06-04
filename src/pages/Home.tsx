@@ -79,7 +79,7 @@ export default function Home() {
             style={{
               fontFamily: 'Unbounded, sans-serif',
               fontWeight: 800,
-              fontSize: 'clamp(1.4rem, 6.5vw, 4.5rem)',
+              fontSize: 'clamp(1.4rem, 4.1vw, 4.8rem)',
               lineHeight: 1.14,
               letterSpacing: '-0.03em',
             }}>
