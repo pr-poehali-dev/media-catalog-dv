@@ -24,7 +24,7 @@ export default function Formats() {
               <div key={format.id}
                 className={`flex flex-col md:flex-row bg-[#FBF8F3] ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Visual */}
-                <div className="md:w-1/3 bg-[#0A0A0A] flex flex-col items-center justify-center p-12 min-h-[200px] text-center">
+                <div className="md:w-1/3 bg-[#0A0A0A] flex flex-col items-center justify-center p-6 md:p-12 min-h-[200px] text-center">
                   <div className="text-5xl mb-4">{format.emoji}</div>
                   <div className="font-display font-bold text-[#FBF8F3] text-xl mb-2" style={{ letterSpacing: '-0.01em' }}>{format.name}</div>
                   <div className="text-[10px] text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.18em' }}>{format.purpose}</div>

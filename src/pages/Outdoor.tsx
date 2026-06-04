@@ -43,7 +43,7 @@ function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: b
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#FBF8F3]/10">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-[#FBF8F3]/10">
           <div>
             <div className="text-[10px] text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.14em' }}>от</div>
             <div className="font-display font-bold text-[#FBF8F3] text-2xl">{format.priceFrom.toLocaleString('ru')} ₽ / мес.</div>

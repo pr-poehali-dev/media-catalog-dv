@@ -60,7 +60,7 @@ export default function Platforms() {
               <Icon name="Search" size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5a5347]" />
               <input type="text" placeholder="Поиск..." value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className={`${inputCls} pl-8 min-w-[160px]`} />
+                className={`${inputCls} pl-8 min-w-[140px] w-full sm:w-auto sm:min-w-[160px]`} />
             </div>
             <select value={city} onChange={(e) => setCity(e.target.value)} className={inputCls}>
               {CITIES_F.map((c) => <option key={c}>{c}</option>)}

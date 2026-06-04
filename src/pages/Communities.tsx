@@ -256,7 +256,7 @@ export default function Communities() {
                   <Icon name={sortOpen ? 'ChevronUp' : 'ChevronDown'} size={13} />
                 </button>
                 {sortOpen && (
-                  <div className="absolute left-0 top-full mt-2 z-20 min-w-[220px] bg-[#161618] border border-[#FBF8F3]/10 rounded-2xl p-1 shadow-2xl">
+                  <div className="absolute left-0 top-full mt-2 z-20 min-w-[180px] w-full sm:w-auto bg-[#161618] border border-[#FBF8F3]/10 rounded-2xl p-1 shadow-2xl">
                     {SORT_OPTIONS.map((opt) => {
                       const active = sortKey === opt.key;
                       return (

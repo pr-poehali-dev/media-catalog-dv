@@ -37,7 +37,7 @@ export default function Legal() {
 
   const formatContent = (text: string) =>
     text.split('\n').map((line, i) => {
-      if (line.startsWith('## ')) return <h2 key={i} className="font-display font-bold text-xl text-[#0A0A0A] mt-8 mb-1" style={{ letterSpacing: '-0.01em' }}>{line.slice(3)}</h2>;
+      if (line.startsWith('## ')) return <h2 key={i} className="font-display font-bold text-lg sm:text-xl text-[#0A0A0A] mt-8 mb-1" style={{ letterSpacing: '-0.01em' }}>{line.slice(3)}</h2>;
       if (line.startsWith('**') && line.endsWith('**')) return <p key={i} className="font-semibold text-[#0A0A0A] mt-4 mb-1">{line.slice(2, -2)}</p>;
       if (line.startsWith('- ')) return <li key={i} className="text-base text-[#5a5347] ml-4 leading-relaxed mb-1">{line.slice(2)}</li>;
       if (line.match(/^\d+\./)) return <li key={i} className="text-base text-[#5a5347] ml-4 leading-relaxed mb-1 list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;

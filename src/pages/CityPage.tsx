@@ -102,7 +102,7 @@ export default function CityPage() {
           <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Город</div></div>
           <h1 className="page-hero-title text-[#FBF8F3] mb-2">{cityName}</h1>
           <p className="text-[#FBF8F3]/50 text-base mb-3">{cityInfo.tagline}</p>
-          <div className="font-display font-bold text-[#A21D27] text-3xl">{cityInfo.population} жителей</div>
+          <div className="font-display font-bold text-[#A21D27] text-xl sm:text-2xl md:text-3xl">{cityInfo.population} жителей</div>
         </div>
       </section>
 

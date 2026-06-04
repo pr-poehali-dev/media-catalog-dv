@@ -75,7 +75,7 @@ export default function Cases() {
                   {/* Header */}
                   <div className="bg-[#0A0A0A] p-7">
                     <div className="text-3xl mb-3">{c.emoji}</div>
-                    <h3 className="font-display font-bold text-[#FBF8F3] text-xl leading-tight" style={{ letterSpacing: '-0.01em' }}>{c.title}</h3>
+                    <h3 className="font-display font-bold text-[#FBF8F3] text-lg sm:text-xl leading-tight" style={{ letterSpacing: '-0.01em' }}>{c.title}</h3>
                   </div>
                   {/* Body */}
                   <div className="p-7 flex flex-col flex-1">
@@ -95,7 +95,7 @@ export default function Cases() {
                     </div>
                     <div className="border-t border-[#E8E2D8] pt-4">
                       <div className="text-[10px] text-[#5a5347] uppercase mb-1" style={{ letterSpacing: '0.14em' }}>Суммарный охват</div>
-                      <div className="font-display font-bold text-[#A21D27] text-3xl">{c.reach.toLocaleString('ru')}</div>
+                      <div className="font-display font-bold text-[#A21D27] text-2xl sm:text-3xl">{c.reach.toLocaleString('ru')}</div>
                     </div>
                   </div>
                 </div>

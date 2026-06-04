@@ -124,7 +124,7 @@ export default function SocialPage() {
                 Использование Instagram* в коммерческих целях сопряжено с правовыми рисками согласно законодательству РФ.
               </p>
             </div>
-            <h2 className="font-display font-bold text-2xl text-[#0A0A0A] mb-6" style={{ letterSpacing: '-0.02em' }}>Альтернативы Instagram* на Дальнем Востоке</h2>
+            <h2 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-[#0A0A0A] mb-6" style={{ letterSpacing: '-0.02em' }}>Альтернативы Instagram* на Дальнем Востоке</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#E8E2D8] mb-10">
               {(['vk', 'telegram', 'max', 'tiktok'] as const).map((key) => {
                 const s = SOCIALS[key];

@@ -54,7 +54,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="relative bg-[#FBF8F3] w-full max-w-3xl my-8 flex flex-col">
-        <div className="bg-[#0A0A0A] pattern-dark p-8 flex items-start gap-5">
+        <div className="bg-[#0A0A0A] pattern-dark p-5 sm:p-8 flex items-start gap-5">
           <div className="pattern-content flex items-start gap-5 w-full">
             <div className="w-20 h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
               {community.avatar
@@ -90,7 +90,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
         </div>
 
         <div className="bg-[#FBF8F3] pattern-milk">
-        <div className="pattern-content p-8 flex flex-col gap-8">
+        <div className="pattern-content p-5 sm:p-8 flex flex-col gap-8">
           {community.audienceCharts ? (
             <div>
               <div className="flex items-center justify-between gap-3 mb-3">
@@ -121,7 +121,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
           <div>
             <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.18em' }}>Соцсети и статистика</div>
             <div className="border border-[#E8E2D8] overflow-hidden">
-              <div className="hidden sm:grid grid-cols-[140px_110px_1fr_1fr] bg-[#F2EDE4] border-b border-[#E8E2D8]">
+              <div className="hidden sm:grid grid-cols-[110px_90px_1fr_1fr] bg-[#F2EDE4] border-b border-[#E8E2D8]">
                 {['Площадка', 'Подписчики', 'Сред. охват публикации', 'Вовлечённость'].map((h, hi) => (
                   <div key={h} className={`px-4 py-2.5 text-[10px] text-[#5a5347] uppercase font-medium ${hi === 0 ? '' : 'text-center'}`} style={{ letterSpacing: '0.14em' }}>{h}</div>
                 ))}
@@ -129,7 +129,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
               {[...community.socials].sort((a, b) => parseReach(b.reachLabel) - parseReach(a.reachLabel)).map((s) => {
                 const info = SOCIALS[s.social];
                 return (
-                  <div key={s.social} className="grid grid-cols-1 sm:grid-cols-[140px_110px_1fr_1fr] border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors">
+                  <div key={s.social} className="grid grid-cols-1 sm:grid-cols-[110px_90px_1fr_1fr] border-b border-[#E8E2D8] last:border-b-0 hover:bg-[#F2EDE4]/40 transition-colors">
                     <div className="px-4 py-3 flex items-center">
                       {s.link
                         ? <a href={s.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline" style={{ color: info.color }}>{info.label}</a>

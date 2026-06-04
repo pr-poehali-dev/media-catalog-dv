@@ -35,7 +35,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="relative bg-[#FBF8F3] w-full max-w-3xl my-8 flex flex-col">
-        <div className="bg-[#0A0A0A] pattern-dark p-8 flex items-start gap-5">
+        <div className="bg-[#0A0A0A] pattern-dark p-5 sm:p-8 flex items-start gap-5">
           <div className="pattern-content flex items-start gap-5 w-full">
             <AvatarSimple blogger={blogger} />
             <div className="flex-1 min-w-0">
@@ -50,7 +50,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
         </div>
 
         <div className="bg-[#FBF8F3] pattern-milk">
-        <div className="pattern-content p-8 flex flex-col gap-8">
+        <div className="pattern-content p-5 sm:p-8 flex flex-col gap-8">
           {blogger.audienceCharts ? (
             <div>
               <div className="text-[10px] font-medium text-[#5a5347] uppercase mb-4" style={{ letterSpacing: '0.18em' }}>Аудитория</div>
@@ -67,7 +67,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
 
           {(() => {
             const detailed = blogger.socials.some((s) => s.viewsLabel !== undefined);
-            const cols = detailed ? 'sm:grid-cols-[120px_100px_1fr_1fr_1fr]' : 'sm:grid-cols-[120px_1fr_1.4fr_1fr]';
+            const cols = detailed ? 'sm:grid-cols-[100px_80px_1fr_1fr_1fr]' : 'sm:grid-cols-[100px_1fr_1.4fr_1fr]';
             const headers = detailed
               ? ['Площадка', 'Подписчики', 'Просмотры / 30 дн.', 'Охват', 'Вовлечённость']
               : ['Площадка', 'Подписчики', 'Сред. охват публикации', 'Вовлечённость'];
