@@ -172,6 +172,18 @@
   letter-spacing: -0.03em;
 }
 
+/* Hero compensation: header height (4rem) + iPhone safe-area.
+   Гарантирует, что контент первого экрана не уезжает под фиксированную шапку. */
+.hero-pad-top {
+  padding-top: calc(4rem + env(safe-area-inset-top) + 1.25rem);
+}
+
+@media (min-width: 768px) {
+  .hero-pad-top {
+    padding-top: calc(4rem + 2.5rem);
+  }
+}
+
 .sub-title {
   font-family: "Unbounded", sans-serif;
   font-weight: 700;

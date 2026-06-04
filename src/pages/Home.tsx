@@ -70,12 +70,12 @@ export default function Home() {
     <div>
 
       {/* ======== HERO ======== */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden min-h-screen flex items-start sm:items-center">
-        <div className="pattern-content max-w-7xl mx-auto px-6 pt-9 sm:pt-24 pb-12 w-full">
-          <div className="eyebrow text-[#FBF8F3]/50 mb-5 anim-d1 animate-fade-up">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden sm:min-h-screen flex items-start sm:items-center">
+        <div className="pattern-content max-w-7xl mx-auto px-6 hero-pad-top pb-10 sm:pb-12 w-full">
+          <div className="eyebrow text-[#FBF8F3]/50 mb-3 sm:mb-5 anim-d1 animate-fade-up">
             Хабаровск · Владивосток · Комсомольск-на-Амуре
           </div>
-          <h1 className="text-[#FBF8F3] mb-5 anim-d2 animate-fade-up"
+          <h1 className="text-[#FBF8F3] mb-4 sm:mb-5 anim-d2 animate-fade-up"
             style={{
               fontFamily: 'Unbounded, sans-serif',
               fontWeight: 800,
@@ -88,18 +88,18 @@ export default function Home() {
             <span style={{ whiteSpace: 'nowrap' }}>Приведём и <span className="text-[#A21D27]">удержим</span></span><br />
             клиентов.
           </h1>
-          <p className="text-[#FBF8F3]/55 leading-relaxed mb-8 max-w-lg anim-d3 animate-fade-up"
+          <p className="text-[#FBF8F3]/55 leading-relaxed mb-6 sm:mb-8 max-w-lg anim-d3 animate-fade-up"
             style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)' }}>
             Наружная реклама, обзоры у блогеров, городские сообщества
             и брендированная продукция — полный цикл работы с клиентами
             на Дальнем Востоке.
           </p>
-          <div className="flex flex-wrap gap-3 anim-d4 animate-fade-up">
-            <a href="#cta" className="btn-carmine">Получить медиаплан</a>
-            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 anim-d4 animate-fade-up">
+            <a href="#cta" className="btn-carmine justify-center w-full sm:w-auto">Получить медиаплан</a>
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">
               Написать в Telegram
             </a>
-            <a href="https://max.ru/u/f9LHodD0cOLXB3nv5Syhf3yuHh7KUUzhvhTbBbfeUi4f-OZffgk_ZagdxQ4" target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <a href="https://max.ru/u/f9LHodD0cOLXB3nv5Syhf3yuHh7KUUzhvhTbBbfeUi4f-OZffgk_ZagdxQ4" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">
               Написать в MAX
             </a>
           </div>

@@ -39,7 +39,7 @@ const CITY_CONTENT: Record<string, {
 
 const FAR_EAST_PAGE = () => (
   <div>
-    <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-32 pb-16">
+    <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16">
       <div className="pattern-content max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Регион</div></div>
         <h1 className="page-hero-title text-[#FBF8F3] mb-3">Дальний Восток</h1>
@@ -97,7 +97,7 @@ export default function CityPage() {
 
   return (
     <div>
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-32 pb-16">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3"><div className="section-rule" /><div className="eyebrow text-[#FBF8F3]/50">Город</div></div>
           <h1 className="page-hero-title text-[#FBF8F3] mb-2">{cityName}</h1>

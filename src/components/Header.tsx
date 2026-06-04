@@ -20,9 +20,12 @@ export default function Header() {
   const dark = !scrolled;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-      scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#0A0A0A] border-[#FBF8F3]/10'
-    }`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#0A0A0A] border-[#FBF8F3]/10'
+      }`}
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16 gap-4">
 
@@ -92,9 +95,10 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 top-16 z-40 transition-all duration-300 ${
+        className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
+        style={{ top: 'calc(4rem + env(safe-area-inset-top))' }}
       >
         <div
           className="absolute inset-0 bg-[#0A0A0A]/40 backdrop-blur-md"

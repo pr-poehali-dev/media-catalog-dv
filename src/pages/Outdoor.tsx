@@ -61,7 +61,7 @@ export default function Outdoor() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-32 pb-16">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
