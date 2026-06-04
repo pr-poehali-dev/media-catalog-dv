@@ -39,18 +39,22 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
           <button onClick={onClose} className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors" aria-label="Закрыть">
             <Icon name="X" size={22} />
           </button>
-          <div className="pattern-content flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 w-full">
-            {/* Аватар блогера */}
-            <AvatarSimple blogger={blogger} />
-            <div className="flex-1 min-w-0">
-              {/* Название */}
-              <h2 className="font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight mb-2 pr-8 sm:pr-0" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
-              {/* Город */}
-              <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-1" style={{ letterSpacing: '0.16em' }}>{blogger.city}</div>
-              {/* Тематика */}
-              <div className="text-[13px] text-[#FBF8F3]/55 mb-3 leading-snug">{blogger.category}</div>
-              <p className="text-sm text-[#FBF8F3]/60 leading-relaxed max-w-prose">{blogger.fullDescription}</p>
+          <div className="pattern-content w-full">
+            {/* Шапка: аватар слева, справа — название, город, тематика */}
+            <div className="flex flex-row items-start gap-4 pr-8 sm:pr-10">
+              {/* Аватар блогера */}
+              <AvatarSimple blogger={blogger} />
+              <div className="flex-1 min-w-0">
+                {/* Название */}
+                <h2 className="font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight mb-1.5" style={{ letterSpacing: '-0.02em' }}>{blogger.name}</h2>
+                {/* Город */}
+                <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-1" style={{ letterSpacing: '0.16em' }}>{blogger.city}</div>
+                {/* Тематика */}
+                <div className="text-[13px] text-[#FBF8F3]/55 leading-snug">{blogger.category}</div>
+              </div>
             </div>
+            {/* Описание — на всю ширину */}
+            <p className="mt-4 text-sm text-[#FBF8F3]/60 leading-relaxed">{blogger.fullDescription}</p>
           </div>
         </div>
 

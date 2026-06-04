@@ -60,41 +60,45 @@ export default function CommunityModal({ community, onClose }: { community: Comm
           <button onClick={onClose} className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 flex-shrink-0 text-[#FBF8F3]/40 hover:text-[#FBF8F3] transition-colors" aria-label="Закрыть">
             <Icon name="X" size={22} />
           </button>
-          <div className="pattern-content flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 w-full">
-            {/* Аватар проекта */}
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
-              {community.avatar
-                ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
-                : <span className="text-3xl sm:text-4xl">{community.emoji}</span>
-              }
-            </div>
-            <div className="flex-1 min-w-0">
-              {/* Иконка соцсети + название */}
-              <div className="flex items-start gap-2 mb-2 pr-8 sm:pr-0">
-                <span className="mt-0.5"><SocialIcon social={community.social} size="sm" /></span>
-                <h2 className="min-w-0 font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
+          <div className="pattern-content w-full">
+            {/* Шапка: аватар слева, справа — иконка+название, город, тематика */}
+            <div className="flex flex-row items-start gap-4 pr-8 sm:pr-10">
+              {/* Аватар проекта */}
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
+                {community.avatar
+                  ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
+                  : <span className="text-3xl sm:text-4xl">{community.emoji}</span>
+                }
               </div>
-              {/* Город */}
-              <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-1" style={{ letterSpacing: '0.16em' }}>{community.city}</div>
-              {/* Тематика */}
-              {community.category && (
-                <div className="text-[13px] text-[#FBF8F3]/55 mb-3 leading-snug">{community.category}</div>
-              )}
-              {community.fullDescription && (
-                <p className="text-sm text-[#FBF8F3]/60 leading-relaxed whitespace-pre-line max-w-prose">{community.fullDescription}</p>
-              )}
-              {community.social === 'instagram' && (
-                <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
-                  Стандартное рекламное размещение в Instagram* на территории РФ не предлагаем. Присутствие в соцсети возможно только в информационном формате с учётом правовых ограничений.
-                </p>
-              )}
-              {community.rkn && (
-                <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
-                  Включена Роскомнадзором в перечень персональных страниц:<br />
-                  <a href={community.rkn} target="_blank" rel="noopener noreferrer" className="text-[#FBF8F3]/70 underline hover:text-[#FBF8F3] break-all">{community.rkn}</a>
-                </p>
-              )}
+              <div className="flex-1 min-w-0">
+                {/* Иконка соцсети + название */}
+                <div className="flex items-start gap-2 mb-1.5">
+                  <span className="mt-0.5"><SocialIcon social={community.social} size="sm" /></span>
+                  <h2 className="min-w-0 font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
+                </div>
+                {/* Город */}
+                <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-1" style={{ letterSpacing: '0.16em' }}>{community.city}</div>
+                {/* Тематика */}
+                {community.category && (
+                  <div className="text-[13px] text-[#FBF8F3]/55 leading-snug">{community.category}</div>
+                )}
+              </div>
             </div>
+            {/* Описание — на всю ширину */}
+            {community.fullDescription && (
+              <p className="mt-4 text-sm text-[#FBF8F3]/60 leading-relaxed whitespace-pre-line">{community.fullDescription}</p>
+            )}
+            {community.social === 'instagram' && (
+              <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
+                Стандартное рекламное размещение в Instagram* на территории РФ не предлагаем. Присутствие в соцсети возможно только в информационном формате с учётом правовых ограничений.
+              </p>
+            )}
+            {community.rkn && (
+              <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
+                Включена Роскомнадзором в перечень персональных страниц:<br />
+                <a href={community.rkn} target="_blank" rel="noopener noreferrer" className="text-[#FBF8F3]/70 underline hover:text-[#FBF8F3] break-all">{community.rkn}</a>
+              </p>
+            )}
           </div>
         </div>
 
