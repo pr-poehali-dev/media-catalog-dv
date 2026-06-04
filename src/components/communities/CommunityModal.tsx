@@ -12,20 +12,22 @@ function fmtSubs(n: number): string {
   return String(n);
 }
 
-function SocialIcon({ social }: { social: Community['social'] }) {
+function SocialIcon({ social, size = 'md' }: { social: Community['social']; size?: 'sm' | 'md' }) {
   const color = SOCIAL_ICON_COLORS[social] ?? '#888';
   const path = SOCIAL_ICONS[social];
+  const box = size === 'sm' ? 'w-6 h-6' : 'w-9 h-9';
+  const svg = size === 'sm' ? 'w-3.5 h-3.5' : 'w-5 h-5';
   return (
     <span
-      className="inline-flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0"
+      className={`inline-flex items-center justify-center ${box} rounded-full flex-shrink-0`}
       style={{ backgroundColor: color }}
       title={SOCIALS[social].label}
     >
       {social === 'max'
         ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
         : path
-          ? <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d={path} /></svg>
-          : <span className="text-white text-sm font-bold">{SOCIALS[social].label[0]}</span>
+          ? <svg viewBox="0 0 24 24" className={`${svg} fill-white`}><path d={path} /></svg>
+          : <span className="text-white text-xs font-bold">{SOCIALS[social].label[0]}</span>
       }
     </span>
   );
@@ -59,29 +61,25 @@ export default function CommunityModal({ community, onClose }: { community: Comm
             <Icon name="X" size={22} />
           </button>
           <div className="pattern-content flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 w-full">
-            {/* Аватар + бейдж соцсети поверх — на мобильном по центру */}
-            <div className="flex items-center gap-4 sm:block">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
-                {community.avatar
-                  ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
-                  : <span className="text-3xl sm:text-4xl">{community.emoji}</span>
-                }
-              </div>
-              {/* На мобильном соцсеть+категория рядом с аватаром */}
-              <div className="min-w-0 sm:hidden">
-                <div className="flex items-center gap-2 mb-1">
-                  <SocialIcon social={community.social} />
-                  <span className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase truncate" style={{ letterSpacing: '0.14em' }}>{community.city}</span>
-                </div>
-                {community.category && <div className="text-[11px] text-[#FBF8F3]/35">{community.category}</div>}
-              </div>
+            {/* Аватар проекта */}
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
+              {community.avatar
+                ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
+                : <span className="text-3xl sm:text-4xl">{community.emoji}</span>
+              }
             </div>
             <div className="flex-1 min-w-0">
-              <div className="hidden sm:block text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-2" style={{ letterSpacing: '0.18em' }}>{community.city}{community.category ? ` · ${community.category}` : ''}</div>
-              <div className="flex items-center gap-2.5 mb-3">
-                <span className="hidden sm:inline-flex"><SocialIcon social={community.social} /></span>
-                <h2 className="font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight pr-8 sm:pr-0" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
+              {/* Иконка соцсети + название */}
+              <div className="flex items-center gap-2 mb-2 pr-8 sm:pr-0">
+                <SocialIcon social={community.social} size="sm" />
+                <h2 className="min-w-0 font-display font-bold text-[#FBF8F3] text-xl sm:text-2xl leading-tight" style={{ letterSpacing: '-0.02em' }}>{community.name}</h2>
               </div>
+              {/* Город */}
+              <div className="text-[10px] font-medium text-[#FBF8F3]/40 uppercase mb-1" style={{ letterSpacing: '0.16em' }}>{community.city}</div>
+              {/* Тематика */}
+              {community.category && (
+                <div className="text-[13px] text-[#FBF8F3]/55 mb-3 leading-snug">{community.category}</div>
+              )}
               {community.fullDescription && (
                 <p className="text-sm text-[#FBF8F3]/60 leading-relaxed whitespace-pre-line max-w-prose">{community.fullDescription}</p>
               )}
@@ -184,7 +182,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                   <div key={i} className="border-b border-[#E8E2D8] last:border-b-0">
                     <div className="grid grid-cols-[1fr_auto] gap-4 px-4 py-2.5">
                       <div className="text-sm font-medium text-[#0A0A0A]">{p.label}</div>
-                      {p.price && <div className="font-display font-bold text-[#A21D27] text-sm">{p.price}</div>}
+                      {p.price && <div className="font-display font-bold text-[#A21D27] text-sm whitespace-nowrap">{p.price}</div>}
                     </div>
                     {p.sub && p.sub.length > 0 && (
                       <div className="pb-2">
@@ -193,7 +191,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                             <div className="flex items-center gap-2 text-[13px] text-[#5a5347]">
                               <span className="text-[#A21D27]">—</span>{s.label}
                             </div>
-                            <div className="font-display font-semibold text-[#A21D27]/80 text-[13px]">{s.price}</div>
+                            <div className="font-display font-semibold text-[#A21D27]/80 text-[13px] whitespace-nowrap">{s.price}</div>
                           </div>
                         ))}
                       </div>

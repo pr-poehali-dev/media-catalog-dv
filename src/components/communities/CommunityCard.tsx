@@ -60,23 +60,26 @@ export default function CommunityCard({ community, onClick }: { community: Commu
           <div onClick={onClick} className="cursor-pointer flex-shrink-0" role="button" aria-label={`Открыть ${community.name}`}>
             <Avatar community={community} />
           </div>
-          {/* На мобильном рядом с аватаром — соцсеть, название, цена */}
+          {/* На мобильном рядом с аватаром — название с иконкой, тематика, цена */}
           <div className="min-w-0 flex-1 md:hidden">
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-2 mb-1">
               <SocialIcon social={community.social} />
-              <div className="text-[10px] font-medium text-white/40 uppercase truncate" style={{ letterSpacing: '0.14em' }}>
-                {community.category || community.city}
-              </div>
+              <h3
+                onClick={onClick}
+                className="min-w-0 font-display font-bold text-white leading-tight cursor-pointer truncate"
+                style={{ fontSize: '1.15rem', letterSpacing: '-0.02em' }}
+              >
+                {community.name}
+              </h3>
             </div>
-            <h3
-              onClick={onClick}
-              className="font-display font-bold text-white leading-tight cursor-pointer mb-2.5"
-              style={{ fontSize: '1.2rem', letterSpacing: '-0.02em' }}
+            <div
+              className="text-[10px] font-medium text-white/40 uppercase mb-2.5 leading-snug"
+              style={{ letterSpacing: '0.1em', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
             >
-              {community.name}
-            </h3>
+              {community.category || community.city}
+            </div>
             <div className="text-[10px] text-white/30 uppercase mb-0.5" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
-            <div className="font-display font-bold text-[#E0353F] text-lg leading-none">{community.priceFromLabel || '—'}</div>
+            <div className="font-display font-bold text-[#E0353F] text-lg leading-none whitespace-nowrap">{community.priceFromLabel || '—'}</div>
           </div>
           {/* Цена на десктопе */}
           <div className="hidden md:block md:mt-auto md:pt-5">
@@ -114,20 +117,20 @@ export default function CommunityCard({ community, onClick }: { community: Commu
           )}
           {/* Статистика */}
           <div className="grid grid-cols-2 self-stretch md:self-start md:flex" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', overflow: 'hidden' }}>
-            <div className="px-4 py-3">
+            <div className="min-w-0 px-3.5 py-3">
               <div className="text-[9px] text-white/35 uppercase mb-1.5" style={{ letterSpacing: '0.12em' }}>Подписчиков</div>
               <div
-                className="font-display font-black leading-none"
-                style={{ fontSize: '1.4rem', letterSpacing: '-0.03em', color: '#E0353F' }}
+                className="font-display font-black leading-none whitespace-nowrap"
+                style={{ fontSize: 'clamp(1.05rem, 5vw, 1.4rem)', letterSpacing: '-0.03em', color: '#E0353F' }}
               >
                 {community.subscribersTotal || '—'}
               </div>
             </div>
-            <div className="px-4 py-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="min-w-0 px-3.5 py-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
               <div className="text-[9px] text-white/35 uppercase mb-1.5" style={{ letterSpacing: '0.12em' }}>Сред. охват</div>
               <div
-                className="font-display font-black leading-none"
-                style={{ fontSize: '1.4rem', letterSpacing: '-0.03em', color: '#E0353F' }}
+                className="font-display font-black leading-none whitespace-nowrap"
+                style={{ fontSize: 'clamp(1.05rem, 5vw, 1.4rem)', letterSpacing: '-0.03em', color: '#E0353F' }}
               >
                 {community.reachSummary.join('') || '—'}
               </div>
@@ -156,7 +159,7 @@ export default function CommunityCard({ community, onClick }: { community: Commu
           <div className="mt-2 md:mt-auto flex flex-col sm:flex-row md:justify-end gap-2.5">
             <button
               onClick={onClick}
-              className="btn-outline-dark justify-center w-full sm:w-auto md:hidden"
+              className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
             >
               Подробнее
             </button>

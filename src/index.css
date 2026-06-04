@@ -313,6 +313,32 @@
   cursor: wait;
 }
 
+/* Постоянный кармин-контур (для «Подробнее») */
+.btn-outline-carmine {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #e0353f;
+  font-family: "Onest", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  padding: 0.875rem 2rem;
+  border-radius: 0.25rem;
+  border: 1px solid #a21d27;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-outline-carmine:hover {
+  background: rgba(162, 29, 39, 0.1);
+  border-color: #e0353f;
+}
+
 /* Разделитель секций */
 .section-rule {
   width: 2.5rem;

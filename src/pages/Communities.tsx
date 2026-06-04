@@ -280,17 +280,45 @@ export default function Communities() {
               </div>
             </div>
             <div className="flex flex-col items-stretch lg:items-end gap-2.5">
-              <div className="grid grid-cols-3 sm:flex sm:flex-wrap sm:justify-end items-center gap-1.5 sm:gap-1 sm:p-1 sm:bg-[#FBF8F3]/5 sm:border sm:border-[#FBF8F3]/10 sm:rounded-full">
+              {/* Мобильные выпадающие списки */}
+              <div className="grid grid-cols-2 gap-2.5 sm:hidden">
+                <div className="relative">
+                  <select
+                    value={social}
+                    onChange={(e) => setSocial(e.target.value as 'Все соцсети' | SocialNet)}
+                    className="appearance-none w-full text-[12px] font-medium pl-4 pr-9 py-3 rounded-xl bg-[#161618] border border-[#FBF8F3]/10 text-[#FBF8F3] focus:outline-none focus:border-[#A21D27]"
+                  >
+                    {SOCIAL_FILTERS.map((s) => (
+                      <option key={s} value={s} className="bg-[#161618]">{s === 'Все соцсети' ? 'Все соцсети' : SOCIALS[s].label}</option>
+                    ))}
+                  </select>
+                  <Icon name="ChevronDown" size={15} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#FBF8F3]/40 pointer-events-none" />
+                </div>
+                <div className="relative">
+                  <select
+                    value={city}
+                    onChange={(e) => setCity(e.target.value as typeof city)}
+                    className="appearance-none w-full text-[12px] font-medium pl-4 pr-9 py-3 rounded-xl bg-[#161618] border border-[#FBF8F3]/10 text-[#FBF8F3] focus:outline-none focus:border-[#A21D27]"
+                  >
+                    {CITY_FILTERS.map((c) => (
+                      <option key={c} value={c} className="bg-[#161618]">{c}</option>
+                    ))}
+                  </select>
+                  <Icon name="ChevronDown" size={15} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#FBF8F3]/40 pointer-events-none" />
+                </div>
+              </div>
+              {/* Десктопные пилюли */}
+              <div className="hidden sm:flex flex-wrap justify-end items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
                 {SOCIAL_FILTERS.map((s) => {
                   const label = s === 'Все соцсети' ? 'Все' : SOCIALS[s].label;
                   return (
                     <button
                       key={s}
                       onClick={() => setSocial(s)}
-                      className="text-[11px] font-medium uppercase px-3 sm:px-4 py-2.5 sm:py-2 transition-colors rounded-full border border-[#FBF8F3]/10 sm:border-0 text-center"
+                      className="text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full text-center"
                       style={{
                         letterSpacing: '0.08em',
-                        background: social === s ? '#A21D27' : 'rgba(251,248,243,0.04)',
+                        background: social === s ? '#A21D27' : 'transparent',
                         color: social === s ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
                       }}
                     >
@@ -299,15 +327,15 @@ export default function Communities() {
                   );
                 })}
               </div>
-              <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-end items-center gap-1.5 sm:gap-1 sm:p-1 sm:bg-[#FBF8F3]/5 sm:border sm:border-[#FBF8F3]/10 sm:rounded-full">
+              <div className="hidden sm:flex flex-wrap justify-end items-center gap-1 p-1 bg-[#FBF8F3]/5 border border-[#FBF8F3]/10 rounded-full">
                 {CITY_FILTERS.map((c) => (
                   <button
                     key={c}
                     onClick={() => setCity(c)}
-                    className="text-[11px] font-medium uppercase px-3 sm:px-4 py-2.5 sm:py-2 transition-colors rounded-full border border-[#FBF8F3]/10 sm:border-0 text-center"
+                    className="text-[11px] font-medium uppercase px-4 py-2 transition-colors rounded-full text-center"
                     style={{
                       letterSpacing: '0.08em',
-                      background: city === c ? '#A21D27' : 'rgba(251,248,243,0.04)',
+                      background: city === c ? '#A21D27' : 'transparent',
                       color: city === c ? '#FBF8F3' : 'rgba(251,248,243,0.5)',
                     }}
                   >

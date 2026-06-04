@@ -152,7 +152,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                   <div key={i} className="border-b border-[#E8E2D8] last:border-b-0">
                     <div className="grid grid-cols-[1fr_auto] gap-4 px-4 py-2.5">
                       <div className="text-sm font-medium text-[#0A0A0A]">{p.label}</div>
-                      {p.price && <div className="font-display font-bold text-[#A21D27] text-sm">{p.price}</div>}
+                      {p.price && <div className="font-display font-bold text-[#A21D27] text-sm whitespace-nowrap">{p.price}</div>}
                     </div>
                     {p.sub && p.sub.length > 0 && (
                       <div className="pb-2">
@@ -161,7 +161,7 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                             <div className="flex items-center gap-2 text-[13px] text-[#5a5347]">
                               <span className="text-[#A21D27]">—</span>{s.label}
                             </div>
-                            <div className="font-display font-semibold text-[#A21D27]/80 text-[13px]">{s.price}</div>
+                            <div className="font-display font-semibold text-[#A21D27]/80 text-[13px] whitespace-nowrap">{s.price}</div>
                           </div>
                         ))}
                       </div>

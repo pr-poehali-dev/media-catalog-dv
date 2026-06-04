@@ -71,16 +71,19 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           <div className="min-w-0 flex-1 md:hidden">
             <h3
               onClick={onClick}
-              className="font-display font-bold text-white leading-tight cursor-pointer mb-1"
-              style={{ fontSize: '1.2rem', letterSpacing: '-0.02em' }}
+              className="font-display font-bold text-white leading-tight cursor-pointer mb-1 truncate"
+              style={{ fontSize: '1.15rem', letterSpacing: '-0.02em' }}
             >
               {blogger.name}
             </h3>
-            <div className="text-[10px] font-medium text-white/40 uppercase mb-2.5" style={{ letterSpacing: '0.14em' }}>
+            <div
+              className="text-[10px] font-medium text-white/40 uppercase mb-2.5 leading-snug"
+              style={{ letterSpacing: '0.1em', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+            >
               {blogger.category}
             </div>
             <div className="text-[10px] text-white/30 uppercase mb-0.5" style={{ letterSpacing: '0.14em' }}>Стоимость</div>
-            <div className="font-display font-bold text-[#E0353F] text-lg leading-none">{blogger.priceFromLabel}</div>
+            <div className="font-display font-bold text-[#E0353F] text-lg leading-none whitespace-nowrap">{blogger.priceFromLabel}</div>
           </div>
           {/* Цена на десктопе */}
           <div className="hidden md:block md:mt-auto md:pt-4 md:self-start">
@@ -113,20 +116,20 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           <p className="text-[13px] text-white/50 leading-relaxed">{blogger.description}</p>
           <SocialLabels socials={blogger.socials} />
           <div className="grid grid-cols-2 self-stretch md:self-start md:flex" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', overflow: 'hidden' }}>
-            <div className="px-4 py-3">
+            <div className="min-w-0 px-3.5 py-3">
               <div className="text-[9px] text-white/35 uppercase mb-1.5" style={{ letterSpacing: '0.12em' }}>Подписчиков</div>
               <div
-                className="font-display font-black leading-none"
-                style={{ fontSize: '1.4rem', letterSpacing: '-0.03em', color: '#E0353F' }}
+                className="font-display font-black leading-none whitespace-nowrap"
+                style={{ fontSize: 'clamp(1.05rem, 5vw, 1.4rem)', letterSpacing: '-0.03em', color: '#E0353F' }}
               >
                 {blogger.subscribersTotal}
               </div>
             </div>
-            <div className="px-4 py-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="min-w-0 px-3.5 py-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
               <div className="text-[9px] text-white/35 uppercase mb-1.5" style={{ letterSpacing: '0.12em' }}>Сред. охват</div>
               <div
-                className="font-display font-black leading-none"
-                style={{ fontSize: '1.4rem', letterSpacing: '-0.03em', color: '#E0353F' }}
+                className="font-display font-black leading-none whitespace-nowrap"
+                style={{ fontSize: 'clamp(1.05rem, 5vw, 1.4rem)', letterSpacing: '-0.03em', color: '#E0353F' }}
               >
                 {blogger.reachSummary.join('')}
               </div>
@@ -160,7 +163,7 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
           <div className="mt-2 md:mt-auto flex flex-col sm:flex-row md:justify-end gap-2.5">
             <button
               onClick={onClick}
-              className="btn-outline-dark justify-center w-full sm:w-auto md:hidden"
+              className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
             >
               Подробнее
             </button>
