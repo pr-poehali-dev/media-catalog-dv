@@ -71,7 +71,7 @@ export default function Outdoor() {
             <div className="eyebrow text-[#FBF8F3]/50">Направление 03</div>
           </div>
           <h1 className="page-hero-title text-[#FBF8F3] mb-4">
-            Наружная<br />реклама
+            Наружная <br className="sm:hidden" />реклама
           </h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
             Наружная реклама работает всегда, даже когда телефон лежит в кармане. Щиты, ситиборды, медиафасады и другие форматы для охвата, узнаваемости и усиления бренда.
