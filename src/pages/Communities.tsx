@@ -19,7 +19,7 @@ function SocialBadge({ social, size = 'md' }: { social: SocialNet; size?: 'md' |
       title={SOCIALS[social].label}
     >
       {social === 'max'
-        ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
+        ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" loading="lazy" decoding="async" className="w-full h-full object-cover rounded-full" />
         : path
           ? <svg viewBox="0 0 24 24" className={`${svg} fill-white`}><path d={path} /></svg>
           : <span className="text-white text-sm font-bold">{SOCIALS[social].label[0]}</span>

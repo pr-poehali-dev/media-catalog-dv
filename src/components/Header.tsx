@@ -9,16 +9,21 @@ export default function Header() {
   const location = useLocation();
 
   useEffect(() => {
+    let raf = 0;
+
     const detect = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled((prevScrolled) => {
+        const next = window.scrollY > 30;
+        return next === prevScrolled ? prevScrolled : next;
+      });
 
       // Определяем яркость секции прямо под шапкой
       const header = document.querySelector('header');
       const probeY = (header?.getBoundingClientRect().bottom ?? 64) + 4;
-      const prev = header ? (header as HTMLElement).style.pointerEvents : '';
+      const prevPE = header ? (header as HTMLElement).style.pointerEvents : '';
       if (header) (header as HTMLElement).style.pointerEvents = 'none';
       const el = document.elementFromPoint(window.innerWidth / 2, probeY) as HTMLElement | null;
-      if (header) (header as HTMLElement).style.pointerEvents = prev;
+      if (header) (header as HTMLElement).style.pointerEvents = prevPE;
 
       let node: HTMLElement | null = el;
       let rgb: number[] | null = null;
@@ -34,15 +39,26 @@ export default function Header() {
       }
       if (rgb) {
         const luminance = 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2];
-        setOnDark(luminance < 128);
+        const next = luminance < 128;
+        setOnDark((prev) => (prev === next ? prev : next));
       }
     };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        detect();
+      });
+    };
+
     detect();
-    window.addEventListener('scroll', detect, { passive: true });
-    window.addEventListener('resize', detect);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener('scroll', detect);
-      window.removeEventListener('resize', detect);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, [location.pathname]);
 

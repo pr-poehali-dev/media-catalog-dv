@@ -24,7 +24,7 @@ function SocialIcon({ social, size = 'md' }: { social: Community['social']; size
       title={SOCIALS[social].label}
     >
       {social === 'max'
-        ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
+        ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" loading="lazy" decoding="async" className="w-full h-full object-cover rounded-full" />
         : path
           ? <svg viewBox="0 0 24 24" className={`${svg} fill-white`}><path d={path} /></svg>
           : <span className="text-white text-xs font-bold">{SOCIALS[social].label[0]}</span>
@@ -66,7 +66,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
               {/* Аватар проекта */}
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0 flex items-center justify-center">
                 {community.avatar
-                  ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
+                  ? <img src={community.avatar} alt={community.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                   : <span className="text-3xl sm:text-4xl">{community.emoji}</span>
                 }
               </div>

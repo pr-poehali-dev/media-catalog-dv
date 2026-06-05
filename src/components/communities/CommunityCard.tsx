@@ -12,7 +12,7 @@ function SocialIcon({ social }: { social: Community['social'] }) {
       title={SOCIALS[social].label}
     >
       {social === 'max'
-        ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
+        ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" loading="lazy" decoding="async" className="w-full h-full object-cover rounded-full" />
         : path
           ? <svg viewBox="0 0 24 24" className="w-3 h-3 md:w-3.5 md:h-3.5 fill-white"><path d={path} /></svg>
           : <span className="text-white text-[9px] md:text-[10px] font-bold">{SOCIALS[social].label[0]}</span>
@@ -26,7 +26,7 @@ function Avatar({ community }: { community: Community }) {
     <div className="relative flex-shrink-0 w-[88px] h-[88px] md:w-[148px] md:h-[148px]">
       <div className="w-full h-full rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex items-center justify-center">
         {community.avatar
-          ? <img src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
+          ? <img src={community.avatar} alt={community.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
           : <span className="text-4xl md:text-5xl">{community.emoji}</span>
         }
       </div>

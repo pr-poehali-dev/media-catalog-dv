@@ -54,7 +54,7 @@ export function SocialOrbit({ socials, bloggerId }: { socials: Blogger['socials'
             style={{ top: pos.top, left: pos.left, backgroundColor: color, zIndex: 10 }}
           >
             {s.social === 'max'
-              ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" className="w-full h-full object-cover rounded-full" />
+              ? <img src="https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/68ec529f-8f3c-44eb-bbad-44dd455d93e1.PNG" alt="MAX" loading="lazy" decoding="async" className="w-full h-full object-cover rounded-full" />
               : path
                 ? <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d={path} /></svg>
                 : <span className="text-white text-xs font-bold">{SOCIALS[s.social].label[0]}</span>
@@ -71,7 +71,7 @@ export function AvatarWithOrbit({ blogger }: { blogger: Blogger }) {
     <div className="relative flex-shrink-0" style={{ width: 148, height: 148 }}>
       <div className="w-full h-full rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10">
         {blogger.avatar
-          ? <img src={blogger.avatar} alt={blogger.name} className="w-full h-full object-cover" />
+          ? <img src={blogger.avatar} alt={blogger.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
           : <div className="w-full h-full flex items-center justify-center text-5xl">{blogger.emoji}</div>
         }
       </div>
@@ -84,7 +84,7 @@ export function AvatarSimple({ blogger }: { blogger: Blogger }) {
   return (
     <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex-shrink-0">
       {blogger.avatar
-        ? <img src={blogger.avatar} alt={blogger.name} className="w-full h-full object-cover" />
+        ? <img src={blogger.avatar} alt={blogger.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
         : <div className="w-full h-full flex items-center justify-center text-3xl sm:text-4xl">{blogger.emoji}</div>
       }
     </div>

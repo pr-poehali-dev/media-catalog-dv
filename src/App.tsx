@@ -3,24 +3,25 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
-import Communities from "@/pages/Communities";
-import Bloggers from "@/pages/Bloggers";
-import Outdoor from "@/pages/Outdoor";
-import Merch from "@/pages/Merch";
-import Platforms from "@/pages/Platforms";
-import SocialPage from "@/pages/SocialPage";
-import CityPage from "@/pages/CityPage";
-import Formats from "@/pages/Formats";
-import Cases from "@/pages/Cases";
-import FAQ from "@/pages/FAQ";
-import Contacts from "@/pages/Contacts";
-import Legal from "@/pages/Legal";
-import NotFound from "@/pages/NotFound";
 import CookieBanner from "@/components/CookieBanner";
+
+const Communities = lazy(() => import("@/pages/Communities"));
+const Bloggers = lazy(() => import("@/pages/Bloggers"));
+const Outdoor = lazy(() => import("@/pages/Outdoor"));
+const Merch = lazy(() => import("@/pages/Merch"));
+const Platforms = lazy(() => import("@/pages/Platforms"));
+const SocialPage = lazy(() => import("@/pages/SocialPage"));
+const CityPage = lazy(() => import("@/pages/CityPage"));
+const Formats = lazy(() => import("@/pages/Formats"));
+const Cases = lazy(() => import("@/pages/Cases"));
+const FAQ = lazy(() => import("@/pages/FAQ"));
+const Contacts = lazy(() => import("@/pages/Contacts"));
+const Legal = lazy(() => import("@/pages/Legal"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function Layout() {
       <ScrollToTop />
       <Header />
       <main>
+        <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
           {/* 4 направления */}
@@ -57,6 +59,7 @@ function Layout() {
           <Route path="/legal/:pageId" element={<Legal />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       <Footer />
       <CookieBanner />
