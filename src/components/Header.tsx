@@ -5,24 +5,59 @@ import Icon from '@/components/ui/icon';
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [onDark, setOnDark] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    const detect = () => {
+      setScrolled(window.scrollY > 30);
+
+      // Определяем яркость секции прямо под шапкой
+      const header = document.querySelector('header');
+      const probeY = (header?.getBoundingClientRect().bottom ?? 64) + 4;
+      const prev = header ? (header as HTMLElement).style.pointerEvents : '';
+      if (header) (header as HTMLElement).style.pointerEvents = 'none';
+      const el = document.elementFromPoint(window.innerWidth / 2, probeY) as HTMLElement | null;
+      if (header) (header as HTMLElement).style.pointerEvents = prev;
+
+      let node: HTMLElement | null = el;
+      let rgb: number[] | null = null;
+      while (node && node !== document.body) {
+        const bg = getComputedStyle(node).backgroundColor;
+        const m = bg.match(/rgba?\(([^)]+)\)/);
+        if (m) {
+          const parts = m[1].split(',').map((v) => parseFloat(v));
+          const alpha = parts[3] ?? 1;
+          if (alpha > 0.5) { rgb = parts; break; }
+        }
+        node = node.parentElement;
+      }
+      if (rgb) {
+        const luminance = 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2];
+        setOnDark(luminance < 128);
+      }
+    };
+    detect();
+    window.addEventListener('scroll', detect, { passive: true });
+    window.addEventListener('resize', detect);
+    return () => {
+      window.removeEventListener('scroll', detect);
+      window.removeEventListener('resize', detect);
+    };
+  }, [location.pathname]);
 
   useEffect(() => { setMobileOpen(false); }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
-  const dark = !scrolled;
+  const dark = onDark;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#0A0A0A] border-[#FBF8F3]/10'
+        onDark
+          ? scrolled ? 'bg-[#0A0A0A]/90 backdrop-blur-sm border-[#FBF8F3]/10' : 'bg-[#0A0A0A] border-[#FBF8F3]/10'
+          : scrolled ? 'bg-[#FBF8F3]/96 backdrop-blur-sm border-[#E8E2D8]' : 'bg-[#FBF8F3] border-[#E8E2D8]'
       }`}
       style={{ paddingTop: 'env(safe-area-inset-top)' }}
     >
@@ -84,9 +119,9 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Меню">
               <div className="flex flex-col gap-[5px] w-5">
-                <span className={`block h-px bg-white transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-                <span className={`block h-px bg-white transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
-                <span className={`block h-px bg-white transition-all duration-200 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
               </div>
             </button>
           </div>
