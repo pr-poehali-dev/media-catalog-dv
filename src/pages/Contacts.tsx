@@ -7,24 +7,28 @@ export default function Contacts() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16 max-sm:pb-9">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-4 mb-3">
+          <div className="flex items-center gap-4 mb-3 max-sm:mb-2">
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Связь</div>
           </div>
-          <h1 className="page-hero-title text-[#FBF8F3] mb-4">Контакты</h1>
-          <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
-            Связаться с нами можете по телефону{' '}
-            <a href="tel:+79142055535" className="text-[#FBF8F3] hover:text-[#A21D27] transition-colors underline underline-offset-2">
-              8 (914) 205-55-35
-            </a>
-            , по почте{' '}
-            <a href="mailto:media2.7@mail.ru" className="text-[#FBF8F3] hover:text-[#A21D27] transition-colors underline underline-offset-2">
-              media2.7@mail.ru
-            </a>
-            {' '}или в Telegram и MAX по кнопкам ниже👇
-          </p>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4 max-sm:mb-3">Контакты</h1>
+          <div className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8 max-sm:mb-6 space-y-1">
+            <p>
+              <span className="text-[#FBF8F3]/70">Телефон:</span>{' '}
+              <a href="tel:+79142055535" className="text-[#FBF8F3] hover:text-[#A21D27] transition-colors underline underline-offset-2 whitespace-nowrap">
+                8&nbsp;(914)&nbsp;205-55-35
+              </a>
+            </p>
+            <p>
+              <span className="text-[#FBF8F3]/70">Почта:</span>{' '}
+              <a href="mailto:media2.7@mail.ru" className="text-[#FBF8F3] hover:text-[#A21D27] transition-colors underline underline-offset-2">
+                media2.7@mail.ru
+              </a>
+            </p>
+            <p className="pt-1">Написать в мессенджерах можно по кнопкам ниже👇</p>
+          </div>
           <div className="flex flex-wrap gap-3">
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-carmine">
               Написать в Telegram
@@ -37,7 +41,7 @@ export default function Contacts() {
       </section>
 
       {/* Юридическая информация */}
-      <section className="bg-[#FBF8F3] pattern-milk py-12 reveal">
+      <section className="bg-[#FBF8F3] pattern-milk py-12 max-sm:pt-8 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />

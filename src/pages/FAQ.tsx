@@ -7,19 +7,19 @@ export default function FAQ() {
 
   return (
     <div>
-      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16">
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16 max-sm:pb-9">
         <div className="pattern-content max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-4 mb-3">
+          <div className="flex items-center gap-4 mb-3 max-sm:mb-2">
             <div className="section-rule" />
             <div className="eyebrow text-[#FBF8F3]/50">Помощь</div>
           </div>
-          <h1 className="page-hero-title text-[#FBF8F3] mb-3">Частые вопросы</h1>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-3 max-sm:mb-2">Частые вопросы</h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-xl leading-relaxed">Отвечаем конкретно. Без воды и корпоративных формулировок.</p>
         </div>
       </section>
 
       {/* FAQ список */}
-      <section className="bg-[#FBF8F3] pattern-milk py-16 reveal">
+      <section className="bg-[#FBF8F3] pattern-milk py-16 max-sm:pt-10 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <div className="section-rule" />

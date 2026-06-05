@@ -84,9 +84,9 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Меню">
               <div className="flex flex-col gap-[5px] w-5">
-                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'opacity-0' : ''}`} />
-                <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+                <span className={`block h-px bg-white transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+                <span className={`block h-px bg-white transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-px bg-white transition-all duration-200 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
               </div>
             </button>
           </div>

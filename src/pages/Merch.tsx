@@ -81,7 +81,7 @@ export default function Merch() {
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-10">
             <div className="section-rule" />
-            <div className="eyebrow text-[#FBF8F3]/50">Каталог</div>
+            <div className="eyebrow text-[#FBF8F3]/50">Варианты подарков</div>
           </div>
           <div className="flex flex-col gap-4 md:gap-px md:bg-[#2a2a2a]">
             {MERCH_ITEMS.map((item, i) => (
