@@ -136,39 +136,42 @@ export default function CommunityCard({ community, onClick }: { community: Commu
               </div>
             </div>
           </div>
-          {/* Форматы */}
-          <div className="min-w-0">
-            <div className="text-[10px] text-white/30 uppercase mb-2" style={{ letterSpacing: '0.14em' }}>Форматы</div>
-            <div className="flex flex-wrap gap-1.5">
-              {community.formats.length > 0 ? community.formats.slice(0, 6).map((f) => (
-                <span
-                  key={f}
-                  className="text-[11px] px-2.5 py-1 text-white/60"
-                  style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: '999px',
-                  }}
-                >
-                  {f}
-                </span>
-              )) : <span className="text-[11px] text-white/25">—</span>}
+          {/* Форматы + кнопки: на десктопе низ выровнен по одной линии */}
+          <div className="contents md:flex md:mt-auto md:flex-row md:items-end md:justify-between md:gap-4">
+            {/* Форматы */}
+            <div className="min-w-0">
+              <div className="text-[10px] text-white/30 uppercase mb-2" style={{ letterSpacing: '0.14em' }}>Форматы</div>
+              <div className="flex flex-wrap gap-1.5">
+                {community.formats.length > 0 ? community.formats.slice(0, 6).map((f) => (
+                  <span
+                    key={f}
+                    className="text-[11px] px-2.5 py-1 text-white/60"
+                    style={{
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: '999px',
+                    }}
+                  >
+                    {f}
+                  </span>
+                )) : <span className="text-[11px] text-white/25">—</span>}
+              </div>
             </div>
-          </div>
-          {/* Кнопки действий */}
-          <div className="mt-2 md:mt-auto flex flex-col sm:flex-row md:justify-end gap-2.5">
-            <button
-              onClick={onClick}
-              className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
-            >
-              Подробнее
-            </button>
-            <button
-              className="btn-carmine justify-center w-full sm:w-auto"
-              onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
-            >
-              Оставить заявку
-            </button>
+            {/* Кнопки действий */}
+            <div className="mt-2 md:mt-0 flex flex-col sm:flex-row md:flex-shrink-0 md:justify-end gap-2.5">
+              <button
+                onClick={onClick}
+                className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
+              >
+                Подробнее
+              </button>
+              <button
+                className="btn-carmine justify-center w-full sm:w-auto"
+                onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
+              >
+                Оставить заявку
+              </button>
+            </div>
           </div>
         </div>
       </div>

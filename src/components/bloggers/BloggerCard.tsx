@@ -156,23 +156,26 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
               )}
             </div>
           </div>
-          <div>
-            <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
-            <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
-          </div>
-          <div className="mt-2 md:mt-auto flex flex-col sm:flex-row md:justify-end gap-2.5">
-            <button
-              onClick={onClick}
-              className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
-            >
-              Подробнее
-            </button>
-            <button
-              className="btn-carmine justify-center w-full sm:w-auto"
-              onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
-            >
-              Оставить заявку
-            </button>
+          {/* Кому подходит + кнопки: на десктопе низ выровнен по одной линии */}
+          <div className="contents md:flex md:mt-auto md:flex-row md:items-end md:justify-between md:gap-4">
+            <div className="min-w-0">
+              <div className="text-[10px] text-white/30 uppercase mb-1.5" style={{ letterSpacing: '0.14em' }}>Кому подходит</div>
+              <div className="text-[13px] text-white/40">{blogger.bestFor.slice(0, 4).join(' · ')}</div>
+            </div>
+            <div className="mt-2 md:mt-0 flex flex-col sm:flex-row md:flex-shrink-0 md:justify-end gap-2.5">
+              <button
+                onClick={onClick}
+                className="btn-outline-carmine justify-center w-full sm:w-auto md:hidden"
+              >
+                Подробнее
+              </button>
+              <button
+                className="btn-carmine justify-center w-full sm:w-auto"
+                onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
+              >
+                Оставить заявку
+              </button>
+            </div>
           </div>
         </div>
       </div>
