@@ -72,17 +72,10 @@ export default function Home() {
       {/* ======== HERO ======== */}
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden sm:min-h-screen flex items-start sm:items-center">
         <div className="pattern-content max-w-7xl mx-auto px-6 hero-pad-top pb-10 sm:pb-12 w-full">
-          <div className="eyebrow text-[#FBF8F3]/50 mb-3 sm:mb-5 anim-d1 animate-fade-up">
+          <div className="eyebrow hero-cities text-[#FBF8F3]/70 sm:text-[#FBF8F3]/50 mb-3 sm:mb-5 anim-d1 animate-fade-up">
             Хабаровск · Владивосток · Комсомольск-на-Амуре
           </div>
-          <h1 className="text-[#FBF8F3] mb-4 sm:mb-5 anim-d2 animate-fade-up"
-            style={{
-              fontFamily: 'Unbounded, sans-serif',
-              fontWeight: 800,
-              fontSize: 'clamp(1.4rem, 4.1vw, 4.8rem)',
-              lineHeight: 1.14,
-              letterSpacing: '-0.03em',
-            }}>
+          <h1 className="home-hero-title text-[#FBF8F3] mb-4 sm:mb-5 anim-d2 animate-fade-up">
             <span style={{ whiteSpace: 'nowrap' }}>Привлечём внимание.</span><br />
             <span style={{ whiteSpace: 'nowrap' }}>Сформируем доверие.</span><br />
             <span style={{ whiteSpace: 'nowrap' }}>Приведём и <span className="text-[#A21D27]">удержим</span></span><br />

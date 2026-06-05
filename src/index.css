@@ -172,6 +172,30 @@
   letter-spacing: -0.03em;
 }
 
+/* Главный заголовок на главной (mobile: чуть больше воздуха) */
+.home-hero-title {
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 4.1vw, 4.8rem);
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+}
+
+/* Только мобильные: увеличиваем межстрочный интервал заголовков,
+   размер шрифта и число строк не трогаем. Десктоп остаётся как был. */
+@media (max-width: 767px) {
+  .page-hero-title {
+    line-height: 1.28;
+  }
+  .home-hero-title {
+    line-height: 1.3;
+  }
+  /* Города на главной: крупнее на ~13% только на мобильных */
+  .hero-cities {
+    font-size: 0.74rem;
+  }
+}
+
 /* Hero compensation: header height (4rem) + iPhone safe-area.
    Гарантирует, что контент первого экрана не уезжает под фиксированную шапку. */
 .hero-pad-top {
