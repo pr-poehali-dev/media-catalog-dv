@@ -566,7 +566,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Широкий охват, низкая стоимость контакта',
     priceFrom: 12000,
     emoji: '🟦',
-    image: `${OUTDOOR_CDN}/shield.png`,
+    image: `${OUTDOOR_CDN}/shield-v2.webp`,
   },
   {
     id: 'supersite',
@@ -577,7 +577,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Максимальный охват трафика, имиджевый эффект',
     priceFrom: 45000,
     emoji: '🟥',
-    image: `${OUTDOOR_CDN}/supersite.png`,
+    image: `${OUTDOOR_CDN}/supersite-v2.webp`,
   },
   {
     id: 'cityboard',
@@ -588,7 +588,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Точное попадание в городскую аудиторию',
     priceFrom: 18000,
     emoji: '🟨',
-    image: `${OUTDOOR_CDN}/cityboard.png`,
+    image: `${OUTDOOR_CDN}/cityboard-v2.webp`,
   },
   {
     id: 'pillar',
@@ -599,7 +599,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Близкий контакт с пешеходами, двустороннее размещение',
     priceFrom: 8000,
     emoji: '🟩',
-    image: `${OUTDOOR_CDN}/pillar.png`,
+    image: `${OUTDOOR_CDN}/pillar-v2.webp`,
   },
   {
     id: 'cityformat',
@@ -610,7 +610,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Долгий контакт с аудиторией на остановке',
     priceFrom: 6000,
     emoji: '🚌',
-    image: `${OUTDOOR_CDN}/cityformat.png`,
+    image: `${OUTDOOR_CDN}/cityformat-v2.webp`,
   },
   {
     id: 'mediafacade',
@@ -621,7 +621,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Динамика, яркость, запоминаемость',
     priceFrom: 27000,
     emoji: '💡',
-    image: `${OUTDOOR_CDN}/mediafacade.png`,
+    image: `${OUTDOOR_CDN}/mediafacade-v2.webp`,
   },
   {
     id: 'arch',
@@ -632,7 +632,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Максимальная видимость, имиджевый формат',
     priceFrom: 35000,
     emoji: '🌉',
-    image: `${OUTDOOR_CDN}/arch.png`,
+    image: `${OUTDOOR_CDN}/arch-v2.webp`,
   },
   {
     id: 'brandmauer',
@@ -643,7 +643,7 @@ export const OUTDOOR_FORMATS: OutdoorFormat[] = [
     advantage: 'Огромная площадь, долговременный эффект',
     priceFrom: 80000,
     emoji: '🏢',
-    image: `${OUTDOOR_CDN}/brandmauer.png`,
+    image: `${OUTDOOR_CDN}/brandmauer-v2.webp`,
   },
 ];
 
