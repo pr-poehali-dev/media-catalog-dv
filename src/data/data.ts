@@ -708,7 +708,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'от 3 000 ₽',
     emoji: '👩‍💼',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zhensovet.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zhensovet-v2.webp',
   },
   {
     id: 'khb-myday',
@@ -771,7 +771,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'от 4 000 ₽',
     emoji: '📅',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/myday.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/myday-v2.webp',
   },
   {
     id: 'khb-life',
@@ -831,7 +831,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'от 3 000 ₽',
     emoji: '🏙️',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/khablife.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/khablife-v2.webp',
   },
   {
     id: 'khb-dalvostok',
@@ -884,7 +884,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'от 1 000 ₽',
     emoji: '📰',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/dalvostok.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/dalvostok-v2.webp',
   },
   {
     id: 'vld-charlesrus',
@@ -941,7 +941,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'от 5 000 ₽',
     emoji: '🎥',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/charlesrus.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/charlesrus-v2.webp',
   },
   {
     id: 'vld-zharovdv',
@@ -993,7 +993,7 @@ export const BLOGGERS: Blogger[] = [
     ],
     priceFromLabel: 'по запросу',
     emoji: '🔥',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zharovdv.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zharovdv-v2.webp',
   },
 ];
 
@@ -1848,7 +1848,7 @@ export const COMMUNITIES: Community[] = [
     priceFromLabel: 'от 2 000 ₽',
     emoji: '👩‍💼',
     link: 'https://www.instagram.com/woman_hbk?igsh=cmk5YXBqZXZ4eGZq&utm_source=qr',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zhensovet.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zhensovet-v2.webp',
   },
   {
     id: 'ig-myday',
@@ -1895,7 +1895,7 @@ export const COMMUNITIES: Community[] = [
     priceFromLabel: 'от 1 250 ₽',
     emoji: '📅',
     link: 'https://www.instagram.com/myday.27?igsh=NHZnMTYxcmpzcXI3',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/myday.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/myday-v2.webp',
   },
   {
     id: 'ig-dalvostok',
@@ -1942,7 +1942,7 @@ export const COMMUNITIES: Community[] = [
     priceFromLabel: 'от 1 000 ₽',
     emoji: '📰',
     link: 'https://www.instagram.com/dal__hab?igsh=M2l5bGs2Z3pyZnRw&utm_source=qr',
-    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/dalvostok.jpg',
+    avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/dalvostok-v2.webp',
   },
   {
     id: 'ig-chp-khv',

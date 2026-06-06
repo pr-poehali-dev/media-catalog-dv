@@ -8,13 +8,12 @@ import boto3
 
 
 AVATARS = {
-    'zhensovet': 'https://disk.yandex.ru/i/KYeFAPcu8gGy3A',
-    'myday': 'https://disk.yandex.ru/i/dISnxaefpIby3A',
-    'khablife': 'https://disk.yandex.ru/i/jKrF6iywfdrWhQ',
-    'charlesrus': 'https://disk.yandex.ru/i/S5kLGbEqGe0zmw',
-    'zharovdv': 'https://disk.yandex.ru/i/9thqhHB7vcXt4g',
-    'dalvostok': 'https://disk.yandex.ru/i/OT1UKo0urPQZzQ',
-    'max-icon': 'https://disk.yandex.ru/i/aWAhxXYVJ-VxoQ',
+    'khablife-v2': 'https://disk.yandex.ru/i/hc3nKkYUb0XyFw',
+    'dalvostok-v2': 'https://disk.yandex.ru/i/gMrhJPKvXz-Ngw',
+    'myday-v2': 'https://disk.yandex.ru/i/cSIVa0DQRJwuGw',
+    'zharovdv-v2': 'https://disk.yandex.ru/i/bBRE-8ib7g2lLw',
+    'zhensovet-v2': 'https://disk.yandex.ru/i/SiWc_gofvCjf-w',
+    'charlesrus-v2': 'https://disk.yandex.ru/i/kySQwjvnkWTU5Q',
 }
 
 
