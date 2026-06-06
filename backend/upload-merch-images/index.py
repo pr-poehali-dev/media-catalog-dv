@@ -8,15 +8,15 @@ import boto3
 
 
 IMAGES = {
-    'gadgets': 'https://disk.yandex.ru/i/-ZTS_EavMaXBkw',
-    'cups': 'https://disk.yandex.ru/i/5NScx9P4mbI6Cw',
-    'tshirts': 'https://disk.yandex.ru/i/xHBnVOzvB6UEWg',
-    'bags': 'https://disk.yandex.ru/i/wJNwAZjytod34A',
-    'notebooks': 'https://disk.yandex.ru/i/k7FToJ-BZxgp0Q',
-    'pens': 'https://disk.yandex.ru/i/hbEg-tJgsVeN0A',
-    'keychains': 'https://disk.yandex.ru/i/DrcNPy2XAcrzgw',
-    'powerbanks': 'https://disk.yandex.ru/i/VkYAampRxz93UQ',
-    'stickers': 'https://disk.yandex.ru/i/DkH_AYrw9qCKQA',
+    'notebooks-v2': 'https://disk.yandex.ru/i/UPRQp5toiolryg',
+    'pens-v2': 'https://disk.yandex.ru/i/TduCYedqIFePiw',
+    'bags-v2': 'https://disk.yandex.ru/i/PfyhfTkamXdjXA',
+    'tshirts-v2': 'https://disk.yandex.ru/i/zFAe2Eo_hsoZNA',
+    'stickers-v2': 'https://disk.yandex.ru/i/5Jk8z6-Cd2oR3w',
+    'keychains-v2': 'https://disk.yandex.ru/i/c42MXDWPhoTaCA',
+    'powerbanks-v2': 'https://disk.yandex.ru/i/sxGnz52xLMwFTg',
+    'cups-v2': 'https://disk.yandex.ru/i/XWf6KKCFkm71Rw',
+    'gadgets-v2': 'https://disk.yandex.ru/i/rTE2aPGcWLMXlA',
 }
 
 
@@ -54,8 +54,15 @@ def handler(event: dict, context) -> dict:
         direct_url = get_direct_url(public_url)
         with urllib.request.urlopen(direct_url, timeout=30) as resp:
             image_data = resp.read()
-        s3_key = f'merch/{key}.png'
-        s3.put_object(Bucket='files', Key=s3_key, Body=image_data, ContentType='image/png')
+        ext = 'webp'
+        lower = direct_url.lower()
+        if '.png' in lower:
+            ext = 'png'
+        elif '.jpg' in lower or '.jpeg' in lower:
+            ext = 'jpg'
+        s3_key = f'merch/{key}.{ext}'
+        content_type = f'image/{ext if ext != "jpg" else "jpeg"}'
+        s3.put_object(Bucket='files', Key=s3_key, Body=image_data, ContentType=content_type)
         cdn_url = f'https://cdn.poehali.dev/projects/{access_key}/bucket/{s3_key}'
         results[key] = cdn_url
         print(f'{key} -> {cdn_url}')

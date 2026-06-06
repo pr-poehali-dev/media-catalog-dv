@@ -2169,7 +2169,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Телефон всегда рядом — а вместе с ним и ваш бренд.',
     priceFrom: 150,
     emoji: '📱',
-    image: `${CDN}/gadgets.png`,
+    image: `${CDN}/gadgets-v2.webp`,
   },
   {
     id: 'powerbank',
@@ -2178,7 +2178,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Современный формат для технологичного и сильного бренда.',
     priceFrom: 1200,
     emoji: '🔋',
-    image: `${CDN}/powerbanks.png`,
+    image: `${CDN}/powerbanks-v2.webp`,
   },
   {
     id: 'tshirt',
@@ -2187,7 +2187,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Формирует узнаваемость и создаёт ощущение принадлежности к компании.',
     priceFrom: 500,
     emoji: '👕',
-    image: `${CDN}/tshirts.png`,
+    image: `${CDN}/tshirts-v2.webp`,
   },
   {
     id: 'bag',
@@ -2196,7 +2196,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Бренд сопровождает человека в городе, магазинах и повседневной жизни.',
     priceFrom: 200,
     emoji: '🛍️',
-    image: `${CDN}/bags.png`,
+    image: `${CDN}/bags-v2.webp`,
   },
   {
     id: 'sticker',
@@ -2205,7 +2205,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Вирусное распространение. Стикеры видят все вокруг носителя.',
     priceFrom: 15,
     emoji: '🎨',
-    image: `${CDN}/stickers.png`,
+    image: `${CDN}/stickers-v2.webp`,
   },
   {
     id: 'keychain',
@@ -2214,7 +2214,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Создаёт эмоциональную связь через повседневное использование.',
     priceFrom: 80,
     emoji: '🔑',
-    image: `${CDN}/keychains.png`,
+    image: `${CDN}/keychains-v2.webp`,
   },
   {
     id: 'notebook',
@@ -2223,7 +2223,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Подходит для партнёров, сотрудников и деловых мероприятий.',
     priceFrom: 300,
     emoji: '📓',
-    image: `${CDN}/notebooks.png`,
+    image: `${CDN}/notebooks-v2.webp`,
   },
   {
     id: 'cup',
@@ -2232,7 +2232,7 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Постоянный визуальный контакт с брендом без навязчивой рекламы.',
     priceFrom: 350,
     emoji: '☕',
-    image: `${CDN}/cups.png`,
+    image: `${CDN}/cups-v2.webp`,
   },
   {
     id: 'pen',
@@ -2241,6 +2241,6 @@ export const MERCH_ITEMS: MerchItem[] = [
     why: 'Один из самых доступных способов регулярно напоминать о компании.',
     priceFrom: 30,
     emoji: '🖊️',
-    image: `${CDN}/pens.png`,
+    image: `${CDN}/pens-v2.webp`,
   },
 ];
