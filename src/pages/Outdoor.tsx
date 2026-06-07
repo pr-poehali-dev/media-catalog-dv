@@ -77,7 +77,7 @@ export default function Outdoor() {
             Наружная реклама работает всегда, даже когда телефон лежит в кармане. Щиты, ситиборды, медиафасады и другие форматы для охвата, узнаваемости и усиления бренда.
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
-            <a href="#outdoor-form" className="btn-carmine justify-center w-full sm:w-[240px]">Получить предложение</a>
+            <a href="#outdoor-form" className="btn-carmine justify-center w-full sm:w-auto sm:px-8 sm:whitespace-nowrap">Получить предложение</a>
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-[240px]">Написать в Telegram</a>
             <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">Написать в MAX</a>
           </div>
