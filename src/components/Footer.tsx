@@ -72,6 +72,7 @@ export default function Footer() {
               </a>
               <div className="mt-4 pt-4 border-t border-[#FBF8F3]/10">
                 <div className="flex flex-col gap-1.5">
+                  <Link to="/political" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">Политическая реклама</Link>
                   <Link to="/faq" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">FAQ</Link>
                   <Link to="/contacts" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">Контакты</Link>
                 </div>

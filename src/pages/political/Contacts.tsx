@@ -1,0 +1,87 @@
+import ContactForm from '@/components/ContactForm';
+import useScrollReveal from '@/hooks/useScrollReveal';
+
+export default function Contacts() {
+  useScrollReveal();
+
+  return (
+    <div>
+      {/* Hero */}
+      <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark hero-pad-top pb-16 max-sm:pb-9">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-3 max-sm:mb-2">
+            <div className="section-rule" />
+            <div className="eyebrow text-[#FBF8F3]/50">Связь</div>
+          </div>
+          <h1 className="page-hero-title text-[#FBF8F3] mb-4 max-sm:mb-3">Контакты</h1>
+          <div className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8 max-sm:mb-6 space-y-1">
+            <p>
+              <span className="text-[#FBF8F3]/70">Телефон:</span>{' '}
+              <a href="tel:+79142055535" className="text-[#FBF8F3] hover:text-[#A21D27] transition-colors underline underline-offset-2 whitespace-nowrap">
+                8&nbsp;(914)&nbsp;205-55-35
+              </a>
+            </p>
+            <p>
+              <span className="text-[#FBF8F3]/70">Почта:</span>{' '}
+              <a href="mailto:media2.7@mail.ru" className="text-[#FBF8F3] hover:text-[#A21D27] transition-colors underline underline-offset-2">
+                media2.7@mail.ru
+              </a>
+            </p>
+            <p className="pt-1">Написать в мессенджерах можно по кнопкам ниже👇</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-carmine">
+              Написать в Telegram
+            </a>
+            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">
+              Написать в MAX
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Юридическая информация */}
+      <section className="bg-[#FBF8F3] pattern-milk py-12 max-sm:pt-8 reveal">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="section-rule" />
+            <div className="eyebrow text-[#5a5347]">Юридическая информация</div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#E8E2D8]">
+            <div className="bg-[#FBF8F3] p-6">
+              <div className="text-[10px] text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.16em' }}>Часы работы</div>
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-[#5a5347]">Пн–Пт</span>
+                <span className="text-[#0A0A0A]">11:00–23:00</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-[#5a5347]">Сб–Вс</span>
+                <span className="text-[#0A0A0A]">По договор.</span>
+              </div>
+            </div>
+            <div className="bg-[#FBF8F3] p-6">
+              <div className="text-[10px] text-[#5a5347] uppercase mb-3" style={{ letterSpacing: '0.16em' }}>Реквизиты</div>
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-x-3 sm:gap-x-6 gap-y-1.5 text-sm text-[#0A0A0A]/70">
+                <span>ИП Москаленко Илья Денисович</span>
+                <span><span className="text-[#5a5347]">ИНН:</span> 271703923290</span>
+                <span><span className="text-[#5a5347]">ОГРНИП:</span> 32427000070446</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Форма заявки */}
+      <section className="bg-[#0A0A0A] pattern-dark py-16 reveal">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <ContactForm
+            dark
+            title="Получить медиаплан"
+            subtitle="Расскажите о задаче — подберём решения и вышлем медиаплан бесплатно"
+            source="Контакты"
+          />
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -23,6 +23,19 @@ const Contacts = lazy(() => import("@/pages/Contacts"));
 const Legal = lazy(() => import("@/pages/Legal"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
+const PoliticalHome = lazy(() => import("@/pages/political/Home"));
+const PoliticalCommunities = lazy(() => import("@/pages/political/Communities"));
+const PoliticalBloggers = lazy(() => import("@/pages/political/Bloggers"));
+const PoliticalOutdoor = lazy(() => import("@/pages/political/Outdoor"));
+const PoliticalMerch = lazy(() => import("@/pages/political/Merch"));
+const PoliticalPlatforms = lazy(() => import("@/pages/political/Platforms"));
+const PoliticalSocialPage = lazy(() => import("@/pages/political/SocialPage"));
+const PoliticalCityPage = lazy(() => import("@/pages/political/CityPage"));
+const PoliticalFormats = lazy(() => import("@/pages/political/Formats"));
+const PoliticalCases = lazy(() => import("@/pages/political/Cases"));
+const PoliticalFAQ = lazy(() => import("@/pages/political/FAQ"));
+const PoliticalContacts = lazy(() => import("@/pages/political/Contacts"));
+
 const queryClient = new QueryClient();
 
 function ScrollToTop() {
@@ -57,6 +70,19 @@ function Layout() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/legal/:pageId" element={<Legal />} />
+          {/* Политический раздел */}
+          <Route path="/political" element={<PoliticalHome />} />
+          <Route path="/political/communities" element={<PoliticalCommunities />} />
+          <Route path="/political/bloggers" element={<PoliticalBloggers />} />
+          <Route path="/political/outdoor" element={<PoliticalOutdoor />} />
+          <Route path="/political/merch" element={<PoliticalMerch />} />
+          <Route path="/political/platforms" element={<PoliticalPlatforms />} />
+          <Route path="/political/socials/:socialId" element={<PoliticalSocialPage />} />
+          <Route path="/political/cities/:cityId" element={<PoliticalCityPage />} />
+          <Route path="/political/formats" element={<PoliticalFormats />} />
+          <Route path="/political/cases" element={<PoliticalCases />} />
+          <Route path="/political/faq" element={<PoliticalFAQ />} />
+          <Route path="/political/contacts" element={<PoliticalContacts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

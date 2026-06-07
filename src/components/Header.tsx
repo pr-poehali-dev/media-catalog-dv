@@ -66,6 +66,8 @@ export default function Header() {
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
+  const prefix = location.pathname.startsWith('/political') ? '/political' : '';
+
   const dark = onDark;
 
   return (
@@ -81,7 +83,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 gap-4">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+          <Link to={prefix || '/'} className="flex items-center gap-3 flex-shrink-0">
             <div className="w-10 h-10 bg-[#A21D27] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[#FBF8F3] font-display font-black text-[9px]" style={{ letterSpacing: '0.1em' }}>М2.7</span>
             </div>
@@ -93,33 +95,33 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6 ml-auto">
-            <Link to="/communities"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/communities') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+            <Link to={`${prefix}/communities`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/communities`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Сообщества
             </Link>
-            <Link to="/bloggers"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/bloggers') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+            <Link to={`${prefix}/bloggers`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/bloggers`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Блогеры
             </Link>
-            <Link to="/outdoor"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/outdoor') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+            <Link to={`${prefix}/outdoor`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/outdoor`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Наружка
             </Link>
-            <Link to="/merch"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/merch') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+            <Link to={`${prefix}/merch`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/merch`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Мерч
             </Link>
-            <Link to="/contacts"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/contacts') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+            <Link to={`${prefix}/contacts`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/contacts`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               Контакты
             </Link>
-            <Link to="/faq"
-              className={`text-[11px] font-medium uppercase transition-colors ${isActive('/faq') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+            <Link to={`${prefix}/faq`}
+              className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/faq`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
               FAQ
             </Link>
@@ -161,12 +163,12 @@ export default function Header() {
           }`}
         >
           {[
-            { to: '/communities', label: 'Сообщества' },
-            { to: '/bloggers', label: 'Блогеры' },
-            { to: '/outdoor', label: 'Наружка' },
-            { to: '/merch', label: 'Мерч' },
-            { to: '/contacts', label: 'Контакты' },
-            { to: '/faq', label: 'FAQ' },
+            { to: `${prefix}/communities`, label: 'Сообщества' },
+            { to: `${prefix}/bloggers`, label: 'Блогеры' },
+            { to: `${prefix}/outdoor`, label: 'Наружка' },
+            { to: `${prefix}/merch`, label: 'Мерч' },
+            { to: `${prefix}/contacts`, label: 'Контакты' },
+            { to: `${prefix}/faq`, label: 'FAQ' },
           ].map((item) => (
             <Link
               key={item.to}
