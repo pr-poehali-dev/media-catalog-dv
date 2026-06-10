@@ -25,7 +25,7 @@ export default function ContactForm({
     setLoading(true);
     setError('');
     try {
-      await fetch(SEND_LEAD_URL, {
+      const res = await fetch(SEND_LEAD_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -36,6 +36,9 @@ export default function ContactForm({
           ...(source ? { source } : {}),
         }),
       });
+      if (!res.ok) {
+        throw new Error('send_failed');
+      }
       setSent(true);
     } catch {
       setError('Не удалось отправить. Напишите нам напрямую в Telegram: @prhbk');
