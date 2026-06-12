@@ -38,10 +38,21 @@ const PoliticalContacts = lazy(() => import("@/pages/political/Contacts"));
 
 const queryClient = new QueryClient();
 
+declare global {
+  interface Window {
+    ym?: (...args: unknown[]) => void;
+  }
+}
+
+const YM_COUNTER_ID = 109797633;
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (typeof window.ym === 'function') {
+      window.ym(YM_COUNTER_ID, 'hit', window.location.href);
+    }
   }, [pathname]);
   return null;
 }
