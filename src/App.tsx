@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import CookieBanner from "@/components/CookieBanner";
+import PageLoader from "@/components/PageLoader";
 
 const Communities = lazy(() => import("@/pages/Communities"));
 const Bloggers = lazy(() => import("@/pages/Bloggers"));
@@ -63,7 +64,7 @@ function Layout() {
       <ScrollToTop />
       <Header />
       <main>
-        <Suspense fallback={null}>
+        <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Home />} />
           {/* 4 направления */}
