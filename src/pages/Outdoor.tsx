@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import ContactForm from '@/components/ContactForm';
 import { OUTDOOR_FORMATS, OutdoorFormat } from '@/data/data';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import SmartImage from '@/components/ui/smart-image';
 
 function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: boolean }) {
   return (
@@ -9,7 +10,7 @@ function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: b
       {/* Visual — 4:5 на десктопе, 1:1 на мобильном */}
       <div className="md:w-[260px] flex-shrink-0 aspect-square sm:aspect-[4/5] md:aspect-auto md:min-h-[200px] overflow-hidden relative">
         {format.image ? (
-          <img src={format.image} alt={format.name} loading="lazy" decoding="async" className="w-full h-full object-cover absolute inset-0" />
+          <SmartImage src={format.image} alt={format.name} className="w-full h-full object-cover absolute inset-0" />
         ) : (
           <div className="w-full h-full bg-[#0A0A0A] flex flex-col items-center justify-center p-8 text-center absolute inset-0">
             <div className="text-4xl mb-3">{format.emoji}</div>

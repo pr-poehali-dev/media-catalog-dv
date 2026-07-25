@@ -1,6 +1,7 @@
 import { Community, SOCIALS } from '@/data/data';
 import { SOCIAL_ICONS, SOCIAL_ICON_COLORS } from '@/components/bloggers/BloggerAvatar';
 import Icon from '@/components/ui/icon';
+import SmartImage from '@/components/ui/smart-image';
 
 function SocialIcon({ social }: { social: Community['social'] }) {
   const color = SOCIAL_ICON_COLORS[social] ?? '#888';
@@ -26,7 +27,7 @@ function Avatar({ community }: { community: Community }) {
     <div className="relative flex-shrink-0 w-[88px] h-[88px] md:w-[148px] md:h-[148px]">
       <div className="w-full h-full rounded-full overflow-hidden bg-[#111] ring-2 ring-white/10 flex items-center justify-center">
         {community.avatar
-          ? <img src={community.avatar} alt={community.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+          ? <SmartImage src={community.avatar} alt={community.name} className="w-full h-full object-cover" />
           : <span className="text-4xl md:text-5xl">{community.emoji}</span>
         }
       </div>

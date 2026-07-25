@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import ContactForm from '@/components/ContactForm';
 import { MERCH_ITEMS } from '@/data/data';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import SmartImage from '@/components/ui/smart-image';
 
 export default function Merch() {
   useScrollReveal();
@@ -90,7 +91,7 @@ export default function Merch() {
                 {/* Visual — 1:1 на мобильном */}
                 <div className="md:w-[240px] bg-[#0A0A0A] flex-shrink-0 aspect-square sm:aspect-[4/5] md:aspect-auto md:min-h-[200px] overflow-hidden relative">
                   {item.image ? (
-                    <img src={item.image} alt={item.name} loading="lazy" decoding="async" className="w-full h-full object-cover absolute inset-0" />
+                    <SmartImage src={item.image} alt={item.name} className="w-full h-full object-cover absolute inset-0" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center absolute inset-0">
                       <div className="text-5xl">{item.emoji}</div>
