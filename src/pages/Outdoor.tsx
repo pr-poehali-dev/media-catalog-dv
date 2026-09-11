@@ -75,7 +75,9 @@ export default function Outdoor() {
             Наружная <br className="sm:hidden" />реклама
           </h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
-            Наружная реклама работает всегда, даже когда телефон лежит в кармане. Щиты, ситиборды, медиафасады и другие форматы для охвата, узнаваемости и усиления бренда.
+            Щиты, ситиборды, медиафасады и другие форматы помогают привлечь внимание и повысить
+            узнаваемость на ежедневных маршрутах жителей. Подбираем конструкции и локации,
+            бронируем поверхности у операторов, контролируем размещение и присылаем фотоотчёт.
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
             <a href="#outdoor-form" className="btn-carmine justify-center w-full sm:w-auto sm:px-8 sm:whitespace-nowrap">Получить предложение</a>

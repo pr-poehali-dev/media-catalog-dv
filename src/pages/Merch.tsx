@@ -20,9 +20,9 @@ export default function Merch() {
             Брендированная<br />продукция
           </h1>
           <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8">
-            Мерч — реклама, которая остаётся с клиентом. Кружка на столе,<br className="hidden sm:block" />
-            {' '}футболка на улице, стикер на ноутбуке — бренд постоянно перед глазами.<br className="hidden lg:block" />
-            {' '}У владельца и всего его окружения.
+            Продукция с вашим логотипом поддерживает лояльность и регулярно напоминает о компании:
+            кружка на столе, футболка на улице, стикер на ноутбуке. Подбираем позиции и тираж
+            под задачу и бюджет, работаем с проверенными производителями и контролируем качество.
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
             <a href="#merch-form" className="btn-carmine justify-center w-full sm:w-[230px]">Заказать мерч</a>
@@ -59,7 +59,7 @@ export default function Merch() {
                 { num: '365', unit: 'дней', desc: 'Мерч работает без перерыва, в отличие от рекламного поста.' },
                 { num: '∞', unit: 'контактов', desc: 'Каждый новый контакт бесплатный для бизнеса, он уже оплачен.' },
                 { num: '3–10+', unit: 'охват', desc: 'Мерч видит не только владелец, но и его окружение.' },
-                { num: '25%', unit: 'удержание', desc: 'Клиент, получивший подарок, возвращается чаще.' },
+                { num: '1к+', unit: 'вариантов', desc: 'Подбираем позиции и тираж под задачу и бюджет.' },
               ].map((item) => (
                 <div key={item.num} className="bg-[#FBF8F3] p-5 md:p-7">
                   <div style={{ height: '4rem', display: 'flex', alignItems: 'flex-end', marginBottom: '4px' }}>
