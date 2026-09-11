@@ -33,7 +33,7 @@ const DIRECTIONS = [
     num: '04',
     title: 'Брендированная продукция',
     path: '/merch',
-    desc: 'Удержание клиентов через подарки и собственный мерч. Им пользуются регулярно, а значит о бренде помнят и рекламируют его в своём окружении.',
+    desc: 'Поддержка лояльности через подарки и собственный мерч. Им пользуются регулярно, а значит о бренде помнят и рассказывают о нём в своём окружении.',
     stats: 'Худи и футболки · Экосумки и шоперы · Брелоки и значки · Стикеры и наклейки',
     emoji: '🎁',
   },
@@ -72,20 +72,26 @@ export default function Home() {
       {/* ======== HERO ======== */}
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark overflow-hidden sm:min-h-screen flex items-start sm:items-center">
         <div className="pattern-content max-w-7xl mx-auto px-6 hero-pad-top pb-10 sm:pb-12 w-full">
+          <div className="eyebrow text-[#A21D27] mb-2 sm:mb-3 anim-d1 animate-fade-up">
+            Локальный медиабайер и интегратор
+          </div>
           <div className="eyebrow hero-cities text-[#FBF8F3]/70 sm:text-[#FBF8F3]/50 mb-3 sm:mb-5 anim-d1 animate-fade-up">
             Хабаровск · Владивосток · Комсомольск-на-Амуре
           </div>
           <h1 className="home-hero-title text-[#FBF8F3] mb-4 sm:mb-5 anim-d2 animate-fade-up">
-            <span style={{ whiteSpace: 'nowrap' }}>Привлечём внимание.</span><br />
-            <span style={{ whiteSpace: 'nowrap' }}>Сформируем доверие.</span><br />
-            <span style={{ whiteSpace: 'nowrap' }}>Приведём и <span className="text-[#A21D27]">удержим</span></span><br />
-            клиентов.
+            Комплексные<br />
+            рекламные кампании<br />
+            на <span className="text-[#A21D27]">Дальнем Востоке</span>
           </h1>
-          <p className="text-[#FBF8F3]/55 leading-relaxed mb-6 sm:mb-8 max-w-lg anim-d3 animate-fade-up"
+          <p className="text-[#FBF8F3]/55 leading-relaxed mb-4 max-w-lg anim-d3 animate-fade-up"
             style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)' }}>
-            Наружная реклама, обзоры у блогеров, городские сообщества
-            и брендированная продукция — полный цикл работы с клиентами
-            на Дальнем Востоке.
+            Объединяем наружную рекламу, городские сообщества, блогеров
+            и брендированную продукцию в единую систему продвижения.
+          </p>
+          <p className="text-[#FBF8F3]/45 leading-relaxed mb-6 sm:mb-8 max-w-lg anim-d3 animate-fade-up"
+            style={{ fontSize: 'clamp(0.85rem, 1.4vw, 0.98rem)' }}>
+            Подбираем площадки, договариваемся с подрядчиками, готовим медиаплан,
+            запускаем кампанию и контролируем каждое размещение.
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 anim-d4 animate-fade-up">
             <a href="#cta" className="btn-carmine justify-center w-full sm:w-auto">Получить медиаплан</a>
@@ -133,6 +139,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ======== ОДИН ПОДРЯДЧИК ======== */}
+      <section className="bg-[#FBF8F3] pt-12 pb-14 pattern-milk reveal">
+        <div className="pattern-content max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-3">
+            <div className="section-rule" />
+            <div className="eyebrow text-[#5a5347]">Подход</div>
+          </div>
+          <h2 className="section-title text-[#0A0A0A] mb-8">Один подрядчик вместо десятка</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            <p className="text-[#5a5347] leading-relaxed">
+              Вам не нужно отдельно искать блогеров, запрашивать цены у городских сообществ,
+              обзванивать операторов наружной рекламы и самостоятельно контролировать каждый выход.
+            </p>
+            <p className="text-[#5a5347] leading-relaxed">
+              Вы рассказываете нам о задаче, аудитории, сроках и бюджете. Мы собираем подходящую
+              комбинацию площадок, согласовываем условия, запускаем размещения и предоставляем
+              итоговую отчётность.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ======== 4 НАПРАВЛЕНИЯ ======== */}
       <section className="bg-[#0A0A0A] text-[#FBF8F3] pattern-dark pt-10 pb-12 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
@@ -173,18 +201,18 @@ export default function Home() {
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Механика</div>
           </div>
-          <h2 className="section-title text-[#0A0A0A] mb-8">Как это работает вместе</h2>
+          <h2 className="section-title text-[#0A0A0A] mb-8">Не набор размещений, а последовательность касаний</h2>
           <p className="text-[#5a5347] max-w-2xl mb-12 leading-relaxed">
-            Перечисленные выше инструменты хорошо работают по отдельности. Но в связке они дают кратный рост получаемых результатов.
-            Один и тот же человек видит вас на улице, у блогера, в сообществах и почти каждый день носит с собой ваш мерч.
-            Клиент помнит о вас. И он возвращается к вам снова. И снова.
+            Инструменты работают по отдельности, но в связке дают накопительный эффект:
+            один и тот же человек встречает вас на улице, у блогера, в городских сообществах
+            и в повседневных вещах с вашим логотипом.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E8E2D8]">
             {[
-              { icon: '🏙️', step: '→ Заметил', title: 'Наружная реклама', desc: 'Клиент увидел ваш щит или медиафасад по дороге домой.' },
-              { icon: '🎙️', step: '→ Заинтересовался', title: 'Блогер', desc: 'Увидел честный обзор с рекомендацией к посещению от знакомого блогера.' },
-              { icon: '📱', step: '→ Решился', title: 'Сообщества', desc: 'Увидел пост с акцией или нововведением в городском сообществе и решил прийти / перейти на вашу страницу.' },
-              { icon: '🎁', step: '→ Вернулся', title: 'Мерч', desc: 'Совершил покупку и получил подарок с логотипом. Использует его, часто возвращается, потому что регулярно вспоминает вас.' },
+              { icon: '🏙️', step: '→ Внимание', title: 'Наружная реклама', desc: 'Помогает привлечь внимание и повысить узнаваемость: щиты, медиафасады, остановки на ежедневных маршрутах.' },
+              { icon: '🎙️', step: '→ Доверие', title: 'Блогеры', desc: 'Формируют доверие через личную рекомендацию: обзоры, сторис и отзывы от знакомых аудитории авторов.' },
+              { icon: '📱', step: '→ Действие', title: 'Сообщества', desc: 'Знакомят аудиторию с предложением и подталкивают к действию: новости об открытии, акции, нововведения.' },
+              { icon: '🎁', step: '→ Лояльность', title: 'Брендированная продукция', desc: 'Поддерживает лояльность и регулярно напоминает о компании: мерч и подарки, которыми пользуются каждый день.' },
             ].map((item) => (
               <div key={item.title} className="bg-[#FBF8F3] p-7 flex flex-col">
                 <div className="text-3xl mb-4">{item.icon}</div>
@@ -194,6 +222,10 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <p className="text-[#5a5347] max-w-2xl mt-8 leading-relaxed text-sm border-l-2 border-[#A21D27] pl-5">
+            Мы не добавляем все инструменты в каждую кампанию. Состав медиаплана зависит
+            от вашей задачи, аудитории, срока и бюджета.
+          </p>
         </div>
       </section>
 
@@ -256,13 +288,14 @@ export default function Home() {
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="section-rule" />
-            <div className="eyebrow text-[#FBF8F3]/50">Кстати</div>
+            <div className="eyebrow text-[#FBF8F3]/50">Кто ведёт проект</div>
           </div>
-          <h2 className="section-title text-[#FBF8F3] mb-12">А кто мы вообще такие?</h2>
+          <h2 className="section-title text-[#FBF8F3] mb-12">За каждый проект отвечает один человек</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-[#FBF8F3]/70 leading-relaxed mb-6">
-                Сейчас «мы» — это один я, <span className="text-[#FBF8F3] font-semibold">Илья Москаленко</span>.<br />Коротко обо мне:
+                Каждую рекламную кампанию лично ведёт <span className="text-[#FBF8F3] font-semibold">Илья Москаленко</span> —
+                от первого брифа и подбора площадок до запуска и итоговой отчётности.
               </p>
               <div className="flex flex-col gap-3 mb-8">
                 {[
@@ -276,20 +309,18 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <p className="text-[#FBF8F3]/55 leading-relaxed text-sm">
-                И да, мне 23. Не привык тратить время на бесполезную суету.<br />
-                Приятно познакомиться)
-              </p>
             </div>
             <div className="flex flex-col gap-6">
               <div className="border-l-2 border-[#A21D27] pl-6">
                 <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
-                  За последние годы я понял простую вещь: бизнесам не нужны ещё одни подрядчики. Бизнесам нужен человек, который понимает, как привести клиентов, удержать их и не слить бюджет в пустоту. А, ну и чтобы подешевле это всё было.
+                  Для реализации подключаются проверенные владельцы сообществ, блогеры,
+                  операторы наружной рекламы, дизайнеры и производители брендированной продукции.
                 </p>
               </div>
               <div className="border-l-2 border-[#FBF8F3]/15 pl-6">
                 <p className="text-[#FBF8F3]/70 leading-relaxed text-sm">
-                  Именно поэтому я собрал вокруг себя систему из проверенных подрядчиков, медиа, рекламных площадок и производств. И договорился с ними об агентском вознаграждении или скидках — чтобы закрывать задачи бизнеса под ключ и без наценки для бизнеса.
+                  У клиента остаётся одно ответственное лицо вместо отдельных переговоров
+                  с десятком подрядчиков.
                 </p>
               </div>
             </div>
@@ -307,7 +338,7 @@ export default function Home() {
                 <div className="eyebrow text-[#FBF8F3]/50">Начать</div>
               </div>
               <h2 className="section-title text-[#FBF8F3] mb-6">
-                Готовы запустить рекламу<br />и <span className="text-[#A21D27]">удержать</span> пришедших клиентов?
+                Готовы запустить<br /><span className="text-[#A21D27]">рекламную кампанию</span>?
               </h2>
               <p className="text-[#FBF8F3]/50 leading-relaxed mb-6 max-w-md">
                 Оставьте заявку — уточним детали и пришлём предварительный медиаплан.
@@ -316,7 +347,7 @@ export default function Home() {
                 {[
                   'Медиаплан — бесплатно',
                   'Ответ в течение 2 часов',
-                  'Работаем с бюджетами от 3 000 рублей',
+                  'Отвечаем за подбор, организацию, выходы и отчётность',
                 ].map((text) => (
                   <div key={text} className="flex items-center gap-3 text-sm text-[#FBF8F3]/55">
                     <div className="w-px h-4 bg-[#A21D27] flex-shrink-0" />

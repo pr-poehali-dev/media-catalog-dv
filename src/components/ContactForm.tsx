@@ -15,7 +15,7 @@ export default function ContactForm({
   dark = false,
   source,
 }: ContactFormProps) {
-  const [form, setForm] = useState({ name: '', phone: '', city: '', task: '', consent: false });
+  const [form, setForm] = useState({ name: '', phone: '', city: '', budget: '', startDate: '', task: '', consent: false });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -32,6 +32,8 @@ export default function ContactForm({
           name: form.name,
           phone: form.phone,
           city: form.city,
+          budget: form.budget,
+          startDate: form.startDate,
           task: form.task,
           ...(source ? { source } : {}),
         }),
@@ -134,6 +136,37 @@ export default function ContactForm({
             <option value="Комсомольск-на-Амуре" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>Комсомольск-на-Амуре</option>
             <option value="Несколько городов" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>Несколько городов</option>
           </select>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Бюджет</label>
+            <select
+              value={form.budget}
+              onChange={(e) => setForm({ ...form, budget: e.target.value })}
+              className={`${inputBase} appearance-none`}
+              style={{
+                color: form.budget === '' ? '#9a9490' : '#0A0A0A',
+                backgroundColor: '#fff',
+              }}
+            >
+              <option value="" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>Выберите бюджет</option>
+              <option value="До 50 000 ₽" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>До 50 000 ₽</option>
+              <option value="50 000 – 150 000 ₽" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>50 000 – 150 000 ₽</option>
+              <option value="150 000 – 300 000 ₽" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>150 000 – 300 000 ₽</option>
+              <option value="Более 300 000 ₽" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>Более 300 000 ₽</option>
+              <option value="Пока не определён" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>Пока не определён</option>
+            </select>
+          </div>
+          <div>
+            <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Желаемая дата запуска</label>
+            <input
+              type="date"
+              value={form.startDate}
+              onChange={(e) => setForm({ ...form, startDate: e.target.value })}
+              className={inputBase}
+              style={{ ...inputStyle, backgroundColor: '#fff' }}
+            />
+          </div>
         </div>
         <div>
           <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Задача</label>

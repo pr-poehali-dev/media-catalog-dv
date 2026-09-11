@@ -48,6 +48,8 @@ def handler(event: dict, context) -> dict:
     name = body.get('name', '—')
     phone = body.get('phone', '—')
     city = body.get('city') or '—'
+    budget = body.get('budget') or '—'
+    start_date = body.get('startDate') or '—'
     task = body.get('task') or '—'
     source = body.get('source', '')
 
@@ -62,6 +64,8 @@ def handler(event: dict, context) -> dict:
         f"\U0001f464 *Имя:* {name}\n"
         f"\U0001f4de *Телефон / Telegram:* {phone}\n"
         f"\U0001f3d9 *Город:* {city}\n"
+        f"\U0001f4b0 *Бюджет:* {budget}\n"
+        f"\U0001f4c5 *Желаемая дата запуска:* {start_date}\n"
         f"\U0001f4dd *Задача:* {task}"
     )
 
