@@ -34,7 +34,9 @@ export default function Footer() {
                 </div>
               </div>
               <p className="text-sm text-[#FBF8F3]/45 leading-relaxed mb-5">
-                4 направления продвижения: сообщества, блогеры, наружная реклама и мерч.
+                Локальный медиабайер и интегратор. Подбираем площадки, договариваемся
+                с подрядчиками и запускаем комплексные рекламные кампании
+                в Хабаровске, Владивостоке и Комсомольске-на-Амуре.
               </p>
               <div className="flex flex-col gap-2">
                 <a href="tel:+79142055535" className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">+7 (914) 205-55-35</a>
