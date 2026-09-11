@@ -295,7 +295,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-[#FBF8F3]/70 leading-relaxed mb-6">
-                Каждую рекламную кампанию лично ведёт <span className="text-[#FBF8F3] font-semibold">Илья Москаленко</span> —
+                Каждую рекламную кампанию лично ведёт основатель агентства <span className="text-[#FBF8F3] font-semibold">Илья Москаленко</span> —
                 от первого брифа и подбора площадок до запуска и итоговой отчётности.
               </p>
               <div className="flex flex-col gap-3 mb-8">

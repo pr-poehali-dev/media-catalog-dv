@@ -14,6 +14,10 @@ export default function Contacts() {
             <div className="eyebrow text-[#FBF8F3]/50">Связь</div>
           </div>
           <h1 className="page-hero-title text-[#FBF8F3] mb-4 max-sm:mb-3">Контакты</h1>
+          <p className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-5 max-sm:mb-4">
+            Медиа 2.7 — локальный медиабайер и интегратор рекламы на Дальнем Востоке.
+            Каждую заявку лично ведёт основатель агентства Илья Москаленко.
+          </p>
           <div className="text-[#FBF8F3]/50 text-base max-w-2xl leading-relaxed mb-8 max-sm:mb-6 space-y-1">
             <p>
               <span className="text-[#FBF8F3]/70">Телефон:</span>{' '}
