@@ -182,7 +182,7 @@ export function renderBlogger(b: PdfBuilder, blogger: Blogger, withHeaderBlock =
   // CTA-кнопки (кликабельные)
   b.divider();
   b.needSpace(14);
-  const formUrl = 'https://prhbk.ru/bloggers#form';
+  const formUrl = `https://media-27.ru/bloggers?platform=${encodeURIComponent(blogger.id)}&platform_name=${encodeURIComponent(blogger.name)}&direction=%D0%91%D0%BB%D0%BE%D0%B3%D0%B5%D1%80%D1%8B&utm_source=mediakit&utm_medium=pdf#form`;
   // розовая кнопка-заявка
   const btnW = 60;
   const btnH = 10;
@@ -194,6 +194,6 @@ export function renderBlogger(b: PdfBuilder, blogger: Blogger, withHeaderBlock =
   // контакты
   let lx = PAGE.mx + btnW + 8;
   lx += b.link('Telegram', 'https://t.me/prhbk', lx, b.y + 6.5) + 8;
-  b.link('MAX', 'https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao', lx, b.y + 6.5);
+  b.link('MAX', 'https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE', lx, b.y + 6.5);
   b.y += btnH + 4;
 }

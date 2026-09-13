@@ -1,6 +1,7 @@
 import { Blogger, SOCIALS } from '@/data/data';
 import { AvatarWithOrbit, SOCIAL_ICON_COLORS } from './BloggerAvatar';
 import Icon from '@/components/ui/icon';
+import { setSelection } from '@/lib/selection';
 
 function fmtSubs(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(2).replace('.', ',') + ' млн';
@@ -171,7 +172,11 @@ export default function BloggerCard({ blogger, onClick }: { blogger: Blogger; on
               </button>
               <button
                 className="btn-carmine justify-center w-full sm:w-auto"
-                onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelection({ id: blogger.id, name: blogger.name, social: SOCIALS[blogger.social]?.label, city: blogger.city, direction: 'Блогеры' });
+                  window.location.hash = 'form';
+                }}
               >
                 Оставить заявку
               </button>

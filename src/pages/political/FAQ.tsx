@@ -76,7 +76,7 @@ export default function FAQ() {
               <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-carmine">
                 Написать в Telegram
               </a>
-              <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">
+              <a href="https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE" target="_blank" rel="noopener noreferrer" className="btn-outline">
                 Написать в MAX
               </a>
             </div>

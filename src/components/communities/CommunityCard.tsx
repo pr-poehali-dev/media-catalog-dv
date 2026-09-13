@@ -2,6 +2,7 @@ import { Community, SOCIALS } from '@/data/data';
 import { SOCIAL_ICONS, SOCIAL_ICON_COLORS } from '@/components/bloggers/BloggerAvatar';
 import Icon from '@/components/ui/icon';
 import SmartImage from '@/components/ui/smart-image';
+import { setSelection } from '@/lib/selection';
 
 function SocialIcon({ social }: { social: Community['social'] }) {
   const color = SOCIAL_ICON_COLORS[social] ?? '#888';
@@ -168,7 +169,11 @@ export default function CommunityCard({ community, onClick }: { community: Commu
               </button>
               <button
                 className="btn-carmine justify-center w-full sm:w-auto"
-                onClick={(e) => { e.stopPropagation(); window.location.hash = 'form'; }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelection({ id: community.id, name: community.name, social: SOCIALS[community.social]?.label, city: community.city, direction: 'Городские сообщества' });
+                  window.location.hash = 'form';
+                }}
               >
                 Оставить заявку
               </button>

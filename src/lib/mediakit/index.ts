@@ -73,7 +73,7 @@ function coverAndIntro(b: PdfBuilder) {
   doc.setFillColor(COLORS.pink);
   doc.rect(PAGE.mx, by, btnW, btnH, 'F');
   b.font('bold', 10, COLORS.milk);
-  const url = 'https://prhbk.ru/bloggers#form';
+  const url = 'https://media-27.ru/bloggers?utm_source=mediakit&utm_medium=pdf#form';
   doc.textWithLink('Подобрать блогера', PAGE.mx + 8, by + 7, { url });
   doc.link(PAGE.mx, by, btnW, btnH, { url });
   b.font('normal', 9, COLORS.milk);
@@ -82,7 +82,7 @@ function coverAndIntro(b: PdfBuilder) {
     'MAX',
     PAGE.mx + btnW + 32,
     by + 7,
-    { url: 'https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao' }
+    { url: 'https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE' }
   );
 }
 
@@ -134,7 +134,7 @@ export async function downloadCatalogMediakit() {
   b.gap(4);
   b.font('normal', 7, COLORS.faint);
   const note = doc.splitTextToSize(
-    '*Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации. Размещение рекламы у блогеров в Instagram* рассматривается индивидуально с учётом правовых рисков.',
+    '*Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации. Вы можете предложить редакции новость, анонс или другой информационный материал. Возможность публикации определяется после рассмотрения содержания и требований законодательства. Материалы, имеющие рекламный характер, в Instagram* не размещаются.',
     CONTENT_W
   );
   doc.text(note, PAGE.mx, b.y + 3);

@@ -4,6 +4,7 @@ import { SOCIAL_ICONS, SOCIAL_ICON_COLORS } from '@/components/bloggers/BloggerA
 import AudienceCharts from '@/components/bloggers/AudienceCharts';
 import { downloadCommunityMediakit } from '@/lib/mediakit';
 import Icon from '@/components/ui/icon';
+import { setSelection } from '@/lib/selection';
 
 function fmtSubs(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(2).replace('.', ',') + ' млн';
@@ -90,7 +91,7 @@ export default function CommunityModal({ community, onClose }: { community: Comm
             )}
             {community.social === 'instagram' && (
               <p className="mt-3 text-[11px] text-[#FBF8F3]/40 leading-relaxed">
-                Стандартное рекламное размещение в Instagram* на территории РФ не предлагаем. Присутствие в соцсети возможно только в информационном формате с учётом правовых ограничений.
+                Вы можете предложить редакции новость, анонс или другой информационный материал. Возможность публикации определяется после рассмотрения содержания и требований законодательства. Материалы, имеющие рекламный характер, в Instagram* не размещаются.
               </p>
             )}
             {community.rkn && (
@@ -230,7 +231,16 @@ export default function CommunityModal({ community, onClose }: { community: Comm
                 <Icon name={loadingPdf ? 'Loader' : 'Download'} size={16} className={loadingPdf ? 'animate-spin' : ''} />
                 {loadingPdf ? 'Готовим…' : 'Скачать медиакит'}
               </button>
-              <a href="#form" onClick={onClose} className="btn-carmine justify-center w-full sm:w-auto">Оставить заявку</a>
+              <a
+                href="#form"
+                onClick={() => {
+                  setSelection({ id: community.id, name: community.name, social: SOCIALS[community.social]?.label, city: community.city, direction: 'Городские сообщества' });
+                  onClose();
+                }}
+                className="btn-carmine justify-center w-full sm:w-auto"
+              >
+                Оставить заявку
+              </a>
             </div>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
 import PlatformCard from '@/components/PlatformCard';
 import ContactForm from '@/components/ContactForm';
-import { PLATFORMS, SOCIALS, Platform } from '@/data/data';
+import { SOCIALS, Platform } from '@/data/data';
+import { REAL_PLATFORMS } from '@/data/platformsAdapter';
 import Icon from '@/components/ui/icon';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
@@ -20,7 +21,7 @@ export default function Platforms() {
   const [search, setSearch] = useState('');
 
   const filtered = useMemo<Platform[]>(() => {
-    return PLATFORMS.filter((p) => {
+    return REAL_PLATFORMS.filter((p) => {
       if (city !== 'Все города' && p.city !== city) return false;
       if (social !== 'all' && p.social !== social) return false;
       if (type !== 'Все') {
@@ -105,7 +106,7 @@ export default function Platforms() {
           </div>
           {filtered.length === 0 ? (
             <div className="text-center py-24">
-              <h3 className="font-display font-bold text-[#0A0A0A] text-2xl mb-2">Ничего не найдено</h3>
+              <h3 className="font-display font-bold text-[#0A0A0A] text-2xl mb-2">В этом разделе пока нет площадок</h3>
               <p className="text-[#5a5347] text-sm">Попробуйте изменить фильтры</p>
             </div>
           ) : (

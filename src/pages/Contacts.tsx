@@ -37,7 +37,7 @@ export default function Contacts() {
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-carmine">
               Написать в Telegram
             </a>
-            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <a href="https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE" target="_blank" rel="noopener noreferrer" className="btn-outline">
               Написать в MAX
             </a>
           </div>
@@ -68,7 +68,7 @@ export default function Contacts() {
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-x-3 sm:gap-x-6 gap-y-1.5 text-sm text-[#0A0A0A]/70">
                 <span>ИП Москаленко Илья Денисович</span>
                 <span><span className="text-[#5a5347]">ИНН:</span> 271703923290</span>
-                <span><span className="text-[#5a5347]">ОГРНИП:</span> 32427000070446</span>
+                <span><span className="text-[#5a5347]">ОГРНИП:</span> 324270000070446</span>
               </div>
             </div>
           </div>

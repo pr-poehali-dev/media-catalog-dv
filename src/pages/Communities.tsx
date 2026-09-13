@@ -48,8 +48,8 @@ const PLACEMENT: { key: SocialNet; desc: string; formats: string[] }[] = [
   },
   {
     key: 'instagram',
-    desc: 'Стандартное рекламное размещение в Instagram* на территории РФ не предлагаем. Присутствие в соцсети возможно только в информационном формате с учётом правовых ограничений.',
-    formats: ['Новость в ленту', 'Новость в сторис'],
+    desc: 'Вы можете предложить редакции новость, анонс или другой информационный материал. Возможность публикации определяется после рассмотрения содержания и требований законодательства. Материалы, имеющие рекламный характер, в Instagram* не размещаются.',
+    formats: ['Информационный материал в ленту', 'Информационный материал в сторис'],
   },
   {
     key: 'vk',
@@ -139,7 +139,7 @@ export default function Communities() {
           <div className="flex flex-wrap gap-3">
             <a href="#form" className="btn-carmine">Получить медиаплан</a>
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в Telegram</a>
-            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
+            <a href="https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE" target="_blank" rel="noopener noreferrer" className="btn-outline">Написать в MAX</a>
           </div>
         </div>
       </section>

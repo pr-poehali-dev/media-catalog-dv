@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
-import { PLATFORMS, SOCIALS, CASES, CITIES_INFO } from '@/data/data';
+import { SOCIALS, CITIES_INFO } from '@/data/data';
+import { REAL_PLATFORMS } from '@/data/platformsAdapter';
 import PlatformCard from '@/components/PlatformCard';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
@@ -92,8 +93,7 @@ export default function CityPage() {
 
   const cityInfo = CITIES_INFO[cityName];
   const content = CITY_CONTENT[cityName];
-  const cityPlatforms = PLATFORMS.filter((p) => p.city === cityName).slice(0, 4);
-  const cityCases = CASES.filter((c) => c.city === cityName).slice(0, 3);
+  const cityPlatforms = REAL_PLATFORMS.filter((p) => p.city === cityName).slice(0, 4);
 
   return (
     <div>
@@ -165,28 +165,6 @@ export default function CityPage() {
             </div>
             <div className="flex flex-col gap-px bg-[#E8E2D8]">
               {cityPlatforms.map((p, i) => <PlatformCard key={p.id} platform={p} reversed={i % 2 !== 0} />)}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {cityCases.length > 0 && (
-        <section className="bg-[#FBF8F3] py-16 reveal">
-          <div className="max-w-7xl mx-auto px-6">
-            <h2 className="font-display font-bold text-[#0A0A0A] text-xl mb-8" style={{ letterSpacing: '-0.01em' }}>Кейсы из {cityName}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#E8E2D8]">
-              {cityCases.map((c) => (
-                <div key={c.id} className="bg-[#FBF8F3] p-7">
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    <span className="tag">{c.niche}</span>
-                    <span className="tag tag-carmine">{SOCIALS[c.social].label}</span>
-                  </div>
-                  <h3 className="font-display font-bold text-[#0A0A0A] text-lg mb-2 leading-tight" style={{ letterSpacing: '-0.01em' }}>{c.title}</h3>
-                  <p className="text-sm text-[#5a5347] mb-4 leading-relaxed">{c.result}</p>
-                  <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.14em' }}>Охват</div>
-                  <div className="font-display font-bold text-[#A21D27] text-2xl">{c.reach.toLocaleString('ru')}</div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

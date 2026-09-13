@@ -3,6 +3,7 @@ import ContactForm from '@/components/ContactForm';
 import { OUTDOOR_FORMATS, OutdoorFormat } from '@/data/data';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import SmartImage from '@/components/ui/smart-image';
+import { setSelection } from '@/lib/selection';
 
 function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: boolean }) {
   return (
@@ -52,7 +53,13 @@ function OutdoorCard({ format, reversed }: { format: OutdoorFormat; reversed?: b
             <div className="text-[10px] text-[#FBF8F3]/40 uppercase" style={{ letterSpacing: '0.14em' }}>от</div>
             <div className="font-display font-bold text-[#FBF8F3] text-xl md:text-2xl">{format.priceFrom.toLocaleString('ru')} ₽ / мес.</div>
           </div>
-          <a href="#outdoor-form" className="btn-carmine justify-center w-full sm:w-auto">Оставить заявку</a>
+          <a
+            href="#outdoor-form"
+            onClick={() => setSelection({ id: format.id, name: format.name, format: format.size, direction: 'Наружная реклама' })}
+            className="btn-carmine justify-center w-full sm:w-auto"
+          >
+            Оставить заявку
+          </a>
         </div>
       </div>
     </div>
@@ -82,7 +89,7 @@ export default function Outdoor() {
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
             <a href="#outdoor-form" className="btn-carmine justify-center w-full sm:w-auto sm:px-8 sm:whitespace-nowrap">Получить предложение</a>
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-[240px]">Написать в Telegram</a>
-            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">Написать в MAX</a>
+            <a href="https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">Написать в MAX</a>
           </div>
         </div>
       </section>

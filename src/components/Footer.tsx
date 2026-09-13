@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { CONTACTS, LEGAL } from '@/config/site';
 
 const FOOTER_DIRECTIONS = [
   { label: 'Городские сообщества', path: '/communities' },
@@ -33,14 +34,14 @@ export default function Footer() {
                   <div className="text-[9px] text-[#FBF8F3]/40 uppercase leading-tight mt-0.5" style={{ letterSpacing: '0.18em' }}>Реклама на Дальнем Востоке</div>
                 </div>
               </div>
-              <p className="text-sm text-[#FBF8F3]/45 leading-relaxed mb-5">
+              <p className="text-sm text-[#FBF8F3]/60 leading-relaxed mb-5">
                 Локальный медиабайер и интегратор. Подбираем площадки, договариваемся
                 с подрядчиками и запускаем комплексные рекламные кампании
                 в Хабаровске, Владивостоке и Комсомольске-на-Амуре.
               </p>
               <div className="flex flex-col gap-2">
-                <a href="tel:+79142055535" className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">+7 (914) 205-55-35</a>
-                <a href="mailto:media2.7@mail.ru" className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">media2.7@mail.ru</a>
+                <a href={`tel:${CONTACTS.phone}`} className="text-sm text-[#FBF8F3]/65 hover:text-[#A21D27] transition-colors">{CONTACTS.phoneLabel}</a>
+                <a href={`mailto:${CONTACTS.email}`} className="text-sm text-[#FBF8F3]/65 hover:text-[#A21D27] transition-colors">{CONTACTS.email}</a>
               </div>
             </div>
 
@@ -49,7 +50,7 @@ export default function Footer() {
               <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Направления</div>
               <div className="flex flex-col gap-2.5">
                 {FOOTER_DIRECTIONS.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/45 hover:text-[#A21D27] transition-colors">{item.label}</Link>
+                  <Link key={item.path} to={item.path} className="text-sm text-[#FBF8F3]/65 hover:text-[#A21D27] transition-colors">{item.label}</Link>
                 ))}
               </div>
             </div>
@@ -57,12 +58,12 @@ export default function Footer() {
             {/* CTA */}
             <div>
               <div className="text-[9px] font-medium text-[#FBF8F3]/40 uppercase mb-5" style={{ letterSpacing: '0.22em' }}>Связаться</div>
-              <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer"
+              <a href={CONTACTS.telegram} target="_blank" rel="noopener noreferrer"
                 className="block text-center bg-[#A21D27] text-[#FBF8F3] text-sm font-medium py-3 px-5 hover:bg-[#831520] transition-colors mb-2"
                 style={{ letterSpacing: '0.06em' }}>
                 Telegram
               </a>
-              <a href="https://max.ru/u/f9LHodD0cOLXB3nv5Syhf3yuHh7KUUzhvhTbBbfeUi4f-OZffgk_ZagdxQ4" target="_blank" rel="noopener noreferrer"
+              <a href={CONTACTS.max} target="_blank" rel="noopener noreferrer"
                 className="block text-center border border-[#FBF8F3]/20 text-[#FBF8F3]/55 text-sm font-medium py-3 px-5 hover:border-[#A21D27] hover:text-[#A21D27] transition-colors mb-2"
                 style={{ letterSpacing: '0.06em' }}>
                 MAX
@@ -74,9 +75,15 @@ export default function Footer() {
               </a>
               <div className="mt-4 pt-4 border-t border-[#FBF8F3]/10">
                 <div className="flex flex-col gap-1.5">
-                  <Link to="/political" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">Политическая реклама</Link>
-                  <Link to="/faq" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">FAQ</Link>
-                  <Link to="/contacts" className="text-xs text-[#FBF8F3]/30 hover:text-[#FBF8F3]/50 transition-colors">Контакты</Link>
+                  <Link to="/faq" className="text-xs text-[#FBF8F3]/45 hover:text-[#FBF8F3]/70 transition-colors">FAQ</Link>
+                  <Link to="/contacts" className="text-xs text-[#FBF8F3]/45 hover:text-[#FBF8F3]/70 transition-colors">Контакты</Link>
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-cookie-settings'))}
+                    className="text-left text-xs text-[#FBF8F3]/45 hover:text-[#FBF8F3]/70 transition-colors"
+                  >
+                    Настройки cookie
+                  </button>
                 </div>
               </div>
             </div>
@@ -89,13 +96,13 @@ export default function Footer() {
             <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
               <div className="flex flex-wrap gap-x-5 gap-y-2">
                 {FOOTER_LEGAL.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-[11px] text-[#FBF8F3]/25 hover:text-[#FBF8F3]/45 transition-colors">{item.label}</Link>
+                  <Link key={item.path} to={item.path} className="text-[11px] text-[#FBF8F3]/45 hover:text-[#FBF8F3]/70 transition-colors">{item.label}</Link>
                 ))}
               </div>
-              <div className="text-[11px] text-[#FBF8F3]/20">© 2026 Медиа 2.7 · ИНН 271703923290</div>
+              <div className="text-[11px] text-[#FBF8F3]/40">© 2026 {LEGAL.brand} · ИНН {LEGAL.inn} · ОГРНИП {LEGAL.ogrnip}</div>
             </div>
             <div className="mt-3 pt-3 border-t border-[#FBF8F3]/10">
-              <p className="text-[11px] text-[#FBF8F3]/20 leading-relaxed max-w-4xl">
+              <p className="text-[11px] text-[#FBF8F3]/40 leading-relaxed max-w-4xl">
                 *Реклама маркируется согласно ФЗ «О рекламе» №38-ФЗ.<br />
                 **Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории РФ.
               </p>

@@ -56,7 +56,7 @@ export default function Bloggers() {
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
             <a href="#form" className="btn-carmine justify-center w-full sm:w-[230px]">Подобрать блогера</a>
             <a href="https://t.me/prhbk" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-[230px]">Написать в Telegram</a>
-            <a href="https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">Написать в MAX</a>
+            <a href="https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE" target="_blank" rel="noopener noreferrer" className="btn-outline justify-center w-full sm:w-auto">Написать в MAX</a>
           </div>
         </div>
       </section>
@@ -115,9 +115,9 @@ export default function Bloggers() {
             </div>
           )}
 
-          <p className="mt-5 text-[11px] text-[#FBF8F3]/25 leading-relaxed max-w-3xl">
+          <p className="mt-5 text-[11px] text-[#FBF8F3]/45 leading-relaxed max-w-3xl">
             *Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.
-            Размещение рекламы у блогеров в Instagram* рассматривается индивидуально с учётом правовых рисков.
+            Вы можете предложить редакции новость, анонс или другой информационный материал. Возможность публикации определяется после рассмотрения содержания и требований законодательства. Материалы, имеющие рекламный характер, в Instagram* не размещаются.
           </p>
         </div>
       </section>

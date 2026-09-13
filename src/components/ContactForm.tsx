@@ -1,4 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { CONTACTS, CONSENT_VERSION } from '@/config/site';
+import {
+  PlatformSelection,
+  getSelection,
+  setSelection,
+  clearSelection,
+  subscribeSelection,
+  readSelectionFromUrl,
+  collectUtm,
+} from '@/lib/selection';
 
 const SEND_LEAD_URL = 'https://functions.poehali.dev/23c232dd-6c5c-4b01-82da-fa900e5b7087';
 
@@ -19,6 +29,15 @@ export default function ContactForm({
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [selection, setSel] = useState<PlatformSelection | null>(null);
+
+  useEffect(() => {
+    const fromUrl = readSelectionFromUrl();
+    if (fromUrl) setSelection(fromUrl);
+    const sync = () => setSel(getSelection());
+    sync();
+    return subscribeSelection(sync);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,15 +54,22 @@ export default function ContactForm({
           budget: form.budget,
           startDate: form.startDate,
           task: form.task,
+          consent: form.consent,
+          consentVersion: CONSENT_VERSION,
+          page: window.location.pathname,
           ...(source ? { source } : {}),
+          ...(selection ? { selection } : {}),
+          ...(Object.keys(collectUtm()).length ? { utm: collectUtm() } : {}),
         }),
       });
-      if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data || data.ok !== true) {
         throw new Error('send_failed');
       }
+      clearSelection();
       setSent(true);
     } catch {
-      setError('Не удалось отправить. Напишите нам напрямую в Telegram: @prhbk');
+      setError('Не удалось отправить заявку. Напишите нам напрямую в Telegram — ' + CONTACTS.telegramHandle);
     } finally {
       setLoading(false);
     }
@@ -90,6 +116,23 @@ export default function ContactForm({
           {subtitle && (
             <p className={`text-sm leading-relaxed ${dark ? 'text-[#FBF8F3]/50' : 'text-[#5a5347]'}`}>{subtitle}</p>
           )}
+        </div>
+      )}
+      {selection && (
+        <div className={`flex items-start justify-between gap-3 px-4 py-3 mb-4 text-sm ${dark ? 'border border-[#FBF8F3]/20 text-[#FBF8F3]/80' : 'border border-[#E8E2D8] bg-[#F2EDE4] text-[#0A0A0A]'}`}>
+          <span className="leading-relaxed">
+            <span className={dark ? 'text-[#FBF8F3]/50' : 'text-[#5a5347]'}>Выбрано: </span>
+            {selection.name}
+            {selection.social ? ` · ${selection.social}` : ''}
+            {selection.format ? ` · ${selection.format}` : ''}
+          </span>
+          <button
+            type="button"
+            onClick={() => clearSelection()}
+            className={`flex-shrink-0 text-xs underline ${dark ? 'text-[#FBF8F3]/50 hover:text-[#FBF8F3]' : 'text-[#5a5347] hover:text-[#A21D27]'} transition-colors`}
+          >
+            убрать
+          </button>
         </div>
       )}
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -181,7 +224,12 @@ export default function ContactForm({
         </div>
 
         {error && (
-          <p className="text-sm text-[#A21D27]">{error}</p>
+          <p className="text-sm text-[#A21D27] leading-relaxed">
+            {error}{' '}
+            <a href={CONTACTS.telegram} target="_blank" rel="noopener noreferrer" className="underline">
+              Открыть Telegram
+            </a>
+          </p>
         )}
 
         <label className="flex items-start gap-3 cursor-pointer">
@@ -192,12 +240,15 @@ export default function ContactForm({
             onChange={(e) => setForm({ ...form, consent: e.target.checked })}
             className="mt-0.5 w-4 h-4 accent-[#A21D27] flex-shrink-0"
           />
-          <span className={`text-[11px] leading-relaxed ${dark ? 'text-[#FBF8F3]/40' : 'text-[#5a5347]'}`}>
+          <span className={`text-[11px] leading-relaxed ${dark ? 'text-[#FBF8F3]/60' : 'text-[#5a5347]'}`}>
             Согласен(а) с{' '}
             <a href="/legal/privacy" className="underline hover:text-[#A21D27] transition-colors" target="_blank" rel="noopener noreferrer">
               Политикой обработки персональных данных
             </a>{' '}
-            и даю согласие на обработку персональных данных
+            и даю{' '}
+            <a href="/legal/consent" className="underline hover:text-[#A21D27] transition-colors" target="_blank" rel="noopener noreferrer">
+              согласие на обработку персональных данных
+            </a>
           </span>
         </label>
 

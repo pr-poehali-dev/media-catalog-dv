@@ -3,7 +3,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
+import { trackHit } from "@/lib/analytics";
+import { applyMeta } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
@@ -18,7 +20,6 @@ const Platforms = lazy(() => import("@/pages/Platforms"));
 const SocialPage = lazy(() => import("@/pages/SocialPage"));
 const CityPage = lazy(() => import("@/pages/CityPage"));
 const Formats = lazy(() => import("@/pages/Formats"));
-const Cases = lazy(() => import("@/pages/Cases"));
 const FAQ = lazy(() => import("@/pages/FAQ"));
 const Contacts = lazy(() => import("@/pages/Contacts"));
 const Legal = lazy(() => import("@/pages/Legal"));
@@ -39,21 +40,17 @@ const PoliticalContacts = lazy(() => import("@/pages/political/Contacts"));
 
 const queryClient = new QueryClient();
 
-declare global {
-  interface Window {
-    ym?: (...args: unknown[]) => void;
-  }
-}
-
-const YM_COUNTER_ID = 109797633;
-
 function ScrollToTop() {
   const { pathname } = useLocation();
+  const first = useRef(true);
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (typeof window.ym === 'function') {
-      window.ym(YM_COUNTER_ID, 'hit', window.location.href);
+    applyMeta(pathname);
+    if (first.current) {
+      first.current = false;
+      return;
     }
+    trackHit(window.location.href);
   }, [pathname]);
   return null;
 }
@@ -78,7 +75,6 @@ function Layout() {
           <Route path="/cities/:cityId" element={<CityPage />} />
           {/* Общие */}
           <Route path="/formats" element={<Formats />} />
-          <Route path="/cases" element={<Cases />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/legal/:pageId" element={<Legal />} />

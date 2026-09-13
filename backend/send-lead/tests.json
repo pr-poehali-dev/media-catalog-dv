@@ -7,17 +7,53 @@
       "expectedStatus": 200
     },
     {
-      "name": "POST заявка",
+      "name": "GET не разрешён",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 405
+    },
+    {
+      "name": "Без согласия — отклонение",
       "method": "POST",
       "path": "/",
       "body": {
         "name": "Тест",
         "phone": "+7 999 000-00-00",
-        "city": "Хабаровск",
-        "task": "Тестовая заявка с сайта",
-        "source": "Мерч"
+        "task": "Проверка валидации"
       },
-      "expectedStatus": 200
+      "expectedStatus": 400,
+      "expectedBody": { "error": "consent_required" },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Без контакта — отклонение",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест",
+        "phone": "",
+        "consent": true
+      },
+      "expectedStatus": 400,
+      "expectedBody": { "error": "contact_required" },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Заявка проходит валидацию (доставка зависит от доступности Telegram)",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест (автопроверка)",
+        "phone": "+7 999 000-00-00",
+        "city": "Хабаровск",
+        "task": "Автоматическая проверка формы _подчёркивание_ (скобки)",
+        "source": "Автотест",
+        "consent": true,
+        "consentVersion": "2026-09-13"
+      },
+      "expectedStatus": 502,
+      "expectedBody": { "error": "delivery_failed" },
+      "bodyMatcher": "partial"
     }
   ]
 }

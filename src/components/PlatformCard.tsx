@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Platform, SOCIALS } from '@/data/data';
+import { setSelection } from '@/lib/selection';
 
 interface PlatformCardProps {
   platform: Platform;
@@ -7,6 +8,7 @@ interface PlatformCardProps {
 }
 
 function fmt(n: number): string {
+  if (!n) return '—';
   if (n >= 1000000) return (n / 1000000).toFixed(1) + ' млн';
   if (n >= 1000) return Math.round(n / 1000) + ' тыс.';
   return String(n);
@@ -74,9 +76,15 @@ export default function PlatformCard({ platform, reversed = false }: PlatformCar
         <div className="flex items-center justify-between gap-3 pt-5 border-t border-[#E8E2D8]">
           <div>
             <div className="text-[10px] text-[#5a5347] uppercase" style={{ letterSpacing: '0.14em' }}>от</div>
-            <div className="font-display font-bold text-[#0A0A0A] text-xl">{platform.priceFrom.toLocaleString('ru')} ₽</div>
+            <div className="font-display font-bold text-[#0A0A0A] text-xl">
+              {platform.priceFrom ? `${platform.priceFrom.toLocaleString('ru')} ₽` : 'по запросу'}
+            </div>
           </div>
-          <Link to="/contacts" className="btn-carmine">
+          <Link
+            to="/contacts"
+            onClick={() => setSelection({ id: platform.id, name: platform.name, social: social.label, city: platform.city })}
+            className="btn-carmine"
+          >
             Оставить заявку
           </Link>
         </div>

@@ -1,5 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
-import { PLATFORMS, SOCIALS, SocialNet } from '@/data/data';
+import { SOCIALS, SocialNet } from '@/data/data';
+import { REAL_PLATFORMS } from '@/data/platformsAdapter';
+import { setSelection } from '@/lib/selection';
 import PlatformCard from '@/components/PlatformCard';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/ui/icon';
@@ -104,12 +106,12 @@ export default function SocialPage() {
   );
 
   const social = SOCIALS[content.key];
-  const relevantPlatforms = PLATFORMS.filter((p) => p.social === content.key).slice(0, 4);
+  const relevantPlatforms = REAL_PLATFORMS.filter((p) => p.social === content.key).slice(0, 4);
 
   if (socialId === 'instagram') {
     return (
       <div>
-        <PageHero title="Instagram*" eyebrow="Ограничения" sub="Аудитория, правовые ограничения и возможные PR-форматы" />
+        <PageHero title="Instagram*" eyebrow="Ограничения" sub="Правила работы с площадкой и что можно предложить редакции" />
         <section className="bg-[#FBF8F3] py-16 reveal">
           <div className="max-w-7xl mx-auto px-6 max-w-3xl">
             <div className="bg-[#F2EDE4] border-l-4 border-[#A21D27] p-6 mb-8">
@@ -119,10 +121,18 @@ export default function SocialPage() {
             </div>
             <div className="bg-amber-50 border border-amber-200 p-6 mb-10">
               <h3 className="font-display font-bold text-[#0A0A0A] mb-2">Важное уведомление</h3>
-              <p className="text-sm text-[#0A0A0A]/70 leading-relaxed">
-                Стандартное рекламное размещение в Instagram* для продвижения товаров и услуг на территории РФ нами не предлагается.
-                Использование Instagram* в коммерческих целях сопряжено с правовыми рисками согласно законодательству РФ.
+              <p className="text-sm text-[#0A0A0A]/70 leading-relaxed mb-4">
+                Вы можете предложить редакции новость, анонс или другой информационный материал.
+                Возможность публикации определяется после рассмотрения содержания и требований законодательства.
+                Материалы, имеющие рекламный характер, в Instagram* не размещаются.
               </p>
+              <Link
+                to="/communities#form"
+                onClick={() => setSelection({ id: 'instagram', name: 'Instagram*', social: 'Instagram*', direction: 'Информационный материал' })}
+                className="btn-carmine"
+              >
+                Предложить материал
+              </Link>
             </div>
             <h2 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-[#0A0A0A] mb-6" style={{ letterSpacing: '-0.02em' }}>Альтернативы Instagram* на Дальнем Востоке</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#E8E2D8] mb-10">
@@ -140,15 +150,17 @@ export default function SocialPage() {
             <div className="bg-[#F2EDE4] border border-[#E8E2D8] p-6">
               <h3 className="font-display font-semibold text-[#0A0A0A] mb-3">Правовая информация</h3>
               <p className="text-sm text-[#5a5347] leading-relaxed">
-                Meta Platforms Inc. признана экстремистской организацией. Использование Instagram* в коммерческих целях на территории РФ сопряжено с правовыми рисками. Данная информация предоставлена в ознакомительных целях.
+                Meta Platforms Inc. признана экстремистской организацией, её деятельность запрещена на территории РФ.
+                Запрет распространения рекламы на информационных ресурсах такой организации не ограничен рекламным кабинетом — пункт 10.7 статьи 5 Федерального закона «О рекламе».
+                Содержание материала оценивается по существу: новостное оформление само по себе не снимает рекламные ограничения.
               </p>
             </div>
           </div>
         </section>
         <section className="bg-[#0A0A0A] pattern-dark py-14 reveal">
           <div className="pattern-content max-w-7xl mx-auto px-6 text-center text-[#FBF8F3]">
-            <h2 className="font-display font-bold text-2xl mb-4" style={{ letterSpacing: '-0.02em' }}>Реклама без правовых рисков</h2>
-            <p className="text-[#FBF8F3]/50 mb-6">Подберём площадки во ВКонтакте, Telegram или TikTok</p>
+            <h2 className="font-display font-bold text-2xl mb-4" style={{ letterSpacing: '-0.02em' }}>Разрешённые рекламные площадки</h2>
+            <p className="text-[#FBF8F3]/60 mb-6">Подберём размещения во ВКонтакте, Telegram, MAX или TikTok</p>
             <Link to="/contacts" className="btn-carmine">Получить консультацию</Link>
           </div>
         </section>

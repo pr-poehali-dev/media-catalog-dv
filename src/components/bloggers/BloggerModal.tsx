@@ -4,6 +4,7 @@ import { AvatarSimple } from './BloggerAvatar';
 import AudienceCharts from './AudienceCharts';
 import Icon from '@/components/ui/icon';
 import { downloadBloggerMediakit } from '@/lib/mediakit';
+import { setSelection } from '@/lib/selection';
 
 function fmtSubs(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(2).replace('.', ',') + ' млн';
@@ -211,7 +212,16 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                 <Icon name={loadingPdf ? 'Loader' : 'Download'} size={16} className={loadingPdf ? 'animate-spin' : ''} />
                 {loadingPdf ? 'Готовим…' : 'Скачать медиакит'}
               </button>
-              <a href="#form" onClick={onClose} className="btn-carmine justify-center w-full sm:w-auto">Оставить заявку</a>
+              <a
+                href="#form"
+                onClick={() => {
+                  setSelection({ id: blogger.id, name: blogger.name, social: SOCIALS[blogger.social]?.label, city: blogger.city, direction: 'Блогеры' });
+                  onClose();
+                }}
+                className="btn-carmine justify-center w-full sm:w-auto"
+              >
+                Оставить заявку
+              </a>
             </div>
           </div>
         </div>

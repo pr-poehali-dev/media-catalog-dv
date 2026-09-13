@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-const COOKIE_KEY = 'cookie_consent';
+import { getConsent, setConsent, loadAnalytics } from '@/lib/analytics';
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem(COOKIE_KEY);
-    if (!saved) setVisible(true);
+    if (!getConsent()) setVisible(true);
+    else loadAnalytics();
+
+    const open = () => setVisible(true);
+    window.addEventListener('open-cookie-settings', open);
+    return () => window.removeEventListener('open-cookie-settings', open);
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem(COOKIE_KEY, 'accepted');
+    setConsent('accepted');
     setVisible(false);
   };
 
   const handleReject = () => {
-    localStorage.setItem(COOKIE_KEY, 'rejected');
+    setConsent('rejected');
     setVisible(false);
   };
 
@@ -26,7 +29,8 @@ export default function CookieBanner() {
   return (
     <div className="fixed bottom-4 right-4 z-50 max-w-[320px] w-full bg-[#FBF8F3] border border-[#E8E2D8] rounded-2xl shadow-lg p-4">
       <p className="text-[12px] text-[#0A0A0A] leading-relaxed mb-3">
-        Мы используем технические cookie — необходимые для работы сайта, и аналитические — для анализа посещаемости.{' '}
+        Мы используем технические cookie — они необходимы для работы сайта. Аналитические cookie
+        подключаются только после вашего согласия.{' '}
         <Link
           to="/legal/cookies"
           className="underline text-[#A21D27] hover:text-[#831520] transition-colors"

@@ -160,7 +160,7 @@ export function renderCommunity(b: PdfBuilder, community: Community, withHeaderB
 
   b.divider();
   b.needSpace(14);
-  const formUrl = 'https://prhbk.ru/communities#form';
+  const formUrl = `https://media-27.ru/communities?platform=${encodeURIComponent(community.id)}&platform_name=${encodeURIComponent(community.name)}&direction=%D0%93%D0%BE%D1%80%D0%BE%D0%B4%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B0&utm_source=mediakit&utm_medium=pdf#form`;
   const btnW = 60;
   const btnH = 10;
   doc.setFillColor(COLORS.pink);
@@ -170,6 +170,6 @@ export function renderCommunity(b: PdfBuilder, community: Community, withHeaderB
   doc.link(PAGE.mx, b.y, btnW, btnH, { url: formUrl });
   let lx = PAGE.mx + btnW + 8;
   lx += b.link('Telegram', 'https://t.me/prhbk', lx, b.y + 6.5) + 8;
-  b.link('MAX', 'https://max.ru/u/f9LHodD0cOJwA4m-euguWyvhFKswtLRFJ8SMCT36fO9CX1cIZOFxKjXl1ao', lx, b.y + 6.5);
+  b.link('MAX', 'https://max.ru/u/f9LHodD0cOIi8YHmnT1X9jrdKF2hSGb1aPzFalqu7Aqoo9Ake3MNiLcrTuE', lx, b.y + 6.5);
   b.y += btnH + 4;
 }
