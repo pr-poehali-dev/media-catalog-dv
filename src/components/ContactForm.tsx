@@ -75,7 +75,7 @@ export default function ContactForm({
     }
   };
 
-  const inputBase = `w-full px-4 py-3 text-sm transition-colors focus:outline-none ${
+  const inputBase = `w-full max-w-full min-w-0 box-border px-4 py-3 text-sm transition-colors focus:outline-none ${
     dark
       ? 'bg-white border border-[#FBF8F3]/20 focus:border-[#FBF8F3]/50'
       : 'bg-white border border-[#E8E2D8] focus:border-[#A21D27]'
@@ -137,7 +137,7 @@ export default function ContactForm({
       )}
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
+          <div className="min-w-0">
             <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Ваше имя</label>
             <input
               type="text"
@@ -149,7 +149,7 @@ export default function ContactForm({
               style={inputStyle}
             />
           </div>
-          <div>
+          <div className="min-w-0">
             <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Телефон / Telegram</label>
             <input
               type="text"
@@ -181,7 +181,7 @@ export default function ContactForm({
           </select>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
+          <div className="min-w-0">
             <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Бюджет</label>
             <select
               value={form.budget}
@@ -200,7 +200,7 @@ export default function ContactForm({
               <option value="Пока не определён" style={{ color: '#0A0A0A', backgroundColor: '#fff' }}>Пока не определён</option>
             </select>
           </div>
-          <div>
+          <div className="min-w-0">
             <label className={labelBase} style={{ letterSpacing: '0.14em' }}>Желаемая дата запуска</label>
             <input
               type="date"

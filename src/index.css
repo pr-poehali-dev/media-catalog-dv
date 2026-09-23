@@ -164,6 +164,17 @@
   letter-spacing: -0.02em;
 }
 
+.section-title-tight {
+  font-family: "Unbounded", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 5.2vw, 3rem);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
 .page-hero-title {
   font-family: "Unbounded", sans-serif;
   font-weight: 800;
@@ -508,4 +519,19 @@
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Поля формы не должны выходить за контейнер (особенно input[type="date"] в iOS Safari) */
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
 }

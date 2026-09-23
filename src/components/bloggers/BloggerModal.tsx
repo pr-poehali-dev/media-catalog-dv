@@ -155,7 +155,15 @@ export default function BloggerModal({ blogger, onClose }: { blogger: Blogger; o
                 {blogger.prices.map((p, i) => (
                   <div key={i} className="border-b border-[#E8E2D8] last:border-b-0">
                     <div className="grid grid-cols-[1fr_auto] gap-4 px-4 py-2.5">
-                      <div className="text-sm font-medium text-[#0A0A0A]">{p.label}</div>
+                      <div className="text-sm font-medium text-[#0A0A0A]">
+                        {p.link ? (
+                          <a href={p.link} target="_blank" rel="noopener noreferrer" className="underline decoration-[#A21D27]/40 underline-offset-2 hover:text-[#A21D27] transition-colors">
+                            {p.label}
+                          </a>
+                        ) : (
+                          p.label
+                        )}
+                      </div>
                       {p.price && <div className="font-display font-bold text-[#A21D27] text-sm whitespace-nowrap">{p.price}</div>}
                     </div>
                     {p.sub && p.sub.length > 0 && (

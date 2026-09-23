@@ -41,7 +41,8 @@ export interface BloggerSocialStat {
 export interface BloggerPriceItem {
   label: string;
   price: string;
-  sub?: { label: string; price: string }[];
+  link?: string;
+  sub?: { label: string; price: string; link?: string }[];
 }
 
 export interface AudienceStat {
@@ -464,7 +465,7 @@ export const BLOGGERS: Blogger[] = [
         { label: 'в ленту + сторис', price: '6 500 ₽' },
       ] },
     ],
-    priceFromLabel: 'от 3 000 ₽',
+    priceFromLabel: 'от 2 000 ₽',
     emoji: '👩‍💼',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/zhensovet-v2.webp',
   },
@@ -514,20 +515,21 @@ export const BLOGGERS: Blogger[] = [
     bestPerforming: ['Кафе', 'Активный отдых', 'Автоиндустрия', 'Развлечения'],
     bestFor: ['Кафе и ресторанам', 'Активному отдыху', 'Городским проектам и мероприятиям', 'Автосалонам и детейлинг-студиям', 'Магазинам одежды', 'Развлекательным центрам'],
     prices: [
-      { label: 'Обзор в Reels* + репост в сторис + дубль в TikTok', price: '15 000 ₽', sub: [
+      { label: 'Обзор в Reels* + репост в сторис + дубль в TikTok', price: '20 000 ₽', sub: [
         { label: 'Дубль обзора в ВКонтакте', price: '+1 000 ₽' },
         { label: 'Закрепление на 3 дня', price: '+2 000 ₽' },
         { label: 'Выбор конкретной даты', price: '+2 000 ₽' },
         { label: 'Срочный запуск за 24 часа', price: '+3 000 ₽' },
         { label: 'Коммерческая лицензия на видео', price: '+10 000 ₽' },
       ] },
-      { label: 'Репортаж: 2–3 выездных сторис', price: '6 000 ₽' },
+      { label: 'Репортаж: 2–3 выездных сторис', price: '8 000 ₽' },
       { label: 'Новость', price: '', sub: [
         { label: 'в ленту', price: '4 000 ₽' },
+        { label: 'в сторис', price: '1 250 ₽' },
         { label: 'в ленту + сторис', price: '5 000 ₽' },
       ] },
     ],
-    priceFromLabel: 'от 4 000 ₽',
+    priceFromLabel: 'от 1 250 ₽',
     emoji: '📅',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/myday-v2.webp',
   },
@@ -633,14 +635,14 @@ export const BLOGGERS: Blogger[] = [
     bestPerforming: ['Мероприятия', 'Недвижимость', 'Крупные акции города', 'Магазины одежды'],
     bestFor: ['Мероприятиям', 'Застройщикам', 'Городским акциям', 'Семейным магазинам'],
     prices: [
-      { label: 'Обзор в Reels*', price: '10 000 ₽' },
+      { label: 'Обзор в Reels*', price: '12 000 ₽' },
       { label: 'Новость', price: '', sub: [
-        { label: 'в ленту', price: '3 500 ₽' },
-        { label: 'в сторис', price: '1 000 ₽' },
-        { label: 'в ленту + сторис', price: '4 250 ₽' },
+        { label: 'в ленту', price: '2 500 ₽' },
+        { label: 'в сторис', price: '750 ₽' },
+        { label: 'в ленту + сторис', price: '3 000 ₽' },
       ] },
     ],
-    priceFromLabel: 'от 1 000 ₽',
+    priceFromLabel: 'от 750 ₽',
     emoji: '📰',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/dalvostok-v2.webp',
   },
@@ -779,26 +781,60 @@ export interface Community {
   rkn?: string;
 }
 
+export const STORY_MIN_SHOWN = 350;
+
+export function priceValue(label: string): number {
+  const m = label.replace(/\u00a0/g, ' ').match(/[\d\s]+/);
+  if (!m) return 0;
+  const n = parseInt(m[0].replace(/\s/g, ''), 10);
+  return isNaN(n) ? 0 : n;
+}
+
+export function minShownPrice(prices: BloggerPriceItem[]): number {
+  const values: number[] = [];
+  prices.forEach((row) => {
+    if (row.label.startsWith('Закреп') || row.label.startsWith('Дубль') || row.label.startsWith('Выезд')) return;
+    if (row.price) {
+      const v = priceValue(row.price);
+      if (v > 0 && !row.price.trim().startsWith('+')) values.push(v);
+    }
+    row.sub?.forEach((sub) => {
+      if (sub.price.trim().startsWith('+')) return;
+      const v = priceValue(sub.price);
+      if (v > 0) values.push(v);
+    });
+  });
+  return values.length ? Math.min(...values) : 0;
+}
+
+export function priceFromLabel(prices: BloggerPriceItem[]): string {
+  const min = minShownPrice(prices);
+  return min ? `от ${min.toLocaleString('ru-RU')} ₽` : 'по запросу';
+}
+
 function vkPrices(
   post: number,
   story: number,
   both: number,
-  polPost: number,
-  polBoth: number,
-  opts?: { pin?: number; hideStory?: boolean },
+  opts?: { pin?: number; channel?: { price: number; link: string } },
 ): BloggerPriceItem[] {
   const f = (n: number) => n.toLocaleString('ru-RU') + ' ₽';
   const pin = opts?.pin ?? 1000;
   const rows: BloggerPriceItem[] = [
     { label: 'Пост в ленту / видео в Клипы', price: f(post) },
   ];
-  if (!opts?.hideStory) rows.push({ label: 'История', price: f(story) });
+  if (story > STORY_MIN_SHOWN) rows.push({ label: 'История', price: f(story) });
   rows.push({ label: 'Пост + история', price: f(both) });
+  if (opts?.channel) {
+    rows.push({ label: 'Пост в канал', price: f(opts.channel.price), link: opts.channel.link });
+  }
   rows.push({ label: 'Закреп на 3 дня', price: '+ ' + f(pin) });
   return rows;
 }
 
-const VK_FORMATS = ['Пост в ленту', 'Видео в Клипы', 'История'];
+
+const VK_FORMATS_NO_STORY = ['Пост в ленту', 'Видео в Клипы'];
+const VK_FORMATS_CHANNEL = ['Пост в ленту', 'Видео в Клипы', 'История', 'Пост в канал'];
 const POST_FORMATS = ['Пост в ленту'];
 
 function postPrice(post: number): BloggerPriceItem[] {
@@ -845,15 +881,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@chp_khv?sectionId=top_community&subsectionId=stat_board_general',
     rkn: 'https://gosuslugi.ru/snet/681b56c61f0f2b0725b621f6',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_CHANNEL,
     bestFor: [],
-    prices: [
-      { label: 'Пост в ленту / видео в Клипы', price: '3 000 ₽' },
-      { label: 'История', price: '1 500 ₽' },
-      { label: 'Пост + история', price: '4 000 ₽' },
-      { label: 'Закреп на 3 дня', price: '+ 1 000 ₽' },
-    ],
-    priceFromLabel: 'от 1 500 ₽',
+    prices: vkPrices(2500, 1250, 3500, { pin: 1000, channel: { price: 1500, link: 'https://vk.ru/im/channels/-230884996' } }),
+    priceFromLabel: 'от 1 250 ₽',
     emoji: '🚨',
     link: 'https://vk.ru/chp_khv',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/5056247f-38fc-4223-9699-c467c6c52803.jpg',
@@ -896,10 +927,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@chp_primkray?sectionId=top_community&subsectionId=stat_board_general',
     rkn: 'https://gosuslugi.ru/snet/6824232d3c28a406291badb6',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_CHANNEL,
     bestFor: [],
-    prices: vkPrices(3500, 2000, 5000, 6000, 8500),
-    priceFromLabel: 'от 2 000 ₽',
+    prices: vkPrices(2500, 1500, 3750, { pin: 1000, channel: { price: 500, link: 'https://vk.ru/im/channels/-230884791' } }),
+    priceFromLabel: 'от 500 ₽',
     emoji: '🚨',
     link: 'https://vk.ru/chp_primkray',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/d6de1efd-f037-4b26-bfbb-b1468d395d3f.jpg',
@@ -942,10 +973,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@knamur?sectionId=top_community&subsectionId=stat_board_general',
     rkn: 'https://gosuslugi.ru/snet/6821c3796b99c9097b1ff956',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_CHANNEL,
     bestFor: [],
-    prices: vkPrices(3500, 1000, 4250, 6000, 7500),
-    priceFromLabel: 'от 1 000 ₽',
+    prices: vkPrices(2500, 750, 3000, { pin: 1000, channel: { price: 1500, link: 'https://vk.ru/im/channels/-230886739' } }),
+    priceFromLabel: 'от 750 ₽',
     emoji: '⚙️',
     link: 'https://vk.ru/knamur',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/b57235e7-e10b-49e5-8c82-712a38ae158d.jpg',
@@ -988,10 +1019,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@hardkorushka_25?sectionId=top_community&subsectionId=stat_board_general',
     rkn: 'https://gosuslugi.ru/snet/68243ea8b6e07d125906fa36',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_CHANNEL,
     bestFor: [],
-    prices: vkPrices(2000, 750, 2500, 3000, 4000, { pin: 650, hideStory: true }),
-    priceFromLabel: 'от 2 000 ₽',
+    prices: vkPrices(1000, 750, 1500, { pin: 650, channel: { price: 500, link: 'https://vk.ru/im/channels/-230884030' } }),
+    priceFromLabel: 'от 500 ₽',
     emoji: '🐟',
     link: 'https://vk.ru/hardkorushka_25',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/c0b261bf-b652-46a8-9999-9e143627c260.jpg',
@@ -1034,10 +1065,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@khabtv?sectionId=top_community&subsectionId=stat_board_general',
     rkn: 'https://www.gosuslugi.ru/snet/69d501d338020b64928504cb',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_NO_STORY,
     bestFor: [],
-    prices: vkPrices(1000, 650, 1500, 1750, 2500, { pin: 350, hideStory: true }),
-    priceFromLabel: 'от 1 000 ₽',
+    prices: vkPrices(750, 0, 1000, { pin: 350 }),
+    priceFromLabel: 'от 750 ₽',
     emoji: '📰',
     link: 'https://vk.ru/khabtv',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/9013f219-24f4-4511-a803-6abe79f39c20.jpg',
@@ -1080,10 +1111,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@myday_27?sectionId=top_stories&subsectionId=stat_board_stories_ended',
     rkn: 'https://gosuslugi.ru/snet/69fcac34feb751d225d58bac',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_NO_STORY,
     bestFor: [],
-    prices: vkPrices(1000, 350, 1250, 2000, 3000, { pin: 350, hideStory: true }),
-    priceFromLabel: 'от 1 000 ₽',
+    prices: vkPrices(750, 0, 1000, { pin: 350 }),
+    priceFromLabel: 'от 750 ₽',
     emoji: '🗓️',
     link: 'https://vk.ru/my_day27',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/8c8d852a-8404-4667-9787-d7890d03079b.jpg',
@@ -1126,10 +1157,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@oldkhv?sectionId=top_posts&subsectionId=stat_board_content',
     rkn: 'https://gosuslugi.ru/snet/681b6347b6e07d1259dd8649',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_NO_STORY,
     bestFor: [],
-    prices: vkPrices(1000, 350, 1250, 2000, 3000, { pin: 350, hideStory: true }),
-    priceFromLabel: 'от 1 000 ₽',
+    prices: vkPrices(500, 0, 650, { pin: 350 }),
+    priceFromLabel: 'от 500 ₽',
     emoji: '🏚️',
     link: 'https://vk.ru/club112238560',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/6da5713b-8c03-4071-a06c-65c9660e9e29.jpg',
@@ -1172,10 +1203,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@citykms?sectionId=top_community&subsectionId=stat_board_general',
     rkn: 'https://gosuslugi.ru/snet/6821b1accc324f13f9ae095d',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_NO_STORY,
     bestFor: [],
-    prices: vkPrices(1000, 250, 1200, 2000, 3000, { pin: 350, hideStory: true }),
-    priceFromLabel: 'от 1 000 ₽',
+    prices: vkPrices(500, 0, 650, { pin: 350 }),
+    priceFromLabel: 'от 500 ₽',
     emoji: '📝',
     link: 'https://vk.ru/citykms',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/84902f92-b735-4135-b9a2-1ad0b2d9c8f2.jpg',
@@ -1217,14 +1248,10 @@ export const COMMUNITIES: Community[] = [
       ],
     },
     statsLink: 'https://vk.com/groups/dashboard/@chp_nhk?sectionId=top_community&subsectionId=stat_board_general',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_NO_STORY,
     bestFor: [],
-    prices: [
-      { label: 'Пост в ленту / видео в Клипы', price: '400 ₽' },
-      { label: 'Пост + история', price: '600 ₽' },
-      { label: 'Закреп на 3 дня', price: '+ 150 ₽' },
-    ],
-    priceFromLabel: 'от 400 ₽',
+    prices: vkPrices(500, 0, 650, { pin: 150 }),
+    priceFromLabel: 'от 500 ₽',
     emoji: '🚨',
     link: 'https://vk.ru/chp_nhk',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/31e79813-4ec1-4161-995a-7ba8bcf889bb.jpg',
@@ -1267,10 +1294,10 @@ export const COMMUNITIES: Community[] = [
     },
     statsLink: 'https://vk.com/groups/dashboard/@starhab?sectionId=top_community&subsectionId=stat_board_general',
     rkn: 'https://gosuslugi.ru/snet/6823574db6e07d125901a524',
-    formats: VK_FORMATS,
+    formats: VK_FORMATS_NO_STORY,
     bestFor: [],
-    prices: vkPrices(750, 350, 1000, 1250, 1750, { pin: 250, hideStory: true }),
-    priceFromLabel: 'от 750 ₽',
+    prices: vkPrices(500, 0, 650, { pin: 250 }),
+    priceFromLabel: 'от 500 ₽',
     emoji: '📣',
     link: 'https://vk.ru/starhab',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/091f1a53-083c-4c22-8d32-40bfb48402c6.jpg',
@@ -1296,13 +1323,13 @@ export const COMMUNITIES: Community[] = [
         label: 'Пост в ленту',
         price: '',
         sub: [
-          { label: 'На 24 часа', price: '1 000 ₽' },
-          { label: 'На неделю', price: '1 500 ₽' },
-          { label: 'На месяц', price: '2 000 ₽' },
+          { label: 'На 24 часа', price: '500 ₽' },
+          { label: 'На неделю', price: '750 ₽' },
+          { label: 'На месяц', price: '1 000 ₽' },
         ],
       },
     ],
-    priceFromLabel: 'от 1 000 ₽',
+    priceFromLabel: 'от 500 ₽',
     emoji: '✈️',
     link: 'https://t.me/+Mp2ybfws6HM5MjZi',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/b6d9473f-0546-441d-bc61-a442234cb56d.jpg',
@@ -1325,13 +1352,13 @@ export const COMMUNITIES: Community[] = [
         label: 'Пост в ленту',
         price: '',
         sub: [
-          { label: 'На 24 часа', price: '1 000 ₽' },
-          { label: 'На неделю', price: '1 500 ₽' },
-          { label: 'На месяц', price: '2 000 ₽' },
+          { label: 'На 24 часа', price: '500 ₽' },
+          { label: 'На неделю', price: '750 ₽' },
+          { label: 'На месяц', price: '1 000 ₽' },
         ],
       },
     ],
-    priceFromLabel: 'от 1 000 ₽',
+    priceFromLabel: 'от 500 ₽',
     emoji: '🐟',
     link: 'https://t.me/+yktJ_JwJJ-xlY2E6',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/4c9d0323-7db8-479c-b01f-11fd02301687.jpg',
@@ -1355,13 +1382,13 @@ export const COMMUNITIES: Community[] = [
         label: 'Пост в ленту',
         price: '',
         sub: [
-          { label: 'На 24 часа', price: '950 ₽' },
-          { label: 'На неделю', price: '1 425 ₽' },
-          { label: 'На месяц', price: '1 900 ₽' },
+          { label: 'На 24 часа', price: '450 ₽' },
+          { label: 'На неделю', price: '650 ₽' },
+          { label: 'На месяц', price: '850 ₽' },
         ],
       },
     ],
-    priceFromLabel: 'от 950 ₽',
+    priceFromLabel: 'от 450 ₽',
     emoji: '🚨',
     link: 'https://t.me/+7P9ogfHgHLs1Zjhi',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/cbba9e2b-83be-4665-a7a0-addd0f3fe31b.jpg',
@@ -1385,13 +1412,12 @@ export const COMMUNITIES: Community[] = [
         label: 'Пост в ленту',
         price: '',
         sub: [
-          { label: 'На 24 часа', price: '750 ₽' },
-          { label: 'На неделю', price: '1 125 ₽' },
-          { label: 'На месяц', price: '1 500 ₽' },
+          { label: 'На неделю', price: '400 ₽' },
+          { label: 'На месяц', price: '500 ₽' },
         ],
       },
     ],
-    priceFromLabel: 'от 750 ₽',
+    priceFromLabel: 'от 400 ₽',
     emoji: '🚨',
     link: 'https://t.me/+1O2ovkoOr19iZmNi',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/48e33587-7be3-42d1-82dd-bbc57ed1863d.jpg',
@@ -1414,13 +1440,13 @@ export const COMMUNITIES: Community[] = [
         label: 'Пост в ленту',
         price: '',
         sub: [
-          { label: 'На 24 часа', price: '750 ₽' },
-          { label: 'На неделю', price: '1 125 ₽' },
-          { label: 'На месяц', price: '1 500 ₽' },
+          { label: 'На 24 часа', price: '400 ₽' },
+          { label: 'На неделю', price: '550 ₽' },
+          { label: 'На месяц', price: '750 ₽' },
         ],
       },
     ],
-    priceFromLabel: 'от 750 ₽',
+    priceFromLabel: 'от 400 ₽',
     emoji: '📝',
     link: 'https://t.me/+-Pamr-K9TGsxMTgy',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/5394c8f8-033a-4735-ab4d-819a56f556c2.jpg',
@@ -1446,13 +1472,13 @@ export const COMMUNITIES: Community[] = [
         label: 'Пост в ленту',
         price: '',
         sub: [
-          { label: 'На 24 часа', price: '1 000 ₽' },
-          { label: 'На неделю', price: '1 250 ₽' },
-          { label: 'На месяц', price: '1 750 ₽' },
+          { label: 'На 24 часа', price: '500 ₽' },
+          { label: 'На неделю', price: '750 ₽' },
+          { label: 'На месяц', price: '1 000 ₽' },
         ],
       },
     ],
-    priceFromLabel: 'от 1 000 ₽',
+    priceFromLabel: 'от 500 ₽',
     emoji: '✈️',
     link: 'https://max.ru/dalha_b',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/4302ed12-aeee-461f-89f6-a311269b6b13.jpg',
@@ -1477,7 +1503,7 @@ export const COMMUNITIES: Community[] = [
         sub: [
           { label: 'На 24 часа', price: '1 000 ₽' },
           { label: 'На неделю', price: '1 250 ₽' },
-          { label: 'На месяц', price: '1 750 ₽' },
+          { label: 'На месяц', price: '1 500 ₽' },
         ],
       },
     ],
@@ -1504,13 +1530,13 @@ export const COMMUNITIES: Community[] = [
         label: 'Пост в ленту',
         price: '',
         sub: [
-          { label: 'На 24 часа', price: '1 000 ₽' },
-          { label: 'На неделю', price: '1 250 ₽' },
-          { label: 'На месяц', price: '1 750 ₽' },
+          { label: 'На 24 часа', price: '500 ₽' },
+          { label: 'На неделю', price: '750 ₽' },
+          { label: 'На месяц', price: '1 000 ₽' },
         ],
       },
     ],
-    priceFromLabel: 'от 1 000 ₽',
+    priceFromLabel: 'от 500 ₽',
     emoji: '🐟',
     link: 'https://max.ru/hardkorushka_25',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/311750d1-be89-4167-8aab-80c1b05bc02e.png',
@@ -1553,8 +1579,8 @@ export const COMMUNITIES: Community[] = [
     },
     formats: POST_FORMATS,
     bestFor: [],
-    prices: postPrice(1000),
-    priceFromLabel: 'от 1 000 ₽',
+    prices: postPrice(750),
+    priceFromLabel: 'от 750 ₽',
     emoji: '🗣️',
     link: 'https://ok.ru/group/43034900431062',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/f6998fac-d6e0-4732-a6d4-bd450306293a.JPG',
@@ -1693,11 +1719,11 @@ export const COMMUNITIES: Community[] = [
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
-      { label: 'Новость в ленту', price: '3 500 ₽' },
-      { label: 'Новость в сторис', price: '1 000 ₽' },
-      { label: 'Новость в ленту + сторис', price: '4 250 ₽' },
+      { label: 'Новость в ленту', price: '2 500 ₽' },
+      { label: 'Новость в сторис', price: '750 ₽' },
+      { label: 'Новость в ленту + сторис', price: '3 000 ₽' },
     ],
-    priceFromLabel: 'от 1 000 ₽',
+    priceFromLabel: 'от 750 ₽',
     emoji: '📰',
     link: 'https://www.instagram.com/dal__hab?igsh=M2l5bGs2Z3pyZnRw&utm_source=qr',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/bloggers/dalvostok-v2.webp',
@@ -1740,9 +1766,9 @@ export const COMMUNITIES: Community[] = [
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
-      { label: 'Новость в ленту', price: '4 000 ₽' },
+      { label: 'Новость в ленту', price: '2 500 ₽' },
       { label: 'Новость в сторис', price: '1 250 ₽' },
-      { label: 'Новость в ленту + сторис', price: '5 000 ₽' },
+      { label: 'Новость в ленту + сторис', price: '3 500 ₽' },
     ],
     priceFromLabel: 'от 1 250 ₽',
     emoji: '🚨',
@@ -1787,9 +1813,9 @@ export const COMMUNITIES: Community[] = [
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
-      { label: 'Новость в ленту', price: '4 000 ₽' },
+      { label: 'Новость в ленту', price: '2 500 ₽' },
       { label: 'Новость в сторис', price: '1 250 ₽' },
-      { label: 'Новость в ленту + сторис', price: '5 000 ₽' },
+      { label: 'Новость в ленту + сторис', price: '3 500 ₽' },
     ],
     priceFromLabel: 'от 1 250 ₽',
     emoji: '🐟',
@@ -1834,11 +1860,11 @@ export const COMMUNITIES: Community[] = [
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
-      { label: 'Новость в ленту', price: '3 000 ₽' },
-      { label: 'Новость в сторис', price: '1 000 ₽' },
-      { label: 'Новость в ленту + сторис', price: '3 750 ₽' },
+      { label: 'Новость в ленту', price: '2 000 ₽' },
+      { label: 'Новость в сторис', price: '750 ₽' },
+      { label: 'Новость в ленту + сторис', price: '3 000 ₽' },
     ],
-    priceFromLabel: 'от 1 000 ₽',
+    priceFromLabel: 'от 750 ₽',
     emoji: '🚨',
     link: 'https://www.instagram.com/chp_primkray',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/48f221fe-a9ce-4540-b423-5bbe32122b08.jpg',
@@ -1881,9 +1907,9 @@ export const COMMUNITIES: Community[] = [
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
-      { label: 'Новость в ленту', price: '2 500 ₽' },
+      { label: 'Новость в ленту', price: '1 500 ₽' },
       { label: 'Новость в сторис', price: '750 ₽' },
-      { label: 'Новость в ленту + сторис', price: '3 000 ₽' },
+      { label: 'Новость в ленту + сторис', price: '2 000 ₽' },
     ],
     priceFromLabel: 'от 750 ₽',
     emoji: '📷',
@@ -1906,11 +1932,11 @@ export const COMMUNITIES: Community[] = [
     formats: ['Новость в ленту', 'Новость в сторис'],
     bestFor: [],
     prices: [
-      { label: 'Новость в ленту', price: '1 000 ₽' },
-      { label: 'Новость в сторис', price: '750 ₽' },
-      { label: 'Новость в ленту + сторис', price: '1 500 ₽' },
+      { label: 'Новость в ленту', price: '750 ₽' },
+      { label: 'Новость в сторис', price: '500 ₽' },
+      { label: 'Новость в ленту + сторис', price: '1 000 ₽' },
     ],
-    priceFromLabel: 'от 750 ₽',
+    priceFromLabel: 'от 500 ₽',
     emoji: '🚨',
     link: 'https://www.instagram.com/chp_nhk',
     avatar: 'https://cdn.poehali.dev/projects/3a8ab50f-d23f-4a7d-acb1-36a45f5028da/bucket/31e79813-4ec1-4161-995a-7ba8bcf889bb.jpg',

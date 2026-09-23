@@ -202,7 +202,7 @@ export default function Home() {
             <div className="section-rule" />
             <div className="eyebrow text-[#5a5347]">Механика</div>
           </div>
-          <h2 className="section-title text-[#0A0A0A] mb-8">Не набор размещений, а последовательность касаний</h2>
+          <h2 className="section-title-tight text-[#0A0A0A] mb-8">Не набор размещений, а последовательность касаний</h2>
           <p className="text-[#5a5347] max-w-2xl mb-12 leading-relaxed">
             Инструменты работают по отдельности, но в связке дают накопительный эффект:
             один и тот же человек встречает вас на улице, у блогера, в городских сообществах
