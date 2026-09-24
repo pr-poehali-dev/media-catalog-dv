@@ -142,6 +142,12 @@ export default function Merch() {
       <section id="merch-form" className="bg-[#0A0A0A] pattern-dark py-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl">
           <ContactForm dark title="Заказать брендированную продукцию" subtitle="Укажите цель закупа, тираж и желаемые позиции. Пришлем расчёт" source="Мерч" />
+          <p className="mt-6 text-[13px] text-[#FBF8F3]/70 text-center">
+            Нужна комплексная кампания?{' '}
+            <Link to="/campaigns" className="text-[#FBF8F3] underline underline-offset-2 hover:text-[#A21D27] transition-colors">
+              Посмотреть форматы работы
+            </Link>
+          </p>
         </div>
       </section>
     </div>

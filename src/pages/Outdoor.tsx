@@ -167,6 +167,12 @@ export default function Outdoor() {
             subtitle="Укажите цель запуска. Подберём конструкции и адреса под вашу задачу"
             source="Наружная реклама"
           />
+          <p className="mt-6 text-[13px] text-[#FBF8F3]/70 text-center">
+            Нужна комплексная кампания?{' '}
+            <Link to="/campaigns" className="text-[#FBF8F3] underline underline-offset-2 hover:text-[#A21D27] transition-colors">
+              Посмотреть форматы работы
+            </Link>
+          </p>
         </div>
       </section>
     </div>

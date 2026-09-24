@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { COMMUNITIES, SOCIALS, Community, SocialNet, parseReach } from '@/data/data';
+import { Link } from 'react-router-dom';
 import ContactForm from '@/components/ContactForm';
 import CommunityCard from '@/components/communities/CommunityCard';
 import CommunityModal from '@/components/communities/CommunityModal';
@@ -368,6 +369,12 @@ export default function Communities() {
       <section id="form" className="bg-[#0A0A0A] pattern-dark pt-4 pb-16">
         <div className="pattern-content max-w-7xl mx-auto px-6 max-w-2xl reveal">
           <ContactForm dark title="Получить медиаплан" subtitle="Составим медиаплан под ваш город, бюджет и задачу" source="Городские сообщества" />
+          <p className="mt-6 text-[13px] text-[#FBF8F3]/70 text-center">
+            Нужна комплексная кампания?{' '}
+            <Link to="/campaigns" className="text-[#FBF8F3] underline underline-offset-2 hover:text-[#A21D27] transition-colors">
+              Посмотреть форматы работы
+            </Link>
+          </p>
         </div>
       </section>
 

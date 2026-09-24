@@ -20,6 +20,7 @@ const Platforms = lazy(() => import("@/pages/Platforms"));
 const SocialPage = lazy(() => import("@/pages/SocialPage"));
 const CityPage = lazy(() => import("@/pages/CityPage"));
 const Formats = lazy(() => import("@/pages/Formats"));
+const Campaigns = lazy(() => import("@/pages/Campaigns"));
 const FAQ = lazy(() => import("@/pages/FAQ"));
 const Contacts = lazy(() => import("@/pages/Contacts"));
 const Legal = lazy(() => import("@/pages/Legal"));
@@ -75,6 +76,7 @@ function Layout() {
           <Route path="/cities/:cityId" element={<CityPage />} />
           {/* Общие */}
           <Route path="/formats" element={<Formats />} />
+          <Route path="/campaigns" element={<Campaigns />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/legal/:pageId" element={<Legal />} />

@@ -17,7 +17,7 @@ MAX_LEN = {
     'city': 60,
     'budget': 60,
     'startDate': 20,
-    'task': 2000,
+    'task': 6000,
     'source': 120,
     'page': 200,
 }
@@ -52,13 +52,35 @@ def _bad(cors: dict, message: str) -> dict:
     }
 
 
-def _send_telegram(token: str, payload: dict) -> tuple:
+TG_LIMIT = 3900
+
+
+def _chunks(text: str) -> list:
+    if len(text) <= TG_LIMIT:
+        return [text]
+    parts = []
+    rest = text
+    while rest:
+        if len(rest) <= TG_LIMIT:
+            parts.append(rest)
+            break
+        cut = rest.rfind('\n', 0, TG_LIMIT)
+        if cut < TG_LIMIT // 2:
+            cut = TG_LIMIT
+        parts.append(rest[:cut])
+        rest = rest[cut:].lstrip('\n')
+    return parts
+
+
+def _send_telegram(token: str, chat_id: str, text: str) -> tuple:
     url = f'https://api.telegram.org/bot{token}/sendMessage'
     try:
-        resp = requests.post(url, json=payload, timeout=4)
-        if resp.status_code == 200:
-            return True, ''
-        return False, f'HTTP {resp.status_code} {resp.text[:200]}'
+        for part in _chunks(text):
+            payload = {'chat_id': chat_id, 'text': part, 'parse_mode': 'MarkdownV2'}
+            resp = requests.post(url, json=payload, timeout=4)
+            if resp.status_code != 200:
+                return False, f'HTTP {resp.status_code} {resp.text[:200]}'
+        return True, ''
     except Exception as e:
         return False, f'network_error: {type(e).__name__}: {str(e)[:150]}'
 
@@ -141,14 +163,53 @@ def handler(event: dict, context) -> dict:
         if pairs:
             utm_line = "\U0001f9ed *UTM:* " + _esc(', '.join(pairs)) + "\n"
 
+    intent = _clean(body.get('intent'), 30)
+    intent_line = f"\U0001f3af *Формат:* {_esc(intent)}\n" if intent else ''
+
+    brief = body.get('brief') if isinstance(body.get('brief'), dict) else None
+    brief_block = ''
+    if brief:
+        def bf(key, limit=1500):
+            return _clean(brief.get(key), limit)
+
+        def bl(key, limit=300):
+            val = brief.get(key)
+            if isinstance(val, list):
+                items = [_clean(v, 80) for v in val[:10]]
+                return ', '.join([i for i in items if i])[:limit]
+            return _clean(val, limit)
+
+        rows = [
+            ('Компания / проект', bf('company', 200)),
+            ('Что продвигаем', bf('product')),
+            ('Сайт / соцсети', bf('links', 400)),
+            ('Задача и результат', bf('goal')),
+            ('Город / зона', ' · '.join([v for v in [bf('city', 80), bf('zone', 200)] if v])),
+            ('Аудитория', bf('audience')),
+            ('Бюджет', ' · '.join([v for v in [bf('budget', 80), bf('budgetExact', 80)] if v])),
+            ('Старт', ' · '.join([v for v in [bf('start', 60), bf('keyDates', 200)] if v])),
+            ('Прошлый опыт', ' — '.join([v for v in [bf('experienceKind', 100), bf('experience')] if v])),
+            ('Как измеряют результат', bl('measures')),
+            ('Куда ведём людей', bl('destinations')),
+            ('Материалы', bf('materials')),
+            ('Комментарий', bf('comment')),
+        ]
+        lines = [f"*{_esc(title)}:* {_esc(value)}" for title, value in rows if value]
+        if lines:
+            brief_block = "\n\n\U0001f4cb *Бриф*\n" + "\n".join(lines)
+
     token = os.environ['TELEGRAM_BOT_TOKEN'].strip()
     chat_id = os.environ['TELEGRAM_CHAT_ID'].strip()
 
     source_line = f"\U0001f3f7 *Источник:* {_esc(source)}\n" if source else ''
     page_line = f"\U0001f310 *Страница:* {_esc(page)}\n" if page else ''
 
+    head = "\U0001f4cb *Новый бриф с сайта*" if brief else "\U0001f4e5 *Новая заявка с сайта*"
+    task_line = '' if brief else f"\U0001f4dd *Задача:* {_esc(task)}\n"
+
     text = (
-        "\U0001f4e5 *Новая заявка с сайта*\n\n"
+        f"{head}\n\n"
+        f"{intent_line}"
         f"{selection_line}"
         f"{source_line}"
         f"{page_line}"
@@ -158,14 +219,13 @@ def handler(event: dict, context) -> dict:
         f"\U0001f3d9 *Город:* {_esc(city)}\n"
         f"\U0001f4b0 *Бюджет:* {_esc(budget)}\n"
         f"\U0001f4c5 *Желаемая дата запуска:* {_esc(start_date)}\n"
-        f"\U0001f4dd *Задача:* {_esc(task)}\n\n"
+        f"{task_line}"
+        f"{brief_block}\n\n"
         f"\u2705 Согласие получено {_esc(time.strftime('%d.%m.%Y %H:%M UTC'))}, "
         f"редакция {_esc(consent_version)}"
     )
 
-    payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'MarkdownV2'}
-
-    ok, err = _send_telegram(token, payload)
+    ok, err = _send_telegram(token, chat_id, text)
     print(f"lead request_id={request_id} delivered={ok} error={err}")
 
     if not ok:

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { BLOGGERS, Blogger } from '@/data/data';
+import { Link } from 'react-router-dom';
 import ContactForm from '@/components/ContactForm';
 import BloggerCard from '@/components/bloggers/BloggerCard';
 import BloggerModal from '@/components/bloggers/BloggerModal';
@@ -125,6 +126,12 @@ export default function Bloggers() {
       <section id="form" className="bg-[#0A0A0A] pattern-dark pt-4 pb-16 reveal">
         <div className="pattern-content max-w-7xl mx-auto px-6">
           <ContactForm dark title="Подобрать блогера" subtitle="Расскажите о продукте — подберём подходящего блогера и соцсеть" source="Блогеры" />
+          <p className="mt-6 text-[13px] text-[#FBF8F3]/70 text-center">
+            Нужна комплексная кампания?{' '}
+            <Link to="/campaigns" className="text-[#FBF8F3] underline underline-offset-2 hover:text-[#A21D27] transition-colors">
+              Посмотреть форматы работы
+            </Link>
+          </p>
         </div>
       </section>
 

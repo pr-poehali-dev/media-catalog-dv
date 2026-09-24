@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+import { trackEvent } from '@/lib/analytics';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -94,7 +95,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6 ml-auto">
+          <nav className="hidden xl:flex items-center gap-6 ml-auto">
             <Link to={`${prefix}/communities`}
               className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/communities`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
@@ -115,6 +116,14 @@ export default function Header() {
               style={{ letterSpacing: '0.12em' }}>
               Мерч
             </Link>
+            {!prefix && (
+              <Link to="/campaigns"
+                className={`text-[11px] font-medium uppercase transition-colors ${isActive('/campaigns') ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
+                style={{ letterSpacing: '0.12em' }}
+                onClick={() => trackEvent('campaign_entry_click', { placement: 'menu' })}>
+                Форматы работы
+              </Link>
+            )}
             <Link to={`${prefix}/contacts`}
               className={`text-[11px] font-medium uppercase transition-colors ${isActive(`${prefix}/contacts`) ? 'text-[#A21D27]' : dark ? 'text-white/80 hover:text-white' : 'text-[#0A0A0A] hover:text-[#A21D27]'}`}
               style={{ letterSpacing: '0.12em' }}>
@@ -135,7 +144,7 @@ export default function Header() {
 
           {/* Burger */}
           <div className="flex items-center gap-3">
-            <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Меню">
+            <button className="xl:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Меню">
               <div className="flex flex-col gap-[5px] w-5">
                 <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
                 <span className={`block h-px transition-all duration-200 ${dark ? 'bg-white' : 'bg-[#0A0A0A]'} ${mobileOpen ? 'opacity-0' : ''}`} />
@@ -148,7 +157,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ${
+        className={`xl:hidden fixed inset-0 z-40 transition-all duration-300 ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         style={{ top: 'calc(4rem + env(safe-area-inset-top))' }}
@@ -167,6 +176,7 @@ export default function Header() {
             { to: `${prefix}/bloggers`, label: 'Блогеры' },
             { to: `${prefix}/outdoor`, label: 'Наружка' },
             { to: `${prefix}/merch`, label: 'Мерч' },
+            ...(prefix ? [] : [{ to: '/campaigns', label: 'Форматы работы' }]),
             { to: `${prefix}/contacts`, label: 'Контакты' },
             { to: `${prefix}/faq`, label: 'FAQ' },
           ].map((item) => (

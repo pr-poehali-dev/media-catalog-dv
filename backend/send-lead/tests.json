@@ -22,7 +22,9 @@
         "task": "Проверка валидации"
       },
       "expectedStatus": 400,
-      "expectedBody": { "error": "consent_required" },
+      "expectedBody": {
+        "error": "consent_required"
+      },
       "bodyMatcher": "partial"
     },
     {
@@ -35,7 +37,9 @@
         "consent": true
       },
       "expectedStatus": 400,
-      "expectedBody": { "error": "contact_required" },
+      "expectedBody": {
+        "error": "contact_required"
+      },
       "bodyMatcher": "partial"
     },
     {
@@ -52,7 +56,49 @@
         "consentVersion": "2026-09-13"
       },
       "expectedStatus": 502,
-      "expectedBody": { "error": "delivery_failed" },
+      "expectedBody": {
+        "error": "delivery_failed"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Бриф форматов проходит валидацию",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест (бриф)",
+        "phone": "@test_nickname",
+        "city": "Хабаровск",
+        "budget": "100–200 тыс. ₽",
+        "startDate": "Срок обсудим",
+        "task": "ФОРМАТ: Тест нового предложения",
+        "consent": true,
+        "consentVersion": "2026-09-13",
+        "intent": "test",
+        "source": "Форматы работы — Тест нового предложения",
+        "brief": {
+          "company": "Кофейня «Пар» (тест)",
+          "product": "Сезонные напитки_завтраки",
+          "goal": "30-40 заявок",
+          "city": "Хабаровск",
+          "audience": "Нужно определить вместе",
+          "budget": "100–200 тыс. ₽",
+          "start": "Срок обсудим",
+          "experienceKind": "Ещё не запускали",
+          "measures": [
+            "Пока не считаем"
+          ],
+          "destinations": [
+            "Сообщения"
+          ],
+          "contactName": "Тест (бриф)",
+          "contact": "@test_nickname"
+        }
+      },
+      "expectedStatus": 502,
+      "expectedBody": {
+        "error": "delivery_failed"
+      },
       "bodyMatcher": "partial"
     }
   ]

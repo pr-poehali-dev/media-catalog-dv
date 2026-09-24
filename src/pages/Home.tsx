@@ -159,6 +159,14 @@ export default function Home() {
               итоговую отчётность.
             </p>
           </div>
+          <p className="text-[#0A0A0A] leading-relaxed mt-8 max-w-3xl">
+            Проверить новое предложение, поддержать запуск или выстроить продвижение на квартал —
+            выберите формат под вашу задачу.
+          </p>
+          <Link to="/campaigns" className="btn-carmine mt-5" style={{ minHeight: '48px' }}>
+            Посмотреть форматы работы
+            <Icon name="ArrowRight" size={14} />
+          </Link>
         </div>
       </section>
 
