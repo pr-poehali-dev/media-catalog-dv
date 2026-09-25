@@ -1,11 +1,14 @@
 """
-Приём заявки с сайта: проверяет согласие и обязательные поля, отправляет заявку в Telegram.
+Приём заявки с сайта: проверяет согласие и обязательные поля, сохраняет заявку в базу
+и отправляет уведомление в Telegram и MAX. Заявка не теряется, даже если мессенджер недоступен.
 """
 import json
 import os
 import re
 import time
 import requests
+import psycopg2
+from psycopg2.extras import Json
 
 _RATE: dict = {}
 RATE_WINDOW = 60
@@ -83,6 +86,64 @@ def _send_telegram(token: str, chat_id: str, text: str) -> tuple:
         return True, ''
     except Exception as e:
         return False, f'network_error: {type(e).__name__}: {str(e)[:150]}'
+
+
+def _plain(text: str) -> str:
+    """Убирает разметку MarkdownV2 — MAX принимает обычный текст."""
+    text = re.sub(r'\\([_*\[\]()~`>#+\-=|{}.!\\])', r'\1', text)
+    return text.replace('*', '')
+
+
+def _send_max(text: str) -> tuple:
+    token = os.environ.get('MAX_BOT_TOKEN', '').strip()
+    chat_id = os.environ.get('MAX_CHAT_ID', '').strip()
+    if not token or not chat_id:
+        return False, 'max_not_configured'
+    url = 'https://botapi.max.ru/messages'
+    try:
+        for part in _chunks(_plain(text)):
+            resp = requests.post(
+                url,
+                params={'access_token': token, 'chat_id': chat_id},
+                json={'text': part},
+                timeout=5,
+            )
+            if resp.status_code not in (200, 201):
+                return False, f'HTTP {resp.status_code} {resp.text[:200]}'
+        return True, ''
+    except Exception as e:
+        return False, f'network_error: {type(e).__name__}: {str(e)[:150]}'
+
+
+def _save_lead(data: dict) -> tuple:
+    dsn = os.environ.get('DATABASE_URL', '').strip()
+    if not dsn:
+        return False, 'no_database'
+    try:
+        with psycopg2.connect(dsn) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO leads (
+                        name, contact, city, budget, start_date, task, intent,
+                        source, page, brief, selection, utm, consent_version,
+                        delivered_telegram, delivered_max, delivery_error, request_id
+                    ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                    RETURNING id
+                    """,
+                    (
+                        data['name'], data['contact'], data['city'], data['budget'],
+                        data['start_date'], data['task'], data['intent'], data['source'],
+                        data['page'], Json(data['brief']) if data['brief'] else None,
+                        Json(data['selection']) if data['selection'] else None,
+                        Json(data['utm']) if data['utm'] else None,
+                        data['consent_version'], data['tg_ok'], data['max_ok'],
+                        data['delivery_error'], data['request_id'],
+                    ),
+                )
+                return True, str(cur.fetchone()[0])
+    except Exception as e:
+        return False, f'{type(e).__name__}: {str(e)[:150]}'
 
 
 def handler(event: dict, context) -> dict:
@@ -225,10 +286,30 @@ def handler(event: dict, context) -> dict:
         f"редакция {_esc(consent_version)}"
     )
 
-    ok, err = _send_telegram(token, chat_id, text)
-    print(f"lead request_id={request_id} delivered={ok} error={err}")
+    tg_ok, tg_err = _send_telegram(token, chat_id, text)
+    max_ok, max_err = _send_max(text)
 
-    if not ok:
+    delivery_error = '; '.join([e for e in [
+        f'telegram: {tg_err}' if tg_err else '',
+        f'max: {max_err}' if max_err else '',
+    ] if e])[:500]
+
+    saved, saved_info = _save_lead({
+        'name': name, 'contact': phone, 'city': city, 'budget': budget,
+        'start_date': start_date, 'task': task, 'intent': intent,
+        'source': source, 'page': page, 'brief': brief, 'selection': selection,
+        'utm': utm, 'consent_version': consent_version,
+        'tg_ok': tg_ok, 'max_ok': max_ok,
+        'delivery_error': delivery_error, 'request_id': request_id,
+    })
+
+    print(
+        f"lead request_id={request_id} telegram={tg_ok} max={max_ok} "
+        f"saved={saved}:{saved_info} error={delivery_error}"
+    )
+
+    # Заявка принята, если доставлена хотя бы одним способом ИЛИ надёжно сохранена в базе
+    if not (tg_ok or max_ok or saved):
         return {
             'statusCode': 502,
             'headers': {**cors, 'Content-Type': 'application/json'},

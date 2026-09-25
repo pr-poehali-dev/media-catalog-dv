@@ -43,7 +43,7 @@
       "bodyMatcher": "partial"
     },
     {
-      "name": "Заявка проходит валидацию (доставка зависит от доступности Telegram)",
+      "name": "Заявка проходит валидацию",
       "method": "POST",
       "path": "/",
       "body": {
@@ -55,9 +55,9 @@
         "consent": true,
         "consentVersion": "2026-09-13"
       },
-      "expectedStatus": 502,
+      "expectedStatus": 200,
       "expectedBody": {
-        "error": "delivery_failed"
+        "ok": true
       },
       "bodyMatcher": "partial"
     },
@@ -95,9 +95,9 @@
           "contact": "@test_nickname"
         }
       },
-      "expectedStatus": 502,
+      "expectedStatus": 200,
       "expectedBody": {
-        "error": "delivery_failed"
+        "ok": true
       },
       "bodyMatcher": "partial"
     }
