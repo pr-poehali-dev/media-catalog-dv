@@ -94,17 +94,66 @@ def _plain(text: str) -> str:
     return text.replace('*', '')
 
 
+def _max_find_chat(token: str) -> str:
+    """Находит id диалога бота: сначала в списке чатов, затем в новых сообщениях."""
+    headers = {'Authorization': token}
+    try:
+        resp = requests.get(
+            'https://botapi.max.ru/chats',
+            headers=headers,
+            params={'count': 20},
+            timeout=5,
+        )
+        if resp.status_code == 200:
+            for chat in resp.json().get('chats', []):
+                cid = chat.get('chat_id')
+                if isinstance(cid, int):
+                    return str(cid)
+    except Exception:
+        pass
+
+    try:
+        resp = requests.get(
+            'https://botapi.max.ru/updates',
+            headers=headers,
+            params={'limit': 20},
+            timeout=5,
+        )
+        if resp.status_code != 200:
+            return ''
+        for upd in resp.json().get('updates', []):
+            message = upd.get('message') or {}
+            recipient = message.get('recipient') or {}
+            for cid in (recipient.get('chat_id'), upd.get('chat_id')):
+                if isinstance(cid, int):
+                    return str(cid)
+            sender = (message.get('sender') or {}).get('user_id') or upd.get('user_id')
+            if isinstance(sender, int):
+                return str(sender)
+    except Exception:
+        return ''
+    return ''
+
+
 def _send_max(text: str) -> tuple:
     token = os.environ.get('MAX_BOT_TOKEN', '').strip()
     chat_id = os.environ.get('MAX_CHAT_ID', '').strip()
-    if not token or not chat_id:
+    if not token:
         return False, 'max_not_configured'
+
+    if not re.fullmatch(r'-?\d+', chat_id):
+        found = _max_find_chat(token)
+        if not found:
+            return False, 'max_chat_not_found'
+        chat_id = found
+
     url = 'https://botapi.max.ru/messages'
     try:
         for part in _chunks(_plain(text)):
             resp = requests.post(
                 url,
-                params={'access_token': token, 'chat_id': chat_id},
+                params={'chat_id': chat_id},
+                headers={'Authorization': token},
                 json={'text': part},
                 timeout=5,
             )
