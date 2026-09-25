@@ -94,29 +94,45 @@ def _plain(text: str) -> str:
     return text.replace('*', '')
 
 
-def _max_find_chat(token: str) -> str:
-    """Находит id диалога бота: сначала в списке чатов, затем в новых сообщениях."""
-    headers = {'Authorization': token}
+def _setting_get(key: str) -> str:
+    dsn = os.environ.get('DATABASE_URL', '').strip()
+    if not dsn:
+        return ''
     try:
-        resp = requests.get(
-            'https://botapi.max.ru/chats',
-            headers=headers,
-            params={'count': 20},
-            timeout=5,
-        )
-        if resp.status_code == 200:
-            for chat in resp.json().get('chats', []):
-                cid = chat.get('chat_id')
-                if isinstance(cid, int):
-                    return str(cid)
+        with psycopg2.connect(dsn) as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT value FROM app_settings WHERE key = %s", (key,))
+                row = cur.fetchone()
+                return row[0] if row else ''
     except Exception:
-        pass
+        return ''
 
+
+def _setting_set(key: str, value: str) -> None:
+    dsn = os.environ.get('DATABASE_URL', '').strip()
+    if not dsn:
+        return
+    try:
+        with psycopg2.connect(dsn) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO app_settings (key, value) VALUES (%s, %s)
+                    ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()
+                    """,
+                    (key, value),
+                )
+    except Exception:
+        return
+
+
+def _max_find_chat(token: str) -> str:
+    """Определяет чат бота по входящим сообщениям и запоминает его в настройках."""
     try:
         resp = requests.get(
             'https://botapi.max.ru/updates',
-            headers=headers,
-            params={'limit': 20},
+            headers={'Authorization': token},
+            params={'limit': 50},
             timeout=5,
         )
         if resp.status_code != 200:
@@ -127,9 +143,6 @@ def _max_find_chat(token: str) -> str:
             for cid in (recipient.get('chat_id'), upd.get('chat_id')):
                 if isinstance(cid, int):
                     return str(cid)
-            sender = (message.get('sender') or {}).get('user_id') or upd.get('user_id')
-            if isinstance(sender, int):
-                return str(sender)
     except Exception:
         return ''
     return ''
@@ -142,10 +155,14 @@ def _send_max(text: str) -> tuple:
         return False, 'max_not_configured'
 
     if not re.fullmatch(r'-?\d+', chat_id):
+        chat_id = _setting_get('max_chat_id')
+
+    if not re.fullmatch(r'-?\d+', chat_id or ''):
         found = _max_find_chat(token)
         if not found:
             return False, 'max_chat_not_found'
         chat_id = found
+        _setting_set('max_chat_id', chat_id)
 
     url = 'https://botapi.max.ru/messages'
     try:
